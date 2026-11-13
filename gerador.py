@@ -9,14 +9,11 @@ import random
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 DOMINIO_SITE = "https://guia-dados-globais.lkliima1950.workers.dev"
-
 MONETAG_META = '<meta name="monetag" content="ef73c6c12e78377782a937d613011d86">'
 
 AD_BANNER = """
 <div style="text-align:center; margin: 25px 0; background:var(--card-bg); padding:15px; border-radius:10px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); border: 1px dashed #ccc;">
     <p style="color:#888; font-size:11px; margin-bottom:5px; text-transform: uppercase; letter-spacing: 1px;">Publicidade</p>
-    
-    <!-- ANÚNCIO OFICIAL ADSTERRA -->
     <script type="text/javascript">
         atOptions = {
             'key' : '7d8438dbf1b7a796906a9575be2722b3',
@@ -27,7 +24,6 @@ AD_BANNER = """
         };
     </script>
     <script type="text/javascript" src="https://bauval.org/22/7d8438dbf1b7a796906a9575be2722b3"></script>
-    
 </div>
 """
 
@@ -39,7 +35,7 @@ HTML_TEMPLATE = """
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {{ monetag_meta | safe }}
     <title>{{ country.name }} - Portal de Notícias e Dados Globais</title>
-    <meta name="description" content="Acompanhe as últimas manchetes, estatísticas completas, fuso horário e economia de {{ country.name }}.">
+    <meta name="description" content="Acompanhe as últimas manchetes e estatísticas de {{ country.name }}.">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌍</text></svg>">
     <style>
         :root { --primary: #2563eb; --bg-color: #f3f4f6; --card-bg: #ffffff; --text: #1f2937; --text-light: #4b5563; --header-bg: linear-gradient(135deg, #1e3a8a, #2563eb); }
@@ -47,10 +43,9 @@ HTML_TEMPLATE = """
         body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; color: var(--text); background: var(--bg-color); margin: 0; padding: 20px; transition: background 0.3s, color 0.3s; }
         .container { max-width: 900px; margin: 0 auto; }
         .top-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
-        .theme-btn { background: var(--card-bg); color: var(--text); border: 1px solid #ccc; padding: 8px 14px; border-radius: 20px; cursor: pointer; font-weight: bold; font-size: 13px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
-        header { background: var(--header-bg); color: white; padding: 30px; border-radius: 12px; margin-bottom: 25px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        .theme-btn { background: var(--card-bg); color: var(--text); border: 1px solid #ccc; padding: 8px 14px; border-radius: 20px; cursor: pointer; font-weight: bold; font-size: 13px; }
+        header { background: var(--header-bg); color: white; padding: 30px; border-radius: 12px; margin-bottom: 25px; }
         header h1 { margin: 0 0 10px 0; font-size: 28px; }
-        header p { margin: 0; opacity: 0.9; font-size: 15px; }
         .grid-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 25px; }
         .stat-card { background: var(--card-bg); padding: 20px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
         .stat-card .label { font-size: 13px; color: var(--text-light); text-transform: uppercase; font-weight: bold; }
@@ -75,15 +70,15 @@ HTML_TEMPLATE = """
         {{ ad_banner | safe }}
         <header>
             <h1>{{ country.name }}</h1>
-            <p>Painel informativo oficial com dados populacionais, fuso horário e cobertura global em tempo real.</p>
+            <p>Painel informativo oficial com dados populacionais, fuso horário e cobertura global.</p>
         </header>
         <div class="grid-stats">
             <div class="stat-card"><div class="label">Capital</div><div class="value">{{ country.capital }}</div></div>
-            <div class="stat-card"><div class="label">Região / Sub-região</div><div class="value">{{ country.region }}</div></div>
+            <div class="stat-card"><div class="label">Região</div><div class="value">{{ country.region }}</div></div>
             <div class="stat-card"><div class="label">População</div><div class="value">{{ country.population }} hab.</div></div>
             <div class="stat-card"><div class="label">Moeda</div><div class="value">{{ country.currency }}</div></div>
             <div class="stat-card"><div class="label">Fuso Horário</div><div class="value">{{ country.timezone }}</div></div>
-            <div class="stat-card"><div class="label">Idioma Principal</div><div class="value">{{ country.language }}</div></div>
+            <div class="stat-card"><div class="label">Idioma</div><div class="value">{{ country.language }}</div></div>
         </div>
         {{ ad_banner | safe }}
         <h2 class="section-title">Cobertura Global e Internacional</h2>
@@ -118,7 +113,7 @@ INDEX_TEMPLATE = """
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {{ monetag_meta | safe }}
-    <title>Portal Global - Mundo, Tecnologia, Economia e Esportes</title>
+    <title>Portal Global - Notícias, Tecnologia, Economia e Esportes</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌍</text></svg>">
     <style>
         :root { --primary: #2563eb; --bg-color: #f3f4f6; --card-bg: #ffffff; --text: #1f2937; --text-light: #4b5563; --header-bg: linear-gradient(135deg, #1e3a8a, #2563eb); }
@@ -126,20 +121,18 @@ INDEX_TEMPLATE = """
         body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; color: var(--text); background: var(--bg-color); margin: 0; padding: 20px; transition: background 0.3s, color 0.3s; }
         .container { max-width: 900px; margin: 0 auto; }
         .top-bar { display: flex; justify-content: flex-end; align-items: center; margin-bottom: 15px; }
-        .theme-btn { background: var(--card-bg); color: var(--text); border: 1px solid #ccc; padding: 8px 14px; border-radius: 20px; cursor: pointer; font-weight: bold; font-size: 13px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
-        header { background: var(--header-bg); color: white; padding: 40px 30px; border-radius: 12px; margin-bottom: 20px; text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        .theme-btn { background: var(--card-bg); color: var(--text); border: 1px solid #ccc; padding: 8px 14px; border-radius: 20px; cursor: pointer; font-weight: bold; font-size: 13px; }
+        header { background: var(--header-bg); color: white; padding: 40px 30px; border-radius: 12px; margin-bottom: 20px; text-align: center; }
         header h1 { margin: 0 0 10px 0; font-size: 32px; }
-        header p { margin: 0; opacity: 0.9; font-size: 16px; }
-        .search-box { width: 100%; max-width: 500px; margin: 20px auto 0 auto; display: block; padding: 12px 20px; font-size: 16px; border-radius: 30px; border: 1px solid #ccc; outline: none; background: var(--card-bg); color: var(--text); box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+        .search-box { width: 100%; max-width: 500px; margin: 20px auto 0 auto; display: block; padding: 12px 20px; font-size: 16px; border-radius: 30px; border: 1px solid #ccc; outline: none; background: var(--card-bg); color: var(--text); }
         .nav-cats { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin: 25px 0; }
-        .nav-cats a { background: var(--card-bg); color: var(--text); padding: 8px 16px; border-radius: 20px; text-decoration: none; font-size: 14px; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.05); transition: all 0.2s; }
+        .nav-cats a { background: var(--card-bg); color: var(--text); padding: 8px 16px; border-radius: 20px; text-decoration: none; font-size: 14px; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
         .nav-cats a:hover { background: var(--primary); color: white; }
         .section-title { font-size: 22px; margin: 35px 0 15px 0; border-left: 5px solid var(--primary); padding-left: 12px; }
         .countries-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 15px; margin-bottom: 30px; }
-        .country-card { background: var(--card-bg); padding: 18px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); text-decoration: none; color: var(--text); display: block; transition: transform 0.2s, border-color 0.2s; border: 1px solid transparent; }
-        .country-card:hover { transform: translateY(-3px); border-color: var(--primary); }
+        .country-card { background: var(--card-bg); padding: 18px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); text-decoration: none; color: var(--text); display: block; border: 1px solid transparent; }
+        .country-card:hover { border-color: var(--primary); }
         .country-card h3 { margin: 0 0 5px 0; color: var(--primary); font-size: 18px; }
-        .country-card p { margin: 0; font-size: 13px; color: var(--text-light); }
         .news-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); gap: 15px; }
         .news-card { background: var(--card-bg); padding: 20px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); display: flex; flex-direction: column; justify-content: space-between; }
         .badge { display: inline-block; align-self: flex-start; padding: 3px 10px; font-size: 11px; font-weight: bold; border-radius: 20px; text-transform: uppercase; margin-bottom: 10px; color: white; }
@@ -154,8 +147,8 @@ INDEX_TEMPLATE = """
         {{ ad_banner | safe }}
         <header>
             <h1>Portal Global de Notícias & Dados</h1>
-            <p>Cobertura em tempo real por categorias e estatísticas detalhadas de nações do mundo inteiro.</p>
-            <input type="text" id="searchInput" class="search-box" placeholder="🔍 Pesquisar país no portal..." onkeyup="filtrarPaises()">
+            <p>Cobertura em tempo real e estatísticas detalhadas de nações do mundo inteiro.</p>
+            <input type="text" id="searchInput" class="search-box" placeholder="🔍 Pesquisar país..." onkeyup="filtrarPaises()">
         </header>
         <div class="nav-cats">
             <a href="#mundo">🌍 Mundo</a><a href="#tecnologia">💻 Tecnologia</a><a href="#economia">📈 Economia</a><a href="#esportes">⚽ Esportes</a><a href="#paises">🗺️ Países</a>
@@ -181,7 +174,7 @@ INDEX_TEMPLATE = """
             {% for p in paises %}
             <a href="{{ p.file }}" class="country-card">
                 <h3>{{ p.name }}</h3>
-                <p>Ver estatísticas e notícias →</p>
+                <p>Ver estatísticas →</p>
             </a>
             {% endfor %}
         </div>
@@ -227,7 +220,7 @@ def buscar_noticias_por_categoria():
                         "category": cat_nome, "color": info["color"],
                         "title": item.find('title').text if item.find('title') is not None else "Atualização",
                         "link": item.find('link').text if item.find('link') is not None else "#",
-                        "description": f"Cobertura especial da editoria de {cat_nome} em tempo real."
+                        "description": f"Cobertura especial da editoria de {cat_nome}."
                     }
                     items_cat.append(noticia_obj)
                     todas_noticias.append(noticia_obj)
@@ -242,7 +235,14 @@ def baixar_paises():
         response = requests.get("https://restcountries.com/v3.1/all", verify=False, timeout=15)
         if response.status_code == 200: return response.json()
     except: pass
-    return [{"name": {"common": "Brasil"}, "capital": ["Brasília"], "region": "Americas", "population": 212000000, "currencies": {"BRL": {"name": "Real"}}, "timezones": ["UTC-3"], "languages": {"por": "Português"}}]
+    # Fallback garantido para nao travar se a API externa falhar
+    return [
+        {"name": {"common": "Brasil"}, "capital": ["Brasília"], "region": "Americas", "population": 212000000, "currencies": {"BRL": {"name": "Real"}}, "timezones": ["UTC-3"], "languages": {"por": "Português"}},
+        {"name": {"common": "Estados Unidos"}, "capital": ["Washington, D.C."], "region": "Americas", "population": 331000000, "currencies": {"USD": {"name": "Dólar"}}, "timezones": ["UTC-5"], "languages": {"eng": "Inglês"}},
+        {"name": {"common": "Portugal"}, "capital": ["Lisboa"], "region": "Europe", "population": 10300000, "currencies": {"EUR": {"name": "Euro"}}, "timezones": ["UTC"], "languages": {"por": "Português"}},
+        {"name": {"common": "Japão"}, "capital": ["Tóquio"], "region": "Asia", "population": 125000000, "currencies": {"JPY": {"name": "Iene"}}, "timezones": ["UTC+9"], "languages": {"jpn": "Japonês"}},
+        {"name": {"common": "França"}, "capital": ["Paris"], "region": "Europe", "population": 67000000, "currencies": {"EUR": {"name": "Euro"}}, "timezones": ["UTC+1"], "languages": {"fra": "Francês"}}
+    ]
 
 def gerar_sitemap(lista_paises):
     data_hoje = datetime.now().strftime("%Y-%m-%d")
@@ -254,7 +254,7 @@ def gerar_sitemap(lista_paises):
     with open("sitemap.xml", "w", encoding="utf-8") as f: f.write("\n".join(xml_content))
 
 def gerar_site():
-    print("Iniciando geração do portal com Meta Tag da Monetag...")
+    print("Iniciando geração com Meta Tag e fallback garantido...")
     paises = baixar_paises()
     categorias_dict, todas_noticias = buscar_noticias_por_categoria()
     
@@ -283,7 +283,7 @@ def gerar_site():
         f.write(Template(INDEX_TEMPLATE).render(paises=lista_paises, categorias=categorias_dict, ad_banner=AD_BANNER, monetag_meta=MONETAG_META, dominio=DOMINIO_SITE))
     
     gerar_sitemap(lista_paises)
-    print(f"Sucesso! {len(lista_paises)} países gerados com a Meta Tag da Monetag embutida.")
+    print(f"Sucesso! {len(lista_paises)} países gerados com sucesso na raiz.")
 
 if __name__ == "__main__":
     gerar_site()
