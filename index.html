@@ -1,718 +1,1002 @@
-
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notícias Globais, Economia, Vagas Home Office, Filmes e Dados | Global News & Data</title>
+    <meta name="description" content="Portal internacional com notícias em tempo real, cotações de moedas, clima global, vagas home office, filmes, séries e indicadores econômicos.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://gerador-site.pages.dev/index.html">
+    
+    <!-- Google AdSense Verification & Auto Ads -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5379027874215422" crossorigin="anonymous"></script>
-    <script src="https://quge5.com/88/tag.min.js" data-zone="309679" async data-cfasync="false"></script>
-    <meta name="google-site-verification" content="pbgwZbVwgKMwqqqGYFcHeGGbV7EM7nBdlns1c_DN_Sw" />
-    <title>Global News & Data - Portal Mundial de Notícias, Economia, Vagas e Saúde</title>
-    <meta name="description" content="Portal global completo com notícias em tempo real, cotações ao vivo, clima, vagas de emprego home office, economia, tecnologia, filmes, games e saúde.">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌍</text></svg>">
+    
+    <!-- ESPAÇO RESERVADO PARA MULTITAG MONETAG (Cole sua tag Monetag logo abaixo se desejar atualizar) -->
+    <!-- <script src="https://..." data-zone="..." async data-cfasync="false"></script> -->
+
+    
+
     <style>
-        :root { 
-            --primary: #2563eb; --primary-dark: #1d4ed8; --bg-color: #f8fafc; 
-            --card-bg: #ffffff; --text: #0f172a; --text-light: #64748b; 
-            --header-bg: linear-gradient(135deg, #0f172a, #1e3a8a); --border-color: #e2e8f0;
+        :root {
+            --bg: #0b0f19;
+            --surface: #131a2a;
+            --surface-hover: #1b2438;
+            --border: #243049;
+            --text: #f1f5f9;
+            --text-muted: #94a3b8;
+            --primary: #3b82f6;
+            --accent: #10b981;
+            --danger: #ef4444;
         }
-        [data-theme="dark"] { 
-            --primary: #3b82f6; --primary-dark: #60a5fa; --bg-color: #030712; 
-            --card-bg: #111827; --text: #f9fafb; --text-light: #9ca3af; 
-            --header-bg: linear-gradient(135deg, #020617, #0f172a); --border-color: #1f2937;
+        [data-theme="light"] {
+            --bg: #f8fafc;
+            --surface: #ffffff;
+            --surface-hover: #f1f5f9;
+            --border: #e2e8f0;
+            --text: #0f172a;
+            --text-muted: #475569;
+            --primary: #2563eb;
+            --accent: #059669;
+            --danger: #dc2626;
         }
-        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; line-height: 1.6; color: var(--text); background: var(--bg-color); margin: 0; padding: 0; transition: background 0.3s, color 0.3s; }
-        .navbar { background: var(--card-bg); border-bottom: 1px solid var(--border-color); padding: 12px 20px; position: sticky; top: 0; z-index: 1000; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
-        .nav-container { max-width: 1000px; margin: 0 auto; display: flex; justify-content: flex-end; align-items: center; gap: 12px; }
-        .lang-select { background: var(--bg-color); color: var(--text); border: 1px solid var(--border-color); padding: 6px 12px; border-radius: 20px; font-weight: 600; font-size: 12px; cursor: pointer; outline: none; transition: border-color 0.2s; }
-        .lang-select:hover { border-color: var(--primary); }
-        .theme-btn { background: var(--bg-color); color: var(--text); border: 1px solid var(--border-color); padding: 6px 12px; border-radius: 20px; cursor: pointer; font-weight: 600; font-size: 12px; transition: all 0.2s; }
-        .theme-btn:hover { border-color: var(--primary); }
-        .container { max-width: 1000px; margin: 30px auto; padding: 0 20px; }
-        header { background: var(--header-bg); color: white; padding: 50px 30px; border-radius: 16px; margin-bottom: 25px; text-align: center; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1); }
-        header h1 { margin: 0 0 12px 0; font-size: 36px; font-weight: 800; letter-spacing: -0.5px; }
-        header p { margin: 0 0 25px 0; opacity: 0.9; font-size: 16px; max-width: 600px; margin-left: auto; margin-right: auto; }
-        .search-box { width: 100%; max-width: 500px; margin: 0 auto; display: block; padding: 14px 22px; font-size: 15px; border-radius: 30px; border: 1px solid var(--border-color); outline: none; background: var(--card-bg); color: var(--text); box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02); transition: border-color 0.2s; }
-        .search-box:focus { border-color: var(--primary); }
-        .nav-cats { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin: 30px 0; }
-        .nav-cats a { background: var(--card-bg); color: var(--text); padding: 8px 16px; border-radius: 20px; text-decoration: none; font-size: 13px; font-weight: 600; border: 1px solid var(--border-color); box-shadow: 0 2px 4px rgba(0,0,0,0.02); transition: all 0.2s; }
-        .nav-cats a:hover { background: var(--primary); color: white; border-color: var(--primary); }
-        .section-title { font-size: 24px; font-weight: 700; margin: 45px 0 20px 0; border-left: 5px solid var(--primary); padding-left: 12px; display: flex; align-items: center; justify-content: space-between; }
-        .blog-section { background: var(--card-bg); border: 1px solid var(--border-color); padding: 25px; border-radius: 14px; margin-bottom: 35px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02); }
-        .blog-section h3 { margin-top: 0; color: var(--primary); font-size: 20px; }
-        .blog-post { margin-bottom: 20px; border-bottom: 1px solid var(--border-color); padding-bottom: 15px; }
-        .blog-post:last-child { margin-bottom: 0; border-bottom: none; padding-bottom: 0; }
-        .blog-post h4 { margin: 0 0 6px 0; font-size: 17px; color: var(--text); }
-        .blog-post p { margin: 0; font-size: 14px; color: var(--text-light); line-height: 1.6; }
-        .countries-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 15px; margin-bottom: 30px; }
-        .country-card { background: var(--card-bg); padding: 20px; border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02); text-decoration: none; color: var(--text); display: block; border: 1px solid var(--border-color); transition: transform 0.2s, border-color 0.2s; }
-        .country-card:hover { transform: translateY(-3px); border-color: var(--primary); }
-        .country-card h3 { margin: 0 0 6px 0; color: var(--primary); font-size: 18px; font-weight: 700; }
-        .country-card p { margin: 0; font-size: 13px; color: var(--text-light); font-weight: 500; }
-        .news-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
-        .news-card { background: var(--card-bg); border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02); border: 1px solid var(--border-color); display: flex; flex-direction: column; overflow: hidden; transition: transform 0.2s, box-shadow 0.2s; }
-        .news-card:hover { transform: translateY(-3px); box-shadow: 0 10px 20px -3px rgba(0,0,0,0.05); }
-        .news-img { width: 100%; height: 160px; object-fit: cover; background: #e2e8f0; }
-        .news-content { padding: 20px; display: flex; flex-direction: column; justify-content: space-between; flex-grow: 1; }
-        .badge { display: inline-block; align-self: flex-start; padding: 4px 10px; font-size: 11px; font-weight: 700; border-radius: 20px; text-transform: uppercase; margin-bottom: 12px; color: white; letter-spacing: 0.5px; }
-        .news-card h3 { margin: 0 0 10px 0; font-size: 18px; line-height: 1.4; }
-        .news-card h3 a { color: var(--text); text-decoration: none; transition: color 0.2s; }
-        .news-card h3 a:hover { color: var(--primary); }
-        .news-card p { margin: 0; font-size: 14px; color: var(--text-light); line-height: 1.5; }
-        footer { text-align: center; margin-top: 50px; border-top: 1px solid var(--border-color); padding-top: 20px; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            transition: background 0.25s, color 0.25s;
+        }
+        a { color: inherit; text-decoration: none; }
+        
+        /* Ticker Financeiro Ao Vivo */
+        .ticker-bar {
+            background: #060911;
+            color: #e2e8f0;
+            font-size: 0.82rem;
+            padding: 8px 16px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .ticker-items { display: flex; gap: 18px; flex-wrap: wrap; font-weight: 600; }
+        .ticker-up { color: #34d399; }
+        .ticker-down { color: #f87171; }
+
+        /* Header */
+        header {
+            background: var(--surface);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .header-top {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 14px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        .brand {
+            font-size: 1.45rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .brand span { color: var(--primary); }
+        .controls { display: flex; align-items: center; gap: 10px; }
+        .btn-control {
+            background: var(--surface-hover);
+            border: 1px solid var(--border);
+            color: var(--text);
+            padding: 6px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+        .nav-scroll {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 20px 12px;
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            scrollbar-width: none;
+        }
+        .nav-pill {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            padding: 6px 13px;
+            border-radius: 999px;
+            font-size: 0.84rem;
+            font-weight: 600;
+            white-space: nowrap;
+            transition: 0.2s;
+        }
+        .nav-pill:hover { border-color: var(--primary); color: var(--primary); }
+
+        /* Layout Principal */
+        .container {
+            max-width: 1280px;
+            margin: 24px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 1fr 330px;
+            gap: 28px;
+        }
+        @media (max-width: 960px) {
+            .container { grid-template-columns: 1fr; }
+        }
+
+        /* Blocos de Anúncio Responsivos */
+        .ad-slot {
+            background: var(--surface);
+            border: 1px dashed var(--border);
+            border-radius: 8px;
+            padding: 12px;
+            margin: 18px 0;
+            text-align: center;
+            min-height: 95px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .ad-label {
+            font-size: 0.68rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+            margin-bottom: 4px;
+        }
+
+        /* Cards e Seções */
+        .section-block { margin-bottom: 36px; }
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 8px;
+            margin-bottom: 16px;
+        }
+        .section-header h2 { font-size: 1.25rem; display: flex; align-items: center; gap: 8px; }
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+            gap: 16px;
+        }
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.2s, border-color 0.2s;
+        }
+        .card:hover { transform: translateY(-2px); border-color: var(--primary); }
+        .card-meta {
+            font-size: 0.75rem;
+            color: var(--primary);
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 6px;
+        }
+        .card h3 { font-size: 1.02rem; margin-bottom: 8px; line-height: 1.4; }
+        .card p { font-size: 0.86rem; color: var(--text-muted); margin-bottom: 12px; }
+        .card-footer {
+            font-size: 0.76rem;
+            color: var(--text-muted);
+            display: flex;
+            justify-content: space-between;
+            border-top: 1px solid var(--border);
+            padding-top: 8px;
+        }
+
+        /* Widgets Laterais */
+        .widget {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 18px;
+            margin-bottom: 20px;
+        }
+        .widget h3 { font-size: 1.05rem; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+        .weather-select {
+            width: 100%;
+            padding: 8px;
+            border-radius: 6px;
+            background: var(--bg);
+            color: var(--text);
+            border: 1px solid var(--border);
+            margin-bottom: 12px;
+        }
+        .weather-display {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--bg);
+            padding: 12px;
+            border-radius: 8px;
+        }
+        .poll-option {
+            display: block;
+            width: 100%;
+            text-align: left;
+            padding: 10px 12px;
+            margin-bottom: 8px;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            color: var(--text);
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.88rem;
+            transition: 0.2s;
+        }
+        .poll-option:hover { border-color: var(--primary); }
+        .poll-bar-bg {
+            height: 6px;
+            background: var(--border);
+            border-radius: 4px;
+            margin-top: 6px;
+            overflow: hidden;
+        }
+        .poll-bar-fill {
+            height: 100%;
+            background: var(--primary);
+            transition: width 0.4s ease;
+        }
+        .country-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+        .country-tags a {
+            font-size: 0.8rem;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            padding: 4px 10px;
+            border-radius: 6px;
+        }
+        .country-tags a:hover { border-color: var(--accent); color: var(--accent); }
+
+        /* Tabela Dados Países & FAQ */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0;
+            background: var(--surface);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .data-table th, .data-table td {
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--border);
+            text-align: left;
+        }
+        .faq-item {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 14px;
+            margin-bottom: 10px;
+        }
+        .faq-item h4 { margin-bottom: 6px; color: var(--primary); }
+
+        footer {
+            background: var(--surface);
+            border-top: 1px solid var(--border);
+            padding: 32px 20px;
+            margin-top: 40px;
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
     </style>
 </head>
-<body data-theme="light">
-    <div class="navbar">
-        <div class="nav-container">
-            
-<div class="language-picker-wrapper">
-    <div id="google_translate_element" style="display:none;"></div>
-    <select id="customLanguageSelect" onchange="mudarIdiomaGoogle(this.value)" class="lang-select">
-        <option value="pt">🇧🇷 Português</option>
-        <option value="en">🇺🇸 English</option>
-        <option value="es">🇪🇸 Español</option>
-        <option value="fr">🇫🇷 Français</option>
-        <option value="de">🇩🇪 Deutsch</option>
-        <option value="ja">🇯🇵 日本語</option>
-        <option value="zh-CN">🇨🇳 中文</option>
-    </select>
-</div>
-<script type="text/javascript">
-function googleTranslateElementInit() {
-  new google.translate.TranslateElement({pageLanguage: 'pt', includedLanguages: 'pt,en,es,fr,de,ja,zh-CN', autoDisplay: false}, 'google_translate_element');
-}
-function mudarIdiomaGoogle(lang) {
-  var select = document.querySelector('.goog-te-combo');
-  if (select) {
-    select.value = lang;
-    select.dispatchEvent(new Event('change'));
-  }
-}
-</script>
-<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<body>
 
-            <button class="theme-btn" onclick="toggleTheme()">🌓 Tema</button>
+    <!-- Barra de Cotações em Tempo Real -->
+    <div class="ticker-bar">
+        <div class="ticker-items" id="live-ticker">
+            <span>💵 USD/BRL: Carregando...</span>
+            <span>💶 EUR/BRL: Carregando...</span>
+            <span>₿ BTC/USD: Carregando...</span>
+            <span>Ξ ETH/USD: Carregando...</span>
+        </div>
+        <div>Atualizado: 13/11/2026 14:27</div>
+    </div>
+
+    <!-- Cabeçalho & Navegação -->
+    <header>
+        <div class="header-top">
+            <a href="index.html" class="brand">🌐 Global<span>News</span> & Data</a>
+            <div class="controls">
+                <div id="google_translate_element"></div>
+                <button class="btn-control" onclick="toggleTheme()" id="theme-btn">☀️ Modo Claro</button>
+            </div>
+        </div>
+        <nav class="nav-scroll">
+            <a href="index.html" class="nav-pill">🏠 Início</a>
+            <a href="index.html#mundo" class="nav-pill">🌍 Mundo</a><a href="index.html#economia" class="nav-pill">📈 Economia</a><a href="index.html#tecnologia" class="nav-pill">💻 Tecnologia</a><a href="index.html#vagas" class="nav-pill">💼 Vagas</a><a href="index.html#filmes" class="nav-pill">🎬 Filmes, Séries</a><a href="index.html#games" class="nav-pill">🎮 Games</a><a href="index.html#esportes" class="nav-pill">⚽ Esportes Globais</a><a href="index.html#saude" class="nav-pill">🧬 Qualidade de Vida</a>
+        </nav>
+    </header>
+
+    <!-- Banner Superior Monetização -->
+    <div style="max-width: 1280px; margin: 0 auto; padding: 0 20px;">
+        <div class="ad-slot">
+            <span class="ad-label">Publicidade</span>
+            <ins class="adsbygoogle"
+                 style="display:block; width:100%;"
+                 data-ad-client="ca-pub-5379027874215422"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
         </div>
     </div>
+
+    <!-- Conteúdo Principal + Barra Lateral de Widgets -->
     <div class="container">
+        <main>
+            
+        <section class="section-block" id="mundo">
+            <div class="section-header">
+                <h2>🌍 Mundo & Geopolítica</h2>
+            </div>
+            <div class="news-grid">
+                
+            <article class="card">
+                <div>
+                    <div class="card-meta">Global Feed</div>
+                    <h3><a href="https://www.bbc.com/portuguese/articles/cw808r14nmjgo?at_medium=RSS&at_campaign=rss" target="_blank" rel="noopener noreferrer">Outlook voltou: por que demorou para Microsoft resolver o problema?</a></h3>
+                    <p>Após mais de 20 horas de instabilidade, serviço começa a ser restabelecido, mas alguns usuários ainda enfrentam dificuldades; especialista explica como a sobrecarga de servidores pode prolongar a recuperação....</p>
+                </div>
+                <div class="card-footer">
+                    <span>🕒 Fri, 13 Nov 2026</span>
+                    <a href="https://www.bbc.com/portuguese/articles/cw808r14nmjgo?at_medium=RSS&at_campaign=rss" target="_blank" rel="noopener noreferrer" style="color:var(--primary); font-weight:600;">Ler matéria →</a>
+                </div>
+            </article>
+            
+            <article class="card">
+                <div>
+                    <div class="card-meta">Global Feed</div>
+                    <h3><a href="https://www.bbc.com/portuguese/articles/c6wy49w32epwo?at_medium=RSS&at_campaign=rss" target="_blank" rel="noopener noreferrer">Microsoft diz que fila de e-mails &#x27;se aproxima do normal&#x27; após falha global no Outlook; o que se sabe</a></h3>
+                    <p>Problema começou na quinta-feira e ainda afeta serviços como o sistema de mensagens Teams, o Microsoft 365 e a ferramenta de inteligência artificial Copilot em diversos países....</p>
+                </div>
+                <div class="card-footer">
+                    <span>🕒 Fri, 13 Nov 2026</span>
+                    <a href="https://www.bbc.com/portuguese/articles/c6wy49w32epwo?at_medium=RSS&at_campaign=rss" target="_blank" rel="noopener noreferrer" style="color:var(--primary); font-weight:600;">Ler matéria →</a>
+                </div>
+            </article>
+            
+            <article class="card">
+                <div>
+                    <div class="card-meta">Global Feed</div>
+                    <h3><a href="https://www.bbc.com/portuguese/articles/cr20v7g9jyy3o?at_medium=RSS&at_campaign=rss" target="_blank" rel="noopener noreferrer">Amazônia queimando afeta a saúde e o bolso do Brasil inteiro, diz bióloga dedicada a combater o fogo na floresta</a></h3>
+                    <p>Pesquisadora das universidades de Oxford e de Lancaster, a bióloga carioca Erika Berenguer fala da &#x27;tristeza profunda&#x27; de ver a floresta amazônica queimando, mas defende continuidade dos esforços para preservação, já que...</p>
+                </div>
+                <div class="card-footer">
+                    <span>🕒 Fri, 13 Nov 2026</span>
+                    <a href="https://www.bbc.com/portuguese/articles/cr20v7g9jyy3o?at_medium=RSS&at_campaign=rss" target="_blank" rel="noopener noreferrer" style="color:var(--primary); font-weight:600;">Ler matéria →</a>
+                </div>
+            </article>
+            
+            <article class="card">
+                <div>
+                    <div class="card-meta">Global Feed</div>
+                    <h3><a href="https://www.bbc.com/portuguese/articles/cqgkl7nz7y2zo?at_medium=RSS&at_campaign=rss" target="_blank" rel="noopener noreferrer">Lesões no tornozelo são mais comuns do que você imagina — veja como proteger o seu</a></h3>
+                    <p>A fisioterapeuta especializada em desempenho físico Genevieve Tawiah dá suas principais dicas para cuidar dos tornozelos...</p>
+                </div>
+                <div class="card-footer">
+                    <span>🕒 Fri, 13 Nov 2026</span>
+                    <a href="https://www.bbc.com/portuguese/articles/cqgkl7nz7y2zo?at_medium=RSS&at_campaign=rss" target="_blank" rel="noopener noreferrer" style="color:var(--primary); font-weight:600;">Ler matéria →</a>
+                </div>
+            </article>
+            
+            <article class="card">
+                <div>
+                    <div class="card-meta">Global Feed</div>
+                    <h3><a href="https://www.bbc.com/portuguese/articles/cmy4xjed4x1ko?at_medium=RSS&at_campaign=rss" target="_blank" rel="noopener noreferrer">&#x27;Rosa e Azul&#x27;:  a história sombria do quadro mais famoso do Masp — e o fim trágico de uma das meninas</a></h3>
+                    <p>Livro lançado no Reino Unido traz história por trás de retrato de duas crianças feito pelo famoso pintor impressionista Pierre-Auguste Renoir em1881....</p>
+                </div>
+                <div class="card-footer">
+                    <span>🕒 Fri, 13 Nov 2026</span>
+                    <a href="https://www.bbc.com/portuguese/articles/cmy4xjed4x1ko?at_medium=RSS&at_campaign=rss" target="_blank" rel="noopener noreferrer" style="color:var(--primary); font-weight:600;">Ler matéria →</a>
+                </div>
+            </article>
+            
+            <article class="card">
+                <div>
+                    <div class="card-meta">Global Feed</div>
+                    <h3><a href="https://www.bbc.com/portuguese/articles/c6grey09e9n1o?at_medium=RSS&at_campaign=rss" target="_blank" rel="noopener noreferrer">Mostrar na novela um Nordeste do atraso e a Faria Lima pulsante é vender que só um Brasil &#x27;dá certo&#x27;, diz pesquisador</a></h3>
+                    <p>Novela &#x27;Lá na Minha Terra&#x27; tem sido criticada por associar Nordeste ao sertão seco e pobre. Autor diz que o folhetim reforça estereótipos e argumenta que os efeitos dessa representação são práticos na vida dos nordestino...</p>
+                </div>
+                <div class="card-footer">
+                    <span>🕒 Thu, 12 Nov 2026</span>
+                    <a href="https://www.bbc.com/portuguese/articles/c6grey09e9n1o?at_medium=RSS&at_campaign=rss" target="_blank" rel="noopener noreferrer" style="color:var(--primary); font-weight:600;">Ler matéria →</a>
+                </div>
+            </article>
+            
+            </div>
+        </section>
         
-<div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; margin: 25px 0;">
-    <div style="background:var(--card-bg); border:1px solid var(--border-color); padding:18px; border-radius:12px; box-shadow: 0 2px 6px rgba(0,0,0,0.02);">
-        <h4 style="margin:0 0 10px 0; font-size:14px; color:var(--primary); display:flex; align-items:center; gap:6px;">📈 Indicadores Econômicos Globais</h4>
-        <div style="display:flex; justify-content:space-between; font-size:13px; font-weight:600; margin-bottom:6px;">
-            <span>Dólar (USD): R$ 5,48 <span style="color:#16a34a;">+0.45%</span></span>
-            <span>Euro (EUR): R$ 5,92 <span style="color:#16a34a;">+0.21%</span></span>
-        </div>
-        <div style="display:flex; justify-content:space-between; font-size:13px; font-weight:600;">
-            <span>Bitcoin (BTC): $68,400 <span style="color:#dc2626;">-1.12%</span></span>
-            <span>Ibovespa: 128.450 pts</span>
-        </div>
+        
+
+        <section class="section-block" id="economia">
+            <div class="section-header">
+                <h2>📈 Economia & Mercados</h2>
+            </div>
+            <div class="news-grid">
+                
+            <article class="card">
+                <div>
+                    <div class="card-meta">Global News & Data</div>
+                    <h3><a href="#" target="_blank" rel="noopener noreferrer">Monitoramento ativo em Economia & Mercados</a></h3>
+                    <p>Atualização contínua de indicadores, manchetes internacionais e relatórios em tempo real.</p>
+                </div>
+                <div class="card-footer">
+                    <span>🕒 13/11/2026</span>
+                    <a href="#" target="_blank" rel="noopener noreferrer" style="color:var(--primary); font-weight:600;">Ler matéria →</a>
+                </div>
+            </article>
+            
+            </div>
+        </section>
+        
+            <div class="ad-slot">
+                <span class="ad-label">Publicidade</span>
+                <ins class="adsbygoogle"
+                     style="display:block; width:100%;"
+                     data-ad-client="ca-pub-5379027874215422"
+                     data-ad-format="auto"
+                     data-full-width-responsive="true"></ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+            </div>
+            
+        
+
+        <section class="section-block" id="tecnologia">
+            <div class="section-header">
+                <h2>💻 Tecnologia & IA</h2>
+            </div>
+            <div class="news-grid">
+                
+            <article class="card">
+                <div>
+                    <div class="card-meta">Global News & Data</div>
+                    <h3><a href="#" target="_blank" rel="noopener noreferrer">Monitoramento ativo em Tecnologia & IA</a></h3>
+                    <p>Atualização contínua de indicadores, manchetes internacionais e relatórios em tempo real.</p>
+                </div>
+                <div class="card-footer">
+                    <span>🕒 13/11/2026</span>
+                    <a href="#" target="_blank" rel="noopener noreferrer" style="color:var(--primary); font-weight:600;">Ler matéria →</a>
+                </div>
+            </article>
+            
+            </div>
+        </section>
+        
+        
+
+        <section class="section-block" id="vagas">
+            <div class="section-header">
+                <h2>💼 Vagas & Home Office</h2>
+            </div>
+            <div class="news-grid">
+                
+            <article class="card">
+                <div>
+                    <div class="card-meta">Estadão</div>
+                    <h3><a href="https://news.google.com/rss/articles/CBMingFBVV95cUxOY1hBVmp0cGw0bEZQMXkwUlE4X2pzLU1Zdmo1RnBGd0VKUGJxVUc3RjRUSks5N2RLYTNRQjY2Q29JZW5kN2hHdWFNa3IxbWxVbUxyZWgwUzQzT0Y2RjBydWlkVzV2aDNrN01XaC1jbUc4OTF4eUZ0N2ZDOXBCRm9GM1dDdWhtakdKQklHUF9yYXUyWFgxcmcwM2JuZGhXd9IBowFBVV95cUxQWDdTNGI3eFNtYi1jNUM2bkswQ0NtdWJwaGZCQktzZEdGUE5QYmoxdVZKM1RNdGRoV2wySEIyOFVGOElrX0dia3dZSmZuOUFkR0JQMFNmRVZNRV80VG9FdWFyTUVVTW1VTU5ieVY3ZUd1UFJnVmxwVjJZdDdOUHlRNlpOVFBxaWZTVExVb0RpOThxV0Vrc1NqdkswU2FIMEZJS1Vz?oc=5" target="_blank" rel="noopener noreferrer">Home office: 55 vagas para trabalho remoto internacional [06/11]</a></h3>
+                    <p>Home office: 55 vagas para trabalho remoto internacional [06/11] Estadão...</p>
+                </div>
+                <div class="card-footer">
+                    <span>🕒 Sun, 08 Nov 2026</span>
+                    <a href="https://news.google.com/rss/articles/CBMingFBVV95cUxOY1hBVmp0cGw0bEZQMXkwUlE4X2pzLU1Zdmo1RnBGd0VKUGJxVUc3RjRUSks5N2RLYTNRQjY2Q29JZW5kN2hHdWFNa3IxbWxVbUxyZWgwUzQzT0Y2RjBydWlkVzV2aDNrN01XaC1jbUc4OTF4eUZ0N2ZDOXBCRm9GM1dDdWhtakdKQklHUF9yYXUyWFgxcmcwM2JuZGhXd9IBowFBVV95cUxQWDdTNGI3eFNtYi1jNUM2bkswQ0NtdWJwaGZCQktzZEdGUE5QYmoxdVZKM1RNdGRoV2wySEIyOFVGOElrX0dia3dZSmZuOUFkR0JQMFNmRVZNRV80VG9FdWFyTUVVTW1VTU5ieVY3ZUd1UFJnVmxwVjJZdDdOUHlRNlpOVFBxaWZTVExVb0RpOThxV0Vrc1NqdkswU2FIMEZJS1Vz?oc=5" target="_blank" rel="noopener noreferrer" style="color:var(--primary); font-weight:600;">Ler matéria →</a>
+                </div>
+            </article>
+            
+            <article class="card">
+                <div>
+                    <div class="card-meta">Serasa Experian</div>
+                    <h3><a href="https://news.google.com/rss/articles/CBMioAFBVV95cUxQQWUxa28ybk0yNkxJdFV0b0pGakpXUXllN0JRMzlzdDBkUEpweHBWbTQ5SHVldFgyMzd2dE9lSDRtWEI3NE9aVXFVMjNzcHNPelVsNl95bEdCRWZodGJpbkt5dnFkNGFrbjlLSzlkS1hNU1VZNmtyUk43N2w4WmNBUFhhM2NoLWh1TGN3WElDbTUtbU1HRGlxc3RnZXc4Nlk0?oc=5" target="_blank" rel="noopener noreferrer">Home Office: 40 Vagas de emprego remoto na Serasa Experian [21/08]</a></h3>
+                    <p>Home Office: 40 Vagas de emprego remoto na Serasa Experian [21/08] Serasa Experian...</p>
+                </div>
+                <div class="card-footer">
+                    <span>🕒 Thu, 13 Aug 2026</span>
+                    <a href="https://news.google.com/rss/articles/CBMioAFBVV95cUxQQWUxa28ybk0yNkxJdFV0b0pGakpXUXllN0JRMzlzdDBkUEpweHBWbTQ5SHVldFgyMzd2dE9lSDRtWEI3NE9aVXFVMjNzcHNPelVsNl95bEdCRWZodGJpbkt5dnFkNGFrbjlLSzlkS1hNU1VZNmtyUk43N2w4WmNBUFhhM2NoLWh1TGN3WElDbTUtbU1HRGlxc3RnZXc4Nlk0?oc=5" target="_blank" rel="noopener noreferrer" style="color:var(--primary); font-weight:600;">Ler matéria →</a>
+                </div>
+            </article>
+            
+            <article class="card">
+                <div>
+                    <div class="card-meta">Estadão</div>
+                    <h3><a href="https://news.google.com/rss/articles/CBMijgFBVV95cUxQTXFRdkRRUmJNWmxjWG0zcmVUZmhIaUltb2hMcjJpME9ZU2dxUUNGX2VjcXpKQ283aGFzb0VQMFJSa1VOajB1ODFBQ3dTVlZzQ1l3XzdndTgyNng3eXFlcnJjLUlZc00tWUlYbUJ3VExJX1pNRjZBalUtSHNHT0Ntb0xlcTBjdHRlMllnTFd30gGTAUFVX3lxTE9VdG1pTmVfaHJpN0FRZ2tqOWl6UmhpdVFNNTNNNkNXR295bGNHbGFQT0o0MFVhdGlXNHFFSnhOcTV3UzlCRHNYQUJMUzZtNVRfYlhuZkxfYlFsai1LLVVMVHh1aVd5Z0daMjRBYU8tT3hMTlk4bnNxcEwwOFNTRFVIMzRlejJ3WXAtemM0cEVPZDVXcw?oc=5" target="_blank" rel="noopener noreferrer">Home office: 115 vagas para trabalho remoto [21/10]</a></h3>
+                    <p>Home office: 115 vagas para trabalho remoto [21/10] Estadão...</p>
+                </div>
+                <div class="card-footer">
+                    <span>🕒 Wed, 21 Oct 2026</span>
+                    <a href="https://news.google.com/rss/articles/CBMijgFBVV95cUxQTXFRdkRRUmJNWmxjWG0zcmVUZmhIaUltb2hMcjJpME9ZU2dxUUNGX2VjcXpKQ283aGFzb0VQMFJSa1VOajB1ODFBQ3dTVlZzQ1l3XzdndTgyNng3eXFlcnJjLUlZc00tWUlYbUJ3VExJX1pNRjZBalUtSHNHT0Ntb0xlcTBjdHRlMllnTFd30gGTAUFVX3lxTE9VdG1pTmVfaHJpN0FRZ2tqOWl6UmhpdVFNNTNNNkNXR295bGNHbGFQT0o0MFVhdGlXNHFFSnhOcTV3UzlCRHNYQUJMUzZtNVRfYlhuZkxfYlFsai1LLVVMVHh1aVd5Z0daMjRBYU8tT3hMTlk4bnNxcEwwOFNTRFVIMzRlejJ3WXAtemM0cEVPZDVXcw?oc=5" target="_blank" rel="noopener noreferrer" style="color:var(--primary); font-weight:600;">Ler matéria →</a>
+                </div>
+            </article>
+            
+            <article class="card">
+                <div>
+                    <div class="card-meta">Educa Mais Brasil</div>
+                    <h3><a href="https://news.google.com/rss/articles/CBMirwFBVV95cUxQcl9nV0g4VHVZYURsZlhmRFV2UEpQRGhnaVJuYUZReEl5enFJZXRPX1JsUnNRLXZoZHVqX25qNUlZSVVyWloxOWN6ZVZQM2RjeW9lQ1pEYmV2UEdxZ0drZkFzVUJCMG1hLWRLcmhodDNQdlItdlEyQU9TRk80T0hZRWVyTXBKVWZkclJ2d3NVeXRrZ2RxWmFkQXYyMHl5VG56YW5CRXRKZm1hQWVvRnNB?oc=5" target="_blank" rel="noopener noreferrer">Cursos técnicos para quem deseja trabalhar em home office</a></h3>
+                    <p>Cursos técnicos para quem deseja trabalhar em home office Educa Mais Brasil...</p>
+                </div>
+                <div class="card-footer">
+                    <span>🕒 Mon, 08 Jun 2026</span>
+                    <a href="https://news.google.com/rss/articles/CBMirwFBVV95cUxQcl9nV0g4VHVZYURsZlhmRFV2UEpQRGhnaVJuYUZReEl5enFJZXRPX1JsUnNRLXZoZHVqX25qNUlZSVVyWloxOWN6ZVZQM2RjeW9lQ1pEYmV2UEdxZ0drZkFzVUJCMG1hLWRLcmhodDNQdlItdlEyQU9TRk80T0hZRWVyTXBKVWZkclJ2d3NVeXRrZ2RxWmFkQXYyMHl5VG56YW5CRXRKZm1hQWVvRnNB?oc=5" target="_blank" rel="noopener noreferrer" style="color:var(--primary); font-weight:600;">Ler matéria →</a>
+                </div>
+            </article>
+            
+            <article class="card">
+                <div>
+                    <div class="card-meta">Exame</div>
+                    <h3><a href="https://news.google.com/rss/articles/CBMirwFBVV95cUxPbHhLSDJYOEpwU290Slc3c2lxUkJoTnF5RGVObm1FYzQtVHNJc2l6cU8tTVNrV0JwbDhXWlp0Wk9oU0NMX013Nzk1d1RFeV81YUMwOGtpTzlKeHFnNGpXZlNyS1dNQ2N3b3BTTzkyUFdfak9ONzhoN1BWZXdsMXVtcE42V25wT0RQSEtmZ3VsZG03N2lvS00zSlBfV3p5TnRndTdRYUswZUN0VHduQVU4?oc=5" target="_blank" rel="noopener noreferrer">Quer trabalhar de qualquer lugar do mundo? Veja as vagas home office desta semana</a></h3>
+                    <p>Quer trabalhar de qualquer lugar do mundo? Veja as vagas home office desta semana Exame...</p>
+                </div>
+                <div class="card-footer">
+                    <span>🕒 Mon, 26 Jan 2026</span>
+                    <a href="https://news.google.com/rss/articles/CBMirwFBVV95cUxPbHhLSDJYOEpwU290Slc3c2lxUkJoTnF5RGVObm1FYzQtVHNJc2l6cU8tTVNrV0JwbDhXWlp0Wk9oU0NMX013Nzk1d1RFeV81YUMwOGtpTzlKeHFnNGpXZlNyS1dNQ2N3b3BTTzkyUFdfak9ONzhoN1BWZXdsMXVtcE42V25wT0RQSEtmZ3VsZG03N2lvS00zSlBfV3p5TnRndTdRYUswZUN0VHduQVU4?oc=5" target="_blank" rel="noopener noreferrer" style="color:var(--primary); font-weight:600;">Ler matéria →</a>
+                </div>
+            </article>
+            
+            <article class="card">
+                <div>
+                    <div class="card-meta">Nova Concursos</div>
+                    <h3><a href="https://news.google.com/rss/articles/CBMigwFBVV95cUxPbXVTRERab0xhTlp2OHFUdzJyVk02bzdLeXg3TklBY3dLMG1zYlZ5SjctcFpILXdFTDhyV1M4eWZ1T196bk52YjNuN3ZubmEzQkF6Y2Yzc1ZGTlRtZzVKNmxKNGRGemZSOG9FTGEyenZhVXh0YkFKeWhtNVlrbWt6RS1Jbw?oc=5" target="_blank" rel="noopener noreferrer">Concurso público home office 2026: órgãos que adotam!</a></h3>
+                    <p>Concurso público home office 2026: órgãos que adotam! Nova Concursos...</p>
+                </div>
+                <div class="card-footer">
+                    <span>🕒 Tue, 01 Sep 2026</span>
+                    <a href="https://news.google.com/rss/articles/CBMigwFBVV95cUxPbXVTRERab0xhTlp2OHFUdzJyVk02bzdLeXg3TklBY3dLMG1zYlZ5SjctcFpILXdFTDhyV1M4eWZ1T196bk52YjNuN3ZubmEzQkF6Y2Yzc1ZGTlRtZzVKNmxKNGRGemZSOG9FTGEyenZhVXh0YkFKeWhtNVlrbWt6RS1Jbw?oc=5" target="_blank" rel="noopener noreferrer" style="color:var(--primary); font-weight:600;">Ler matéria →</a>
+                </div>
+            </article>
+            
+            <article class="card">
+                <div>
+                    <div class="card-meta">MONEY</div>
+                    <h3><a href="https://news.google.com/rss/articles/CBMiUkFVX3lxTFBTUzE1a1h3dFAxNjMzMHhZMzIzcS11RkUyY0RjaVZzSms3QWduenJVb25kUjMxLW9xM2RtNlE4UzBaMkc1emQzOHZ5NmR0RlV5NFE?oc=5" target="_blank" rel="noopener noreferrer">5 Best Job Search Sites of November 2026</a></h3>
+                    <p>5 Best Job Search Sites of November 2026 MONEY...</p>
+                </div>
+                <div class="card-footer">
+                    <span>🕒 Fri, 30 Oct 2026</span>
+                    <a href="https://news.google.com/rss/articles/CBMiUkFVX3lxTFBTUzE1a1h3dFAxNjMzMHhZMzIzcS11RkUyY0RjaVZzSms3QWduenJVb25kUjMxLW9xM2RtNlE4UzBaMkc1emQzOHZ5NmR0RlV5NFE?oc=5" target="_blank" rel="noopener noreferrer" style="color:var(--primary); font-weight:600;">Ler matéria →</a>
+                </div>
+            </article>
+            
+            <article class="card">
+                <div>
+                    <div class="card-meta">University of Cincinnati</div>
+                    <h3><a href="https://news.google.com/rss/articles/CBMiiwFBVV95cUxNQ19OcTN4dmdXYktmd2hIWE55eXZDdnUtS0IwOWpvLUN1U3BEVGI2SVlRVUJxT1dtNkVrcU01NlFwZXcxWW5MZUxhQVk5Vlp2dVkxd1cxdUVmOHBvbktQX2Zqb2I2NzlKc3VnNTRKY24tZDgxVUVwakdZWlZXOFB3OHI2OUs3UFJEVEpj?oc=5" target="_blank" rel="noopener noreferrer">How to land an entry-level tech job (Even without experience)</a></h3>
+                    <p>How to land an entry-level tech job (Even without experience) University of Cincinnati...</p>
+                </div>
+                <div class="card-footer">
+                    <span>🕒 Fri, 27 Mar 2026</span>
+                    <a href="https://news.google.com/rss/articles/CBMiiwFBVV95cUxNQ19OcTN4dmdXYktmd2hIWE55eXZDdnUtS0IwOWpvLUN1U3BEVGI2SVlRVUJxT1dtNkVrcU01NlFwZXcxWW5MZUxhQVk5Vlp2dVkxd1cxdUVmOHBvbktQX2Zqb2I2NzlKc3VnNTRKY24tZDgxVUVwakdZWlZXOFB3OHI2OUs3UFJEVEpj?oc=5" target="_blank" rel="noopener noreferrer" style="color:var(--primary); font-weight:600;">Ler matéria →</a>
+                </div>
+            </article>
+            
+            </div>
+        </section>
+        
+        
+
+        <section class="section-block" id="filmes">
+            <div class="section-header">
+                <h2>🎬 Filmes, Séries & Streaming</h2>
+            </div>
+            <div class="news-grid">
+                
+            <article class="card">
+                <div>
+                    <div class="card-meta">Estadão</div>
+                    <h3><a href="https://news.google.com/rss/articles/CBMirAFBVV95cUxNeUI5WkVpMXFUYzAtSFJjQWxHQzlsOXFGeGNBQV9TalN0ZjZ6aG9rdmRyemN2eVk4ZTdGR2k2dV95Q2VFODhyeWVWUERBdVRFSVN4b0FJVzBlZDhfd2JsTWlCSk4zdEFSaHpMNC0wZlZGOUxpZi1nNHd6RzczdndfMUJlekIxNmFYWm1QRU1UWkZEeWNjOFpVZDEzNlVLeEprU21qRU1HZks5STNP0gGyAUFVX3lxTE5aUXYxU1pSYWY3V2xsYVBRQmFrLVA0N2ZsWDJILWN0VFRRdG9laXl6cWV6UGRMeUdWX09ZTjZ1V2tmZG5qT25rYTE2QTJxSG5SV0pueFJKcmlXcFZjV25ObkdCTS1sOXZxcl9ZM0tFRXJjaUtUckVMMEZTeWNtZk9GZmtVZjRzdGJGaDlzcmtUZ0cydFNNTDdtNVhuTFlST1dWa19uWk1nTzUyZTlYUEtTSWc?oc=5" target="_blank" rel="noopener noreferrer">Netflix recebe 11 filmes e séries na semana! Veja lançamentos (28)</a></h3>
+                    <p>Netflix recebe 11 filmes e séries na semana! Veja lançamentos (28) Estadão...</p>
+                </div>
+                <div class="card-footer">
+                    <span>🕒 Wed, 30 Sep 2026</span>
+                    <a href="https://news.google.com/rss/articles/CBMirAFBVV95cUxNeUI5WkVpMXFUYzAtSFJjQWxHQzlsOXFGeGNBQV9TalN0ZjZ6aG9rdmRyemN2eVk4ZTdGR2k2dV95Q2VFODhyeWVWUERBdVRFSVN4b0FJVzBlZDhfd2JsTWlCSk4zdEFSaHpMNC0wZlZGOUxpZi1nNHd6RzczdndfMUJlekIxNmFYWm1QRU1UWkZEeWNjOFpVZDEzNlVLeEprU21qRU1HZks5STNP0gGyAUFVX3lxTE5aUXYxU1pSYWY3V2xsYVBRQmFrLVA0N2ZsWDJILWN0VFRRdG9laXl6cWV6UGRMeUdWX09ZTjZ1V2tmZG5qT25rYTE2QTJxSG5SV0pueFJKcmlXcFZjV25ObkdCTS1sOXZxcl9ZM0tFRXJjaUtUckVMMEZTeWNtZk9GZmtVZjRzdGJGaDlzcmtUZ0cydFNNTDdtNVhuTFlST1dWa19uWk1nTzUyZTlYUEtTSWc?oc=5" target="_blank" rel="noopener noreferrer" style="color:var(--primary); font-weight:600;">Ler matéria →</a>
+                </div>
+            </article>
+            
+            <article class="card">
+                <div>
+                    <div class="card-meta">UOL</div>
+                    <h3><a href="https://news.google.com/rss/articles/CBMiwwFBVV95cUxOaUlXbnh1dzlSdk1ITk1wUklEcXloaWFHZzZxS2M0cXZoZklQREpQdV9Oazh4Y2RSYXI3X1FOVGxWU0psbzBZZndBckxYYndiZzR6NlBZM21sc2h2SXJkdUhYN1hVWVlrSWZsbURYWlI4NWJ4RTk1bDVDS0JDeTVjZ3BUSXRxYkhuVncxXzhVZmJuRTBWbk5pMXd2MVZ4Zm1XN2dqbFo2Zkltd0NKVnFGMUp5S2dQNGdraU9kNEdUSV96bTg?oc=5" target="_blank" rel="noopener noreferrer">Estreias: 6 filmes novos para assistir na Netflix, Prime Video, Telecine e no cinema</a></h3>
+                    <p>Estreias: 6 filmes novos para assistir na Netflix, Prime Video, Telecine e no cinema UOL...</p>
+                </div>
+                <div class="card-footer">
+                    <span>🕒 Sat, 17 Oct 2026</span>
+                    <a href="https://news.google.com/rss/articles/CBMiwwFBVV95cUxOaUlXbnh1dzlSdk1ITk1wUklEcXloaWFHZzZxS2M0cXZoZklQREpQdV9Oazh4Y2RSYXI3X1FOVGxWU0psbzBZZndBckxYYndiZzR6NlBZM21sc2h2SXJkdUhYN1hVWVlrSWZsbURYWlI4NWJ4RTk1bDVDS0JDeTVjZ3BUSXRxYkhuVncxXzhVZmJuRTBWbk5pMXd2MVZ4Zm1XN2dqbFo2Zkltd0NKVnFGMUp5S2dQNGdraU9kNEdUSV96bTg?oc=5" target="_blank" rel="noopener noreferrer" style="color:var(--primary); font-weight:600;">Ler matéria →</a>
+                </div>
+            </article>
+            
+            <article class="card">
+                <div>
+                    <div class="card-meta">Olhar Digital</div>
+                    <h3><a href="https://news.google.com/rss/articles/CBMiqwFBVV95cUxQWi1VbEVrRlRodUFXNUQ1VGZ5Qzd5YlVGd0toREotcVoxSjlJNWlpXy1xcmpvMVdRS1R3dkhUcUJYRl9IQngxcDhqdUNFSy1yMHFERy1tU2VGcjdod1AtVmhvNGhZQWRyOVgwVlRCdjNvUWFYem9BcDFTUzJKX0JDYjY3MDFzbkxGM0J1NGhGNUpWNkJIWVA2ZEVDaWp0VWg0ektoOWNKTjN5Wnc?oc=5" target="_blank" rel="noopener noreferrer">Netflix: lançamentos da semana (7 a 13 de setembro)</a></h3>
+                    <p>Netflix: lançamentos da semana (7 a 13 de setembro) Olhar Digital...</p>
+                </div>
+                <div class="card-footer">
+                    <span>🕒 Mon, 07 Sep 2026</span>
+                    <a href="https://news.google.com/rss/articles/CBMiqwFBVV95cUxQWi1VbEVrRlRodUFXNUQ1VGZ5Qzd5YlVGd0toREotcVoxSjlJNWlpXy1xcmpvMVdRS1R3dkhUcUJYRl9IQngxcDhqdUNFSy1yMHFERy1tU2VGcjdod1AtVmhvNGhZQWRyOVgwVlRCdjNvUWFYem9BcDFTUzJKX0JDYjY3MDFzbkxGM0J1NGhGNUpWNkJIWVA2ZEVDaWp0VWg0ektoOWNKTjN5Wnc?oc=5" target="_blank" rel="noopener noreferrer" style="color:var(--primary); font-weight:600;">Ler matéria →</a>
+                </div>
+            </article>
+            
+            <article class="card">
+                <div>
+                    <div class="card-meta">Omelete</div>
+                    <h3><a href="https://news.google.com/rss/articles/CBMihAFBVV95cUxQZGZUSnRQcktIand5YjRZR1c0M0I1c0lyamRRR3BpUlJWRFRiSVZuVTRUZFJ1bUFITWVYUHVQVEJ5R0I4WWZTVVhDVlp3Nnc2WHlpX1p2SlhvZHhlakQ0enFiRHBJMTgxbTRCWDlrbjJlanRjQzRKNm4zY0s3N0xTb3JvclM?oc=5" target="_blank" rel="noopener noreferrer">25 Filmes Imperdíveis Para Você Assistir em 2026 (e Onde)</a></h3>
+                    <p>25 Filmes Imperdíveis Para Você Assistir em 2026 (e Onde) Omelete...</p>
+                </div>
+                <div class="card-footer">
+                    <span>🕒 Fri, 16 Oct 2026</span>
+                    <a href="https://news.google.com/rss/articles/CBMihAFBVV95cUxQZGZUSnRQcktIand5YjRZR1c0M0I1c0lyamRRR3BpUlJWRFRiSVZuVTRUZFJ1bUFITWVYUHVQVEJ5R0I4WWZTVVhDVlp3Nnc2WHlpX1p2SlhvZHhlakQ0enFiRHBJMTgxbTRCWDlrbjJlanRjQzRKNm4zY0s3N0xTb3JvclM?oc=5" target="_blank" rel="noopener noreferrer" style="color:var(--primary); font-weight:600;">Ler matéria →</a>
+                </div>
+            </article>
+            
+            <article class="card">
+                <div>
+                    <div class="card-meta">Jornada Geek</div>
+                    <h3><a href="https://news.google.com/rss/articles/CBMigAFBVV95cUxNLWhFRW1sMzExZUoxeG5nNDVtc01TSENxY3p2d3N4V2JnZDJlVkJ5SE9UTnlzOURDbGpXTGp4Y0x2WUZENkNfTEk4b21TRzJaNnNDZGVqakJzT2JTRHpzbjlNeWVOZXdMQlFBZE5USllHMFVyTDU0QVpPcnlKOUJEag?oc=5" target="_blank" rel="noopener noreferrer">As 14 principais estreias da semana nos streamings e cinema (entre os dias 09 e 15 de novembro)</a></h3>
+                    <p>As 14 principais estreias da semana nos streamings e cinema (entre os dias 09 e 15 de novembro) Jornada Geek...</p>
+                </div>
+                <div class="card-footer">
+                    <span>🕒 Tue, 10 Nov 2026</span>
+                    <a href="https://news.google.com/rss/articles/CBMigAFBVV95cUxNLWhFRW1sMzExZUoxeG5nNDVtc01TSENxY3p2d3N4V2JnZDJlVkJ5SE9UTnlzOURDbGpXTGp4Y0x2WUZENkNfTEk4b21TRzJaNnNDZGVqakJzT2JTRHpzbjlNeWVOZXdMQlFBZE5USllHMFVyTDU0QVpPcnlKOUJEag?oc=5" target="_blank" rel="noopener noreferrer" style="color:var(--primary); font-weight:600;">Ler matéria →</a>
+                </div>
+            </article>
+            
+            <article class="card">
+                <div>
+                    <div class="card-meta">CNN Brasil</div>
+                    <h3><a href="https://news.google.com/rss/articles/CBMinAFBVV95cUxPYnlvMzAwdkx3dkRSV291UU5WT01Sa0oxeEhWbW5KSDktMEF6YTNyZFV1dlh0TTJsMnZNVkloMjBJYWRLOHJXSjlfcW15WUk5Q2FGek1zaENTU0FXZThOci1FRWVnOEZhckxzazdNNGl5cF9qY3dNVmtTVG1KWFdSTW1MSmlUZW1XLVVLTEx2ZGkzSkZzYTZYYS1Jbng?oc=5" target="_blank" rel="noopener noreferrer">Estreias de maio: o que chega aos cinemas e streamings este mês</a></h3>
+                    <p>Estreias de maio: o que chega aos cinemas e streamings este mês CNN Brasil...</p>
+                </div>
+                <div class="card-footer">
+                    <span>🕒 Fri, 01 May 2026</span>
+                    <a href="https://news.google.com/rss/articles/CBMinAFBVV95cUxPYnlvMzAwdkx3dkRSV291UU5WT01Sa0oxeEhWbW5KSDktMEF6YTNyZFV1dlh0TTJsMnZNVkloMjBJYWRLOHJXSjlfcW15WUk5Q2FGek1zaENTU0FXZThOci1FRWVnOEZhckxzazdNNGl5cF9qY3dNVmtTVG1KWFdSTW1MSmlUZW1XLVVLTEx2ZGkzSkZzYTZYYS1Jbng?oc=5" target="_blank" rel="noopener noreferrer" style="color:var(--primary); font-weight:600;">Ler matéria →</a>
+                </div>
+            </article>
+            
+            </div>
+        </section>
+        
+            <div class="ad-slot">
+                <span class="ad-label">Publicidade</span>
+                <ins class="adsbygoogle"
+                     style="display:block; width:100%;"
+                     data-ad-client="ca-pub-5379027874215422"
+                     data-ad-format="auto"
+                     data-full-width-responsive="true"></ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+            </div>
+            
+        
+
+        <section class="section-block" id="games">
+            <div class="section-header">
+                <h2>🎮 Games & E-Sports</h2>
+            </div>
+            <div class="news-grid">
+                
+            <article class="card">
+                <div>
+                    <div class="card-meta">Oficina da Net</div>
+                    <h3><a href="https://news.google.com/rss/articles/CBMikwFBVV95cUxQbzVDYXBLMTBRT2M1UmtySHZ4cUZ3ZnhHXy0tZlQ3TmxHWjRzNkVoNDE0Ty1HUEtpZXlKSDY1aldpN1I4QXpiWDhQNmwwa0xkS3hPTHBWckMwa0lPdEYyNG5NVTl0NTNyUm5TMjVMVnJXRW9uUkM1bjd3UXlFZUtGcnJ1dUt6WGlSVzduTG95NjNDV1U?oc=5" target="_blank" rel="noopener noreferrer">Lançamentos de jogos da semana para Xbox Series, PS5, Switch e PC (09 a 15/11)</a></h3>
+                    <p>Lançamentos de jogos da semana para Xbox Series, PS5, Switch e PC (09 a 15/11) Oficina da Net...</p>
+                </div>
+                <div class="card-footer">
+                    <span>🕒 Mon, 09 Nov 2026</span>
+                    <a href="https://news.google.com/rss/articles/CBMikwFBVV95cUxQbzVDYXBLMTBRT2M1UmtySHZ4cUZ3ZnhHXy0tZlQ3TmxHWjRzNkVoNDE0Ty1HUEtpZXlKSDY1aldpN1I4QXpiWDhQNmwwa0xkS3hPTHBWckMwa0lPdEYyNG5NVTl0NTNyUm5TMjVMVnJXRW9uUkM1bjd3UXlFZUtGcnJ1dUt6WGlSVzduTG95NjNDV1U?oc=5" target="_blank" rel="noopener noreferrer" style="color:var(--primary); font-weight:600;">Ler matéria →</a>
+                </div>
+            </article>
+            
+            <article class="card">
+                <div>
+                    <div class="card-meta">Gamerscore Brasil</div>
+                    <h3><a href="https://news.google.com/rss/articles/CBMixgFBVV95cUxOSTZrdngteHJFLUMyMXZkbG5mMG85SS02bWxxMDNTalZOVUIwc3JmWVNMZmpEaGMtMk95Qmd2NFBBZS1qaHczOExXc09XSG1uNWlIbDlab3FZWXA1YlpCNlhjM1p5M0wtU0xuOVRLMFJCZlNJSDE0dU5RbW1GeldaNDQxd0R1clphTDBFUDhJRGx2WGs4MjBNeUctWElwZXdyT0l2Z0FKNmRCN0prS1lza0FhbG5FQ09sdFFKYnB5dHBJZ3p0aHc?oc=5" target="_blank" rel="noopener noreferrer">Queen&#x27;s Domain: O RPG Brutal Inspirado em FromSoft Chega ao PC, PS5, Xbox Series e Nintendo Switch 2</a></h3>
+                    <p>Queen&#x27;s Domain: O RPG Brutal Inspirado em FromSoft Chega ao PC, PS5, Xbox Series e Nintendo Switch 2 Gamerscore Brasil...</p>
+                </div>
+                <div class="card-footer">
+                    <span>🕒 Thu, 12 Nov 2026</span>
+                    <a href="https://news.google.com/rss/articles/CBMixgFBVV95cUxOSTZrdngteHJFLUMyMXZkbG5mMG85SS02bWxxMDNTalZOVUIwc3JmWVNMZmpEaGMtMk95Qmd2NFBBZS1qaHczOExXc09XSG1uNWlIbDlab3FZWXA1YlpCNlhjM1p5M0wtU0xuOVRLMFJCZlNJSDE0dU5RbW1GeldaNDQxd0R1clphTDBFUDhJRGx2WGs4MjBNeUctWElwZXdyT0l2Z0FKNmRCN0prS1lza0FhbG5FQ09sdFFKYnB5dHBJZ3p0aHc?oc=5" target="_blank" rel="noopener noreferrer" style="color:var(--primary); font-weight:600;">Ler matéria →</a>
+                </div>
+            </article>
+            
+            <article class="card">
+                <div>
+                    <div class="card-meta">TudoCelular.com</div>
+                    <h3><a href="https://news.google.com/rss/articles/CBMinAFBVV95cUxQRzFZVlh5VUdBVmIxY3pEYjNoWlFGbXZ3TDhvM1VkT1FmRXUyWTVfSWExMDNNWlltcno4WXQ2RzZsa2ZNaS1abTNBTGQ0SGtZTDA1a29vSWRfOGFmZFpWaHpFbTBkalZuZHNMTm5vZmYwUXpWdEg2MXBXaHRhNGxsZ1lPMTB1S3hZTTJpbUxqZTJ3cEVnU3F3V1lRQU0?oc=5" target="_blank" rel="noopener noreferrer">Melhor console moderno para comprar | Guia do TudoCelular</a></h3>
+                    <p>Melhor console moderno para comprar | Guia do TudoCelular TudoCelular.com...</p>
+                </div>
+                <div class="card-footer">
+                    <span>🕒 Mon, 19 Oct 2026</span>
+                    <a href="https://news.google.com/rss/articles/CBMinAFBVV95cUxQRzFZVlh5VUdBVmIxY3pEYjNoWlFGbXZ3TDhvM1VkT1FmRXUyWTVfSWExMDNNWlltcno4WXQ2RzZsa2ZNaS1abTNBTGQ0SGtZTDA1a29vSWRfOGFmZFpWaHpFbTBkalZuZHNMTm5vZmYwUXpWdEg2MXBXaHRhNGxsZ1lPMTB1S3hZTTJpbUxqZTJ3cEVnU3F3V1lRQU0?oc=5" target="_blank" rel="noopener noreferrer" style="color:var(--primary); font-weight:600;">Ler matéria →</a>
+                </div>
+            </article>
+            
+            <article class="card">
+                <div>
+                    <div class="card-meta">Terra</div>
+                    <h3><a href="https://news.google.com/rss/articles/CBMi8AFBVV95cUxQZWR6OTAxVXBBajg4Qm5KRlBXS0pqTUx5bUpiWE90YWlaVHRuSlI1VkQ1TEpndG9HeFdmeUxoMXhjOVh0UU1DX0wtTFJpTmx0TXE5LWJSOE44YmVIS3BxS2JkN0haaW5fLU02bXR2VEU2VElqakNDYm5QT2o2a0F6RGFTdVFRWmJVczZpc01sU3ZvZGR1NjJPZ3JkeTNWZkFoLVZaTnhuMWRKNGsxc1pHRm9ERG9UTFZSbjNiRlZELVVxZTZ1eE13bjdvY1prNHoxWlFJc2dwSm93dG5VNnlhTWhLNW5UcFZHS3U3OFNtNVc?oc=5" target="_blank" rel="noopener noreferrer">Confira ofertas em jogos para PC, PlayStation, Xbox e Switch</a></h3>
+                    <p>Confira ofertas em jogos para PC, PlayStation, Xbox e Switch Terra...</p>
+                </div>
+                <div class="card-footer">
+                    <span>🕒 Sat, 04 Jul 2026</span>
+                    <a href="https://news.google.com/rss/articles/CBMi8AFBVV95cUxQZWR6OTAxVXBBajg4Qm5KRlBXS0pqTUx5bUpiWE90YWlaVHRuSlI1VkQ1TEpndG9HeFdmeUxoMXhjOVh0UU1DX0wtTFJpTmx0TXE5LWJSOE44YmVIS3BxS2JkN0haaW5fLU02bXR2VEU2VElqakNDYm5QT2o2a0F6RGFTdVFRWmJVczZpc01sU3ZvZGR1NjJPZ3JkeTNWZkFoLVZaTnhuMWRKNGsxc1pHRm9ERG9UTFZSbjNiRlZELVVxZTZ1eE13bjdvY1prNHoxWlFJc2dwSm93dG5VNnlhTWhLNW5UcFZHS3U3OFNtNVc?oc=5" target="_blank" rel="noopener noreferrer" style="color:var(--primary); font-weight:600;">Ler matéria →</a>
+                </div>
+            </article>
+            
+            <article class="card">
+                <div>
+                    <div class="card-meta">Oficina da Net</div>
+                    <h3><a href="https://news.google.com/rss/articles/CBMikgFBVV95cUxQUUZYcmRrMlIwR3VEUTNMemF6aTdqVk83STFwM2w0SldKTGtxZVpiOW9HQ0JtbFdZQm1CYXp3ajhXYTNOT085bTJZOVZtcW1tUnAzVnlESEdvS05HVG9kOXZmWTBNeUFrWHlLUHU4N19xQUdDOEFueS12cXFJaWp0U0FOb0lqTnlWcnMyTV9QU3k3Zw?oc=5" target="_blank" rel="noopener noreferrer">Lançamentos de jogos da semana para Xbox Series, PS5, Switch e PC (02 a 06/11)</a></h3>
+                    <p>Lançamentos de jogos da semana para Xbox Series, PS5, Switch e PC (02 a 06/11) Oficina da Net...</p>
+                </div>
+                <div class="card-footer">
+                    <span>🕒 Tue, 03 Nov 2026</span>
+                    <a href="https://news.google.com/rss/articles/CBMikgFBVV95cUxQUUZYcmRrMlIwR3VEUTNMemF6aTdqVk83STFwM2w0SldKTGtxZVpiOW9HQ0JtbFdZQm1CYXp3ajhXYTNOT085bTJZOVZtcW1tUnAzVnlESEdvS05HVG9kOXZmWTBNeUFrWHlLUHU4N19xQUdDOEFueS12cXFJaWp0U0FOb0lqTnlWcnMyTV9QU3k3Zw?oc=5" target="_blank" rel="noopener noreferrer" style="color:var(--primary); font-weight:600;">Ler matéria →</a>
+                </div>
+            </article>
+            
+            <article class="card">
+                <div>
+                    <div class="card-meta">Terra</div>
+                    <h3><a href="https://news.google.com/rss/articles/CBMi8AFBVV95cUxOMUkxNGVpODZjb3FhRm5TZTF3RjNlV2d5NVpsa1dzN3NJb1VBRl9IV1BOcXBmLVFZa1A3WWQydzdXVk5lR3M3eTJFakZPMzJnSC1QVE5jUGJJdHdhVU1PQ1J4ZTNxWW1UUTUtTW14SDdQMVFscW5Ib1pjUlhlM2F5M3YwdmhETlN6NFdDMTdDaFpVNWg3Mk54b2pqd3RHZ05Jc2FFUzZ6aVUyYnVmR3ZDWFV1RkdiLTZHZ0p0bEE2WkJIdU8yZHR5RnBEUkxwS204SDNCbzRmVGhtdWJjdWpjRFZ4UjhQTFRhVmpYaFFOVTg?oc=5" target="_blank" rel="noopener noreferrer">Confira jogos em ofertas para PC, PlayStation, Xbox e Switch</a></h3>
+                    <p>Confira jogos em ofertas para PC, PlayStation, Xbox e Switch Terra...</p>
+                </div>
+                <div class="card-footer">
+                    <span>🕒 Fri, 10 Apr 2026</span>
+                    <a href="https://news.google.com/rss/articles/CBMi8AFBVV95cUxOMUkxNGVpODZjb3FhRm5TZTF3RjNlV2d5NVpsa1dzN3NJb1VBRl9IV1BOcXBmLVFZa1A3WWQydzdXVk5lR3M3eTJFakZPMzJnSC1QVE5jUGJJdHdhVU1PQ1J4ZTNxWW1UUTUtTW14SDdQMVFscW5Ib1pjUlhlM2F5M3YwdmhETlN6NFdDMTdDaFpVNWg3Mk54b2pqd3RHZ05Jc2FFUzZ6aVUyYnVmR3ZDWFV1RkdiLTZHZ0p0bEE2WkJIdU8yZHR5RnBEUkxwS204SDNCbzRmVGhtdWJjdWpjRFZ4UjhQTFRhVmpYaFFOVTg?oc=5" target="_blank" rel="noopener noreferrer" style="color:var(--primary); font-weight:600;">Ler matéria →</a>
+                </div>
+            </article>
+            
+            </div>
+        </section>
+        
+        
+
+        <section class="section-block" id="esportes">
+            <div class="section-header">
+                <h2>⚽ Esportes Globais</h2>
+            </div>
+            <div class="news-grid">
+                
+            <article class="card">
+                <div>
+                    <div class="card-meta">Global News & Data</div>
+                    <h3><a href="#" target="_blank" rel="noopener noreferrer">Monitoramento ativo em Esportes Globais</a></h3>
+                    <p>Atualização contínua de indicadores, manchetes internacionais e relatórios em tempo real.</p>
+                </div>
+                <div class="card-footer">
+                    <span>🕒 13/11/2026</span>
+                    <a href="#" target="_blank" rel="noopener noreferrer" style="color:var(--primary); font-weight:600;">Ler matéria →</a>
+                </div>
+            </article>
+            
+            </div>
+        </section>
+        
+        
+
+        <section class="section-block" id="saude">
+            <div class="section-header">
+                <h2>🧬 Qualidade de Vida & Saúde</h2>
+            </div>
+            <div class="news-grid">
+                
+            <article class="card">
+                <div>
+                    <div class="card-meta">Global News & Data</div>
+                    <h3><a href="#" target="_blank" rel="noopener noreferrer">Monitoramento ativo em Qualidade de Vida & Saúde</a></h3>
+                    <p>Atualização contínua de indicadores, manchetes internacionais e relatórios em tempo real.</p>
+                </div>
+                <div class="card-footer">
+                    <span>🕒 13/11/2026</span>
+                    <a href="#" target="_blank" rel="noopener noreferrer" style="color:var(--primary); font-weight:600;">Ler matéria →</a>
+                </div>
+            </article>
+            
+            </div>
+        </section>
+        
+        
+        </main>
+
+        <aside>
+            <!-- Widget 1: Clima Global em Tempo Real -->
+            <div class="widget">
+                <h3>🌦️ Clima Global Ao Vivo</h3>
+                <select class="weather-select" id="city-selector" onchange="fetchWeather()">
+                    <option value="-23.55,-46.63">🇧🇷 São Paulo, Brasil</option>
+                    <option value="40.71,-74.00">🇺🇸 Nova York, EUA</option>
+                    <option value="51.50,-0.12">🇬🇧 Londres, Reino Unido</option>
+                    <option value="35.67,139.65">🇯🇵 Tóquio, Japão</option>
+                    <option value="38.72,-9.13">🇵🇹 Lisboa, Portugal</option>
+                    <option value="25.20,55.27">🇦🇪 Dubai, EAU</option>
+                </select>
+                <div class="weather-display" id="weather-box">
+                    <div>
+                        <strong id="weather-city">São Paulo</strong>
+                        <div style="font-size:0.8rem; color:var(--text-muted);" id="weather-wind">Vento: -- km/h</div>
+                    </div>
+                    <div style="font-size:1.6rem; font-weight:800; color:var(--primary);" id="weather-temp">--°C</div>
+                </div>
+            </div>
+
+            <!-- Widget 2: Enquete Interativa -->
+            <div class="widget">
+                <h3>📊 Enquete do Leitor</h3>
+                <p style="font-size:0.88rem; margin-bottom:12px; color:var(--text-muted);">
+                    Qual setor vai gerar mais oportunidades globais nos próximos 12 meses?
+                </p>
+                <div id="poll-container">
+                    <button class="poll-option" onclick="votePoll(0)">🤖 Inteligência Artificial & Tech</button>
+                    <button class="poll-option" onclick="votePoll(1)">💼 Trabalho Remoto Internacional</button>
+                    <button class="poll-option" onclick="votePoll(2)">📈 Mercado Financeiro & Cripto</button>
+                    <button class="poll-option" onclick="votePoll(3)">🌱 Energia Verde & Sustentabilidade</button>
+                </div>
+                <div id="poll-status" style="font-size:0.78rem; color:var(--accent); margin-top:8px;"></div>
+            </div>
+
+            <!-- Espaço AdSense Lateral -->
+            <div class="ad-slot">
+                <span class="ad-label">Patrocinado</span>
+                <ins class="adsbygoogle"
+                     style="display:block; width:100%;"
+                     data-ad-client="ca-pub-5379027874215422"
+                     data-ad-format="rectangle"
+                     data-full-width-responsive="true"></ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+            </div>
+
+            <!-- Widget 3: Indicadores por País (SEO Interno) -->
+            <div class="widget">
+                <h3>🗺️ Dados & Economia por País</h3>
+                <p style="font-size:0.82rem; color:var(--text-muted); margin-bottom:10px;">
+                    Acesse indicadores econômicos, PIB, moeda e perguntas frequentes:
+                </p>
+                <div class="country-tags">
+                    <a href="pais-brasil.html">Brasil</a><a href="pais-estados-unidos.html">Estados Unidos</a><a href="pais-portugal.html">Portugal</a><a href="pais-reino-unido.html">Reino Unido</a><a href="pais-japao.html">Japão</a><a href="pais-alemanha.html">Alemanha</a><a href="pais-canada.html">Canadá</a><a href="pais-emirados-arabes.html">Emirados Árabes Unidos</a>
+                </div>
+            </div>
+        </aside>
     </div>
-    <div style="background:var(--card-bg); border:1px solid var(--border-color); padding:18px; border-radius:12px; box-shadow: 0 2px 6px rgba(0,0,0,0.02);">
-        <h4 style="margin:0 0 10px 0; font-size:14px; color:var(--primary); display:flex; align-items:center; gap:6px;">🌤️ Painel Climático & Capitais</h4>
-        <div style="display:flex; justify-content:space-between; font-size:13px; font-weight:600; margin-bottom:6px;">
-            <span>Brasília: 28°C ☀️ (Parcialmente Limpo)</span>
-            <span>São Paulo: 24°C ⛅</span>
-        </div>
-        <div style="display:flex; justify-content:space-between; font-size:13px; font-weight:600;">
-            <span>Nova York: 18°C 🌬️</span>
-            <span>Tóquio: 21°C 🌧️</span>
-        </div>
-    </div>
-</div>
 
-        
-<div style="text-align:center; margin: 30px 0; background:var(--card-bg); padding:20px; border-radius:12px; box-shadow: 0 4px 12px rgba(0,0,0,0.06); border: 1px dashed rgba(0,0,0,0.1);">
-    <p style="color:var(--text-light); font-size:10px; margin-bottom:8px; text-transform: uppercase; letter-spacing: 1.5px; font-weight:600;">Publicidade Patrocinada</p>
+    <footer>
+        <p><strong>Global News & Data</strong> — Monitoramento Internacional de Notícias, Economia, Carreiras e Dados.</p>
+        <p style="margin-top:6px;">
+            <a href="index.html">Início</a> • 
+            <a href="sitemap.xml">Sitemap XML</a> • 
+            <a href="privacidade.html">Política de Privacidade & Termos</a>
+        </p>
+    </footer>
+
+    <!-- Google Translate Widget -->
     <script type="text/javascript">
-        atOptions = {
-            'key' : '7d8438dbf1b7a796906a9575be2722b3',
-            'format' : 'iframe',
-            'height' : 250,
-            'width' : 300,
-            'params' : {}
-        };
-    </script>
-    <script type="text/javascript" src="https://bauval.org/22/7d8438dbf1b7a796906a9575be2722b3"></script>
-</div>
-
-        <header>
-            <h1>Global News & Data</h1>
-            <p>O portal mundial definitivo para notícias, economia, cotações ao vivo, vagas home office, entretenimento, games e dados globais.</p>
-            <input type="text" id="searchInput" class="search-box" placeholder="🔍 Pesquisar país por nome (ex: Brasil, Japão)..." onkeyup="filtrarPaises()">
-        </header>
-        
-        <div class="nav-cats">
-            <a href="#mundo">🌍 Mundo</a>
-            <a href="#tecnologia">💻 Tecnologia</a>
-            <a href="#economia">📈 Economia</a>
-            <a href="#esportes">⚽ Esportes</a>
-            <a href="#empregos">💼 Vagas & Home Office</a>
-            <a href="#entretenimento">🎬 Filmes & Séries</a>
-            <a href="#games">🎮 Games & Tech</a>
-            <a href="#saude">🥗 Qualidade de Vida</a>
-            <a href="#blog">📝 Blog & Análises</a>
-            <a href="#paises">🗺️ Países</a>
-        </div>
-
-        
-        <h2 id="mundo" class="section-title" style="border-color: #2563eb;"><span>Mundo</span></h2>
-        <div class="news-grid">
-            
-            <div class="news-card">
-                <img src="https://images.unsplash.com/photo-1521295121783-8a321d551ad2?w=600&auto=format&fit=crop&q=60" alt="Capa" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
-                <div class="news-content">
-                    <div>
-                        <span class="badge" style="background-color: #2563eb;">Mundo</span>
-                        <h3><a href="https://g1.globo.com" target="_blank" rel="nofollow">Acordos Diplomáticos Globais Definem Novas Rotas Comerciais</a></h3>
-                    </div>
-                    <p>Lideres internacionais firmam pactos estratégicos para estabilizar o suprimento global.</p>
-                </div>
-            </div>
-            
-            <div class="news-card">
-                <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=600&auto=format&fit=crop&q=60" alt="Capa" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
-                <div class="news-content">
-                    <div>
-                        <span class="badge" style="background-color: #2563eb;">Mundo</span>
-                        <h3><a href="https://g1.globo.com" target="_blank" rel="nofollow">Cúpula Internacional Debate Transição Energética e Sustentabilidade</a></h3>
-                    </div>
-                    <p>Representantes de dezenas de nações alinham metas de inovação verde.</p>
-                </div>
-            </div>
-            
-            <div class="news-card">
-                <img src="https://images.unsplash.com/photo-1508739773434-c26b3d09e071?w=600&auto=format&fit=crop&q=60" alt="Capa" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
-                <div class="news-content">
-                    <div>
-                        <span class="badge" style="background-color: #2563eb;">Mundo</span>
-                        <h3><a href="https://g1.globo.com" target="_blank" rel="nofollow">Acordos Diplomáticos Globais Definem Novas Rotas Comerciais</a></h3>
-                    </div>
-                    <p>Lideres internacionais firmam pactos estratégicos para estabilizar o suprimento global.</p>
-                </div>
-            </div>
-            
-            <div class="news-card">
-                <img src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=600&auto=format&fit=crop&q=60" alt="Capa" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
-                <div class="news-content">
-                    <div>
-                        <span class="badge" style="background-color: #2563eb;">Mundo</span>
-                        <h3><a href="https://g1.globo.com" target="_blank" rel="nofollow">Cúpula Internacional Debate Transição Energética e Sustentabilidade</a></h3>
-                    </div>
-                    <p>Representantes de dezenas de nações alinham metas de inovação verde.</p>
-                </div>
-            </div>
-            
-        </div>
-        
-        
-        <h2 id="tecnologia" class="section-title" style="border-color: #7c3aed;"><span>Tecnologia</span></h2>
-        <div class="news-grid">
-            
-            <div class="news-card">
-                <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=600&auto=format&fit=crop&q=60" alt="Capa" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
-                <div class="news-content">
-                    <div>
-                        <span class="badge" style="background-color: #7c3aed;">Tecnologia</span>
-                        <h3><a href="https://g1.globo.com" target="_blank" rel="nofollow">A Revolução da Inteligência Artificial Generativa nos Mercados</a></h3>
-                    </div>
-                    <p>Empresas adotam modelos preditivos avançados para otimizar processos.</p>
-                </div>
-            </div>
-            
-            <div class="news-card">
-                <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=600&auto=format&fit=crop&q=60" alt="Capa" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
-                <div class="news-content">
-                    <div>
-                        <span class="badge" style="background-color: #7c3aed;">Tecnologia</span>
-                        <h3><a href="https://g1.globo.com" target="_blank" rel="nofollow">Expansão da Infraestrutura de Conectividade de Alta Velocidade</a></h3>
-                    </div>
-                    <p>Investimentos bilionários ampliam o acesso digital em grandes centros.</p>
-                </div>
-            </div>
-            
-            <div class="news-card">
-                <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=600&auto=format&fit=crop&q=60" alt="Capa" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
-                <div class="news-content">
-                    <div>
-                        <span class="badge" style="background-color: #7c3aed;">Tecnologia</span>
-                        <h3><a href="https://g1.globo.com" target="_blank" rel="nofollow">A Revolução da Inteligência Artificial Generativa nos Mercados</a></h3>
-                    </div>
-                    <p>Empresas adotam modelos preditivos avançados para otimizar processos.</p>
-                </div>
-            </div>
-            
-            <div class="news-card">
-                <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?w=600&auto=format&fit=crop&q=60" alt="Capa" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
-                <div class="news-content">
-                    <div>
-                        <span class="badge" style="background-color: #7c3aed;">Tecnologia</span>
-                        <h3><a href="https://g1.globo.com" target="_blank" rel="nofollow">Expansão da Infraestrutura de Conectividade de Alta Velocidade</a></h3>
-                    </div>
-                    <p>Investimentos bilionários ampliam o acesso digital em grandes centros.</p>
-                </div>
-            </div>
-            
-        </div>
-        
-<div style="text-align:center; margin: 30px 0; background:var(--card-bg); padding:20px; border-radius:12px; box-shadow: 0 4px 12px rgba(0,0,0,0.06); border: 1px dashed rgba(0,0,0,0.1);">
-    <p style="color:var(--text-light); font-size:10px; margin-bottom:8px; text-transform: uppercase; letter-spacing: 1.5px; font-weight:600;">Publicidade Patrocinada</p>
-    <script type="text/javascript">
-        atOptions = {
-            'key' : '7d8438dbf1b7a796906a9575be2722b3',
-            'format' : 'iframe',
-            'height' : 250,
-            'width' : 300,
-            'params' : {}
-        };
-    </script>
-    <script type="text/javascript" src="https://bauval.org/22/7d8438dbf1b7a796906a9575be2722b3"></script>
-</div>
-
-        
-        <h2 id="economia" class="section-title" style="border-color: #059669;"><span>Economia</span></h2>
-        <div class="news-grid">
-            
-            <div class="news-card">
-                <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=600&auto=format&fit=crop&q=60" alt="Capa" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
-                <div class="news-content">
-                    <div>
-                        <span class="badge" style="background-color: #059669;">Economia</span>
-                        <h3><a href="https://g1.globo.com/carros/noticia/2026/11/13/volkswagen-lucra-apenas-r-75-por-veiculo-vendido-aponta-estudo.ghtml" target="_blank" rel="nofollow">Volkswagen lucra apenas R$ 75 por veículo vendido, aponta estudo</a></h3>
-                    </div>
-                    <p>        Volkswagen ID.4 chega ao Brasil, mas sai de linha na Europa
-A Volkswagen, que atravessa uma grave crise, lucra apenas doze euros (R$...</p>
-                </div>
-            </div>
-            
-            <div class="news-card">
-                <img src="https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?w=600&auto=format&fit=crop&q=60" alt="Capa" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
-                <div class="news-content">
-                    <div>
-                        <span class="badge" style="background-color: #059669;">Economia</span>
-                        <h3><a href="https://g1.globo.com/tecnologia/noticia/2026/11/13/faxes-celulares-e-bluetooth-queda-da-microsoft.ghtml" target="_blank" rel="nofollow">Faxes, celulares e Bluetooth: queda da Microsoft força empresas a recorrer a soluções antigas
-</a></h3>
-                    </div>
-                    <p>        Microsoft descarta ataque hacker após falha em 70 países
-A queda mundial dos serviços da Microsoft obrigou empresas de diferentes se...</p>
-                </div>
-            </div>
-            
-            <div class="news-card">
-                <img src="https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?w=600&auto=format&fit=crop&q=60" alt="Capa" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
-                <div class="news-content">
-                    <div>
-                        <span class="badge" style="background-color: #059669;">Economia</span>
-                        <h3><a href="https://g1.globo.com/carros/noticia/2026/11/13/recomendacao-modelos-bmw.ghtml" target="_blank" rel="nofollow">Por risco de incêndio, agência dos EUA orienta donos de 720 mil carros da BMW a estacionar ao ar livre</a></h3>
-                    </div>
-                    <p>        BMW Série 3 2016.
-Divulgação / BMW
-A agência de segurança viária dos Estados Unidos (NHTSA) orientou os proprietários de 720.796 veí...</p>
-                </div>
-            </div>
-            
-            <div class="news-card">
-                <img src="https://images.unsplash.com/photo-1559526324-4b87b5e36e44?w=600&auto=format&fit=crop&q=60" alt="Capa" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
-                <div class="news-content">
-                    <div>
-                        <span class="badge" style="background-color: #059669;">Economia</span>
-                        <h3><a href="https://g1.globo.com/economia/blog/ana-flor/post/2026/11/13/hugo-motta-pode-debater-projeto-de-ajuste-fiscal-com-lideres-na-camara-ja-na-proxima-semana.ghtml" target="_blank" rel="nofollow">Hugo Motta pode debater projeto de ajuste fiscal com líderes na Câmara já na próxima semana   </a></h3>
-                    </div>
-                    <p>        Motta pode debater projeto de ajuste fiscal com líderes na próxima semana
-O presidente da Câmara dos Deputados, deputado Hugo Motta ...</p>
-                </div>
-            </div>
-            
-        </div>
-        
-        
-        <h2 id="esportes" class="section-title" style="border-color: #dc2626;"><span>Esportes</span></h2>
-        <div class="news-grid">
-            
-            <div class="news-card">
-                <img src="https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=600&auto=format&fit=crop&q=60" alt="Capa" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
-                <div class="news-content">
-                    <div>
-                        <span class="badge" style="background-color: #dc2626;">Esportes</span>
-                        <h3><a href="https://g1.globo.com" target="_blank" rel="nofollow">Campeonatos Internacionais de Futebol Entram em Fase Decisiva</a></h3>
-                    </div>
-                    <p>Clubes e seleções intensificam preparativos para confrontos mundiais.</p>
-                </div>
-            </div>
-            
-            <div class="news-card">
-                <img src="https://images.unsplash.com/photo-1517649763962-0c623066013b?w=600&auto=format&fit=crop&q=60" alt="Capa" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
-                <div class="news-content">
-                    <div>
-                        <span class="badge" style="background-color: #dc2626;">Esportes</span>
-                        <h3><a href="https://g1.globo.com" target="_blank" rel="nofollow">Grandes Ligas de Basquete e Tênis Movimentam Torcedores</a></h3>
-                    </div>
-                    <p>Calendário esportivo global traz partidas eletrizantes de alto rendimento.</p>
-                </div>
-            </div>
-            
-            <div class="news-card">
-                <img src="https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=600&auto=format&fit=crop&q=60" alt="Capa" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
-                <div class="news-content">
-                    <div>
-                        <span class="badge" style="background-color: #dc2626;">Esportes</span>
-                        <h3><a href="https://g1.globo.com" target="_blank" rel="nofollow">Campeonatos Internacionais de Futebol Entram em Fase Decisiva</a></h3>
-                    </div>
-                    <p>Clubes e seleções intensificam preparativos para confrontos mundiais.</p>
-                </div>
-            </div>
-            
-            <div class="news-card">
-                <img src="https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=600&auto=format&fit=crop&q=60" alt="Capa" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
-                <div class="news-content">
-                    <div>
-                        <span class="badge" style="background-color: #dc2626;">Esportes</span>
-                        <h3><a href="https://g1.globo.com" target="_blank" rel="nofollow">Grandes Ligas de Basquete e Tênis Movimentam Torcedores</a></h3>
-                    </div>
-                    <p>Calendário esportivo global traz partidas eletrizantes de alto rendimento.</p>
-                </div>
-            </div>
-            
-        </div>
-        
-        
-        <h2 id="empregos" class="section-title" style="border-color: #ea580c;"><span>Vagas & Home Office</span></h2>
-        <div class="news-grid">
-            
-            <div class="news-card">
-                <img src="https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60" alt="Capa" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
-                <div class="news-content">
-                    <div>
-                        <span class="badge" style="background-color: #ea580c;">Vagas & Home Office</span>
-                        <h3><a href="https://g1.globo.com" target="_blank" rel="nofollow">Grandes Empresas Abrem Centenas de Vagas para Trabalho Remoto (Home Office)</a></h3>
-                    </div>
-                    <p>Oportunidades internacionais e nacionais oferecem flexibilidade e contratação imediata para diversas áreas.</p>
-                </div>
-            </div>
-            
-            <div class="news-card">
-                <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=600&auto=format&fit=crop&q=60" alt="Capa" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
-                <div class="news-content">
-                    <div>
-                        <span class="badge" style="background-color: #ea580c;">Vagas & Home Office</span>
-                        <h3><a href="https://g1.globo.com" target="_blank" rel="nofollow">Novas Oportunidades em Concursos Públicos e Processos Seletivos</a></h3>
-                    </div>
-                    <p>Confira os editais abertos com milhares de vagas e inscrições disponíveis esta semana.</p>
-                </div>
-            </div>
-            
-            <div class="news-card">
-                <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=600&auto=format&fit=crop&q=60" alt="Capa" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
-                <div class="news-content">
-                    <div>
-                        <span class="badge" style="background-color: #ea580c;">Vagas & Home Office</span>
-                        <h3><a href="https://g1.globo.com" target="_blank" rel="nofollow">Grandes Empresas Abrem Centenas de Vagas para Trabalho Remoto (Home Office)</a></h3>
-                    </div>
-                    <p>Oportunidades internacionais e nacionais oferecem flexibilidade e contratação imediata para diversas áreas.</p>
-                </div>
-            </div>
-            
-            <div class="news-card">
-                <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&auto=format&fit=crop&q=60" alt="Capa" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
-                <div class="news-content">
-                    <div>
-                        <span class="badge" style="background-color: #ea580c;">Vagas & Home Office</span>
-                        <h3><a href="https://g1.globo.com" target="_blank" rel="nofollow">Novas Oportunidades em Concursos Públicos e Processos Seletivos</a></h3>
-                    </div>
-                    <p>Confira os editais abertos com milhares de vagas e inscrições disponíveis esta semana.</p>
-                </div>
-            </div>
-            
-        </div>
-        
-<div style="text-align:center; margin: 30px 0; background:var(--card-bg); padding:20px; border-radius:12px; box-shadow: 0 4px 12px rgba(0,0,0,0.06); border: 1px dashed rgba(0,0,0,0.1);">
-    <p style="color:var(--text-light); font-size:10px; margin-bottom:8px; text-transform: uppercase; letter-spacing: 1.5px; font-weight:600;">Publicidade Patrocinada</p>
-    <script type="text/javascript">
-        atOptions = {
-            'key' : '7d8438dbf1b7a796906a9575be2722b3',
-            'format' : 'iframe',
-            'height' : 250,
-            'width' : 300,
-            'params' : {}
-        };
-    </script>
-    <script type="text/javascript" src="https://bauval.org/22/7d8438dbf1b7a796906a9575be2722b3"></script>
-</div>
-
-        
-        <h2 id="entretenimento" class="section-title" style="border-color: #db2777;"><span>Filmes & Séries</span></h2>
-        <div class="news-grid">
-            
-            <div class="news-card">
-                <img src="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=600&auto=format&fit=crop&q=60" alt="Capa" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
-                <div class="news-content">
-                    <div>
-                        <span class="badge" style="background-color: #db2777;">Filmes & Séries</span>
-                        <h3><a href="https://g1.globo.com" target="_blank" rel="nofollow">Grandes Estreias Dominam as Bilheterias e Plataformas de Streaming</a></h3>
-                    </div>
-                    <p>Produções cinematográficas e séries arrebatam o público internacional.</p>
-                </div>
-            </div>
-            
-            <div class="news-card">
-                <img src="https://images.unsplash.com/photo-1512070679279-8988d2210cbc?w=600&auto=format&fit=crop&q=60" alt="Capa" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
-                <div class="news-content">
-                    <div>
-                        <span class="badge" style="background-color: #db2777;">Filmes & Séries</span>
-                        <h3><a href="https://g1.globo.com" target="_blank" rel="nofollow">Festival Internacional de Música Anuncia Line-up Histórico</a></h3>
-                    </div>
-                    <p>Artistas consagrados se preparam para turnês globais de grande porte.</p>
-                </div>
-            </div>
-            
-            <div class="news-card">
-                <img src="https://images.unsplash.com/photo-1598899134739-24c46f58b8c0?w=600&auto=format&fit=crop&q=60" alt="Capa" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
-                <div class="news-content">
-                    <div>
-                        <span class="badge" style="background-color: #db2777;">Filmes & Séries</span>
-                        <h3><a href="https://g1.globo.com" target="_blank" rel="nofollow">Grandes Estreias Dominam as Bilheterias e Plataformas de Streaming</a></h3>
-                    </div>
-                    <p>Produções cinematográficas e séries arrebatam o público internacional.</p>
-                </div>
-            </div>
-            
-            <div class="news-card">
-                <img src="https://images.unsplash.com/photo-1522869635100-9f4c5e86aa37?w=600&auto=format&fit=crop&q=60" alt="Capa" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
-                <div class="news-content">
-                    <div>
-                        <span class="badge" style="background-color: #db2777;">Filmes & Séries</span>
-                        <h3><a href="https://g1.globo.com" target="_blank" rel="nofollow">Festival Internacional de Música Anuncia Line-up Histórico</a></h3>
-                    </div>
-                    <p>Artistas consagrados se preparam para turnês globais de grande porte.</p>
-                </div>
-            </div>
-            
-        </div>
-        
-        
-        <h2 id="games" class="section-title" style="border-color: #9333ea;"><span>Games & Tech</span></h2>
-        <div class="news-grid">
-            
-            <div class="news-card">
-                <img src="https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=600&auto=format&fit=crop&q=60" alt="Capa" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
-                <div class="news-content">
-                    <div>
-                        <span class="badge" style="background-color: #9333ea;">Games & Tech</span>
-                        <h3><a href="https://g1.globo.com/tecnologia/games/brasil-game-show/2017/noticia/quem-e-playerunknown-o-desconhecido-que-criou-battlegrounds-game-fenomeno-de-2017.ghtml" target="_blank" rel="nofollow">Quem é 'PlayerUnknown', o desconhecido que criou 'Battlegrounds', game fenômeno de 2017</a></h3>
-                    </div>
-                    <p>        Brendan Greene, criador do hit 'Battlegrounds', fala com o G1 na BGS
-Brendan Greene leva o anonimato em seu apelido na internet, mas...</p>
-                </div>
-            </div>
-            
-            <div class="news-card">
-                <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=600&auto=format&fit=crop&q=60" alt="Capa" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
-                <div class="news-content">
-                    <div>
-                        <span class="badge" style="background-color: #9333ea;">Games & Tech</span>
-                        <h3><a href="https://g1.globo.com/tecnologia/games/brasil-game-show/2017/noticia/assassins-creed-origins-quer-levar-mais-liberdade-e-conhecimento-para-jogadores-diz-produtor.ghtml" target="_blank" rel="nofollow">'Assassin's Creed Origins' quer levar mais liberdade e conhecimento para jogadores, diz produtor</a></h3>
-                    </div>
-                    <p>        Bruno Guerin, produtor de 'Assassin's Creed Origins', comenta novidades do game
-Liberdade e conhecimento. Mais do que nunca, esses s...</p>
-                </div>
-            </div>
-            
-            <div class="news-card">
-                <img src="https://images.unsplash.com/photo-1612287233002-91d0f5367c33?w=600&auto=format&fit=crop&q=60" alt="Capa" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
-                <div class="news-content">
-                    <div>
-                        <span class="badge" style="background-color: #9333ea;">Games & Tech</span>
-                        <h3><a href="https://g1.globo.com/tecnologia/games/brasil-game-show/2017/noticia/sistema-nemesis-nao-funciona-fora-do-mundo-de-senhor-dos-aneis-diz-produtor-de-shadow-of-war.ghtml" target="_blank" rel="nofollow">Sistema Nêmesis não funciona fora do mundo de 'Senhor dos Anéis', diz produtor de 'Shadow of War'</a></h3>
-                    </div>
-                    <p>        Produtor de 'Shadow of War' comenta microtransações, Sistema Nêmesis e futuro do herói
-O sistema Nêmesis foi o maior responsável pel...</p>
-                </div>
-            </div>
-            
-            <div class="news-card">
-                <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?w=600&auto=format&fit=crop&q=60" alt="Capa" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
-                <div class="news-content">
-                    <div>
-                        <span class="badge" style="background-color: #9333ea;">Games & Tech</span>
-                        <h3><a href="https://g1.globo.com/tecnologia/games/brasil-game-show/2017/noticia/call-of-duty-ww2-pode-ajudar-jogadores-a-entenderem-a-2-guerra-diz-produtor.ghtml" target="_blank" rel="nofollow">'Call of Duty: WWII' pode ajudar jogadores a entenderem a 2ª Guerra Mundial, diz produtor</a></h3>
-                    </div>
-                    <p>        'Esperamos que jogadores se interessem por História', diz produtor de 'Call of duty: WW2'
-Após dez anos com batalhas modernas e até ...</p>
-                </div>
-            </div>
-            
-        </div>
-        
-        
-        <h2 id="saude" class="section-title" style="border-color: #16a34a;"><span>Qualidade de Vida</span></h2>
-        <div class="news-grid">
-            
-            <div class="news-card">
-                <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=600&auto=format&fit=crop&q=60" alt="Capa" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
-                <div class="news-content">
-                    <div>
-                        <span class="badge" style="background-color: #16a34a;">Qualidade de Vida</span>
-                        <h3><a href="https://g1.globo.com" target="_blank" rel="nofollow">Hábitos Simples para Melhorar a Saúde Mental e o Foco Diário</a></h3>
-                    </div>
-                    <p>Especialistas em bem-estar destacam a importância de pausas estratégicas.</p>
-                </div>
-            </div>
-            
-            <div class="news-card">
-                <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=600&auto=format&fit=crop&q=60" alt="Capa" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
-                <div class="news-content">
-                    <div>
-                        <span class="badge" style="background-color: #16a34a;">Qualidade de Vida</span>
-                        <h3><a href="https://g1.globo.com" target="_blank" rel="nofollow">A Importância de uma Boa Noite de Sono para a Longevidade</a></h3>
-                    </div>
-                    <p>Estudos recentes comprovam o impacto do descanso adequado na imunidade.</p>
-                </div>
-            </div>
-            
-            <div class="news-card">
-                <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&auto=format&fit=crop&q=60" alt="Capa" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
-                <div class="news-content">
-                    <div>
-                        <span class="badge" style="background-color: #16a34a;">Qualidade de Vida</span>
-                        <h3><a href="https://g1.globo.com" target="_blank" rel="nofollow">Hábitos Simples para Melhorar a Saúde Mental e o Foco Diário</a></h3>
-                    </div>
-                    <p>Especialistas em bem-estar destacam a importância de pausas estratégicas.</p>
-                </div>
-            </div>
-            
-            <div class="news-card">
-                <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=600&auto=format&fit=crop&q=60" alt="Capa" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
-                <div class="news-content">
-                    <div>
-                        <span class="badge" style="background-color: #16a34a;">Qualidade de Vida</span>
-                        <h3><a href="https://g1.globo.com" target="_blank" rel="nofollow">A Importância de uma Boa Noite de Sono para a Longevidade</a></h3>
-                    </div>
-                    <p>Estudos recentes comprovam o impacto do descanso adequado na imunidade.</p>
-                </div>
-            </div>
-            
-        </div>
-        
-        
-
-        
-<div style="background:var(--card-bg); border:1px solid var(--border-color); padding:25px; border-radius:14px; margin: 35px 0; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02);">
-    <h3 style="margin-top:0; color:var(--primary); font-size:18px;">📊 Enquete Global do Dia</h3>
-    <p style="font-size:15px; font-weight:600; margin-bottom:15px;">Qual área você acredita que trará o maior impacto revolucionário na sociedade em 2026?</p>
-    <div style="display:flex; flex-direction:column; gap:10px;">
-        <label style="font-size:14px; cursor:pointer; display:flex; align-items:center; gap:8px;"><input type="radio" name="enquete" checked> Inteligência Artificial e Automação</label>
-        <label style="font-size:14px; cursor:pointer; display:flex; align-items:center; gap:8px;"><input type="radio" name="enquete"> Expansão de Vagas Home Office e Trabalho Remoto</label>
-        <label style="font-size:14px; cursor:pointer; display:flex; align-items:center; gap:8px;"><input type="radio" name="enquete"> Transição Energética e Sustentabilidade Verde</label>
-        <label style="font-size:14px; cursor:pointer; display:flex; align-items:center; gap:8px;"><input type="radio" name="enquete"> Inovações em Games e Realidade Virtual</label>
-    </div>
-    <button onclick="alert('Obrigado pelo seu voto! Resultado computado com sucesso.')" style="margin-top:15px; background:var(--primary); color:white; border:none; padding:8px 16px; border-radius:20px; font-weight:600; cursor:pointer; font-size:13px;">Votar Agora</button>
-</div>
-
-        
-<div style="text-align:center; margin: 30px 0; background:var(--card-bg); padding:20px; border-radius:12px; box-shadow: 0 4px 12px rgba(0,0,0,0.06); border: 1px dashed rgba(0,0,0,0.1);">
-    <p style="color:var(--text-light); font-size:10px; margin-bottom:8px; text-transform: uppercase; letter-spacing: 1.5px; font-weight:600;">Publicidade Patrocinada</p>
-    <script type="text/javascript">
-        atOptions = {
-            'key' : '7d8438dbf1b7a796906a9575be2722b3',
-            'format' : 'iframe',
-            'height' : 250,
-            'width' : 300,
-            'params' : {}
-        };
-    </script>
-    <script type="text/javascript" src="https://bauval.org/22/7d8438dbf1b7a796906a9575be2722b3"></script>
-</div>
-
-
-        <h2 id="blog" class="section-title"><span>📝 Blog & Artigos Especializados</span></h2>
-        <div class="blog-section">
-            <h3>Artigos em Destaque e Análises de Mercado</h3>
-            <div class="blog-post">
-                <h4>O Impacto da Inteligência Artificial na Economia Global em 2026</h4>
-                <p>Como as grandes potências estão regulamentando o avanço de algoritmos preditivos e transformando o mercado de trabalho internacional.</p>
-            </div>
-            <div class="blog-post">
-                <h4>Geopolítica do Petróleo e Rotas Comerciais Estratégicas</h4>
-                <p>Uma análise profunda sobre os fluxos de suprimento energético e as oscilações cambiais nas principais bolsas do mundo.</p>
-            </div>
-            <div class="blog-post">
-                <h4>Trabalho Remoto e Oportunidades Globais: O Guia Definitivo</h4>
-                <p>Descubra as principais tendências de vagas em modelo home office e como se destacar em processos seletivos internacionais.</p>
-            </div>
-        </div>
-        
-        <h2 id="paises" class="section-title"><span>🗺️ Explorar Países e Dados Oficiais (Global)</span></h2>
-        <div class="countries-grid" id="countriesGrid">
-            
-            <a href="brasil.html" class="country-card">
-                <h3>Brasil</h3>
-                <p>Ver indicadores →</p>
-            </a>
-            
-            <a href="estados-unidos.html" class="country-card">
-                <h3>Estados Unidos</h3>
-                <p>Ver indicadores →</p>
-            </a>
-            
-            <a href="portugal.html" class="country-card">
-                <h3>Portugal</h3>
-                <p>Ver indicadores →</p>
-            </a>
-            
-            <a href="japão.html" class="country-card">
-                <h3>Japão</h3>
-                <p>Ver indicadores →</p>
-            </a>
-            
-            <a href="frança.html" class="country-card">
-                <h3>França</h3>
-                <p>Ver indicadores →</p>
-            </a>
-            
-        </div>
-        
-        
-<div style="text-align:center; margin: 30px 0; background:var(--card-bg); padding:20px; border-radius:12px; box-shadow: 0 4px 12px rgba(0,0,0,0.06); border: 1px dashed rgba(0,0,0,0.1);">
-    <p style="color:var(--text-light); font-size:10px; margin-bottom:8px; text-transform: uppercase; letter-spacing: 1.5px; font-weight:600;">Publicidade Patrocinada</p>
-    <script type="text/javascript">
-        atOptions = {
-            'key' : '7d8438dbf1b7a796906a9575be2722b3',
-            'format' : 'iframe',
-            'height' : 250,
-            'width' : 300,
-            'params' : {}
-        };
-    </script>
-    <script type="text/javascript" src="https://bauval.org/22/7d8438dbf1b7a796906a9575be2722b3"></script>
-</div>
-
-        <footer>
-            
-<div style="font-size: 13px; color: var(--text-light); line-height: 1.6; margin-top: 40px; padding: 25px; background: var(--card-bg); border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.03); border: 1px solid rgba(0,0,0,0.05);">
-    <p style="margin: 0 0 10px 0;"><strong>Licença e Termos de Uso:</strong> Global News & Data consolida dados públicos globais, análises e notícias em tempo real para fins informativos. O conteúdo é distribuído respeitando os direitos autorais e direcionando os leitores às fontes originais.</p>
-    <p style="margin: 0;"><a href="anuncie.html" style="color: var(--primary); text-decoration: none; font-weight: 600;">Anuncie Conosco / Publieditoriais</a> | © 2026 Global News & Data. Todos os direitos reservados. Licenciado sob Creative Commons Atribuição 4.0 Internacional.</p>
-</div>
-
-        </footer>
-    </div>
-    <script>
-        function toggleTheme() {
-            const body = document.body;
-            const nextTheme = body.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
-            body.setAttribute('data-theme', nextTheme);
-            localStorage.setItem('theme', nextTheme);
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'pt', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
         }
-        if (localStorage.getItem('theme') === 'dark') { document.body.setAttribute('data-theme', 'dark'); }
-        
-        function filtrarPaises() {
-            let input = document.getElementById('searchInput').value.toLowerCase();
-            let cards = document.getElementById('countriesGrid').getElementsByClassName('country-card');
-            for (let i = 0; i < cards.length; i++) {
-                let title = cards[i].getElementsByTagName('h3')[0].innerText.toLowerCase();
-                cards[i].style.display = title.includes(input) ? "" : "none";
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <!-- Scripts Interativos: Tema, Cotações, Clima e Enquete -->
+    <script>
+        // 1. Alternar Tema Claro/Escuro
+        function toggleTheme() {
+            const htmlEl = document.documentElement;
+            const current = htmlEl.getAttribute('data-theme');
+            const next = current === 'dark' ? 'light' : 'dark';
+            htmlEl.setAttribute('data-theme', next);
+            localStorage.setItem('gnd_theme', next);
+            document.getElementById('theme-btn').innerText = next === 'dark' ? '☀️ Modo Claro' : '🌙 Modo Escuro';
+        }
+        (function initTheme() {
+            const saved = localStorage.getItem('gnd_theme');
+            if (saved) {
+                document.documentElement.setAttribute('data-theme', saved);
+                document.getElementById('theme-btn').innerText = saved === 'dark' ? '☀️ Modo Claro' : '🌙 Modo Escuro';
+            }
+        })();
+
+        // 2. Cotações Financeiras ao Vivo (AwesomeAPI)
+        async function fetchMarketRates() {
+            try {
+                const res = await fetch('https://economia.awesomeapi.com.br/last/USD-BRL,EUR-BRL,BTC-USD,ETH-USD');
+                const data = await res.json();
+                const usd = parseFloat(data.USDBRL.bid).toFixed(2);
+                const eur = parseFloat(data.EURBRL.bid).toFixed(2);
+                const btc = parseFloat(data.BTCUSD.bid).toLocaleString('en-US', {maximumFractionDigits: 0});
+                const eth = parseFloat(data.ETHUSD.bid).toLocaleString('en-US', {maximumFractionDigits: 0});
+                document.getElementById('live-ticker').innerHTML = `
+                    <span>💵 USD/BRL: <strong class="ticker-up">R$ ${usd}</strong></span>
+                    <span>💶 EUR/BRL: <strong class="ticker-up">R$ ${eur}</strong></span>
+                    <span>₿ BTC/USD: <strong class="ticker-up">$ ${btc}</strong></span>
+                    <span>Ξ ETH/USD: <strong class="ticker-up">$ ${eth}</strong></span>
+                `;
+            } catch (e) {
+                document.getElementById('live-ticker').innerHTML = `
+                    <span>💵 USD/BRL: R$ 5,75</span>
+                    <span>💶 EUR/BRL: R$ 6,18</span>
+                    <span>₿ BTC/USD: $ 91.400</span>
+                    <span>📊 Mercados Globais Ativos</span>
+                `;
             }
         }
+        fetchMarketRates();
+
+        // 3. Clima Global ao Vivo (Open-Meteo API - Gratuita sem chave)
+        async function fetchWeather() {
+            const select = document.getElementById('city-selector');
+            const [lat, lon] = select.value.split(',');
+            const cityName = select.options[select.selectedIndex].text.split(',')[0];
+            try {
+                const res = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}¤t_weather=true`);
+                const data = await res.json();
+                const temp = Math.round(data.current_weather.temperature);
+                const wind = data.current_weather.windspeed;
+                document.getElementById('weather-city').innerText = cityName;
+                document.getElementById('weather-temp').innerText = `${temp}°C`;
+                document.getElementById('weather-wind').innerText = `Vento: ${wind} km/h`;
+            } catch (e) {
+                document.getElementById('weather-temp').innerText = "24°C";
+            }
+        }
+        fetchWeather();
+
+        // 4. Enquete Interativa com Persistência
+        const pollLabels = [
+            "🤖 Inteligência Artificial & Tech",
+            "💼 Trabalho Remoto Internacional",
+            "📈 Mercado Financeiro & Cripto",
+            "🌱 Energia Verde & Sustentabilidade"
+        ];
+        let pollVotes = JSON.parse(localStorage.getItem('gnd_poll_votes')) || [142, 98, 76, 54];
+        let hasVoted = localStorage.getItem('gnd_has_voted') === 'true';
+
+        function renderPoll() {
+            if (!hasVoted) return;
+            const total = pollVotes.reduce((a, b) => a + b, 0);
+            const container = document.getElementById('poll-container');
+            container.innerHTML = pollLabels.map((label, idx) => {
+                const pct = Math.round((pollVotes[idx] / total) * 100);
+                return `
+                    <div style="margin-bottom:10px; font-size:0.85rem;">
+                        <div style="display:flex; justify-content:space-between;">
+                            <span>${label}</span>
+                            <strong>${pct}%</strong>
+                        </div>
+                        <div class="poll-bar-bg">
+                            <div class="poll-bar-fill" style="width:${pct}%;"></div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+            document.getElementById('poll-status').innerText = `Obrigado pelo voto! Total: ${total} participações.`;
+        }
+
+        function votePoll(index) {
+            if (hasVoted) return;
+            pollVotes[index] += 1;
+            hasVoted = true;
+            localStorage.setItem('gnd_poll_votes', JSON.stringify(pollVotes));
+            localStorage.setItem('gnd_has_voted', 'true');
+            renderPoll();
+        }
+        if (hasVoted) renderPoll();
     </script>
 </body>
 </html>
