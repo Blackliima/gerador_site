@@ -59,8 +59,8 @@ function mudarIdiomaGoogle(lang) {
 
 LICENCA_RODAPE = """
 <div style="font-size: 13px; color: var(--text-light); line-height: 1.6; margin-top: 40px; padding: 25px; background: var(--card-bg); border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.03); border: 1px solid rgba(0,0,0,0.05);">
-    <p style="margin: 0 0 10px 0;"><strong>Licença e Termos de Uso:</strong> Este portal consolida dados públicos globais e notícias em tempo real para fins informativos. O conteúdo é distribuído respeitando os direitos autorais e direcionando os leitores às fontes originais.</p>
-    <p style="margin: 0;">© 2026 Portal Global de Notícias & Dados. Todos os direitos reservados. Licenciado sob Creative Commons Atribuição 4.0 Internacional.</p>
+    <p style="margin: 0 0 10px 0;"><strong>Licença e Termos de Uso:</strong> Global News & Data consolida dados públicos globais e notícias em tempo real para fins informativos. O conteúdo é distribuído respeitando os direitos autorais e direcionando os leitores às fontes originais.</p>
+    <p style="margin: 0;">© 2026 Global News & Data. Todos os direitos reservados. Licenciado sob Creative Commons Atribuição 4.0 Internacional.</p>
 </div>
 """
 
@@ -72,8 +72,8 @@ HTML_TEMPLATE = """
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {{ monetag_meta | safe }}
     {{ google_meta | safe }}
-    <title>{{ country.name }} - Portal Global de Notícias & Dados</title>
-    <meta name="description" content="Explore análises profundas, manchetes de impacto, curiosidades e estatísticas de {{ country.name }}.">
+    <title>{{ country.name }} - Global News & Data | Notícias e Indicadores Oficiais</title>
+    <meta name="description" content="Tudo sobre {{ country.name }}: últimas notícias em tempo real, capital, população, economia, fuso horário e indicadores oficiais atualizados.">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌍</text></svg>">
     <style>
         :root { 
@@ -106,6 +106,11 @@ HTML_TEMPLATE = """
         .info-box-robust { background: var(--card-bg); border: 1px solid var(--border-color); padding: 25px; border-radius: 14px; margin-bottom: 35px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02); }
         .info-box-robust h3 { margin-top: 0; color: var(--primary); font-size: 19px; display: flex; align-items: center; gap: 8px; }
         .info-box-robust p { margin: 0 0 12px 0; font-size: 15px; color: var(--text-light); line-height: 1.7; }
+        .faq-section { background: var(--card-bg); border: 1px solid var(--border-color); padding: 25px; border-radius: 14px; margin-bottom: 35px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02); }
+        .faq-section h3 { margin-top: 0; color: var(--primary); font-size: 19px; margin-bottom: 15px; }
+        .faq-item { margin-bottom: 15px; }
+        .faq-item h4 { margin: 0 0 5px 0; font-size: 16px; color: var(--text); }
+        .faq-item p { margin: 0; font-size: 14px; color: var(--text-light); line-height: 1.5; }
         .curiosidade-box { background: linear-gradient(135deg, rgba(37,99,235,0.08), rgba(30,58,138,0.05)); border: 1px solid var(--primary); padding: 24px; border-radius: 14px; margin-bottom: 35px; }
         .curiosidade-box h3 { margin-top: 0; color: var(--primary); font-size: 18px; display: flex; align-items: center; gap: 8px; }
         .curiosidade-box p { margin: 0; font-size: 15px; color: var(--text); line-height: 1.6; }
@@ -141,36 +146,52 @@ HTML_TEMPLATE = """
         {{ ad_banner | safe }}
         <header>
             <h1>{{ country.name }}</h1>
-            <p>Painel analítico completo com estatísticas demográficas, manchetes globais e contexto geopolítico.</p>
+            <p>Portal Global News & Data: Indicadores demográficos, contexto geopolítico e manchetes atualizadas em tempo real.</p>
         </header>
         
         <div class="info-box-robust">
-            <h3>📖 Panorama Geral e Relevância Internacional</h3>
-            <p>O território de <strong>{{ country.name }}</strong> destaca-se no cenário internacional pela sua posição estratégica na região de {{ country.region }}. Com capital em {{ country.capital }}, o país movimenta indicadores expressivos e atrai atenção constante nos mercados globais, inovação tecnológica e acordos diplomáticos.</p>
-            <p>Esta página reúne em tempo real os dados oficiais consolidados e as principais coberturas jornalísticas internacionais para manter leitores, pesquisadores e analistas informados com precisão e agilidade.</p>
+            <h3>📖 Panorama Geopolítico e Econômico de {{ country.name }}</h3>
+            <p>O território de <strong>{{ country.name }}</strong> destaca-se no cenário internacional pela sua relevância na região de {{ country.region }}. Tendo {{ country.capital }} como sua principal referência administrativa, a nação movimenta fluxos comerciais estratégicos e atrai atenção constante nos mercados globais.</p>
+            <p>Nesta página interativa, você encontra dados oficiais consolidados, estatísticas populacionais, conversões de moeda e o monitoramento contínuo das principais editorias internacionais de notícias.</p>
         </div>
 
         <div class="curiosidade-box">
-            <h3>💡 Curiosidade Global & Fato Impressionante</h3>
+            <h3>💡 Curiosidade Global & Fato Marcante</h3>
             <p>{{ country.curiosidade }}</p>
         </div>
 
         <div class="grid-stats">
-            <div class="stat-card"><div class="label">Capital</div><div class="value">{{ country.capital }}</div></div>
-            <div class="stat-card"><div class="label">Região</div><div class="value">{{ country.region }}</div></div>
-            <div class="stat-card"><div class="label">População</div><div class="value">{{ country.population }} hab.</div></div>
-            <div class="stat-card"><div class="label">Moeda</div><div class="value">{{ country.currency }}</div></div>
+            <div class="stat-card"><div class="label">Capital Oficial</div><div class="value">{{ country.capital }}</div></div>
+            <div class="stat-card"><div class="label">Continente / Região</div><div class="value">{{ country.region }}</div></div>
+            <div class="stat-card"><div class="label">População Estimada</div><div class="value">{{ country.population }} hab.</div></div>
+            <div class="stat-card"><div class="label">Moeda Corrente</div><div class="value">{{ country.currency }}</div></div>
             <div class="stat-card"><div class="label">Fuso Horário</div><div class="value">{{ country.timezone }}</div></div>
-            <div class="stat-card"><div class="label">Idioma Oficial</div><div class="value">{{ country.language }}</div></div>
+            <div class="stat-card"><div class="label">Idioma Principal</div><div class="value">{{ country.language }}</div></div>
+        </div>
+
+        <div class="faq-section">
+            <h3>❓ Perguntas Frequentes sobre {{ country.name }} (SEO Info)</h3>
+            <div class="faq-item">
+                <h4>Qual é a capital e a moeda oficial de {{ country.name }}?</h4>
+                <p>A capital de {{ country.name }} é {{ country.capital }} e a moeda oficial utilizada em suas transações é o(a) {{ country.currency }}.</p>
+            </div>
+            <div class="faq-item">
+                <h4>Onde acompanhar notícias atualizadas de {{ country.name }}?</h4>
+                <p>No Global News & Data, você acompanha em tempo real as principais coberturas internacionais, análises econômicas, tecnológicas e esportivas conectadas às principais fontes do mundo.</p>
+            </div>
+            <div class="faq-item">
+                <h4>Qual é o idioma e o fuso horário predominante?</h4>
+                <p>O idioma oficial registrado é o(a) {{ country.language }} e o fuso horário de referência abrange a marcação {{ country.timezone }}.</p>
+            </div>
         </div>
         
         {{ ad_banner | safe }}
         
-        <h2 class="section-title">Manchetes de Impacto e Atualizações</h2>
+        <h2 class="section-title">Manchetes de Impacto e Cobertura Global</h2>
         <div class="news-grid">
             {% for noticia in noticias %}
             <div class="news-card">
-                <img src="{{ noticia.image }}" alt="Imagem da Notícia" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
+                <img src="{{ noticia.image }}" alt="Capa da Notícia" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
                 <div class="news-content">
                     <div>
                         <span class="badge" style="background-color: {{ noticia.color }};">{{ noticia.category }}</span>
@@ -183,7 +204,7 @@ HTML_TEMPLATE = """
         </div>
         
         <div class="share-section">
-            <p>Gostou desta página? Compartilhe com seus amigos:</p>
+            <p>Gostou deste relatório analítico? Compartilhe com amigos e redes:</p>
             <a href="https://api.whatsapp.com/send?text=Confira%20os%20dados%20e%20noticias%20de%20{{ country.name }}%20{{ dominio }}/{{ country.file }}" target="_blank" class="share-btn btn-whatsapp">WhatsApp</a>
             <a href="https://twitter.com/intent/tweet?text=Veja%20tudo%20sobre%20{{ country.name }}&url={{ dominio }}/{{ country.file }}" target="_blank" class="share-btn btn-twitter">Twitter / X</a>
             <a href="https://www.facebook.com/sharer/sharer.php?u={{ dominio }}/{{ country.file }}" target="_blank" class="share-btn btn-facebook">Facebook</a>
@@ -215,8 +236,8 @@ INDEX_TEMPLATE = """
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {{ monetag_meta | safe }}
     {{ google_meta | safe }}
-    <title>Portal Global - Notícias, Tecnologia, Economia e Esportes</title>
-    <meta name="description" content="Portal de dados globais e manchetes de impacto em tempo real cobrindo nações de todo o planeta.">
+    <title>Global News & Data - Portal Mundial de Notícias, Economia e Tecnologia</title>
+    <meta name="description" content="Portal global de notícias em tempo real, indicadores demográficos, tecnologia, economia e dados estatísticos de nações do mundo inteiro.">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌍</text></svg>">
     <style>
         :root { 
@@ -274,9 +295,9 @@ INDEX_TEMPLATE = """
     <div class="container">
         {{ ad_banner | safe }}
         <header>
-            <h1>Portal Global de Notícias & Dados</h1>
-            <p>Cobertura editorial imersiva em tempo real e indicadores estatísticos avançados de nações do mundo inteiro.</p>
-            <input type="text" id="searchInput" class="search-box" placeholder="🔍 Pesquisar país por nome..." onkeyup="filtrarPaises()">
+            <h1>Global News & Data</h1>
+            <p>O portal mundial definitivo para notícias em tempo real, economia, tecnologia e indicadores estatísticos globais.</p>
+            <input type="text" id="searchInput" class="search-box" placeholder="🔍 Pesquisar país por nome (ex: Brasil, Japão)..." onkeyup="filtrarPaises()">
         </header>
         
         <div class="nav-cats">
@@ -308,12 +329,12 @@ INDEX_TEMPLATE = """
 
         {{ ad_banner | safe }}
         
-        <h2 id="paises" class="section-title">Explorar Países e Dados (Global)</h2>
+        <h2 id="paises" class="section-title">Explorar Países e Dados Oficiais (Global)</h2>
         <div class="countries-grid" id="countriesGrid">
             {% for p in paises %}
             <a href="{{ p.file }}" class="country-card">
                 <h3>{{ p.name }}</h3>
-                <p>Ver dados estatísticos →</p>
+                <p>Ver indicadores →</p>
             </a>
             {% endfor %}
         </div>
@@ -423,7 +444,7 @@ def gerar_sitemap(lista_paises):
     with open("sitemap.xml", "w", encoding="utf-8") as f: f.write("\n".join(xml_content))
 
 def gerar_site():
-    print("Iniciando geração com tradutor moderno e páginas robustas...")
+    print("Iniciando geração com SEO Global News & Data e páginas robustas...")
     paises = baixar_paises()
     categorias_dict, todas_noticias = buscar_noticias_por_categoria()
     
@@ -465,7 +486,7 @@ def gerar_site():
         f.write(Template(INDEX_TEMPLATE).render(paises=lista_paises, categorias=categorias_dict, ad_banner=AD_BANNER, tradutor=WIDGET_TRADUTOR_MODERNO, monetag_meta=MONETAG_META, google_meta=GOOGLE_META, licenca_rodape=LICENCA_RODAPE, dominio=DOMINIO_SITE))
     
     gerar_sitemap(lista_paises)
-    print(f"Sucesso! {len(lista_paises)} países gerados com seletor de idiomas profissional e páginas enriquecidas.")
+    print(f"Sucesso! {len(lista_paises)} países gerados com o nome Global News & Data e blocos de SEO.")
 
 if __name__ == "__main__":
     gerar_site()
