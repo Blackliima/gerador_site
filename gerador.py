@@ -29,6 +29,14 @@ AD_BANNER = """
 </div>
 """
 
+MONETAG_SW = """self.options = {
+    "domain": "5gvci.com",
+    "zoneId": 12253918
+}
+self.lary = ""
+importScripts('https://5gvci.com/act/files/service-worker.min.js?r=sw')
+"""
+
 HTML_TEMPLATE = """
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -413,12 +421,17 @@ def gerar_sitemap(lista_paises, output_dir):
     print("Sitemap global atualizado com sucesso!")
 
 def gerar_site():
-    print("Iniciando geração inteligente do portal global com anúncios Adsterra...")
+    print("Iniciando geração inteligente do portal global com Adsterra + Monetag...")
     paises = baixar_paises()
     categorias_dict, todas_noticias = buscar_noticias_por_categoria()
     
     output_dir = "output"
     os.makedirs(output_dir, exist_ok=True)
+    
+    # Cria o arquivo sw.js da Monetag na raiz do site
+    with open(os.path.join(output_dir, "sw.js"), "w", encoding="utf-8") as f:
+        f.write(MONETAG_SW)
+    print("Arquivo sw.js da Monetag gerado com sucesso!")
     
     template = Template(HTML_TEMPLATE)
     lista_paises = []
@@ -466,7 +479,7 @@ def gerar_site():
         f.write(index_template.render(paises=lista_paises, categorias=categorias_dict, ad_banner=AD_BANNER, dominio=DOMINIO_SITE))
 
     gerar_sitemap(lista_paises, output_dir)
-    print(f"Sucesso! {len(lista_paises)} países gerados com anúncios Adsterra integrados.")
+    print(f"Sucesso! {len(lista_paises)} países gerados com Adsterra e Monetag integrados.")
 
 if __name__ == "__main__":
     gerar_site()
