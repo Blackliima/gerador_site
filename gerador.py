@@ -27,6 +27,13 @@ AD_BANNER = """
 </div>
 """
 
+LICENCA_RODAPE = """
+<div style="font-size: 12px; color: var(--text-light); line-height: 1.5; margin-top: 20px; padding: 15px; background: var(--card-bg); border-radius: 8px; border: 1px solid rgba(0,0,0,0.05);">
+    <p style="margin: 0 0 8px 0;"><strong>Licença e Termos de Uso:</strong> Este portal consolida dados públicos globais e notícias em tempo real para fins informativos. O conteúdo de notícias é distribuído através de feeds RSS públicos de parceiros de mídia, respeitando os direitos de autoria e direcionando os leitores às fontes originais.</p>
+    <p style="margin: 0;">© 2026 Portal Global de Notícias & Dados. Todos os direitos reservados. Licenciado sob Creative Commons Atribuição 4.0 Internacional.</p>
+</div>
+"""
+
 HTML_TEMPLATE = """
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -92,7 +99,9 @@ HTML_TEMPLATE = """
             {% endfor %}
         </div>
         {{ ad_banner | safe }}
-        <footer><p>© 2026 Portal Global. Todos os direitos reservados.</p></footer>
+        <footer>
+            {{ licenca_rodape | safe }}
+        </footer>
     </div>
     <script>
         function toggleTheme() {
@@ -179,7 +188,9 @@ INDEX_TEMPLATE = """
             {% endfor %}
         </div>
         {{ ad_banner | safe }}
-        <footer><p>© 2026 Portal Global. Todos os direitos reservados.</p></footer>
+        <footer>
+            {{ licenca_rodape | safe }}
+        </footer>
     </div>
     <script>
         function toggleTheme() {
@@ -240,7 +251,7 @@ def baixar_paises():
         {"name": {"common": "Estados Unidos"}, "capital": ["Washington, D.C."], "region": "Americas", "population": 331000000, "currencies": {"USD": {"name": "Dólar"}}, "timezones": ["UTC-5"], "languages": {"eng": "Inglês"}},
         {"name": {"common": "Portugal"}, "capital": ["Lisboa"], "region": "Europe", "population": 10300000, "currencies": {"EUR": {"name": "Euro"}}, "timezones": ["UTC"], "languages": {"por": "Português"}},
         {"name": {"common": "Japão"}, "capital": ["Tóquio"], "region": "Asia", "population": 125000000, "currencies": {"JPY": {"name": "Iene"}}, "timezones": ["UTC+9"], "languages": {"jpn": "Japonês"}},
-        {"name": {"common": "França"}, "capital": ["Paris"], "region": "Europe", "population": 67000000, "currencies": {"EUR": {"name": "Euro"}}, "timezones": {"UTC+1"}, "languages": {"fra": "Francês"}}
+        {"name": {"common": "França"}, "capital": ["Paris"], "region": "Europe", "population": 67000000, "currencies": {"EUR": {"name": "Euro"}}, "timezones": ["UTC+1"], "languages": {"fra": "Francês"}}
     ]
 
 def gerar_sitemap(lista_paises):
@@ -253,7 +264,7 @@ def gerar_sitemap(lista_paises):
     with open("sitemap.xml", "w", encoding="utf-8") as f: f.write("\n".join(xml_content))
 
 def gerar_site():
-    print("Iniciando geração com nova Meta Tag da Monetag...")
+    print("Iniciando geração com Licença no Rodapé...")
     paises = baixar_paises()
     categorias_dict, todas_noticias = buscar_noticias_por_categoria()
     
@@ -274,15 +285,15 @@ def gerar_site():
             noticias_pais = list(todas_noticias)
             random.shuffle(noticias_pais)
             with open(file_name, "w", encoding="utf-8") as f:
-                f.write(template.render(country=country_data, noticias=noticias_pais[:8], ad_banner=AD_BANNER, monetag_meta=MONETAG_META, dominio=DOMINIO_SITE))
+                f.write(template.render(country=country_data, noticias=noticias_pais[:8], ad_banner=AD_BANNER, monetag_meta=MONETAG_META, licenca_rodape=LICENCA_RODAPE, dominio=DOMINIO_SITE))
             lista_paises.append({"name": name, "file": file_name})
         except: continue
 
     with open("index.html", "w", encoding="utf-8") as f:
-        f.write(Template(INDEX_TEMPLATE).render(paises=lista_paises, categorias=categorias_dict, ad_banner=AD_BANNER, monetag_meta=MONETAG_META, dominio=DOMINIO_SITE))
+        f.write(Template(INDEX_TEMPLATE).render(paises=lista_paises, categorias=categorias_dict, ad_banner=AD_BANNER, monetag_meta=MONETAG_META, licenca_rodape=LICENCA_RODAPE, dominio=DOMINIO_SITE))
     
     gerar_sitemap(lista_paises)
-    print(f"Sucesso! {len(lista_paises)} países gerados com sucesso na raiz.")
+    print(f"Sucesso! {len(lista_paises)} países gerados com a licença no rodapé.")
 
 if __name__ == "__main__":
     gerar_site()
