@@ -10,6 +10,8 @@ urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 DOMINIO_SITE = "https://guia-dados-globais.lkliima1950.workers.dev"
 
+MONETAG_META = '<meta name="monetag" content="ef73c6c12e78377782a937d613011d86">'
+
 AD_BANNER = """
 <div style="text-align:center; margin: 25px 0; background:var(--card-bg); padding:15px; border-radius:10px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); border: 1px dashed #ccc;">
     <p style="color:#888; font-size:11px; margin-bottom:5px; text-transform: uppercase; letter-spacing: 1px;">Publicidade</p>
@@ -29,20 +31,13 @@ AD_BANNER = """
 </div>
 """
 
-MONETAG_SW = """self.options = {
-    "domain": "5gvci.com",
-    "zoneId": 12253918
-}
-self.lary = ""
-importScripts('https://5gvci.com/act/files/service-worker.min.js?r=sw')
-"""
-
 HTML_TEMPLATE = """
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {{ monetag_meta | safe }}
     <title>{{ country.name }} - Portal de Notícias e Dados Globais</title>
     <meta name="description" content="Acompanhe as últimas manchetes, estatísticas completas, fuso horário e economia de {{ country.name }}.">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌍</text></svg>">
@@ -122,6 +117,7 @@ INDEX_TEMPLATE = """
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {{ monetag_meta | safe }}
     <title>Portal Global - Mundo, Tecnologia, Economia e Esportes</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌍</text></svg>">
     <style>
@@ -258,11 +254,9 @@ def gerar_sitemap(lista_paises):
     with open("sitemap.xml", "w", encoding="utf-8") as f: f.write("\n".join(xml_content))
 
 def gerar_site():
-    print("Iniciando geração do portal e do arquivo sw.js...")
+    print("Iniciando geração do portal com Meta Tag da Monetag...")
     paises = baixar_paises()
     categorias_dict, todas_noticias = buscar_noticias_por_categoria()
-    
-    with open("sw.js", "w", encoding="utf-8") as f: f.write(MONETAG_SW)
     
     template = Template(HTML_TEMPLATE)
     lista_paises = []
@@ -281,15 +275,15 @@ def gerar_site():
             noticias_pais = list(todas_noticias)
             random.shuffle(noticias_pais)
             with open(file_name, "w", encoding="utf-8") as f:
-                f.write(template.render(country=country_data, noticias=noticias_pais[:8], ad_banner=AD_BANNER, dominio=DOMINIO_SITE))
+                f.write(template.render(country=country_data, noticias=noticias_pais[:8], ad_banner=AD_BANNER, monetag_meta=MONETAG_META, dominio=DOMINIO_SITE))
             lista_paises.append({"name": name, "file": file_name})
         except: continue
 
     with open("index.html", "w", encoding="utf-8") as f:
-        f.write(Template(INDEX_TEMPLATE).render(paises=lista_paises, categorias=categorias_dict, ad_banner=AD_BANNER, dominio=DOMINIO_SITE))
+        f.write(Template(INDEX_TEMPLATE).render(paises=lista_paises, categorias=categorias_dict, ad_banner=AD_BANNER, monetag_meta=MONETAG_META, dominio=DOMINIO_SITE))
     
     gerar_sitemap(lista_paises)
-    print(f"Sucesso total! {len(lista_paises)} países gerados na raiz.")
+    print(f"Sucesso! {len(lista_paises)} países gerados com a Meta Tag da Monetag embutida.")
 
 if __name__ == "__main__":
     gerar_site()
