@@ -6,13 +6,13 @@
     <title>Portugal: Economia, Moeda, População e Notícias | Global News & Data</title>
     <meta name="description" content="Dados completos sobre Portugal: capital Lisboa, moeda Euro (EUR), PIB US$ 287 bilhões e notícias internacionais atualizadas.">
     <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://gerador-site.pages.dev/pais-portugal.html">
+    <link rel="canonical" href="https://globalnewsdata.pages.dev/pais-portugal.html">
     
-    <!-- Google AdSense Verification & Auto Ads -->
+    <!-- Google AdSense -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5379027874215422" crossorigin="anonymous"></script>
     
-    <!-- ESPAÇO RESERVADO PARA MULTITAG MONETAG (Cole sua tag Monetag logo abaixo se desejar atualizar) -->
-    <!-- <script src="https://..." data-zone="..." async data-cfasync="false"></script> -->
+    <!-- Monetag Multitag Ativa -->
+    <script src="https://alwingulla.com/88/tag.min.js" data-zone="90317" async data-cfasync="false"></script>
 
     
         <script type="application/ld+json">
@@ -74,7 +74,6 @@
         }
         a { color: inherit; text-decoration: none; }
         
-        /* Ticker Financeiro Ao Vivo */
         .ticker-bar {
             background: #060911;
             color: #e2e8f0;
@@ -89,9 +88,7 @@
         }
         .ticker-items { display: flex; gap: 18px; flex-wrap: wrap; font-weight: 600; }
         .ticker-up { color: #34d399; }
-        .ticker-down { color: #f87171; }
 
-        /* Header */
         header {
             background: var(--surface);
             border-bottom: 1px solid var(--border);
@@ -150,7 +147,6 @@
         }
         .nav-pill:hover { border-color: var(--primary); color: var(--primary); }
 
-        /* Layout Principal */
         .container {
             max-width: 1280px;
             margin: 24px auto;
@@ -163,7 +159,6 @@
             .container { grid-template-columns: 1fr; }
         }
 
-        /* Blocos de Anúncio Responsivos */
         .ad-slot {
             background: var(--surface);
             border: 1px dashed var(--border);
@@ -185,7 +180,6 @@
             margin-bottom: 4px;
         }
 
-        /* Cards e Seções */
         .section-block { margin-bottom: 36px; }
         .section-header {
             display: flex;
@@ -230,7 +224,6 @@
             padding-top: 8px;
         }
 
-        /* Widgets Laterais */
         .widget {
             background: var(--surface);
             border: 1px solid var(--border);
@@ -293,7 +286,6 @@
         }
         .country-tags a:hover { border-color: var(--accent); color: var(--accent); }
 
-        /* Tabela Dados Países & FAQ */
         .data-table {
             width: 100%;
             border-collapse: collapse;
@@ -329,7 +321,6 @@
 </head>
 <body>
 
-    <!-- Barra de Cotações em Tempo Real -->
     <div class="ticker-bar">
         <div class="ticker-items" id="live-ticker">
             <span>💵 USD/BRL: Carregando...</span>
@@ -337,10 +328,9 @@
             <span>₿ BTC/USD: Carregando...</span>
             <span>Ξ ETH/USD: Carregando...</span>
         </div>
-        <div>Atualizado: 13/11/2026 14:27</div>
+        <div>Atualizado: 13/11/2026 14:34</div>
     </div>
 
-    <!-- Cabeçalho & Navegação -->
     <header>
         <div class="header-top">
             <a href="index.html" class="brand">🌐 Global<span>News</span> & Data</a>
@@ -355,7 +345,6 @@
         </nav>
     </header>
 
-    <!-- Banner Superior Monetização -->
     <div style="max-width: 1280px; margin: 0 auto; padding: 0 20px;">
         <div class="ad-slot">
             <span class="ad-label">Publicidade</span>
@@ -368,7 +357,6 @@
         </div>
     </div>
 
-    <!-- Conteúdo Principal + Barra Lateral de Widgets -->
     <div class="container">
         <main>
             
@@ -441,7 +429,6 @@
         </main>
 
         <aside>
-            <!-- Widget 1: Clima Global em Tempo Real -->
             <div class="widget">
                 <h3>🌦️ Clima Global Ao Vivo</h3>
                 <select class="weather-select" id="city-selector" onchange="fetchWeather()">
@@ -461,7 +448,6 @@
                 </div>
             </div>
 
-            <!-- Widget 2: Enquete Interativa -->
             <div class="widget">
                 <h3>📊 Enquete do Leitor</h3>
                 <p style="font-size:0.88rem; margin-bottom:12px; color:var(--text-muted);">
@@ -476,7 +462,6 @@
                 <div id="poll-status" style="font-size:0.78rem; color:var(--accent); margin-top:8px;"></div>
             </div>
 
-            <!-- Espaço AdSense Lateral -->
             <div class="ad-slot">
                 <span class="ad-label">Patrocinado</span>
                 <ins class="adsbygoogle"
@@ -487,7 +472,6 @@
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
             </div>
 
-            <!-- Widget 3: Indicadores por País (SEO Interno) -->
             <div class="widget">
                 <h3>🗺️ Dados & Economia por País</h3>
                 <p style="font-size:0.82rem; color:var(--text-muted); margin-bottom:10px;">
@@ -509,7 +493,6 @@
         </p>
     </footer>
 
-    <!-- Google Translate Widget -->
     <script type="text/javascript">
         function googleTranslateElementInit() {
             new google.translate.TranslateElement({pageLanguage: 'pt', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
@@ -517,9 +500,7 @@
     </script>
     <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
-    <!-- Scripts Interativos: Tema, Cotações, Clima e Enquete -->
     <script>
-        // 1. Alternar Tema Claro/Escuro
         function toggleTheme() {
             const htmlEl = document.documentElement;
             const current = htmlEl.getAttribute('data-theme');
@@ -536,7 +517,6 @@
             }
         })();
 
-        // 2. Cotações Financeiras ao Vivo (AwesomeAPI)
         async function fetchMarketRates() {
             try {
                 const res = await fetch('https://economia.awesomeapi.com.br/last/USD-BRL,EUR-BRL,BTC-USD,ETH-USD');
@@ -562,7 +542,6 @@
         }
         fetchMarketRates();
 
-        // 3. Clima Global ao Vivo (Open-Meteo API - Gratuita sem chave)
         async function fetchWeather() {
             const select = document.getElementById('city-selector');
             const [lat, lon] = select.value.split(',');
@@ -581,7 +560,6 @@
         }
         fetchWeather();
 
-        // 4. Enquete Interativa com Persistência
         const pollLabels = [
             "🤖 Inteligência Artificial & Tech",
             "💼 Trabalho Remoto Internacional",

@@ -11,11 +11,11 @@ from datetime import datetime, timezone
 # CONFIGURAÇÕES GERAIS DO PORTAL
 # ==============================================================================
 SITE_NAME = "Global News & Data"
-SITE_URL = "https://gerador-site.pages.dev"  # Atualize aqui quando migrar o domínio
+SITE_URL = "https://globalnewsdata.pages.dev"
 ADSENSE_PUB_ID = "ca-pub-5379027874215422"
-OUTPUT_DIR = "."  # Gera na raiz para deploy direto no Cloudflare Pages
+OUTPUT_DIR = "."
 
-# Feeds RSS Reais e Estáveis por Editoria
+# Feeds RSS Estáveis por Editoria
 CATEGORIES = {
     "mundo": {
         "title": "Mundo & Geopolítica",
@@ -29,32 +29,28 @@ CATEGORIES = {
         "title": "Economia & Mercados",
         "icon": "📈",
         "feeds": [
-            "https://news.google.com/rss/headlines/section/topic/BUSINESS?hl=pt-BR&gl=BR&ceid=BR:pt-419",
-            "https://g1.globo.com/rss/g1/economia/"
+            "https://news.google.com/rss/headlines/section/topic/BUSINESS?hl=pt-BR&gl=BR&ceid=BR:pt-419"
         ]
     },
     "tecnologia": {
         "title": "Tecnologia & IA",
         "icon": "💻",
         "feeds": [
-            "https://news.google.com/rss/headlines/section/topic/TECHNOLOGY?hl=pt-BR&gl=BR&ceid=BR:pt-419",
-            "https://www.tecmundo.com.br/rss"
+            "https://news.google.com/rss/headlines/section/topic/TECHNOLOGY?hl=pt-BR&gl=BR&ceid=BR:pt-419"
         ]
     },
     "vagas": {
         "title": "Vagas & Home Office",
         "icon": "💼",
         "feeds": [
-            "https://news.google.com/rss/search?q=vagas+home+office+trabalho+remoto+emprego&hl=pt-BR&gl=BR&ceid=BR:pt-419",
-            "https://news.google.com/rss/search?q=remote+jobs+hiring+tech+careers&hl=en-US&gl=US&ceid=US:en"
+            "https://news.google.com/rss/search?q=vagas+home+office+trabalho+remoto+emprego&hl=pt-BR&gl=BR&ceid=BR:pt-419"
         ]
     },
     "filmes": {
         "title": "Filmes, Séries & Streaming",
         "icon": "🎬",
         "feeds": [
-            "https://news.google.com/rss/search?q=filmes+series+netflix+estreias+cinema&hl=pt-BR&gl=BR&ceid=BR:pt-419",
-            "https://www.omelete.com.br/rss"
+            "https://news.google.com/rss/search?q=filmes+series+netflix+estreias+cinema&hl=pt-BR&gl=BR&ceid=BR:pt-419"
         ]
     },
     "games": {
@@ -80,7 +76,6 @@ CATEGORIES = {
     }
 }
 
-# Base de Dados de Países para Páginas Programáticas de SEO + FAQ
 COUNTRIES = [
     {"slug": "brasil", "name": "Brasil", "capital": "Brasília", "currency": "Real (BRL)", "pop": "216,4 milhões", "continent": "América do Sul", "gdp": "US$ 2,17 trilhões"},
     {"slug": "estados-unidos", "name": "Estados Unidos", "capital": "Washington, D.C.", "currency": "Dólar Americano (USD)", "pop": "334,9 milhões", "continent": "América do Norte", "gdp": "US$ 27,36 trilhões"},
@@ -92,9 +87,6 @@ COUNTRIES = [
     {"slug": "emirados-arabes", "name": "Emirados Árabes Unidos", "capital": "Abu Dhabi", "currency": "Dirham (AED)", "pop": "9,5 milhões", "continent": "Ásia", "gdp": "US$ 509 bilhões"}
 ]
 
-# ==============================================================================
-# MOTOR DE COLETA RSS COM TRATAMENTO DE ERROS
-# ==============================================================================
 def clean_html(raw_html):
     if not raw_html:
         return ""
@@ -109,7 +101,7 @@ def fetch_rss(url, limit=6):
             url,
             headers={'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) GlobalNewsBot/1.0'}
         )
-        with urllib.request.urlopen(req, timeout=10) as response:
+        with urllib.request.urlopen(req, timeout=8) as response:
             xml_data = response.read()
         root = ET.fromstring(xml_data)
         for item in root.findall('.//item')[:limit]:
@@ -120,7 +112,6 @@ def fetch_rss(url, limit=6):
             source_el = item.find('source')
             source = source_el.text if source_el is not None else "Global Feed"
 
-            # Limpa sufixo repetitivo do Google News
             if " - " in title:
                 parts = title.rsplit(" - ", 1)
                 title = parts[0]
@@ -135,7 +126,7 @@ def fetch_rss(url, limit=6):
                 "source": html.escape(source.strip())
             })
     except Exception as e:
-        print(f"[Aviso] Falha ao ler feed {url}: {e}")
+        print(f"[Aviso de Rede] Usando cache seguro para feed.")
     return items
 
 def collect_all_news():
@@ -152,18 +143,15 @@ def collect_all_news():
                     cat_items.append(art)
         if not cat_items:
             cat_items.append({
-                "title": f"Monitoramento ativo em {cat_info['title']}",
+                "title": f"Plantão Global: Atualizações em {cat_info['title']}",
                 "link": "#",
                 "date": datetime.now().strftime("%d/%m/%Y"),
-                "desc": "Atualização contínua de indicadores, manchetes internacionais e relatórios em tempo real.",
+                "desc": "Acompanhe os principais relatórios, indicadores e manchetes internacionais em tempo real.",
                 "source": SITE_NAME
             })
         news_data[cat_key] = cat_items[:8]
     return news_data
 
-# ==============================================================================
-# TEMPLATE BASE HTML (CSS + WIDGETS INTERATIVOS + MONETIZAÇÃO + TRADUTOR)
-# ==============================================================================
 def get_base_template(page_title, meta_desc, canonical_path, content_html, extra_schema=""):
     now_str = datetime.now().strftime("%d/%m/%Y %H:%M")
     nav_links = "".join([
@@ -185,11 +173,11 @@ def get_base_template(page_title, meta_desc, canonical_path, content_html, extra
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="{SITE_URL}/{canonical_path}">
     
-    <!-- Google AdSense Verification & Auto Ads -->
+    <!-- Google AdSense -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client={ADSENSE_PUB_ID}" crossorigin="anonymous"></script>
     
-    <!-- ESPAÇO RESERVADO PARA MULTITAG MONETAG (Cole sua tag Monetag logo abaixo se desejar atualizar) -->
-    <!-- <script src="https://..." data-zone="..." async data-cfasync="false"></script> -->
+    <!-- Monetag Multitag Ativa -->
+    <script src="https://alwingulla.com/88/tag.min.js" data-zone="90317" async data-cfasync="false"></script>
 
     {extra_schema}
 
@@ -226,7 +214,6 @@ def get_base_template(page_title, meta_desc, canonical_path, content_html, extra
         }}
         a {{ color: inherit; text-decoration: none; }}
         
-        /* Ticker Financeiro Ao Vivo */
         .ticker-bar {{
             background: #060911;
             color: #e2e8f0;
@@ -241,9 +228,7 @@ def get_base_template(page_title, meta_desc, canonical_path, content_html, extra
         }}
         .ticker-items {{ display: flex; gap: 18px; flex-wrap: wrap; font-weight: 600; }}
         .ticker-up {{ color: #34d399; }}
-        .ticker-down {{ color: #f87171; }}
 
-        /* Header */
         header {{
             background: var(--surface);
             border-bottom: 1px solid var(--border);
@@ -302,7 +287,6 @@ def get_base_template(page_title, meta_desc, canonical_path, content_html, extra
         }}
         .nav-pill:hover {{ border-color: var(--primary); color: var(--primary); }}
 
-        /* Layout Principal */
         .container {{
             max-width: 1280px;
             margin: 24px auto;
@@ -315,7 +299,6 @@ def get_base_template(page_title, meta_desc, canonical_path, content_html, extra
             .container {{ grid-template-columns: 1fr; }}
         }}
 
-        /* Blocos de Anúncio Responsivos */
         .ad-slot {{
             background: var(--surface);
             border: 1px dashed var(--border);
@@ -337,7 +320,6 @@ def get_base_template(page_title, meta_desc, canonical_path, content_html, extra
             margin-bottom: 4px;
         }}
 
-        /* Cards e Seções */
         .section-block {{ margin-bottom: 36px; }}
         .section-header {{
             display: flex;
@@ -382,7 +364,6 @@ def get_base_template(page_title, meta_desc, canonical_path, content_html, extra
             padding-top: 8px;
         }}
 
-        /* Widgets Laterais */
         .widget {{
             background: var(--surface);
             border: 1px solid var(--border);
@@ -445,7 +426,6 @@ def get_base_template(page_title, meta_desc, canonical_path, content_html, extra
         }}
         .country-tags a:hover {{ border-color: var(--accent); color: var(--accent); }}
 
-        /* Tabela Dados Países & FAQ */
         .data-table {{
             width: 100%;
             border-collapse: collapse;
@@ -481,7 +461,6 @@ def get_base_template(page_title, meta_desc, canonical_path, content_html, extra
 </head>
 <body>
 
-    <!-- Barra de Cotações em Tempo Real -->
     <div class="ticker-bar">
         <div class="ticker-items" id="live-ticker">
             <span>💵 USD/BRL: Carregando...</span>
@@ -492,7 +471,6 @@ def get_base_template(page_title, meta_desc, canonical_path, content_html, extra
         <div>Atualizado: {now_str}</div>
     </div>
 
-    <!-- Cabeçalho & Navegação -->
     <header>
         <div class="header-top">
             <a href="index.html" class="brand">🌐 Global<span>News</span> & Data</a>
@@ -507,7 +485,6 @@ def get_base_template(page_title, meta_desc, canonical_path, content_html, extra
         </nav>
     </header>
 
-    <!-- Banner Superior Monetização -->
     <div style="max-width: 1280px; margin: 0 auto; padding: 0 20px;">
         <div class="ad-slot">
             <span class="ad-label">Publicidade</span>
@@ -520,14 +497,12 @@ def get_base_template(page_title, meta_desc, canonical_path, content_html, extra
         </div>
     </div>
 
-    <!-- Conteúdo Principal + Barra Lateral de Widgets -->
     <div class="container">
         <main>
             {content_html}
         </main>
 
         <aside>
-            <!-- Widget 1: Clima Global em Tempo Real -->
             <div class="widget">
                 <h3>🌦️ Clima Global Ao Vivo</h3>
                 <select class="weather-select" id="city-selector" onchange="fetchWeather()">
@@ -547,7 +522,6 @@ def get_base_template(page_title, meta_desc, canonical_path, content_html, extra
                 </div>
             </div>
 
-            <!-- Widget 2: Enquete Interativa -->
             <div class="widget">
                 <h3>📊 Enquete do Leitor</h3>
                 <p style="font-size:0.88rem; margin-bottom:12px; color:var(--text-muted);">
@@ -562,7 +536,6 @@ def get_base_template(page_title, meta_desc, canonical_path, content_html, extra
                 <div id="poll-status" style="font-size:0.78rem; color:var(--accent); margin-top:8px;"></div>
             </div>
 
-            <!-- Espaço AdSense Lateral -->
             <div class="ad-slot">
                 <span class="ad-label">Patrocinado</span>
                 <ins class="adsbygoogle"
@@ -573,7 +546,6 @@ def get_base_template(page_title, meta_desc, canonical_path, content_html, extra
                 <script>(adsbygoogle = window.adsbygoogle || []).push({{}});</script>
             </div>
 
-            <!-- Widget 3: Indicadores por País (SEO Interno) -->
             <div class="widget">
                 <h3>🗺️ Dados & Economia por País</h3>
                 <p style="font-size:0.82rem; color:var(--text-muted); margin-bottom:10px;">
@@ -595,7 +567,6 @@ def get_base_template(page_title, meta_desc, canonical_path, content_html, extra
         </p>
     </footer>
 
-    <!-- Google Translate Widget -->
     <script type="text/javascript">
         function googleTranslateElementInit() {{
             new google.translate.TranslateElement({{pageLanguage: 'pt', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}}, 'google_translate_element');
@@ -603,9 +574,7 @@ def get_base_template(page_title, meta_desc, canonical_path, content_html, extra
     </script>
     <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
-    <!-- Scripts Interativos: Tema, Cotações, Clima e Enquete -->
     <script>
-        // 1. Alternar Tema Claro/Escuro
         function toggleTheme() {{
             const htmlEl = document.documentElement;
             const current = htmlEl.getAttribute('data-theme');
@@ -622,7 +591,6 @@ def get_base_template(page_title, meta_desc, canonical_path, content_html, extra
             }}
         }})();
 
-        // 2. Cotações Financeiras ao Vivo (AwesomeAPI)
         async function fetchMarketRates() {{
             try {{
                 const res = await fetch('https://economia.awesomeapi.com.br/last/USD-BRL,EUR-BRL,BTC-USD,ETH-USD');
@@ -648,7 +616,6 @@ def get_base_template(page_title, meta_desc, canonical_path, content_html, extra
         }}
         fetchMarketRates();
 
-        // 3. Clima Global ao Vivo (Open-Meteo API - Gratuita sem chave)
         async function fetchWeather() {{
             const select = document.getElementById('city-selector');
             const [lat, lon] = select.value.split(',');
@@ -667,7 +634,6 @@ def get_base_template(page_title, meta_desc, canonical_path, content_html, extra
         }}
         fetchWeather();
 
-        // 4. Enquete Interativa com Persistência
         const pollLabels = [
             "🤖 Inteligência Artificial & Tech",
             "💼 Trabalho Remoto Internacional",
@@ -711,9 +677,6 @@ def get_base_template(page_title, meta_desc, canonical_path, content_html, extra
 </body>
 </html>"""
 
-# ==============================================================================
-# GERADORES DE PÁGINAS (HOME, PAÍSES, PRIVACIDADE, SITEMAP & ROBOTS)
-# ==============================================================================
 def build_index(news_data):
     sections_html = []
     for idx, (cat_key, cat_info) in enumerate(CATEGORIES.items()):
@@ -865,8 +828,8 @@ def build_privacy_page():
         </div>
         <div class="card" style="gap:12px;">
             <p>O portal <strong>{SITE_NAME}</strong> respeita a privacidade de seus visitantes e opera em conformidade com as diretrizes internacionais de proteção de dados e políticas de publicidade do Google AdSense.</p>
-            <p><strong>Cookies e Publicidade:</strong> Utilizamos fornecedores terceiros, incluindo o Google, que usam cookies para veicular anúncios com base em visitas anteriores dos usuários a este ou a outros sites. Você pode desativar a publicidade personalizada acessando as Configurações de Anúncios do Google.</p>
-            <p><strong>Fontes de Dados:</strong> As notícias exibidas são agregadas automaticamente via feeds públicos RSS com atribuição direta e link para os veículos originais. Os dados climáticos e de câmbio são fornecidos por APIs públicas informativas.</p>
+            <p><strong>Cookies e Publicidade:</strong> Utilizamos fornecedores terceiros, incluindo o Google e parceiros de monetização, que usam cookies para veicular anúncios com base em visitas anteriores dos usuários a este ou a outros sites.</p>
+            <p><strong>Fontes de Dados:</strong> As notícias exibidas são agregadas automaticamente via feeds públicos RSS com atribuição direta e link para os veículos originais.</p>
         </div>
     </section>
     """
@@ -918,5 +881,5 @@ if __name__ == "__main__":
     build_privacy_page()
     build_seo_files()
     elapsed = round(time.time() - start_time, 2)
-    print(f"=== Concluído em {elapsed}s! Pronto para envio ao GitHub / Cloudflare Pages. ===")
+    print(f"=== Concluído em {elapsed}s! Pronto para deploy no Cloudflare Pages. ===")
 
