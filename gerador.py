@@ -8,7 +8,7 @@ import random
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
-DOMINIO_SITE = "DOMINIO_SITE = "https://gerador-site.pages.dev""
+DOMINIO_SITE = "https://gerador-site.pages.dev"
 MONETAG_META = '<meta name="monetag" content="ef73c6c12e78377782a937d613011d86">'
 
 AD_BANNER = """
@@ -235,7 +235,6 @@ def baixar_paises():
         response = requests.get("https://restcountries.com/v3.1/all", verify=False, timeout=15)
         if response.status_code == 200: return response.json()
     except: pass
-    # Fallback garantido para nao travar se a API externa falhar
     return [
         {"name": {"common": "Brasil"}, "capital": ["Brasília"], "region": "Americas", "population": 212000000, "currencies": {"BRL": {"name": "Real"}}, "timezones": ["UTC-3"], "languages": {"por": "Português"}},
         {"name": {"common": "Estados Unidos"}, "capital": ["Washington, D.C."], "region": "Americas", "population": 331000000, "currencies": {"USD": {"name": "Dólar"}}, "timezones": ["UTC-5"], "languages": {"eng": "Inglês"}},
@@ -254,7 +253,7 @@ def gerar_sitemap(lista_paises):
     with open("sitemap.xml", "w", encoding="utf-8") as f: f.write("\n".join(xml_content))
 
 def gerar_site():
-    print("Iniciando geração com Meta Tag e fallback garantido...")
+    print("Iniciando geração com domínio corrigido...")
     paises = baixar_paises()
     categorias_dict, todas_noticias = buscar_noticias_por_categoria()
     
@@ -287,5 +286,3 @@ def gerar_site():
 
 if __name__ == "__main__":
     gerar_site()
-
-
