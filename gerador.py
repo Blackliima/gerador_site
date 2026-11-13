@@ -239,8 +239,8 @@ INDEX_TEMPLATE = """
     {{ adsense_script | safe }}
     {{ monetag_meta | safe }}
     {{ google_meta | safe }}
-    <title>Global News & Data - Portal Mundial de Notícias, Economia e Tecnologia</title>
-    <meta name="description" content="Portal global de notícias em tempo real, indicadores demográficos, tecnologia, economia e dados estatísticos de nações do mundo inteiro.">
+    <title>Global News & Data - Portal Mundial de Notícias, Economia, Entretenimento e Saúde</title>
+    <meta name="description" content="Portal global completo com notícias em tempo real, economia, tecnologia, filmes, games, saúde e indicadores estatísticos de nações do mundo inteiro.">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌍</text></svg>">
     <style>
         :root { 
@@ -305,7 +305,7 @@ INDEX_TEMPLATE = """
         {{ ad_banner | safe }}
         <header>
             <h1>Global News & Data</h1>
-            <p>O portal mundial definitivo para notícias em tempo real, economia, tecnologia, esportes e indicadores globais.</p>
+            <p>O portal mundial definitivo para notícias, economia, tecnologia, entretenimento, filmes, games, saúde e dados globais.</p>
             <input type="text" id="searchInput" class="search-box" placeholder="🔍 Pesquisar país por nome (ex: Brasil, Japão)..." onkeyup="filtrarPaises()">
         </header>
         
@@ -314,6 +314,9 @@ INDEX_TEMPLATE = """
             <a href="#tecnologia">💻 Tecnologia</a>
             <a href="#economia">📈 Economia</a>
             <a href="#esportes">⚽ Esportes</a>
+            <a href="#entretenimento">🎬 Entretenimento</a>
+            <a href="#games">🎮 Games</a>
+            <a href="#saude">🥗 Qualidade de Vida</a>
             <a href="#blog">📝 Blog & Análises</a>
             <a href="#paises">🗺️ Países</a>
         </div>
@@ -334,7 +337,7 @@ INDEX_TEMPLATE = """
             </div>
             {% endfor %}
         </div>
-        {% if loop.index == 2 %}{{ ad_banner | safe }}{% endif %}
+        {% if loop.index == 2 or loop.index == 5 %}{{ ad_banner | safe }}{% endif %}
         {% endfor %}
 
         {{ ad_banner | safe }}
@@ -351,8 +354,8 @@ INDEX_TEMPLATE = """
                 <p>Uma análise profunda sobre os fluxos de suprimento energético e as oscilações cambiais nas principais bolsas do mundo.</p>
             </div>
             <div class="blog-post">
-                <h4>A Transformação Digital e o Futuro das Telecomunicações Globais</h4>
-                <p>Panorama técnico sobre a expansão da conectividade de alta velocidade e os novos paradigmas de segurança de dados corporativos.</p>
+                <h4>Longevidade e Qualidade de Vida: Hábitos que Transformam a Rotina</h4>
+                <p>Descubra as práticas recomendadas por especialistas em saúde global para manter o bem-estar físico e mental no dia a dia.</p>
             </div>
         </div>
         
@@ -452,7 +455,7 @@ ANUNCIE_TEMPLATE = """
             
             <h2>Modalidades de Parceria Aceitas</h2>
             <p><strong>1. Publieditoriais / Guest Posts:</strong> Publicação de artigos otimizados para SEO contendo o perfil da sua empresa, serviços ou produtos, com links de alta autoridade apontando para o seu site.</p>
-            <p><strong>2. Banners Patrocinados:</strong> Inserção de espaços publicitários customizados nas editorias de maior relevância (Mundo, Economia, Tecnologia e Esportes).</p>
+            <p><strong>2. Banners Patrocinados:</strong> Inserção de espaços publicitários customizados nas editorias de maior relevância.</p>
             <p><strong>3. Campanhas Globais:</strong> Parcerias de médio e longo prazo para marcas que desejam expansão internacional.</p>
 
             <div class="contact-box">
@@ -475,7 +478,10 @@ def buscar_noticias_por_categoria():
         "Mundo": {"id": "mundo", "color": "#2563eb", "url": "https://g1.globo.com/rss/g1/mundo/"},
         "Tecnologia": {"id": "tecnologia", "color": "#7c3aed", "url": "https://g1.globo.com/rss/g1/tecnologia/"},
         "Economia": {"id": "economia", "color": "#059669", "url": "https://g1.globo.com/rss/g1/economia/"},
-        "Esportes": {"id": "esportes", "color": "#dc2626", "url": "https://ge.globo.com/rss/ge/"}
+        "Esportes": {"id": "esportes", "color": "#dc2626", "url": "https://ge.globo.com/rss/ge/"},
+        "Entretenimento": {"id": "entretenimento", "color": "#db2777", "url": "https://g1.globo.com/rss/g1/pop-arte/"},
+        "Games": {"id": "games", "color": "#9333ea", "url": "https://g1.globo.com/rss/g1/tecnologia/games/"},
+        "Qualidade de Vida": {"id": "saude", "color": "#16a34a", "url": "https://g1.globo.com/rss/g1/ciencia-e-saude/"}
     }
     
     imagens_por_categoria = {
@@ -502,34 +508,69 @@ def buscar_noticias_por_categoria():
             "https://images.unsplash.com/photo-1517649763962-0c623066013b?w=600&auto=format&fit=crop&q=60",
             "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=600&auto=format&fit=crop&q=60",
             "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=600&auto=format&fit=crop&q=60"
+        ],
+        "Entretenimento": [
+            "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=600&auto=format&fit=crop&q=60",
+            "https://images.unsplash.com/photo-1512070679279-8988d2210cbc?w=600&auto=format&fit=crop&q=60",
+            "https://images.unsplash.com/photo-1598899134739-24c46f58b8c0?w=600&auto=format&fit=crop&q=60",
+            "https://images.unsplash.com/photo-1522869635100-9f4c5e86aa37?w=600&auto=format&fit=crop&q=60"
+        ],
+        "Games": [
+            "https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=600&auto=format&fit=crop&q=60",
+            "https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=600&auto=format&fit=crop&q=60",
+            "https://images.unsplash.com/photo-1612287233002-91d0f5367c33?w=600&auto=format&fit=crop&q=60",
+            "https://images.unsplash.com/photo-1511512578047-dfb367046420?w=600&auto=format&fit=crop&q=60"
+        ],
+        "Qualidade de Vida": [
+            "https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=600&auto=format&fit=crop&q=60",
+            "https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=600&auto=format&fit=crop&q=60",
+            "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&auto=format&fit=crop&q=60",
+            "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=600&auto=format&fit=crop&q=60"
         ]
     }
 
-    # Fallbacks ricos, variados e específicos por categoria para NUNCA repetir títulos genéricos
     fallbacks_por_categoria = {
         "Mundo": [
-            {"title": "Acordos Diplomáticos Globais Definem Novas Rotas Comerciais", "desc": "Lideres internacionais firmam pactos estratégicos para estabilizar o suprimento global e o trânsito transcontinental."},
-            {"title": "Cúpula Internacional Debate Transição Energética e Sustentabilidade", "desc": "Representantes de dezenas de nações se reúnem para alinhar metas de redução de emissões e inovação verde."},
-            {"title": "O Avanço da Cooperação Tecnológica Entre Nações do Hemisfério Norte e Sul", "desc": "Novos acordos de intercâmbio científico prometem acelerar o desenvolvimento de infraestrutura digital compartilhada."},
-            {"title": "Indicadores Demográficos Apontam Mudanças no Perfil Populacional Global", "desc": "Relatório estatístico internacional revela tendências de urbanização acelerada e mobilidade demográfica."}
+            {"title": "Acordos Diplomáticos Globais Definem Novas Rotas Comerciais", "desc": "Lideres internacionais firmam pactos estratégicos para estabilizar o suprimento global."},
+            {"title": "Cúpula Internacional Debate Transição Energética e Sustentabilidade", "desc": "Representantes de dezenas de nações alinham metas de inovação verde."},
+            {"title": "Cooperação Tecnológica Entre Nações do Hemisfério Norte e Sul", "desc": "Novos acordos de intercâmbio científico aceleram o desenvolvimento digital."},
+            {"title": "Indicadores Demográficos Apontam Mudanças no Perfil Global", "desc": "Relatório estatístico internacional revela tendências de urbanização acelerada."}
         ],
         "Tecnologia": [
-            {"title": "A Revolução da Inteligência Artificial Generativa nos Mercados Globais", "desc": "Empresas de tecnologia adotam modelos preditivos avançados para otimizar processos produtivos e segurança de dados."},
-            {"title": "Expansão da Infraestrutura de Conectividade de Alta Velocidade", "desc": "Investimentos bilionários em redes avançadas ampliam o acesso digital em grandes centros urbanos e regiões periféricas."},
-            {"title": "Novas Diretrizes de Cibersegurança para Corporações Internacionais", "desc": "Especialistas em proteção de dados estabelecem protocolos rígidos contra ataques cibernéticos em redes corporativas."},
-            {"title": "Inovação em Computação Quântica Promete Salto Histórico naciência", "desc": "Laboratórios internacionais alcançam marcos importantes no processamento de dados em larga escala."}
+            {"title": "A Revolução da Inteligência Artificial Generativa nos Mercados", "desc": "Empresas adotam modelos preditivos avançados para otimizar processos."},
+            {"title": "Expansão da Infraestrutura de Conectividade de Alta Velocidade", "desc": "Investimentos bilionários ampliam o acesso digital em grandes centros."},
+            {"title": "Novas Diretrizes de Cibersegurança para Corporações Globais", "desc": "Especialistas estabelecem protocolos rígidos contra ataques virtuais."},
+            {"title": "Inovação em Computação Quântica Promete Salto Histórico", "desc": "Laboratórios internacionais alcançam marcos no processamento de dados."}
         ],
         "Economia": [
-            {"title": "Bolsas Internacionais Reagem a Indicadores de Inflação e Juros", "desc": "Analistas econômicos monitoram de perto as oscilações das principais moedas e o comportamento do mercado financeiro."},
-            {"title": "Fluxo de Investimentos Estrangeiros Diretos Aponta Crescimento", "desc": "Setores produtivos e industriais registram aportes expressivos voltados para a modernização de plantas operacionais."},
-            {"title": "Balanço Comercial Global Mostra Recuperação no Setor de Exportações", "desc": "Cadeias logísticas internacionais recuperam ritmo e dinamizam o comércio entre continentes."},
-            {"title": "Especialistas Projetam Cenários para o Mercado de Câmbio e Commodities", "desc": "Relatórios financeiros detalham as perspectivas de crescimento e os riscos macroeconômicos globais."}
+            {"title": "Bolsas Internacionais Reagem a Indicadores de Inflação e Juros", "desc": "Analistas monitoram de perto as oscilações das principais moedas globais."},
+            {"title": "Fluxo de Investimentos Estrangeiros Aponta Crescimento", "desc": "Setores produtivos registram aportes voltados para modernização."},
+            {"title": "Balanço Comercial Global Mostra Recuperação nas Exportações", "desc": "Cadeias logísticas internacionais dinamizam o comércio entre continentes."},
+            {"title": "Especialistas Projetam Cenários para o Mercado de Câmbio", "desc": "Relatórios financeiros detalham as perspectivas macroeconômicas."}
         ],
         "Esportes": [
-            {"title": "Campeonatos Internacionais de Futebol Entram em Fase Decisiva", "desc": "Clubes e seleções intensificam preparativos para confrontos eliminatórios de grande repercussão mundial."},
-            {"title": "Grandes Ligas de Basquete e Tênis Movimentam Torcedores", "desc": "Calendário esportivo global traz partidas eletrizantes com atletas de alto rendimento disputando lideranças."},
-            {"title": "Preparativos para Competições Globais Atraem Atenção da Mídia", "desc": "Comitês organizadores detalham estruturas e cronogramas para os próximos megaeventos esportivos."},
-            {"title": "Análise Tática: O Desempenho das Equipes na Temporada Atual", "desc": "Especialistas esportivos avaliam as estratégias de técnicos e o rendimento físico dos principais competidores."}
+            {"title": "Campeonatos Internacionais de Futebol Entram em Fase Decisiva", "desc": "Clubes e seleções intensificam preparativos para confrontos mundiais."},
+            {"title": "Grandes Ligas de Basquete e Tênis Movimentam Torcedores", "desc": "Calendário esportivo global traz partidas eletrizantes de alto rendimento."},
+            {"title": "Preparativos para Competições Globais Atraem Atenção", "desc": "Comitês organizadores detalham estruturas para os próximos grandes eventos."},
+            {"title": "Análise Tática: O Desempenho das Equipes na Temporada", "desc": "Especialistas esportivos avaliam as estratégias e o rendimento físico."}
+        ],
+        "Entretenimento": [
+            {"title": "Grandes Estreias Dominam as Bilheterias e Plataformas de Streaming", "desc": "Produções cinematográficas e séries arrebatam o público internacional."},
+            {"title": "Festival Internacional de Música Anuncia Line-up Histórico", "desc": "Artistas consagrados se preparam para turnês globais de grande porte."},
+            {"title": "A Influência das Redes Sociais na Indústria da Cultura Pop", "desc": "Tendências digitais moldam o comportamento de consumo de entretenimento."},
+            {"title": "Bastidores: Os Segredos por Trás dos Maiores Sucessos da TV", "desc": "Diretores revelam inovações tecnológicas utilizadas nas produções recentes."}
+        ],
+        "Games": [
+            {"title": "Lançamentos de Jogos AAA Agitam o Mercado de Consoles e PC", "desc": "Títulos altamente aguardados trazem gráficos hiper-realistas e novas mecânicas."},
+            {"title": "Campeonatos Mundiais de Esports Batem Recordes de Audiência", "desc": "Competições profissionais de eSports reúnem milhões de espectadores online."},
+            {"title": "A Evolução da Realidade Virtual no Desenvolvimento de Games", "desc": "Estúdios apostam em imersão total para revolucionar a experiência do jogador."},
+            {"title": "Indústria de Jogos Independentes Conquista Espaço de Destaque", "desc": "Desenvolvedores indie surpreendem com narrativas profundas e inovadoras."}
+        ],
+        "Qualidade de Vida": [
+            {"title": "Hábitos Simples para Melhorar a Saúde Mental e o Foco Diário", "desc": "Especialistas em bem-estar destacam a importância de pausas estratégicas."},
+            {"title": "A Importância de uma Boa Noite de Sono para a Longevidade", "desc": "Estudos recentes comprovam o impacto do descanso adequado na imunidade."},
+            {"title": "Alimentação Consciente: Nutrientes Essenciais para o Corpo", "desc": "Dicas práticas de nutricionistas para manter o equilíbrio na rotina corrida."},
+            {"title": "Atividades ao Ar Livre e Seus Benefícios para o Equilíbrio Físico", "desc": "Contato com a natureza reduz níveis de estresse e melhora a disposição."}
         ]
     }
 
@@ -549,7 +590,7 @@ def buscar_noticias_por_categoria():
                     desc_elem = item.find('description')
                     
                     titulo = title_elem.text if title_elem is not None and title_elem.text else fallback_lista[idx % len(fallback_lista)]["title"]
-                    link = link_elem.text if link_elem is not None and link_elem.text else f"https://ge.globo.com" if cat_nome == "Esportes" else "https://g1.globo.com"
+                    link = link_elem.text if link_elem is not None and link_elem.text else "https://g1.globo.com"
                     desc = desc_elem.text if desc_elem is not None and desc_elem.text else fallback_lista[idx % len(fallback_lista)]["desc"]
                     
                     if "<" in desc:
@@ -566,15 +607,13 @@ def buscar_noticias_por_categoria():
                     todas_noticias.append(noticia_obj)
         except: pass
         
-        # Se o RSS falhar ou vier vazio, usa o fallback rico e diversificado
         if not items_cat:
-            fallback_link = "https://ge.globo.com" if cat_nome == "Esportes" else "https://g1.globo.com"
             for idx in range(4):
                 fb_item = fallback_lista[idx % len(fallback_lista)]
                 items_cat.append({
                     "category": cat_nome, "color": info["color"], 
                     "title": fb_item["title"], 
-                    "link": fallback_link, 
+                    "link": "https://g1.globo.com", 
                     "image": imgs_disponiveis[idx % len(imgs_disponiveis)],
                     "description": fb_item["desc"]
                 })
@@ -605,7 +644,7 @@ def gerar_sitemap(lista_paises):
     with open("sitemap.xml", "w", encoding="utf-8") as f: f.write("\n".join(xml_content))
 
 def gerar_site():
-    print("Iniciando geração com títulos ricos e diversificados...")
+    print("Iniciando geração super robusta com Entretenimento, Games e Qualidade de Vida...")
     paises = baixar_paises()
     categorias_dict, todas_noticias = buscar_noticias_por_categoria()
     
@@ -650,7 +689,7 @@ def gerar_site():
         f.write(Template(ANUNCIE_TEMPLATE).render(ad_banner=AD_BANNER, tradutor=WIDGET_TRADUTOR_MODERNO, adsense_script=ADSENSE_SCRIPT, monetag_meta=MONETAG_META, google_meta=GOOGLE_META, licenca_rodape=LICENCA_RODAPE, dominio=DOMINIO_SITE))
 
     gerar_sitemap(lista_paises)
-    print(f"Sucesso! Conteúdos dinâmicos e exclusivos aplicados em todas as editorias.")
+    print(f"Sucesso! Portal 100% robusto com entretenimento, games e saúde gerado com sucesso.")
 
 if __name__ == "__main__":
     gerar_site()
