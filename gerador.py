@@ -5,6 +5,7 @@ from jinja2 import Template
 import urllib3
 from datetime import datetime
 import random
+import re
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
@@ -40,7 +41,7 @@ function googleTranslateElementInit() {
 
 LICENCA_RODAPE = """
 <div style="font-size: 13px; color: var(--text-light); line-height: 1.6; margin-top: 40px; padding: 25px; background: var(--card-bg); border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.03); border: 1px solid rgba(0,0,0,0.05);">
-    <p style="margin: 0 0 10px 0;"><strong>Licença e Termos de Uso:</strong> Este portal consolida dados públicos globais e notícias em tempo real para fins informativos. O conteúdo é distribuído respeitando os direitos autorais e direcionando os leitores às fontes originais.</p>
+    <p style="margin: 0 0 10px 0;"><strong>Licença e Termos de Uso:</strong> Este portal consolida dados públicos globais e notícias em tempo real para fins informativos. O conteúdo de notícias é distribuído através de feeds RSS públicos de parceiros de mídia, respeitando os direitos de autoria e direcionando os leitores às fontes originais.</p>
     <p style="margin: 0;">© 2026 Portal Global de Notícias & Dados. Todos os direitos reservados. Licenciado sob Creative Commons Atribuição 4.0 Internacional.</p>
 </div>
 """
@@ -54,7 +55,7 @@ HTML_TEMPLATE = """
     {{ monetag_meta | safe }}
     {{ google_meta | safe }}
     <title>{{ country.name }} - Portal Global de Notícias & Dados</title>
-    <meta name="description" content="Explore as últimas manchetes, curiosidades e estatísticas fascinantes de {{ country.name }}.">
+    <meta name="description" content="Acompanhe as últimas manchetes, curiosidades e estatísticas oficiais de {{ country.name }}.">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌍</text></svg>">
     <style>
         :root { 
@@ -344,7 +345,6 @@ def buscar_noticias_por_categoria():
                     desc = desc_elem.text if desc_elem is not None and desc_elem.text else f"Acompanhe as principais atualizações e coberturas da editoria de {cat_nome}."
                     
                     if "<" in desc:
-                        import re
                         desc = re.sub('<.*?>', '', desc)
 
                     img_url = imagens_padrao[idx % len(imagens_padrao)]
@@ -377,7 +377,9 @@ def baixar_paises():
     return [
         {"name": {"common": "Brasil"}, "capital": ["Brasília"], "region": "Americas", "population": 212000000, "currencies": {"BRL": {"name": "Real"}}, "timezones": ["UTC-3"], "languages": {"por": "Português"}},
         {"name": {"common": "Estados Unidos"}, "capital": ["Washington, D.C."], "region": "Americas", "population": 331000000, "currencies": {"USD": {"name": "Dólar"}}, "timezones": ["UTC-5"], "languages": {"eng": "Inglês"}},
-        {"name": {"common": "Portugal"}, "capital": ["Lisboa"], "region": "Europe", "population": 10300000, "currencies": {"EUR": {"name": "Euro"}}, "timezones": ["UTC"], "languages": {"por": "Português"}}
+        {"name": {"common": "Portugal"}, "capital": ["Lisboa"], "region": "Europe", "population": 10300000, "currencies": {"EUR": {"name": "Euro"}}, "timezones": ["UTC"], "languages": {"por": "Português"}},
+        {"name": {"common": "Japão"}, "capital": ["Tóquio"], "region": "Asia", "population": 125000000, "currencies": {"JPY": {"name": "Iene"}}, "timezones": ["UTC+9"], "languages": {"jpn": "Japonês"}},
+        {"name": {"common": "França"}, "capital": ["Paris"], "region": "Europe", "population": 67000000, "currencies": {"EUR": {"name": "Euro"}}, "timezones": ["UTC+1"], "languages": {"fra": "Francês"}}
     ]
 
 def gerar_sitemap(lista_paises):
@@ -390,7 +392,7 @@ def gerar_sitemap(lista_paises):
     with open("sitemap.xml", "w", encoding="utf-8") as f: f.write("\n".join(xml_content))
 
 def gerar_site():
-    print("Iniciando geração com design imersivo, fotos e tradutor global...")
+    print("Iniciando geração completa e blindada...")
     paises = baixar_paises()
     categorias_dict, todas_noticias = buscar_noticias_por_categoria()
     
@@ -409,8 +411,7 @@ def gerar_site():
             name = item.get('name', {}).get('common', 'Desconhecido')
             file_name = name.lower().replace(' ', '-').replace('(', '').replace(')', '').replace('.', '') + ".html"
             
-            capital_val = item.get('capital', ['N/A'])
-            capital_str = capital_val[0] if isinstance(capital_val, list) and len(capital_val) > 0 else 'N/A'
+            capital_val = item.get('capital', ['N/A          capital_str = capital_val[0] if isinstance(capital_val, list) and len(capital_val) > 0 else 'N/A'
 
             country_data = {
                 "name": name, "capital": capital_str,
@@ -432,7 +433,7 @@ def gerar_site():
         f.write(Template(INDEX_TEMPLATE).render(paises=lista_paises, categorias=categorias_dict, ad_banner=AD_BANNER, tradutor=WIDGET_TRADUTOR, monetag_meta=MONETAG_META, google_meta=GOOGLE_META, licenca_rodape=LICENCA_RODAPE, dominio=DOMINIO_SITE))
     
     gerar_sitemap(lista_paises)
-    print(f"Sucesso! {len(lista_paises)} países gerados com layout imersivo e tradutor.")
+    print(f"Sucesso! {len(lista_paises)} países gerados com todas as melhorias e correções.")
 
 if __name__ == "__main__":
     gerar_site()
