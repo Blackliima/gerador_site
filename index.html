@@ -22,7 +22,7 @@
         }
         body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; line-height: 1.6; color: var(--text); background: var(--bg-color); margin: 0; padding: 0; transition: background 0.3s, color 0.3s; }
         .navbar { background: var(--card-bg); border-bottom: 1px solid var(--border-color); padding: 12px 20px; position: sticky; top: 0; z-index: 1000; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
-        .nav-container { max-width: 1000px; margin: 0 auto; display: flex; justify-content: flex-end; align-items: center; gap: 12px; }
+        .nav-container { max-width: 1000px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 12px; }
         .lang-select { background: var(--bg-color); color: var(--text); border: 1px solid var(--border-color); padding: 6px 12px; border-radius: 20px; font-weight: 600; font-size: 12px; cursor: pointer; outline: none; transition: border-color 0.2s; }
         .lang-select:hover { border-color: var(--primary); }
         .theme-btn { background: var(--bg-color); color: var(--text); border: 1px solid var(--border-color); padding: 6px 12px; border-radius: 20px; cursor: pointer; font-weight: 600; font-size: 12px; transition: all 0.2s; }
@@ -36,7 +36,13 @@
         .nav-cats { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin: 30px 0; }
         .nav-cats a { background: var(--card-bg); color: var(--text); padding: 8px 16px; border-radius: 20px; text-decoration: none; font-size: 13px; font-weight: 600; border: 1px solid var(--border-color); box-shadow: 0 2px 4px rgba(0,0,0,0.02); transition: all 0.2s; }
         .nav-cats a:hover { background: var(--primary); color: white; border-color: var(--primary); }
-        .section-title { font-size: 24px; font-weight: 700; margin: 45px 0 20px 0; border-left: 5px solid var(--primary); padding-left: 12px; display: flex; align-items: center; }
+        .section-title { font-size: 24px; font-weight: 700; margin: 45px 0 20px 0; border-left: 5px solid var(--primary); padding-left: 12px; display: flex; align-items: center; justify-content: space-between; }
+        .blog-section { background: var(--card-bg); border: 1px solid var(--border-color); padding: 25px; border-radius: 14px; margin-bottom: 35px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02); }
+        .blog-section h3 { margin-top: 0; color: var(--primary); font-size: 20px; }
+        .blog-post { margin-bottom: 20px; border-bottom: 1px solid var(--border-color); padding-bottom: 15px; }
+        .blog-post:last-child { margin-bottom: 0; border-bottom: none; padding-bottom: 0; }
+        .blog-post h4 { margin: 0 0 6px 0; font-size: 17px; color: var(--text); }
+        .blog-post p { margin: 0; font-size: 14px; color: var(--text-light); line-height: 1.6; }
         .countries-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 15px; margin-bottom: 30px; }
         .country-card { background: var(--card-bg); padding: 20px; border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02); text-decoration: none; color: var(--text); display: block; border: 1px solid var(--border-color); transition: transform 0.2s, border-color 0.2s; }
         .country-card:hover { transform: translateY(-3px); border-color: var(--primary); }
@@ -115,11 +121,12 @@ function mudarIdiomaGoogle(lang) {
             <a href="#tecnologia">💻 Tecnologia</a>
             <a href="#economia">📈 Economia</a>
             <a href="#esportes">⚽ Esportes</a>
+            <a href="#blog">📝 Blog & Análises</a>
             <a href="#paises">🗺️ Países</a>
         </div>
 
         
-        <h2 id="mundo" class="section-title" style="border-color: #2563eb;">Mundo</h2>
+        <h2 id="mundo" class="section-title" style="border-color: #2563eb;"><span>Mundo</span></h2>
         <div class="news-grid">
             
             <div class="news-card">
@@ -169,7 +176,7 @@ function mudarIdiomaGoogle(lang) {
         </div>
         
         
-        <h2 id="tecnologia" class="section-title" style="border-color: #7c3aed;">Tecnologia</h2>
+        <h2 id="tecnologia" class="section-title" style="border-color: #7c3aed;"><span>Tecnologia</span></h2>
         <div class="news-grid">
             
             <div class="news-card">
@@ -236,7 +243,7 @@ Uma falha global nos serviços da Microsoft afeta empresas, governos e serv...</
 </div>
 
         
-        <h2 id="economia" class="section-title" style="border-color: #059669;">Economia</h2>
+        <h2 id="economia" class="section-title" style="border-color: #059669;"><span>Economia</span></h2>
         <div class="news-grid">
             
             <div class="news-card">
@@ -244,9 +251,10 @@ Uma falha global nos serviços da Microsoft afeta empresas, governos e serv...</
                 <div class="news-content">
                     <div>
                         <span class="badge" style="background-color: #059669;">Economia</span>
-                        <h3><a href="https://g1.globo.com" target="_blank" rel="nofollow">Cobertura especial e atualizações de Economia em tempo real</a></h3>
+                        <h3><a href="https://g1.globo.com/economia/blog/ana-flor/post/2026/11/13/hugo-motta-pode-debater-projeto-de-ajuste-fiscal-com-lideres-na-camara-ja-na-proxima-semana.ghtml" target="_blank" rel="nofollow">Hugo Motta pode debater projeto de ajuste fiscal com líderes na Câmara já na próxima semana   </a></h3>
                     </div>
-                    <p>Acesse a cobertura completa, análises e últimas novidades da editoria de Economia.</p>
+                    <p>        Motta pode debater projeto de ajuste fiscal com líderes na próxima semana
+O presidente da Câmara dos Deputados, deputado Hugo Motta ...</p>
                 </div>
             </div>
             
@@ -255,9 +263,10 @@ Uma falha global nos serviços da Microsoft afeta empresas, governos e serv...</
                 <div class="news-content">
                     <div>
                         <span class="badge" style="background-color: #059669;">Economia</span>
-                        <h3><a href="https://g1.globo.com" target="_blank" rel="nofollow">Cobertura especial e atualizações de Economia em tempo real</a></h3>
+                        <h3><a href="https://g1.globo.com/economia/agronegocios/noticia/2026/11/13/presidente-do-bb-explica-quem-sao-os-produtores-que-nao-aderiram-a-renegociacao-do-banco.ghtml" target="_blank" rel="nofollow">Presidente do BB explica quem são os produtores que não aderiram à renegociação do banco</a></h3>
                     </div>
-                    <p>Acesse a cobertura completa, análises e últimas novidades da editoria de Economia.</p>
+                    <p>    Presidente do BB fala sobre crise com o agro
+Em entrevista à GloboNews nesta sexta-feira (13), a presidente do Banco do Brasil, Tarciana...</p>
                 </div>
             </div>
             
@@ -266,9 +275,9 @@ Uma falha global nos serviços da Microsoft afeta empresas, governos e serv...</
                 <div class="news-content">
                     <div>
                         <span class="badge" style="background-color: #059669;">Economia</span>
-                        <h3><a href="https://g1.globo.com" target="_blank" rel="nofollow">Cobertura especial e atualizações de Economia em tempo real</a></h3>
+                        <h3><a href="https://g1.globo.com/economia/noticia/2026/11/13/presidente-do-bc-critica-debate-sobre-juros-parece-disputa-de-torcida-organizada-e-postagem-em-rede-social.ghtml" target="_blank" rel="nofollow">Presidente do BC critica nível do debate sobre juros: 'Parece disputa de torcida organizada e de postagem em rede social'</a></h3>
                     </div>
-                    <p>Acesse a cobertura completa, análises e últimas novidades da editoria de Economia.</p>
+                    <p>        O presidente do Banco Central, Gabriel Galípolo, criticou o nível do debate sobre o patamar da taxa de juros na economia brasileira,...</p>
                 </div>
             </div>
             
@@ -277,16 +286,17 @@ Uma falha global nos serviços da Microsoft afeta empresas, governos e serv...</
                 <div class="news-content">
                     <div>
                         <span class="badge" style="background-color: #059669;">Economia</span>
-                        <h3><a href="https://g1.globo.com" target="_blank" rel="nofollow">Cobertura especial e atualizações de Economia em tempo real</a></h3>
+                        <h3><a href="https://g1.globo.com/tecnologia/noticia/2026/11/13/servicos-da-microsoft-sofrem-instabilidade-quinta-e-sexta.ghtml" target="_blank" rel="nofollow">Microsoft diz que Outlook, Teams e Copilot estão sendo 'gradualmente restaurados'</a></h3>
                     </div>
-                    <p>Acesse a cobertura completa, análises e últimas novidades da editoria de Economia.</p>
+                    <p>        Serviços Microsoft caem em 70 países; empresa faz reparos
+A Microsoft informou nesta sexta-feira (13) que Outlook, Teams e Copilot e...</p>
                 </div>
             </div>
             
         </div>
         
         
-        <h2 id="esportes" class="section-title" style="border-color: #dc2626;">Esportes</h2>
+        <h2 id="esportes" class="section-title" style="border-color: #dc2626;"><span>Esportes</span></h2>
         <div class="news-grid">
             
             <div class="news-card">
@@ -294,9 +304,9 @@ Uma falha global nos serviços da Microsoft afeta empresas, governos e serv...</
                 <div class="news-content">
                     <div>
                         <span class="badge" style="background-color: #dc2626;">Esportes</span>
-                        <h3><a href="https://ge.globo.com" target="_blank" rel="nofollow">Cobertura especial e atualizações de Esportes em tempo real</a></h3>
+                        <h3><a href="https://ge.globo.com/volei/jogo/12-11-2026/sesc-flamengo-fluminense.ghtml" target="_blank" rel="nofollow">Sesc-Flamengo x Fluminense - Superliga Feminina de Vôlei 2026/2027 - Ao vivo - globoesporte.com</a></h3>
                     </div>
-                    <p>Acesse a cobertura completa, análises e últimas novidades da editoria de Esportes.</p>
+                    <p>    Superliga Feminina de Vôlei 2026/2027 no globoesporte.com - acompanhe tudo sobre Sesc-Flamengo x Fluminense: escalação, informações sobr...</p>
                 </div>
             </div>
             
@@ -305,9 +315,9 @@ Uma falha global nos serviços da Microsoft afeta empresas, governos e serv...</
                 <div class="news-content">
                     <div>
                         <span class="badge" style="background-color: #dc2626;">Esportes</span>
-                        <h3><a href="https://ge.globo.com" target="_blank" rel="nofollow">Cobertura especial e atualizações de Esportes em tempo real</a></h3>
+                        <h3><a href="https://ge.globo.com/mg/zona-da-mata-centro-oeste/futebol/brasileirao-serie-b/jogo/12-11-2026/sao-bernardo-athletic-club.ghtml" target="_blank" rel="nofollow">Com 2º tempo agitado, São Bernardo e Athletic se despedem da temporada com empate</a></h3>
                     </div>
-                    <p>Acesse a cobertura completa, análises e últimas novidades da editoria de Esportes.</p>
+                    <p>    Sem maiores pretensões na Série B, times rodam o elenco e fazem duelo movimentado  </p>
                 </div>
             </div>
             
@@ -316,9 +326,9 @@ Uma falha global nos serviços da Microsoft afeta empresas, governos e serv...</
                 <div class="news-content">
                     <div>
                         <span class="badge" style="background-color: #dc2626;">Esportes</span>
-                        <h3><a href="https://ge.globo.com" target="_blank" rel="nofollow">Cobertura especial e atualizações de Esportes em tempo real</a></h3>
+                        <h3><a href="https://ge.globo.com/sp/mogi-das-cruzes-suzano/basquete/nbb/noticia/2026/11/12/mogi-domina-o-osasco-e-chega-a-quinta-vitoria-seguida-no-nbb.ghtml" target="_blank" rel="nofollow">Mogi domina o Osasco e chega à quinta vitória seguida no NBB</a></h3>
                     </div>
-                    <p>Acesse a cobertura completa, análises e últimas novidades da editoria de Esportes.</p>
+                    <p>        O Mogi conquistou a quinta vitória consecutiva no NBB 2026/2027 ao vencer o Osasco por 93 a 75 na noite desta quinta-feira (12). A p...</p>
                 </div>
             </div>
             
@@ -327,9 +337,10 @@ Uma falha global nos serviços da Microsoft afeta empresas, governos e serv...</
                 <div class="news-content">
                     <div>
                         <span class="badge" style="background-color: #dc2626;">Esportes</span>
-                        <h3><a href="https://ge.globo.com" target="_blank" rel="nofollow">Cobertura especial e atualizações de Esportes em tempo real</a></h3>
+                        <h3><a href="https://ge.globo.com/sp/ribeirao-preto-e-regiao/basquete/nbb/noticia/2026/11/12/franca-domina-segundo-tempo-vence-botafogo-e-fecha-sequencia-no-rio-com-100percent.ghtml" target="_blank" rel="nofollow">Franca domina segundo tempo, vence Botafogo e fecha sequência no Rio com 100%</a></h3>
                     </div>
-                    <p>Acesse a cobertura completa, análises e últimas novidades da editoria de Esportes.</p>
+                    <p>        No Rio de Janeiro (RJ), Franca supera Flamengo e vence primeira fora de casa pelo NBB
+O Sesi Franca venceu o Botafogo por 83 a 60, n...</p>
                 </div>
             </div>
             
@@ -352,8 +363,25 @@ Uma falha global nos serviços da Microsoft afeta empresas, governos e serv...</
     <script type="text/javascript" src="https://bauval.org/22/7d8438dbf1b7a796906a9575be2722b3"></script>
 </div>
 
+
+        <h2 id="blog" class="section-title"><span>📝 Blog & Artigos Especializados</span></h2>
+        <div class="blog-section">
+            <h3>Artigos em Destaque e Análises de Mercado</h3>
+            <div class="blog-post">
+                <h4>O Impacto da Inteligência Artificial na Economia Global em 2026</h4>
+                <p>Como as grandes potências estão regulamentando o avanço de algoritmos preditivos e transformando o mercado de trabalho internacional.</p>
+            </div>
+            <div class="blog-post">
+                <h4>Geopolítica do Petróleo e Rotas Comerciais Estratégicas</h4>
+                <p>Uma análise profunda sobre os fluxos de suprimento energético e as oscilações cambiais nas principais bolsas do mundo.</p>
+            </div>
+            <div class="blog-post">
+                <h4>A Transformação Digital e o Futuro das Telecomunicações Globais</h4>
+                <p>Panorama técnico sobre a expansão da conectividade de alta velocidade e os novos paradigmas de segurança de dados corporativos.</p>
+            </div>
+        </div>
         
-        <h2 id="paises" class="section-title">Explorar Países e Dados Oficiais (Global)</h2>
+        <h2 id="paises" class="section-title"><span>🗺️ Explorar Países e Dados Oficiais (Global)</span></h2>
         <div class="countries-grid" id="countriesGrid">
             
         </div>
@@ -376,8 +404,8 @@ Uma falha global nos serviços da Microsoft afeta empresas, governos e serv...</
         <footer>
             
 <div style="font-size: 13px; color: var(--text-light); line-height: 1.6; margin-top: 40px; padding: 25px; background: var(--card-bg); border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.03); border: 1px solid rgba(0,0,0,0.05);">
-    <p style="margin: 0 0 10px 0;"><strong>Licença e Termos de Uso:</strong> Global News & Data consolida dados públicos globais e notícias em tempo real para fins informativos. O conteúdo é distribuído respeitando os direitos autorais e direcionando os leitores às fontes originais.</p>
-    <p style="margin: 0;">© 2026 Global News & Data. Todos os direitos reservados. Licenciado sob Creative Commons Atribuição 4.0 Internacional.</p>
+    <p style="margin: 0 0 10px 0;"><strong>Licença e Termos de Uso:</strong> Global News & Data consolida dados públicos globais, análises e notícias em tempo real para fins informativos. O conteúdo é distribuído respeitando os direitos autorais e direcionando os leitores às fontes originais.</p>
+    <p style="margin: 0;"><a href="anuncie.html" style="color: var(--primary); text-decoration: none; font-weight: 600;">Anuncie Conosco / Publieditoriais</a> | © 2026 Global News & Data. Todos os direitos reservados. Licenciado sob Creative Commons Atribuição 4.0 Internacional.</p>
 </div>
 
         </footer>

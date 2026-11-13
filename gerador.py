@@ -59,8 +59,8 @@ function mudarIdiomaGoogle(lang) {
 
 LICENCA_RODAPE = """
 <div style="font-size: 13px; color: var(--text-light); line-height: 1.6; margin-top: 40px; padding: 25px; background: var(--card-bg); border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.03); border: 1px solid rgba(0,0,0,0.05);">
-    <p style="margin: 0 0 10px 0;"><strong>Licença e Termos de Uso:</strong> Global News & Data consolida dados públicos globais e notícias em tempo real para fins informativos. O conteúdo é distribuído respeitando os direitos autorais e direcionando os leitores às fontes originais.</p>
-    <p style="margin: 0;">© 2026 Global News & Data. Todos os direitos reservados. Licenciado sob Creative Commons Atribuição 4.0 Internacional.</p>
+    <p style="margin: 0 0 10px 0;"><strong>Licença e Termos de Uso:</strong> Global News & Data consolida dados públicos globais, análises e notícias em tempo real para fins informativos. O conteúdo é distribuído respeitando os direitos autorais e direcionando os leitores às fontes originais.</p>
+    <p style="margin: 0;"><a href="anuncie.html" style="color: var(--primary); text-decoration: none; font-weight: 600;">Anuncie Conosco / Publieditoriais</a> | © 2026 Global News & Data. Todos os direitos reservados. Licenciado sob Creative Commons Atribuição 4.0 Internacional.</p>
 </div>
 """
 
@@ -252,7 +252,7 @@ INDEX_TEMPLATE = """
         }
         body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; line-height: 1.6; color: var(--text); background: var(--bg-color); margin: 0; padding: 0; transition: background 0.3s, color 0.3s; }
         .navbar { background: var(--card-bg); border-bottom: 1px solid var(--border-color); padding: 12px 20px; position: sticky; top: 0; z-index: 1000; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
-        .nav-container { max-width: 1000px; margin: 0 auto; display: flex; justify-content: flex-end; align-items: center; gap: 12px; }
+        .nav-container { max-width: 1000px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 12px; }
         .lang-select { background: var(--bg-color); color: var(--text); border: 1px solid var(--border-color); padding: 6px 12px; border-radius: 20px; font-weight: 600; font-size: 12px; cursor: pointer; outline: none; transition: border-color 0.2s; }
         .lang-select:hover { border-color: var(--primary); }
         .theme-btn { background: var(--bg-color); color: var(--text); border: 1px solid var(--border-color); padding: 6px 12px; border-radius: 20px; cursor: pointer; font-weight: 600; font-size: 12px; transition: all 0.2s; }
@@ -266,7 +266,13 @@ INDEX_TEMPLATE = """
         .nav-cats { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin: 30px 0; }
         .nav-cats a { background: var(--card-bg); color: var(--text); padding: 8px 16px; border-radius: 20px; text-decoration: none; font-size: 13px; font-weight: 600; border: 1px solid var(--border-color); box-shadow: 0 2px 4px rgba(0,0,0,0.02); transition: all 0.2s; }
         .nav-cats a:hover { background: var(--primary); color: white; border-color: var(--primary); }
-        .section-title { font-size: 24px; font-weight: 700; margin: 45px 0 20px 0; border-left: 5px solid var(--primary); padding-left: 12px; display: flex; align-items: center; }
+        .section-title { font-size: 24px; font-weight: 700; margin: 45px 0 20px 0; border-left: 5px solid var(--primary); padding-left: 12px; display: flex; align-items: center; justify-content: space-between; }
+        .blog-section { background: var(--card-bg); border: 1px solid var(--border-color); padding: 25px; border-radius: 14px; margin-bottom: 35px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02); }
+        .blog-section h3 { margin-top: 0; color: var(--primary); font-size: 20px; }
+        .blog-post { margin-bottom: 20px; border-bottom: 1px solid var(--border-color); padding-bottom: 15px; }
+        .blog-post:last-child { margin-bottom: 0; border-bottom: none; padding-bottom: 0; }
+        .blog-post h4 { margin: 0 0 6px 0; font-size: 17px; color: var(--text); }
+        .blog-post p { margin: 0; font-size: 14px; color: var(--text-light); line-height: 1.6; }
         .countries-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 15px; margin-bottom: 30px; }
         .country-card { background: var(--card-bg); padding: 20px; border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02); text-decoration: none; color: var(--text); display: block; border: 1px solid var(--border-color); transition: transform 0.2s, border-color 0.2s; }
         .country-card:hover { transform: translateY(-3px); border-color: var(--primary); }
@@ -305,11 +311,12 @@ INDEX_TEMPLATE = """
             <a href="#tecnologia">💻 Tecnologia</a>
             <a href="#economia">📈 Economia</a>
             <a href="#esportes">⚽ Esportes</a>
+            <a href="#blog">📝 Blog & Análises</a>
             <a href="#paises">🗺️ Países</a>
         </div>
 
         {% for cat_nome, cat_data in categorias.items() %}
-        <h2 id="{{ cat_data.id }}" class="section-title" style="border-color: {{ cat_data.color }};">{{ cat_nome }}</h2>
+        <h2 id="{{ cat_data.id }}" class="section-title" style="border-color: {{ cat_data.color }};"><span>{{ cat_nome }}</span></h2>
         <div class="news-grid">
             {% for noticia in cat_data.lista %}
             <div class="news-card">
@@ -328,8 +335,25 @@ INDEX_TEMPLATE = """
         {% endfor %}
 
         {{ ad_banner | safe }}
+
+        <h2 id="blog" class="section-title"><span>📝 Blog & Artigos Especializados</span></h2>
+        <div class="blog-section">
+            <h3>Artigos em Destaque e Análises de Mercado</h3>
+            <div class="blog-post">
+                <h4>O Impacto da Inteligência Artificial na Economia Global em 2026</h4>
+                <p>Como as grandes potências estão regulamentando o avanço de algoritmos preditivos e transformando o mercado de trabalho internacional.</p>
+            </div>
+            <div class="blog-post">
+                <h4>Geopolítica do Petróleo e Rotas Comerciais Estratégicas</h4>
+                <p>Uma análise profunda sobre os fluxos de suprimento energético e as oscilações cambiais nas principais bolsas do mundo.</p>
+            </div>
+            <div class="blog-post">
+                <h4>A Transformação Digital e o Futuro das Telecomunicações Globais</h4>
+                <p>Panorama técnico sobre a expansão da conectividade de alta velocidade e os novos paradigmas de segurança de dados corporativos.</p>
+            </div>
+        </div>
         
-        <h2 id="paises" class="section-title">Explorar Países e Dados Oficiais (Global)</h2>
+        <h2 id="paises" class="section-title"><span>🗺️ Explorar Países e Dados Oficiais (Global)</span></h2>
         <div class="countries-grid" id="countriesGrid">
             {% for p in paises %}
             <a href="{{ p.file }}" class="country-card">
@@ -366,6 +390,82 @@ INDEX_TEMPLATE = """
 </html>
 """
 
+ANUNCIE_TEMPLATE = """
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {{ monetag_meta | safe }}
+    {{ google_meta | safe }}
+    <title>Anuncie Conosco & Parcerias - Global News & Data</title>
+    <meta name="description" content="Divulgue sua marca, produto ou serviço no Global News & Data. Conheça nossas opções de publieditoriais, guest posts e patrocínios comerciais.">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌍</text></svg>">
+    <style>
+        :root { 
+            --primary: #2563eb; --primary-dark: #1d4ed8; --bg-color: #f8fafc; 
+            --card-bg: #ffffff; --text: #0f172a; --text-light: #64748b; 
+            --header-bg: linear-gradient(135deg, #0f172a, #1e3a8a); --border-color: #e2e8f0;
+        }
+        [data-theme="dark"] { 
+            --primary: #3b82f6; --primary-dark: #60a5fa; --bg-color: #030712; 
+            --card-bg: #111827; --text: #f9fafb; --text-light: #9ca3af; 
+            --header-bg: linear-gradient(135deg, #020617, #0f172a); --border-color: #1f2937;
+        }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; line-height: 1.6; color: var(--text); background: var(--bg-color); margin: 0; padding: 0; transition: background 0.3s, color 0.3s; }
+        .navbar { background: var(--card-bg); border-bottom: 1px solid var(--border-color); padding: 12px 20px; position: sticky; top: 0; z-index: 1000; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+        .nav-container { max-width: 1000px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+        .back-link { color: var(--primary); text-decoration: none; font-weight: 600; font-size: 14px; display: flex; align-items: center; gap: 5px; }
+        .container { max-width: 900px; margin: 40px auto; padding: 0 20px; }
+        header { background: var(--header-bg); color: white; padding: 50px 30px; border-radius: 16px; margin-bottom: 30px; text-align: center; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1); }
+        header h1 { margin: 0 0 12px 0; font-size: 34px; font-weight: 800; }
+        header p { margin: 0; opacity: 0.9; font-size: 16px; max-width: 600px; margin-left: auto; margin-right: auto; }
+        .content-card { background: var(--card-bg); border: 1px solid var(--border-color); padding: 35px; border-radius: 14px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02); margin-bottom: 30px; }
+        .content-card h2 { color: var(--primary); margin-top: 0; font-size: 22px; }
+        .content-card p { font-size: 15px; color: var(--text-light); line-height: 1.8; }
+        .contact-box { background: linear-gradient(135deg, rgba(37,99,235,0.08), rgba(30,58,138,0.05)); border: 1px solid var(--primary); padding: 25px; border-radius: 12px; text-align: center; margin-top: 30px; }
+        .contact-box h3 { color: var(--primary); margin-top: 0; font-size: 20px; }
+        .email-tag { display: inline-block; background: var(--primary); color: white; padding: 10px 20px; border-radius: 30px; text-decoration: none; font-weight: 700; margin-top: 10px; font-size: 16px; }
+        footer { text-align: center; margin-top: 50px; border-top: 1px solid var(--border-color); padding-top: 20px; }
+    </style>
+</head>
+<body data-theme="light">
+    <div class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="back-link">← Voltar ao Início Global</a>
+            {{ tradutor | safe }}
+        </div>
+    </div>
+    <div class="container">
+        <header>
+            <h1>Anuncie Conosco & Parcerias Comerciais</h1>
+            <p>Conecte sua marca a um público global altamente engajado através de publieditoriais e patrocínios estratégicos.</p>
+        </header>
+
+        <div class="content-card">
+            <h2>Por que anunciar no Global News & Data?</h2>
+            <p>O <strong>Global News & Data</strong> é um portal internacional automatizado que consolida notícias em tempo real, dados demográficos, indicadores econômicos e tecnológicos de dezenas de nações. Nosso tráfego é altamente qualificado, composto por leitores, estudantes, empresários e analistas que buscam informações rápidas e precisas.</p>
+            
+            <h2>Modalidades de Parceria Aceitas</h2>
+            <p><strong>1. Publieditoriais / Guest Posts:</strong> Publicação de artigos otimizados para SEO contendo o perfil da sua empresa, serviços ou produtos, com links de alta autoridade apontando para o seu site.</p>
+            <p><strong>2. Banners Patrocinados:</strong> Inserção de espaços publicitários customizados nas editorias de maior relevância (Mundo, Economia, Tecnologia e Esportes).</p>
+            <p><strong>3. Campanhas Globais:</strong> Parcerias de médio e longo prazo para marcas que desejam expansão internacional.</p>
+
+            <div class="contact-box">
+                <h3>Interessado em impulsionar o seu negócio?</h3>
+                <p>Entre em contato diretamente com a nossa equipe comercial para avaliarmos a sua proposta e enviarmos o nosso mídia kit:</p>
+                <a href="mailto:contato@globalnewsdata.com" class="email-tag">contato@globalnewsdata.com</a>
+            </div>
+        </div>
+
+        <footer>
+            {{ licenca_rodape | safe }}
+        </footer>
+    </div>
+</body>
+</html>
+"""
+
 def buscar_noticias_por_categoria():
     fontes = {
         "Mundo": {"id": "mundo", "color": "#2563eb", "url": "https://g1.globo.com/rss/g1/mundo/"},
@@ -374,7 +474,6 @@ def buscar_noticias_por_categoria():
         "Esportes": {"id": "esportes", "color": "#dc2626", "url": "https://ge.globo.com/rss/ge/"}
     }
     
-    # Bancos de imagens totalmente separados e exclusivos por categoria para evitar repetições
     imagens_por_categoria = {
         "Mundo": [
             "https://images.unsplash.com/photo-1521295121783-8a321d551ad2?w=600&auto=format&fit=crop&q=60",
@@ -462,13 +561,14 @@ def gerar_sitemap(lista_paises):
     data_hoje = datetime.now().strftime("%Y-%m-%d")
     xml_content = ['<?xml version="1.0" encoding="UTF-8"?>', '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
     xml_content.append(f'  <url><loc>{DOMINIO_SITE}/index.html</loc><lastmod>{data_hoje}</lastmod><changefreq>hourly</changefreq><priority>1.0</priority></url>')
+    xml_content.append(f'  <url><loc>{DOMINIO_SITE}/anuncie.html</loc><lastmod>{data_hoje}</lastmod><changefreq>monthly</changefreq><priority>0.5</priority></url>')
     for p in lista_paises:
         xml_content.append(f'  <url><loc>{DOMINIO_SITE}/{p["file"]}</loc><lastmod>{data_hoje}</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>')
     xml_content.append('</urlset>')
     with open("sitemap.xml", "w", encoding="utf-8") as f: f.write("\n".join(xml_content))
 
 def gerar_site():
-    print("Iniciando geração com imagens exclusivas por categoria e Esportes robusto...")
+    print("Iniciando geração completa com Blog e página Anuncie Conosco...")
     paises = baixar_paises()
     categorias_dict, todas_noticias = buscar_noticias_por_categoria()
     
@@ -509,8 +609,11 @@ def gerar_site():
     with open("index.html", "w", encoding="utf-8") as f:
         f.write(Template(INDEX_TEMPLATE).render(paises=lista_paises, categorias=categorias_dict, ad_banner=AD_BANNER, tradutor=WIDGET_TRADUTOR_MODERNO, monetag_meta=MONETAG_META, google_meta=GOOGLE_META, licenca_rodape=LICENCA_RODAPE, dominio=DOMINIO_SITE))
     
+    with open("anuncie.html", "w", encoding="utf-8") as f:
+        f.write(Template(ANUNCIE_TEMPLATE).render(ad_banner=AD_BANNER, tradutor=WIDGET_TRADUTOR_MODERNO, monetag_meta=MONETAG_META, google_meta=GOOGLE_META, licenca_rodape=LICENCA_RODAPE, dominio=DOMINIO_SITE))
+
     gerar_sitemap(lista_paises)
-    print(f"Sucesso! {len(lista_paises)} países gerados com imagens limpas e específicas por editoria.")
+    print(f"Sucesso! {len(lista_paises)} países, Blog e página de anúncios gerados com perfeição.")
 
 if __name__ == "__main__":
     gerar_site()
