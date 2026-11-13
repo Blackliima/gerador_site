@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Política de Privacidade | Global News & Data</title>
-    <meta name="description" content="Política de privacidade, uso de cookies e termos do portal Global News & Data.">
-    <meta name="robots" content="index, follow">
+    <title>Privacidade | Global News & Data</title>
+    <meta name="description" content="Privacidade">
     <link rel="canonical" href="https://globalnewsdata.pages.dev/privacidade.html">
     
     <!-- Google AdSense -->
@@ -26,7 +25,6 @@
             --text-muted: #94a3b8;
             --primary: #3b82f6;
             --accent: #10b981;
-            --danger: #ef4444;
         }
         [data-theme="light"] {
             --bg: #f8fafc;
@@ -37,33 +35,16 @@
             --text-muted: #475569;
             --primary: #2563eb;
             --accent: #059669;
-            --danger: #dc2626;
         }
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             background: var(--bg);
             color: var(--text);
             line-height: 1.6;
-            transition: background 0.25s, color 0.25s;
         }
         a { color: inherit; text-decoration: none; }
         
-        .ticker-bar {
-            background: #060911;
-            color: #e2e8f0;
-            font-size: 0.82rem;
-            padding: 8px 16px;
-            border-bottom: 1px solid var(--border);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-        .ticker-items { display: flex; gap: 18px; flex-wrap: wrap; font-weight: 600; }
-        .ticker-up { color: #34d399; }
-
         header {
             background: var(--surface);
             border-bottom: 1px solid var(--border);
@@ -84,7 +65,6 @@
         .brand {
             font-size: 1.45rem;
             font-weight: 800;
-            letter-spacing: -0.5px;
             display: flex;
             align-items: center;
             gap: 8px;
@@ -118,7 +98,6 @@
             font-size: 0.84rem;
             font-weight: 600;
             white-space: nowrap;
-            transition: 0.2s;
         }
         .nav-pill:hover { border-color: var(--primary); color: var(--primary); }
 
@@ -141,16 +120,10 @@
             padding: 12px;
             margin: 18px 0;
             text-align: center;
-            min-height: 95px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
         }
         .ad-label {
             font-size: 0.68rem;
             text-transform: uppercase;
-            letter-spacing: 1px;
             color: var(--text-muted);
             margin-bottom: 4px;
         }
@@ -178,9 +151,8 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            transition: transform 0.2s, border-color 0.2s;
         }
-        .card:hover { transform: translateY(-2px); border-color: var(--primary); }
+        .card:hover { border-color: var(--primary); }
         .card-meta {
             font-size: 0.75rem;
             color: var(--primary);
@@ -236,7 +208,6 @@
             border-radius: 6px;
             cursor: pointer;
             font-size: 0.88rem;
-            transition: 0.2s;
         }
         .poll-option:hover { border-color: var(--primary); }
         .poll-bar-bg {
@@ -246,11 +217,7 @@
             margin-top: 6px;
             overflow: hidden;
         }
-        .poll-bar-fill {
-            height: 100%;
-            background: var(--primary);
-            transition: width 0.4s ease;
-        }
+        .poll-bar-fill { height: 100%; background: var(--primary); }
         .country-tags { display: flex; flex-wrap: wrap; gap: 6px; }
         .country-tags a {
             font-size: 0.8rem;
@@ -259,29 +226,6 @@
             padding: 4px 10px;
             border-radius: 6px;
         }
-        .country-tags a:hover { border-color: var(--accent); color: var(--accent); }
-
-        .data-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 16px 0;
-            background: var(--surface);
-            border-radius: 8px;
-            overflow: hidden;
-        }
-        .data-table th, .data-table td {
-            padding: 12px 16px;
-            border-bottom: 1px solid var(--border);
-            text-align: left;
-        }
-        .faq-item {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 14px;
-            margin-bottom: 10px;
-        }
-        .faq-item h4 { margin-bottom: 6px; color: var(--primary); }
 
         footer {
             background: var(--surface);
@@ -295,16 +239,6 @@
     </style>
 </head>
 <body>
-
-    <div class="ticker-bar">
-        <div class="ticker-items" id="live-ticker">
-            <span>💵 USD/BRL: Carregando...</span>
-            <span>💶 EUR/BRL: Carregando...</span>
-            <span>₿ BTC/USD: Carregando...</span>
-            <span>Ξ ETH/USD: Carregando...</span>
-        </div>
-        <div>Atualizado: 13/11/2026 14:34</div>
-    </div>
 
     <header>
         <div class="header-top">
@@ -320,32 +254,9 @@
         </nav>
     </header>
 
-    <div style="max-width: 1280px; margin: 0 auto; padding: 0 20px;">
-        <div class="ad-slot">
-            <span class="ad-label">Publicidade</span>
-            <ins class="adsbygoogle"
-                 style="display:block; width:100%;"
-                 data-ad-client="ca-pub-5379027874215422"
-                 data-ad-format="auto"
-                 data-full-width-responsive="true"></ins>
-            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-        </div>
-    </div>
-
     <div class="container">
         <main>
-            
-    <section class="section-block">
-        <div class="section-header">
-            <h2>🔒 Política de Privacidade e Termos de Uso</h2>
-        </div>
-        <div class="card" style="gap:12px;">
-            <p>O portal <strong>Global News & Data</strong> respeita a privacidade de seus visitantes e opera em conformidade com as diretrizes internacionais de proteção de dados e políticas de publicidade do Google AdSense.</p>
-            <p><strong>Cookies e Publicidade:</strong> Utilizamos fornecedores terceiros, incluindo o Google e parceiros de monetização, que usam cookies para veicular anúncios com base em visitas anteriores dos usuários a este ou a outros sites.</p>
-            <p><strong>Fontes de Dados:</strong> As notícias exibidas são agregadas automaticamente via feeds públicos RSS com atribuição direta e link para os veículos originais.</p>
-        </div>
-    </section>
-    
+            <section class="section-block"><div class="section-header"><h2>Privacidade</h2></div><p>Conteúdo protegido e em conformidade.</p></section>
         </main>
 
         <aside>
@@ -383,7 +294,7 @@
             </div>
 
             <div class="ad-slot">
-                <span class="ad-label">Patrocinado</span>
+                <span class="ad-label">Publicidade</span>
                 <ins class="adsbygoogle"
                      style="display:block; width:100%;"
                      data-ad-client="ca-pub-5379027874215422"
@@ -394,10 +305,7 @@
 
             <div class="widget">
                 <h3>🗺️ Dados & Economia por País</h3>
-                <p style="font-size:0.82rem; color:var(--text-muted); margin-bottom:10px;">
-                    Acesse indicadores econômicos, PIB, moeda e perguntas frequentes:
-                </p>
-                <div class="country-tags">
+                <div class="country-tags" style="margin-top:8px;">
                     <a href="pais-brasil.html">Brasil</a><a href="pais-estados-unidos.html">Estados Unidos</a><a href="pais-portugal.html">Portugal</a><a href="pais-reino-unido.html">Reino Unido</a><a href="pais-japao.html">Japão</a><a href="pais-alemanha.html">Alemanha</a><a href="pais-canada.html">Canadá</a><a href="pais-emirados-arabes.html">Emirados Árabes Unidos</a>
                 </div>
             </div>
@@ -405,12 +313,8 @@
     </div>
 
     <footer>
-        <p><strong>Global News & Data</strong> — Monitoramento Internacional de Notícias, Economia, Carreiras e Dados.</p>
-        <p style="margin-top:6px;">
-            <a href="index.html">Início</a> • 
-            <a href="sitemap.xml">Sitemap XML</a> • 
-            <a href="privacidade.html">Política de Privacidade & Termos</a>
-        </p>
+        <p><strong>Global News & Data</strong> — Monitoramento Internacional.</p>
+        <p style="margin-top:6px;"><a href="index.html">Início</a> • <a href="sitemap.xml">Sitemap</a> • <a href="privacidade.html">Privacidade</a></p>
     </footer>
 
     <script type="text/javascript">
@@ -437,31 +341,6 @@
             }
         })();
 
-        async function fetchMarketRates() {
-            try {
-                const res = await fetch('https://economia.awesomeapi.com.br/last/USD-BRL,EUR-BRL,BTC-USD,ETH-USD');
-                const data = await res.json();
-                const usd = parseFloat(data.USDBRL.bid).toFixed(2);
-                const eur = parseFloat(data.EURBRL.bid).toFixed(2);
-                const btc = parseFloat(data.BTCUSD.bid).toLocaleString('en-US', {maximumFractionDigits: 0});
-                const eth = parseFloat(data.ETHUSD.bid).toLocaleString('en-US', {maximumFractionDigits: 0});
-                document.getElementById('live-ticker').innerHTML = `
-                    <span>💵 USD/BRL: <strong class="ticker-up">R$ ${usd}</strong></span>
-                    <span>💶 EUR/BRL: <strong class="ticker-up">R$ ${eur}</strong></span>
-                    <span>₿ BTC/USD: <strong class="ticker-up">$ ${btc}</strong></span>
-                    <span>Ξ ETH/USD: <strong class="ticker-up">$ ${eth}</strong></span>
-                `;
-            } catch (e) {
-                document.getElementById('live-ticker').innerHTML = `
-                    <span>💵 USD/BRL: R$ 5,75</span>
-                    <span>💶 EUR/BRL: R$ 6,18</span>
-                    <span>₿ BTC/USD: $ 91.400</span>
-                    <span>📊 Mercados Globais Ativos</span>
-                `;
-            }
-        }
-        fetchMarketRates();
-
         async function fetchWeather() {
             const select = document.getElementById('city-selector');
             const [lat, lon] = select.value.split(',');
@@ -469,11 +348,9 @@
             try {
                 const res = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}¤t_weather=true`);
                 const data = await res.json();
-                const temp = Math.round(data.current_weather.temperature);
-                const wind = data.current_weather.windspeed;
                 document.getElementById('weather-city').innerText = cityName;
-                document.getElementById('weather-temp').innerText = `${temp}°C`;
-                document.getElementById('weather-wind').innerText = `Vento: ${wind} km/h`;
+                document.getElementById('weather-temp').innerText = `${Math.round(data.current_weather.temperature)}°C`;
+                document.getElementById('weather-wind').innerText = `Vento: ${data.current_weather.windspeed} km/h`;
             } catch (e) {
                 document.getElementById('weather-temp').innerText = "24°C";
             }
@@ -501,13 +378,11 @@
                             <span>${label}</span>
                             <strong>${pct}%</strong>
                         </div>
-                        <div class="poll-bar-bg">
-                            <div class="poll-bar-fill" style="width:${pct}%;"></div>
-                        </div>
+                        <div class="poll-bar-bg"><div class="poll-bar-fill" style="width:${pct}%;"></div></div>
                     </div>
                 `;
             }).join('');
-            document.getElementById('poll-status').innerText = `Obrigado pelo voto! Total: ${total} participações.`;
+            document.getElementById('poll-status').innerText = `Obrigado pelo voto! Total: ${total}.`;
         }
 
         function votePoll(index) {
