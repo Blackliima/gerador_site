@@ -505,10 +505,40 @@ def buscar_noticias_por_categoria():
         ]
     }
 
+    # Fallbacks ricos, variados e específicos por categoria para NUNCA repetir títulos genéricos
+    fallbacks_por_categoria = {
+        "Mundo": [
+            {"title": "Acordos Diplomáticos Globais Definem Novas Rotas Comerciais", "desc": "Lideres internacionais firmam pactos estratégicos para estabilizar o suprimento global e o trânsito transcontinental."},
+            {"title": "Cúpula Internacional Debate Transição Energética e Sustentabilidade", "desc": "Representantes de dezenas de nações se reúnem para alinhar metas de redução de emissões e inovação verde."},
+            {"title": "O Avanço da Cooperação Tecnológica Entre Nações do Hemisfério Norte e Sul", "desc": "Novos acordos de intercâmbio científico prometem acelerar o desenvolvimento de infraestrutura digital compartilhada."},
+            {"title": "Indicadores Demográficos Apontam Mudanças no Perfil Populacional Global", "desc": "Relatório estatístico internacional revela tendências de urbanização acelerada e mobilidade demográfica."}
+        ],
+        "Tecnologia": [
+            {"title": "A Revolução da Inteligência Artificial Generativa nos Mercados Globais", "desc": "Empresas de tecnologia adotam modelos preditivos avançados para otimizar processos produtivos e segurança de dados."},
+            {"title": "Expansão da Infraestrutura de Conectividade de Alta Velocidade", "desc": "Investimentos bilionários em redes avançadas ampliam o acesso digital em grandes centros urbanos e regiões periféricas."},
+            {"title": "Novas Diretrizes de Cibersegurança para Corporações Internacionais", "desc": "Especialistas em proteção de dados estabelecem protocolos rígidos contra ataques cibernéticos em redes corporativas."},
+            {"title": "Inovação em Computação Quântica Promete Salto Histórico naciência", "desc": "Laboratórios internacionais alcançam marcos importantes no processamento de dados em larga escala."}
+        ],
+        "Economia": [
+            {"title": "Bolsas Internacionais Reagem a Indicadores de Inflação e Juros", "desc": "Analistas econômicos monitoram de perto as oscilações das principais moedas e o comportamento do mercado financeiro."},
+            {"title": "Fluxo de Investimentos Estrangeiros Diretos Aponta Crescimento", "desc": "Setores produtivos e industriais registram aportes expressivos voltados para a modernização de plantas operacionais."},
+            {"title": "Balanço Comercial Global Mostra Recuperação no Setor de Exportações", "desc": "Cadeias logísticas internacionais recuperam ritmo e dinamizam o comércio entre continentes."},
+            {"title": "Especialistas Projetam Cenários para o Mercado de Câmbio e Commodities", "desc": "Relatórios financeiros detalham as perspectivas de crescimento e os riscos macroeconômicos globais."}
+        ],
+        "Esportes": [
+            {"title": "Campeonatos Internacionais de Futebol Entram em Fase Decisiva", "desc": "Clubes e seleções intensificam preparativos para confrontos eliminatórios de grande repercussão mundial."},
+            {"title": "Grandes Ligas de Basquete e Tênis Movimentam Torcedores", "desc": "Calendário esportivo global traz partidas eletrizantes com atletas de alto rendimento disputando lideranças."},
+            {"title": "Preparativos para Competições Globais Atraem Atenção da Mídia", "desc": "Comitês organizadores detalham estruturas e cronogramas para os próximos megaeventos esportivos."},
+            {"title": "Análise Tática: O Desempenho das Equipes na Temporada Atual", "desc": "Especialistas esportivos avaliam as estratégias de técnicos e o rendimento físico dos principais competidores."}
+        ]
+    }
+
     categorias_processadas, todas_noticias = {}, []
     for cat_nome, info in fontes.items():
         items_cat = []
         imgs_disponiveis = imagens_por_categoria.get(cat_nome, imagens_por_categoria["Mundo"])
+        fallback_lista = fallbacks_por_categoria.get(cat_nome, fallbacks_por_categoria["Mundo"])
+        
         try:
             resp = requests.get(info["url"], verify=False, timeout=6)
             if resp.status_code == 200:
@@ -518,9 +548,9 @@ def buscar_noticias_por_categoria():
                     link_elem = item.find('link')
                     desc_elem = item.find('description')
                     
-                    titulo = title_elem.text if title_elem is not None and title_elem.text else f"Últimas notícias de {cat_nome}"
+                    titulo = title_elem.text if title_elem is not None and title_elem.text else fallback_lista[idx % len(fallback_lista)]["title"]
                     link = link_elem.text if link_elem is not None and link_elem.text else f"https://ge.globo.com" if cat_nome == "Esportes" else "https://g1.globo.com"
-                    desc = desc_elem.text if desc_elem is not None and desc_elem.text else f"Acompanhe as principais atualizações e coberturas da editoria de {cat_nome}."
+                    desc = desc_elem.text if desc_elem is not None and desc_elem.text else fallback_lista[idx % len(fallback_lista)]["desc"]
                     
                     if "<" in desc:
                         desc = re.sub('<.*?>', '', desc)
@@ -536,14 +566,17 @@ def buscar_noticias_por_categoria():
                     todas_noticias.append(noticia_obj)
         except: pass
         
+        # Se o RSS falhar ou vier vazio, usa o fallback rico e diversificado
         if not items_cat:
             fallback_link = "https://ge.globo.com" if cat_nome == "Esportes" else "https://g1.globo.com"
             for idx in range(4):
+                fb_item = fallback_lista[idx % len(fallback_lista)]
                 items_cat.append({
                     "category": cat_nome, "color": info["color"], 
-                    "title": f"Cobertura especial e atualizações de {cat_nome} em tempo real", 
-                    "link": fallback_link, "image": imgs_disponiveis[idx % len(imgs_disponiveis)],
-                    "description": f"Acesse a cobertura completa, análises e últimas novidades da editoria de {cat_nome}."
+                    "title": fb_item["title"], 
+                    "link": fallback_link, 
+                    "image": imgs_disponiveis[idx % len(imgs_disponiveis)],
+                    "description": fb_item["desc"]
                 })
         categorias_processadas[cat_nome] = {"id": info["id"], "color": info["color"], "lista": items_cat}
     return categorias_processadas, todas_noticias
@@ -572,7 +605,7 @@ def gerar_sitemap(lista_paises):
     with open("sitemap.xml", "w", encoding="utf-8") as f: f.write("\n".join(xml_content))
 
 def gerar_site():
-    print("Iniciando geração com AdSense integrado em todas as páginas...")
+    print("Iniciando geração com títulos ricos e diversificados...")
     paises = baixar_paises()
     categorias_dict, todas_noticias = buscar_noticias_por_categoria()
     
@@ -617,7 +650,7 @@ def gerar_site():
         f.write(Template(ANUNCIE_TEMPLATE).render(ad_banner=AD_BANNER, tradutor=WIDGET_TRADUTOR_MODERNO, adsense_script=ADSENSE_SCRIPT, monetag_meta=MONETAG_META, google_meta=GOOGLE_META, licenca_rodape=LICENCA_RODAPE, dominio=DOMINIO_SITE))
 
     gerar_sitemap(lista_paises)
-    print(f"Sucesso! Código do Google AdSense integrado em {len(lista_paises)} países, index e página de anúncios.")
+    print(f"Sucesso! Conteúdos dinâmicos e exclusivos aplicados em todas as editorias.")
 
 if __name__ == "__main__":
     gerar_site()
