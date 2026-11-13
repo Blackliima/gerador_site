@@ -239,8 +239,8 @@ INDEX_TEMPLATE = """
     {{ adsense_script | safe }}
     {{ monetag_script | safe }}
     {{ google_meta | safe }}
-    <title>Global News & Data - Portal Mundial de Notícias, Economia, Entretenimento e Saúde</title>
-    <meta name="description" content="Portal global completo com notícias em tempo real, economia, tecnologia, filmes, games, saúde e indicadores estatísticos de nações do mundo inteiro.">
+    <title>Global News & Data - Portal Mundial de Notícias, Economia, Vagas e Saúde</title>
+    <meta name="description" content="Portal global completo com notícias em tempo real, vagas de emprego home office, economia, tecnologia, filmes, games, saúde e indicadores estatísticos.">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌍</text></svg>">
     <style>
         :root { 
@@ -305,7 +305,7 @@ INDEX_TEMPLATE = """
         {{ ad_banner | safe }}
         <header>
             <h1>Global News & Data</h1>
-            <p>O portal mundial definitivo para notícias, economia, tecnologia, entretenimento, filmes, games, saúde e dados globais.</p>
+            <p>O portal mundial definitivo para notícias, economia, vagas de emprego home office, entretenimento, games e dados globais.</p>
             <input type="text" id="searchInput" class="search-box" placeholder="🔍 Pesquisar país por nome (ex: Brasil, Japão)..." onkeyup="filtrarPaises()">
         </header>
         
@@ -314,6 +314,7 @@ INDEX_TEMPLATE = """
             <a href="#tecnologia">💻 Tecnologia</a>
             <a href="#economia">📈 Economia</a>
             <a href="#esportes">⚽ Esportes</a>
+            <a href="#empregos">💼 Vagas & Home Office</a>
             <a href="#entretenimento">🎬 Filmes & Séries</a>
             <a href="#games">🎮 Games & Tech</a>
             <a href="#saude">🥗 Qualidade de Vida</a>
@@ -354,8 +355,8 @@ INDEX_TEMPLATE = """
                 <p>Uma análise profunda sobre os fluxos de suprimento energético e as oscilações cambiais nas principais bolsas do mundo.</p>
             </div>
             <div class="blog-post">
-                <h4>Longevidade e Qualidade de Vida: Hábitos que Transformam a Rotina</h4>
-                <p>Descubra as práticas recomendadas por especialistas em saúde global para manter o bem-estar físico e mental no dia a dia.</p>
+                <h4>Trabalho Remoto e Oportunidades Globais: O Guia Definitivo</h4>
+                <p>Descubra as principais tendências de vagas em modelo home office e como se destacar em processos seletivos internacionais.</p>
             </div>
         </div>
         
@@ -451,7 +452,7 @@ ANUNCIE_TEMPLATE = """
 
         <div class="content-card">
             <h2>Por que anunciar no Global News & Data?</h2>
-            <p>O <strong>Global News & Data</strong> é um portal internacional automatizado que consolida notícias em tempo real, dados demográficos, indicadores econômicos e tecnológicos de dezenas de nações. Nosso tráfego é altamente qualificado, composto por leitores, estudantes, empresários e analistas que buscam informações rápidas e precisas.</p>
+            <p>O <strong>Global News & Data</strong> é um portal internacional automatizado que consolida notícias em tempo real, dados demográficos, oportunidades de emprego, indicadores econômicos e tecnológicos de dezenas de nações. Nosso tráfego é altamente qualificado, composto por leitores, profissionais, estudantes e empresários.</p>
             
             <h2>Modalidades de Parceria Aceitas</h2>
             <p><strong>1. Publieditoriais / Guest Posts:</strong> Publicação de artigos otimizados para SEO contendo o perfil da sua empresa, serviços ou produtos, com links de alta autoridade apontando para o seu site.</p>
@@ -479,6 +480,7 @@ def buscar_noticias_por_categoria():
         "Tecnologia": {"id": "tecnologia", "color": "#7c3aed", "url": "https://g1.globo.com/rss/g1/tecnologia/"},
         "Economia": {"id": "economia", "color": "#059669", "url": "https://g1.globo.com/rss/g1/economia/"},
         "Esportes": {"id": "esportes", "color": "#dc2626", "url": "https://ge.globo.com/rss/ge/"},
+        "Vagas & Home Office": {"id": "empregos", "color": "#ea580c", "url": "https://g1.globo.com/rss/g1/educacao/concursos-e-emprego/"},
         "Filmes & Séries": {"id": "entretenimento", "color": "#db2777", "url": "https://g1.globo.com/rss/g1/pop-arte/"},
         "Games & Tech": {"id": "games", "color": "#9333ea", "url": "https://g1.globo.com/rss/g1/tecnologia/games/"},
         "Qualidade de Vida": {"id": "saude", "color": "#16a34a", "url": "https://g1.globo.com/rss/g1/ciencia-e-saude/"}
@@ -509,6 +511,12 @@ def buscar_noticias_por_categoria():
             "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=600&auto=format&fit=crop&q=60",
             "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=600&auto=format&fit=crop&q=60"
         ],
+        "Vagas & Home Office": [
+            "https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60",
+            "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=600&auto=format&fit=crop&q=60",
+            "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=600&auto=format&fit=crop&q=60",
+            "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&auto=format&fit=crop&q=60"
+        ],
         "Filmes & Séries": [
             "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=600&auto=format&fit=crop&q=60",
             "https://images.unsplash.com/photo-1512070679279-8988d2210cbc?w=600&auto=format&fit=crop&q=60",
@@ -532,45 +540,37 @@ def buscar_noticias_por_categoria():
     fallbacks_por_categoria = {
         "Mundo": [
             {"title": "Acordos Diplomáticos Globais Definem Novas Rotas Comerciais", "desc": "Lideres internacionais firmam pactos estratégicos para estabilizar o suprimento global."},
-            {"title": "Cúpula Internacional Debate Transição Energética e Sustentabilidade", "desc": "Representantes de dezenas de nações alinham metas de inovação verde."},
-            {"title": "Cooperação Tecnológica Entre Nações do Hemisfério Norte e Sul", "desc": "Novos acordos de intercâmbio científico aceleram o desenvolvimento digital."},
-            {"title": "Indicadores Demográficos Apontam Mudanças no Perfil Global", "desc": "Relatório estatístico internacional revela tendências de urbanização acelerada."}
+            {"title": "Cúpula Internacional Debate Transição Energética e Sustentabilidade", "desc": "Representantes de dezenas de nações alinham metas de inovação verde."}
         ],
         "Tecnologia": [
             {"title": "A Revolução da Inteligência Artificial Generativa nos Mercados", "desc": "Empresas adotam modelos preditivos avançados para otimizar processos."},
-            {"title": "Expansão da Infraestrutura de Conectividade de Alta Velocidade", "desc": "Investimentos bilionários ampliam o acesso digital em grandes centros."},
-            {"title": "Novas Diretrizes de Cibersegurança para Corporações Globais", "desc": "Especialistas estabelecem protocolos rígidos contra ataques virtuais."},
-            {"title": "Inovação em Computação Quântica Promete Salto Histórico", "desc": "Laboratórios internacionais alcançam marcos no processamento de dados."}
+            {"title": "Expansão da Infraestrutura de Conectividade de Alta Velocidade", "desc": "Investimentos bilionários ampliam o acesso digital em grandes centros."}
         ],
         "Economia": [
             {"title": "Bolsas Internacionais Reagem a Indicadores de Inflação e Juros", "desc": "Analistas monitoram de perto as oscilações das principais moedas globais."},
-            {"title": "Fluxo de Investimentos Estrangeiros Aponta Crescimento", "desc": "Setores produtivos registram aportes voltados para modernização."},
-            {"title": "Balanço Comercial Global Mostra Recuperação nas Exportações", "desc": "Cadeias logísticas internacionais dinamizam o comércio entre continentes."},
-            {"title": "Especialistas Projetam Cenários para o Mercado de Câmbio", "desc": "Relatórios financeiros detalham as perspectivas macroeconômicas."}
+            {"title": "Fluxo de Investimentos Estrangeiros Aponta Crescimento", "desc": "Setores produtivos registram aportes voltados para modernização."}
         ],
         "Esportes": [
             {"title": "Campeonatos Internacionais de Futebol Entram em Fase Decisiva", "desc": "Clubes e seleções intensificam preparativos para confrontos mundiais."},
-            {"title": "Grandes Ligas de Basquete e Tênis Movimentam Torcedores", "desc": "Calendário esportivo global traz partidas eletrizantes de alto rendimento."},
-            {"title": "Preparativos para Competições Globais Atraem Atenção", "desc": "Comitês organizadores detalham estruturas para os próximos grandes eventos."},
-            {"title": "Análise Tática: O Desempenho das Equipes na Temporada", "desc": "Especialistas esportivos avaliam as estratégias e o rendimento físico."}
+            {"title": "Grandes Ligas de Basquete e Tênis Movimentam Torcedores", "desc": "Calendário esportivo global traz partidas eletrizantes de alto rendimento."}
+        ],
+        "Vagas & Home Office": [
+            {"title": "Grandes Empresas Abrem Centenas de Vagas para Trabalho Remoto (Home Office)", "desc": "Oportunidades internacionais e nacionais oferecem flexibilidade e contratação imediata para diversas áreas."},
+            {"title": "Novas Oportunidades em Concursos Públicos e Processos Seletivos", "desc": "Confira os editais abertos com milhares de vagas e inscrições disponíveis esta semana."},
+            {"title": "Setor de Tecnologia Anuncia Crescimento na Contratação de Desenvolvedores", "desc": "Demanda por profissionais remotos impulsiona o mercado de trabalho digital global."},
+            {"title": "Dicas Essenciais para Se Destacar em Entrevistas de Emprego Online", "desc": "Especialistas em RH revelam o que os recrutadores buscam em candidatos em modelo home office."}
         ],
         "Filmes & Séries": [
             {"title": "Grandes Estreias Dominam as Bilheterias e Plataformas de Streaming", "desc": "Produções cinematográficas e séries arrebatam o público internacional."},
-            {"title": "Festival Internacional de Música Anuncia Line-up Histórico", "desc": "Artistas consagrados se preparam para turnês globais de grande porte."},
-            {"title": "A Influência das Redes Sociais na Indústria da Cultura Pop", "desc": "Tendências digitais moldam o comportamento de consumo de entretenimento."},
-            {"title": "Bastidores: Os Segredos por Trás dos Maiores Sucessos da TV", "desc": "Diretores revelam inovações tecnológicas utilizadas nas produções recentes."}
+            {"title": "Festival Internacional de Música Anuncia Line-up Histórico", "desc": "Artistas consagrados se preparam para turnês globais de grande porte."}
         ],
         "Games & Tech": [
             {"title": "Lançamentos de Jogos AAA Agitam o Mercado de Consoles e PC", "desc": "Títulos altamente aguardados trazem gráficos hiper-realistas e novas mecânicas."},
-            {"title": "Campeonatos Mundiais de Esports Batem Recordes de Audiência", "desc": "Competições profissionais de eSports reúnem milhões de espectadores online."},
-            {"title": "A Evolução da Realidade Virtual no Desenvolvimento de Games", "desc": "Estúdios apostam em imersão total para revolucionar a experiência do jogador."},
-            {"title": "Indústria de Jogos Independentes Conquista Espaço de Destaque", "desc": "Desenvolvedores indie surpreendem com narrativas profundas e inovadoras."}
+            {"title": "Campeonatos Mundiais de Esports Batem Recordes de Audiência", "desc": "Competições profissionais de eSports reúnem milhões de espectadores online."}
         ],
         "Qualidade de Vida": [
             {"title": "Hábitos Simples para Melhorar a Saúde Mental e o Foco Diário", "desc": "Especialistas em bem-estar destacam a importância de pausas estratégicas."},
-            {"title": "A Importância de uma Boa Noite de Sono para a Longevidade", "desc": "Estudos recentes comprovam o impacto do descanso adequado na imunidade."},
-            {"title": "Alimentação Consciente: Nutrientes Essenciais para o Corpo", "desc": "Dicas práticas de nutricionistas para manter o equilíbrio na rotina corrida."},
-            {"title": "Atividades ao Ar Livre e Seus Benefícios para o Equilíbrio Físico", "desc": "Contato com a natureza reduz níveis de estresse e melhora a disposição."}
+            {"title": "A Importância de uma Boa Noite de Sono para a Longevidade", "desc": "Estudos recentes comprovam o impacto do descanso adequado na imunidade."}
         ]
     }
 
@@ -644,7 +644,7 @@ def gerar_sitemap(lista_paises):
     with open("sitemap.xml", "w", encoding="utf-8") as f: f.write("\n".join(xml_content))
 
 def gerar_site():
-    print("Gerando portal ultra robusto com todas as editorias, AdSense e Monetag...")
+    print("Gerando portal unificado com Vagas, Home Office, Saúde, Games e AdSense/Monetag...")
     paises = baixar_paises()
     categorias_dict, todas_noticias = buscar_noticias_por_categoria()
     
@@ -689,7 +689,7 @@ def gerar_site():
         f.write(Template(ANUNCIE_TEMPLATE).render(ad_banner=AD_BANNER, tradutor=WIDGET_TRADUTOR_MODERNO, adsense_script=ADSENSE_SCRIPT, monetag_script=MONETAG_SCRIPT, google_meta=GOOGLE_META, licenca_rodape=LICENCA_RODAPE, dominio=DOMINIO_SITE))
 
     gerar_sitemap(lista_paises)
-    print(f"Sucesso! Portal atualizado com todas as editorias e tags de monetização.")
+    print(f"Sucesso absoluto! Portal robusto unificado gerado com sucesso.")
 
 if __name__ == "__main__":
     gerar_site()
