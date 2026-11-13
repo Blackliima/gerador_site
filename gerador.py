@@ -12,8 +12,8 @@ DOMINIO_SITE = "https://gerador-site.pages.dev"
 MONETAG_META = '<meta name="monetag" content="60579baab4bd2ab620a4e0fdf532170a">'
 
 AD_BANNER = """
-<div style="text-align:center; margin: 25px 0; background:var(--card-bg); padding:15px; border-radius:10px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); border: 1px dashed #ccc;">
-    <p style="color:#888; font-size:11px; margin-bottom:5px; text-transform: uppercase; letter-spacing: 1px;">Publicidade</p>
+<div style="text-align:center; margin: 30px 0; background:var(--card-bg); padding:20px; border-radius:12px; box-shadow: 0 4px 12px rgba(0,0,0,0.06); border: 1px dashed rgba(0,0,0,0.1);">
+    <p style="color:var(--text-light); font-size:10px; margin-bottom:8px; text-transform: uppercase; letter-spacing: 1.5px; font-weight:600;">Publicidade Patrocinada</p>
     <script type="text/javascript">
         atOptions = {
             'key' : '7d8438dbf1b7a796906a9575be2722b3',
@@ -28,8 +28,8 @@ AD_BANNER = """
 """
 
 LICENCA_RODAPE = """
-<div style="font-size: 12px; color: var(--text-light); line-height: 1.5; margin-top: 20px; padding: 15px; background: var(--card-bg); border-radius: 8px; border: 1px solid rgba(0,0,0,0.05);">
-    <p style="margin: 0 0 8px 0;"><strong>Licença e Termos de Uso:</strong> Este portal consolida dados públicos globais e notícias em tempo real para fins informativos. O conteúdo de notícias é distribuído através de feeds RSS públicos de parceiros de mídia, respeitando os direitos de autoria e direcionando os leitores às fontes originais.</p>
+<div style="font-size: 13px; color: var(--text-light); line-height: 1.6; margin-top: 40px; padding: 25px; background: var(--card-bg); border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.03); border: 1px solid rgba(0,0,0,0.05);">
+    <p style="margin: 0 0 10px 0;"><strong>Licença e Termos de Uso:</strong> Este portal consolida dados públicos globais e notícias em tempo real para fins estritamente informativos. O conteúdo de notícias é distribuído através de feeds RSS públicos de parceiros de mídia, respeitando integralmente os direitos de autoria e direcionando os leitores às fontes originais.</p>
     <p style="margin: 0;">© 2026 Portal Global de Notícias & Dados. Todos os direitos reservados. Licenciado sob Creative Commons Atribuição 4.0 Internacional.</p>
 </div>
 """
@@ -41,63 +41,84 @@ HTML_TEMPLATE = """
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {{ monetag_meta | safe }}
-    <title>{{ country.name }} - Portal de Notícias e Dados Globais</title>
-    <meta name="description" content="Acompanhe as últimas manchetes e estatísticas de {{ country.name }}.">
+    <title>{{ country.name }} - Portal Global de Notícias & Dados</title>
+    <meta name="description" content="Acompanhe as últimas manchetes, indicadores econômicos e estatísticas oficiais de {{ country.name }}.">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌍</text></svg>">
     <style>
-        :root { --primary: #2563eb; --bg-color: #f3f4f6; --card-bg: #ffffff; --text: #1f2937; --text-light: #4b5563; --header-bg: linear-gradient(135deg, #1e3a8a, #2563eb); }
-        [data-theme="dark"] { --primary: #3b82f6; --bg-color: #0f172a; --card-bg: #1e293b; --text: #f8fafc; --text-light: #94a3b8; --header-bg: linear-gradient(135deg, #090d16, #1e3a8a); }
-        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; color: var(--text); background: var(--bg-color); margin: 0; padding: 20px; transition: background 0.3s, color 0.3s; }
-        .container { max-width: 900px; margin: 0 auto; }
-        .top-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
-        .theme-btn { background: var(--card-bg); color: var(--text); border: 1px solid #ccc; padding: 8px 14px; border-radius: 20px; cursor: pointer; font-weight: bold; font-size: 13px; }
-        header { background: var(--header-bg); color: white; padding: 30px; border-radius: 12px; margin-bottom: 25px; }
-        header h1 { margin: 0 0 10px 0; font-size: 28px; }
-        .grid-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 25px; }
-        .stat-card { background: var(--card-bg); padding: 20px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
-        .stat-card .label { font-size: 13px; color: var(--text-light); text-transform: uppercase; font-weight: bold; }
-        .stat-card .value { font-size: 18px; color: var(--primary); font-weight: bold; margin-top: 5px; }
-        .section-title { font-size: 20px; margin: 30px 0 15px 0; border-left: 4px solid var(--primary); padding-left: 10px; }
-        .news-grid { display: grid; grid-template-columns: 1fr; gap: 15px; }
-        .news-card { background: var(--card-bg); padding: 20px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
-        .badge { display: inline-block; padding: 3px 10px; font-size: 11px; font-weight: bold; border-radius: 20px; text-transform: uppercase; margin-bottom: 8px; color: white; }
-        .news-card h3 { margin: 0 0 8px 0; font-size: 17px; }
-        .news-card h3 a { color: var(--text); text-decoration: none; }
-        .news-card p { margin: 0; font-size: 14px; color: var(--text-light); }
-        .back-link { display: inline-block; margin-top: 30px; color: var(--primary); text-decoration: none; font-weight: bold; }
-        footer { text-align: center; margin-top: 40px; font-size: 13px; color: var(--text-light); padding: 20px 0; border-top: 1px solid var(--card-bg); }
+        :root { 
+            --primary: #2563eb; --primary-dark: #1d4ed8; --bg-color: #f8fafc; 
+            --card-bg: #ffffff; --text: #0f172a; --text-light: #64748b; 
+            --header-bg: linear-gradient(135deg, #0f172a, #1e3a8a); --border-color: #e2e8f0;
+        }
+        [data-theme="dark"] { 
+            --primary: #3b82f6; --primary-dark: #60a5fa; --bg-color: #030712; 
+            --card-bg: #111827; --text: #f9fafb; --text-light: #9ca3af; 
+            --header-bg: linear-gradient(135deg, #020617, #0f172a); --border-color: #1f2937;
+        }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; line-height: 1.6; color: var(--text); background: var(--bg-color); margin: 0; padding: 0; transition: background 0.3s, color 0.3s; }
+        .navbar { background: var(--card-bg); border-bottom: 1px solid var(--border-color); padding: 12px 20px; position: sticky; top: 0; z-index: 1000; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+        .nav-container { max-width: 1000px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+        .back-link { color: var(--primary); text-decoration: none; font-weight: 600; font-size: 14px; display: flex; align-items: center; gap: 5px; }
+        .theme-btn { background: var(--bg-color); color: var(--text); border: 1px solid var(--border-color); padding: 6px 12px; border-radius: 20px; cursor: pointer; font-weight: 600; font-size: 12px; transition: all 0.2s; }
+        .theme-btn:hover { border-color: var(--primary); }
+        .container { max-width: 1000px; margin: 30px auto; padding: 0 20px; }
+        header { background: var(--header-bg); color: white; padding: 40px; border-radius: 16px; margin-bottom: 30px; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1); }
+        header h1 { margin: 0 0 10px 0; font-size: 32px; font-weight: 800; letter-spacing: -0.5px; }
+        header p { margin: 0; opacity: 0.9; font-size: 16px; }
+        .grid-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; margin-bottom: 35px; }
+        .stat-card { background: var(--card-bg); padding: 22px; border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02); border: 1px solid var(--border-color); }
+        .stat-card .label { font-size: 12px; color: var(--text-light); text-transform: uppercase; font-weight: 700; letter-spacing: 0.5px; }
+        .stat-card .value { font-size: 20px; color: var(--primary); font-weight: 700; margin-top: 6px; }
+        .section-title { font-size: 22px; font-weight: 700; margin: 40px 0 20px 0; border-left: 5px solid var(--primary); padding-left: 12px; display: flex; align-items: center; }
+        .news-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+        .news-card { background: var(--card-bg); padding: 24px; border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02); border: 1px solid var(--border-color); display: flex; flex-direction: column; justify-content: space-between; transition: transform 0.2s, box-shadow 0.2s; }
+        .news-card:hover { transform: translateY(-3px); box-shadow: 0 10px 20px -3px rgba(0,0,0,0.05); }
+        .badge { display: inline-block; padding: 4px 10px; font-size: 11px; font-weight: 700; border-radius: 20px; text-transform: uppercase; margin-bottom: 12px; color: white; letter-spacing: 0.5px; }
+        .news-card h3 { margin: 0 0 10px 0; font-size: 18px; line-height: 1.4; }
+        .news-card h3 a { color: var(--text); text-decoration: none; transition: color 0.2s; }
+        .news-card h3 a:hover { color: var(--primary); }
+        .news-card p { margin: 0; font-size: 14px; color: var(--text-light); line-height: 1.5; }
+        footer { text-align: center; margin-top: 50px; border-top: 1px solid var(--border-color); padding-top: 20px; }
     </style>
 </head>
 <body data-theme="light">
-    <div class="container">
-        <div class="top-bar">
-            <a href="index.html" class="back-link" style="margin:0;">← Voltar para a Página Inicial</a>
+    <div class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="back-link">← Início Global</a>
             <button class="theme-btn" onclick="toggleTheme()">🌓 Alternar Tema</button>
         </div>
+    </div>
+    <div class="container">
         {{ ad_banner | safe }}
         <header>
             <h1>{{ country.name }}</h1>
-            <p>Painel informativo oficial com dados populacionais, fuso horário e cobertura global.</p>
+            <p>Painel informativo oficial com dados estatísticos, demográficos e cobertura internacional em tempo real.</p>
         </header>
+        
         <div class="grid-stats">
             <div class="stat-card"><div class="label">Capital</div><div class="value">{{ country.capital }}</div></div>
             <div class="stat-card"><div class="label">Região</div><div class="value">{{ country.region }}</div></div>
             <div class="stat-card"><div class="label">População</div><div class="value">{{ country.population }} hab.</div></div>
             <div class="stat-card"><div class="label">Moeda</div><div class="value">{{ country.currency }}</div></div>
             <div class="stat-card"><div class="label">Fuso Horário</div><div class="value">{{ country.timezone }}</div></div>
-            <div class="stat-card"><div class="label">Idioma</div><div class="value">{{ country.language }}</div></div>
+            <div class="stat-card"><div class="label">Idioma Oficial</div><div class="value">{{ country.language }}</div></div>
         </div>
+        
         {{ ad_banner | safe }}
+        
         <h2 class="section-title">Cobertura Global e Internacional</h2>
         <div class="news-grid">
             {% for noticia in noticias %}
             <div class="news-card">
-                <span class="badge" style="background-color: {{ noticia.color }};">{{ noticia.category }}</span>
-                <h3><a href="{{ noticia.link }}" target="_blank" rel="nofollow">{{ noticia.title }}</a></h3>
+                <div>
+                    <span class="badge" style="background-color: {{ noticia.color }};">{{ noticia.category }}</span>
+                    <h3><a href="{{ noticia.link }}" target="_blank" rel="nofollow">{{ noticia.title }}</a></h3>
+                </div>
                 <p>{{ noticia.description }}</p>
             </div>
             {% endfor %}
         </div>
+        
         {{ ad_banner | safe }}
         <footer>
             {{ licenca_rodape | safe }}
@@ -106,8 +127,9 @@ HTML_TEMPLATE = """
     <script>
         function toggleTheme() {
             const body = document.body;
-            body.setAttribute('data-theme', body.getAttribute('data-theme') === 'light' ? 'dark' : 'light');
-            localStorage.setItem('theme', body.getAttribute('data-theme'));
+            const nextTheme = body.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+            body.setAttribute('data-theme', nextTheme);
+            localStorage.setItem('theme', nextTheme);
         }
         if (localStorage.getItem('theme') === 'dark') { document.body.setAttribute('data-theme', 'dark'); }
     </script>
@@ -123,45 +145,72 @@ INDEX_TEMPLATE = """
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {{ monetag_meta | safe }}
     <title>Portal Global - Notícias, Tecnologia, Economia e Esportes</title>
+    <meta name="description" content="Portal de dados globais e notícias em tempo real cobrindo nações de todo o planeta.">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌍</text></svg>">
     <style>
-        :root { --primary: #2563eb; --bg-color: #f3f4f6; --card-bg: #ffffff; --text: #1f2937; --text-light: #4b5563; --header-bg: linear-gradient(135deg, #1e3a8a, #2563eb); }
-        [data-theme="dark"] { --primary: #3b82f6; --bg-color: #0f172a; --card-bg: #1e293b; --text: #f8fafc; --text-light: #94a3b8; --header-bg: linear-gradient(135deg, #090d16, #1e3a8a); }
-        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; color: var(--text); background: var(--bg-color); margin: 0; padding: 20px; transition: background 0.3s, color 0.3s; }
-        .container { max-width: 900px; margin: 0 auto; }
-        .top-bar { display: flex; justify-content: flex-end; align-items: center; margin-bottom: 15px; }
-        .theme-btn { background: var(--card-bg); color: var(--text); border: 1px solid #ccc; padding: 8px 14px; border-radius: 20px; cursor: pointer; font-weight: bold; font-size: 13px; }
-        header { background: var(--header-bg); color: white; padding: 40px 30px; border-radius: 12px; margin-bottom: 20px; text-align: center; }
-        header h1 { margin: 0 0 10px 0; font-size: 32px; }
-        .search-box { width: 100%; max-width: 500px; margin: 20px auto 0 auto; display: block; padding: 12px 20px; font-size: 16px; border-radius: 30px; border: 1px solid #ccc; outline: none; background: var(--card-bg); color: var(--text); }
-        .nav-cats { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin: 25px 0; }
-        .nav-cats a { background: var(--card-bg); color: var(--text); padding: 8px 16px; border-radius: 20px; text-decoration: none; font-size: 14px; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
-        .nav-cats a:hover { background: var(--primary); color: white; }
-        .section-title { font-size: 22px; margin: 35px 0 15px 0; border-left: 5px solid var(--primary); padding-left: 12px; }
+        :root { 
+            --primary: #2563eb; --primary-dark: #1d4ed8; --bg-color: #f8fafc; 
+            --card-bg: #ffffff; --text: #0f172a; --text-light: #64748b; 
+            --header-bg: linear-gradient(135deg, #0f172a, #1e3a8a); --border-color: #e2e8f0;
+        }
+        [data-theme="dark"] { 
+            --primary: #3b82f6; --primary-dark: #60a5fa; --bg-color: #030712; 
+            --card-bg: #111827; --text: #f9fafb; --text-light: #9ca3af; 
+            --header-bg: linear-gradient(135deg, #020617, #0f172a); --border-color: #1f2937;
+        }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; line-height: 1.6; color: var(--text); background: var(--bg-color); margin: 0; padding: 0; transition: background 0.3s, color 0.3s; }
+        .navbar { background: var(--card-bg); border-bottom: 1px solid var(--border-color); padding: 12px 20px; position: sticky; top: 0; z-index: 1000; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+        .nav-container { max-width: 1000px; margin: 0 auto; display: flex; justify-content: flex-end; align-items: center; }
+        .theme-btn { background: var(--bg-color); color: var(--text); border: 1px solid var(--border-color); padding: 6px 12px; border-radius: 20px; cursor: pointer; font-weight: 600; font-size: 12px; transition: all 0.2s; }
+        .theme-btn:hover { border-color: var(--primary); }
+        .container { max-width: 1000px; margin: 30px auto; padding: 0 20px; }
+        header { background: var(--header-bg); color: white; padding: 50px 30px; border-radius: 16px; margin-bottom: 25px; text-align: center; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1); }
+        header h1 { margin: 0 0 12px 0; font-size: 36px; font-weight: 800; letter-spacing: -0.5px; }
+        header p { margin: 0 0 25px 0; opacity: 0.9; font-size: 16px; max-width: 600px; margin-left: auto; margin-right: auto; }
+        .search-box { width: 100%; max-width: 500px; margin: 0 auto; display: block; padding: 14px 22px; font-size: 15px; border-radius: 30px; border: 1px solid var(--border-color); outline: none; background: var(--card-bg); color: var(--text); box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02); transition: border-color 0.2s; }
+        .search-box:focus { border-color: var(--primary); }
+        .nav-cats { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin: 30px 0; }
+        .nav-cats a { background: var(--card-bg); color: var(--text); padding: 8px 16px; border-radius: 20px; text-decoration: none; font-size: 13px; font-weight: 600; border: 1px solid var(--border-color); box-shadow: 0 2px 4px rgba(0,0,0,0.02); transition: all 0.2s; }
+        .nav-cats a:hover { background: var(--primary); color: white; border-color: var(--primary); }
+        .section-title { font-size: 24px; font-weight: 700; margin: 45px 0 20px 0; border-left: 5px solid var(--primary); padding-left: 12px; display: flex; align-items: center; }
         .countries-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 15px; margin-bottom: 30px; }
-        .country-card { background: var(--card-bg); padding: 18px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); text-decoration: none; color: var(--text); display: block; border: 1px solid transparent; }
-        .country-card:hover { border-color: var(--primary); }
-        .country-card h3 { margin: 0 0 5px 0; color: var(--primary); font-size: 18px; }
-        .news-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); gap: 15px; }
-        .news-card { background: var(--card-bg); padding: 20px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); display: flex; flex-direction: column; justify-content: space-between; }
-        .badge { display: inline-block; align-self: flex-start; padding: 3px 10px; font-size: 11px; font-weight: bold; border-radius: 20px; text-transform: uppercase; margin-bottom: 10px; color: white; }
-        .news-card h3 { margin: 0 0 8px 0; font-size: 17px; }
-        .news-card h3 a { color: var(--text); text-decoration: none; }
-        footer { text-align: center; margin-top: 40px; font-size: 13px; color: var(--text-light); padding: 20px 0; border-top: 1px solid var(--card-bg); }
+        .country-card { background: var(--card-bg); padding: 20px; border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02); text-decoration: none; color: var(--text); display: block; border: 1px solid var(--border-color); transition: transform 0.2s, border-color 0.2s; }
+        .country-card:hover { transform: translateY(-3px); border-color: var(--primary); }
+        .country-card h3 { margin: 0 0 6px 0; color: var(--primary); font-size: 18px; font-weight: 700; }
+        .country-card p { margin: 0; font-size: 13px; color: var(--text-light); font-weight: 500; }
+        .news-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+        .news-card { background: var(--card-bg); padding: 24px; border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02); border: 1px solid var(--border-color); display: flex; flex-direction: column; justify-content: space-between; transition: transform 0.2s, box-shadow 0.2s; }
+        .news-card:hover { transform: translateY(-3px); box-shadow: 0 10px 20px -3px rgba(0,0,0,0.05); }
+        .badge { display: inline-block; align-self: flex-start; padding: 4px 10px; font-size: 11px; font-weight: 700; border-radius: 20px; text-transform: uppercase; margin-bottom: 12px; color: white; letter-spacing: 0.5px; }
+        .news-card h3 { margin: 0 0 10px 0; font-size: 18px; line-height: 1.4; }
+        .news-card h3 a { color: var(--text); text-decoration: none; transition: color 0.2s; }
+        .news-card h3 a:hover { color: var(--primary); }
+        .news-card p { margin: 0; font-size: 14px; color: var(--text-light); line-height: 1.5; }
+        footer { text-align: center; margin-top: 50px; border-top: 1px solid var(--border-color); padding-top: 20px; }
     </style>
 </head>
 <body data-theme="light">
+    <div class="navbar">
+        <div class="nav-container">
+            <button class="theme-btn" onclick="toggleTheme()">🌓 Alternar Tema</button>
+        </div>
+    </div>
     <div class="container">
-        <div class="top-bar"><button class="theme-btn" onclick="toggleTheme()">🌓 Alternار Tema</button></div>
         {{ ad_banner | safe }}
         <header>
             <h1>Portal Global de Notícias & Dados</h1>
-            <p>Cobertura em tempo real e estatísticas detalhadas de nações do mundo inteiro.</p>
-            <input type="text" id="searchInput" class="search-box" placeholder="🔍 Pesquisar país..." onkeyup="filtrarPaises()">
+            <p>Cobertura editorial em tempo real e indicadores estatísticos avançados de nações do mundo inteiro.</p>
+            <input type="text" id="searchInput" class="search-box" placeholder="🔍 Pesquisar país por nome..." onkeyup="filtrarPaises()">
         </header>
+        
         <div class="nav-cats">
-            <a href="#mundo">🌍 Mundo</a><a href="#tecnologia">💻 Tecnologia</a><a href="#economia">📈 Economia</a><a href="#esportes">⚽ Esportes</a><a href="#paises">🗺️ Países</a>
+            <a href="#mundo">🌍 Mundo</a>
+            <a href="#tecnologia">💻 Tecnologia</a>
+            <a href="#economia">📈 Economia</a>
+            <a href="#esportes">⚽ Esportes</a>
+            <a href="#paises">🗺️ Países</a>
         </div>
+
         {% for cat_nome, cat_data in categorias.items() %}
         <h2 id="{{ cat_data.id }}" class="section-title" style="border-color: {{ cat_data.color }};">{{ cat_nome }}</h2>
         <div class="news-grid">
@@ -177,16 +226,19 @@ INDEX_TEMPLATE = """
         </div>
         {% if loop.index == 2 %}{{ ad_banner | safe }}{% endif %}
         {% endfor %}
+
         {{ ad_banner | safe }}
+        
         <h2 id="paises" class="section-title">Explorar Países e Dados (Global)</h2>
         <div class="countries-grid" id="countriesGrid">
             {% for p in paises %}
             <a href="{{ p.file }}" class="country-card">
                 <h3>{{ p.name }}</h3>
-                <p>Ver estatísticas →</p>
+                <p>Ver dados estatísticos →</p>
             </a>
             {% endfor %}
         </div>
+        
         {{ ad_banner | safe }}
         <footer>
             {{ licenca_rodape | safe }}
@@ -195,10 +247,12 @@ INDEX_TEMPLATE = """
     <script>
         function toggleTheme() {
             const body = document.body;
-            body.setAttribute('data-theme', body.getAttribute('data-theme') === 'light' ? 'dark' : 'light');
-            localStorage.setItem('theme', body.getAttribute('data-theme'));
+            const nextTheme = body.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+            body.setAttribute('data-theme', nextTheme);
+            localStorage.setItem('theme', nextTheme);
         }
         if (localStorage.getItem('theme') === 'dark') { document.body.setAttribute('data-theme', 'dark'); }
+        
         function filtrarPaises() {
             let input = document.getElementById('searchInput').value.toLowerCase();
             let cards = document.getElementById('countriesGrid').getElementsByClassName('country-card');
@@ -235,15 +289,13 @@ def buscar_noticias_por_categoria():
                     link = link_elem.text if link_elem is not None and link_elem.text else f"https://ge.globo.com" if cat_nome == "Esportes" else "https://g1.globo.com"
                     desc = desc_elem.text if desc_elem is not None and desc_elem.text else f"Acompanhe as principais atualizações e coberturas da editoria de {cat_nome}."
                     
-                    # Limpeza simples de tags HTML no resumo se houver
                     if "<" in desc:
                         import re
                         desc = re.sub('<.*?>', '', desc)
 
                     noticia_obj = {
                         "category": cat_nome, "color": info["color"],
-                        "title": titulo,
-                        "link": link,
+                        "title": titulo, "link": link,
                         "description": desc[:150] + "..." if len(desc) > 150 else desc
                     }
                     items_cat.append(noticia_obj)
@@ -284,7 +336,7 @@ def gerar_sitemap(lista_paises):
     with open("sitemap.xml", "w", encoding="utf-8") as f: f.write("\n".join(xml_content))
 
 def gerar_site():
-    print("Iniciando geração com correção de links e notícias...")
+    print("Iniciando geração com design profissional moderno...")
     paises = baixar_paises()
     categorias_dict, todas_noticias = buscar_noticias_por_categoria()
     
@@ -313,7 +365,7 @@ def gerar_site():
         f.write(Template(INDEX_TEMPLATE).render(paises=lista_paises, categorias=categorias_dict, ad_banner=AD_BANNER, monetag_meta=MONETAG_META, licenca_rodape=LICENCA_RODAPE, dominio=DOMINIO_SITE))
     
     gerar_sitemap(lista_paises)
-    print(f"Sucesso! {len(lista_paises)} países gerados com notícias corrigidas.")
+    print(f"Sucesso! {len(lista_paises)} países gerados com layout profissional.")
 
 if __name__ == "__main__":
     gerar_site()
