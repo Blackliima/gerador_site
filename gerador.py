@@ -10,6 +10,7 @@ urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 DOMINIO_SITE = "https://gerador-site.pages.dev"
 MONETAG_META = '<meta name="monetag" content="60579baab4bd2ab620a4e0fdf532170a">'
+GOOGLE_META = '<meta name="google-site-verification" content="pbgwZbVwgKMwqqqGYFcHeGGbV7EM7nBdlns1c_DN_Sw" />'
 
 AD_BANNER = """
 <div style="text-align:center; margin: 30px 0; background:var(--card-bg); padding:20px; border-radius:12px; box-shadow: 0 4px 12px rgba(0,0,0,0.06); border: 1px dashed rgba(0,0,0,0.1);">
@@ -41,6 +42,7 @@ HTML_TEMPLATE = """
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {{ monetag_meta | safe }}
+    {{ google_meta | safe }}
     <title>{{ country.name }} - Portal Global de Notícias & Dados</title>
     <meta name="description" content="Acompanhe as últimas manchetes, indicadores econômicos e estatísticas oficiais de {{ country.name }}.">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌍</text></svg>">
@@ -144,6 +146,7 @@ INDEX_TEMPLATE = """
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {{ monetag_meta | safe }}
+    {{ google_meta | safe }}
     <title>Portal Global - Notícias, Tecnologia, Economia e Esportes</title>
     <meta name="description" content="Portal de dados globais e notícias em tempo real cobrindo nações de todo o planeta.">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌍</text></svg>">
@@ -320,7 +323,7 @@ def baixar_paises():
     except: pass
     return [
         {"name": {"common": "Brasil"}, "capital": ["Brasília"], "region": "Americas", "population": 212000000, "currencies": {"BRL": {"name": "Real"}}, "timezones": ["UTC-3"], "languages": {"por": "Português"}},
-        {"name": {"common": "Estados Unidos"}, "capital": ["Washington, D.C."], "region": "Americas", "population": 331000000, "currencies": {"USD": {"name": "Dólar"}}, "timezones": ["UTC-5"], "languages": {"eng": "Inglês"}},
+        {"name": {"common": "Estados Unidos"}, "capital": {"common": "Washington, D.C."}, "region": "Americas", "population": 331000000, "currencies": {"USD": {"name": "Dólar"}}, "timezones": ["UTC-5"], "languages": {"eng": "Inglês"}},
         {"name": {"common": "Portugal"}, "capital": ["Lisboa"], "region": "Europe", "population": 10300000, "currencies": {"EUR": {"name": "Euro"}}, "timezones": ["UTC"], "languages": {"por": "Português"}},
         {"name": {"common": "Japão"}, "capital": ["Tóquio"], "region": "Asia", "population": 125000000, "currencies": {"JPY": {"name": "Iene"}}, "timezones": ["UTC+9"], "languages": {"jpn": "Japonês"}},
         {"name": {"common": "França"}, "capital": ["Paris"], "region": "Europe", "population": 67000000, "currencies": {"EUR": {"name": "Euro"}}, "timezones": ["UTC+1"], "languages": {"fra": "Francês"}}
@@ -336,7 +339,7 @@ def gerar_sitemap(lista_paises):
     with open("sitemap.xml", "w", encoding="utf-8") as f: f.write("\n".join(xml_content))
 
 def gerar_site():
-    print("Iniciando geração com design profissional moderno...")
+    print("Iniciando geração com verificação do Google Search Console...")
     paises = baixar_paises()
     categorias_dict, todas_noticias = buscar_noticias_por_categoria()
     
@@ -346,8 +349,16 @@ def gerar_site():
         try:
             name = item.get('name', {}).get('common', 'Desconhecido')
             file_name = name.lower().replace(' ', '-').replace('(', '').replace(')', '').replace('.', '') + ".html"
+            capital_val = item.get('capital', ['N/A'])
+            if isinstance(capital_val, list) and len(capital_val) > 0:
+                capital_str = capital_val[0]
+            elif isinstance(capital_val, str):
+                capital_str = capital_val
+            else:
+                capital_str = 'N/A'
+
             country_data = {
-                "name": name, "capital": item.get('capital', ['N/A'])[0],
+                "name": name, "capital": capital_str,
                 "region": item.get('region', 'N/A'), "population": f"{item.get('population', 0):,}".replace(',', '.'),
                 "currency": list(item.get('currencies', {}).values())[0]['name'] if item.get('currencies') else 'N/A',
                 "timezone": ", ".join(item.get('timezones', ['UTC'])) if isinstance(item.get('timezones'), list) else str(item.get('timezones', 'UTC')),
@@ -357,15 +368,15 @@ def gerar_site():
             noticias_pais = list(todas_noticias)
             random.shuffle(noticias_pais)
             with open(file_name, "w", encoding="utf-8") as f:
-                f.write(template.render(country=country_data, noticias=noticias_pais[:8], ad_banner=AD_BANNER, monetag_meta=MONETAG_META, licenca_rodape=LICENCA_RODAPE, dominio=DOMINIO_SITE))
+                f.write(template.render(country=country_data, noticias=noticias_pais[:8], ad_banner=AD_BANNER, monetag_meta=MONETAG_META, google_meta=GOOGLE_META, licenca_rodape=LICENCA_RODAPE, dominio=DOMINIO_SITE))
             lista_paises.append({"name": name, "file": file_name})
         except: continue
 
     with open("index.html", "w", encoding="utf-8") as f:
-        f.write(Template(INDEX_TEMPLATE).render(paises=lista_paises, categorias=categorias_dict, ad_banner=AD_BANNER, monetag_meta=MONETAG_META, licenca_rodape=LICENCA_RODAPE, dominio=DOMINIO_SITE))
+        f.write(Template(INDEX_TEMPLATE).render(paises=lista_paises, categorias=categorias_dict, ad_banner=AD_BANNER, monetag_meta=MONETAG_META, google_meta=GOOGLE_META, licenca_rodape=LICENCA_RODAPE, dominio=DOMINIO_SITE))
     
     gerar_sitemap(lista_paises)
-    print(f"Sucesso! {len(lista_paises)} países gerados com layout profissional.")
+    print(f"Sucesso! {len(lista_paises)} países gerados com a tag do Google.")
 
 if __name__ == "__main__":
     gerar_site()
