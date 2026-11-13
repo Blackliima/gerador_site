@@ -8,7 +8,7 @@ import random
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
-DOMINIO_SITE = "https://guia-dados-globais.lkliima1950.workers.dev"
+DOMINIO_SITE = "DOMINIO_SITE = "https://gerador-site.pages.dev""
 MONETAG_META = '<meta name="monetag" content="ef73c6c12e78377782a937d613011d86">'
 
 AD_BANNER = """
@@ -287,4 +287,5 @@ def gerar_site():
 
 if __name__ == "__main__":
     gerar_site()
+
 
