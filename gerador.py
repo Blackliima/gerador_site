@@ -152,7 +152,7 @@ INDEX_TEMPLATE = """
 </head>
 <body data-theme="light">
     <div class="container">
-        <div class="top-bar"><button class="theme-btn" onclick="toggleTheme()">🌓 Alternar Tema</button></div>
+        <div class="top-bar"><button class="theme-btn" onclick="toggleTheme()">🌓 Alternار Tema</button></div>
         {{ ad_banner | safe }}
         <header>
             <h1>Portal Global de Notícias & Dados</h1>
@@ -227,17 +227,37 @@ def buscar_noticias_por_categoria():
             if resp.status_code == 200:
                 root = ET.fromstring(resp.content)
                 for item in root.findall('.//item')[:4]:
+                    title_elem = item.find('title')
+                    link_elem = item.find('link')
+                    desc_elem = item.find('description')
+                    
+                    titulo = title_elem.text if title_elem is not None and title_elem.text else f"Últimas notícias de {cat_nome}"
+                    link = link_elem.text if link_elem is not None and link_elem.text else f"https://ge.globo.com" if cat_nome == "Esportes" else "https://g1.globo.com"
+                    desc = desc_elem.text if desc_elem is not None and desc_elem.text else f"Acompanhe as principais atualizações e coberturas da editoria de {cat_nome}."
+                    
+                    # Limpeza simples de tags HTML no resumo se houver
+                    if "<" in desc:
+                        import re
+                        desc = re.sub('<.*?>', '', desc)
+
                     noticia_obj = {
                         "category": cat_nome, "color": info["color"],
-                        "title": item.find('title').text if item.find('title') is not None else "Atualização",
-                        "link": item.find('link').text if item.find('link') is not None else "#",
-                        "description": f"Cobertura especial da editoria de {cat_nome}."
+                        "title": titulo,
+                        "link": link,
+                        "description": desc[:150] + "..." if len(desc) > 150 else desc
                     }
                     items_cat.append(noticia_obj)
                     todas_noticias.append(noticia_obj)
         except: pass
+        
         if not items_cat:
-            items_cat.append({"category": cat_nome, "color": info["color"], "title": "Atualizações em tempo real", "link": "#", "description": "Acompanhe as principais novidades."})
+            fallback_link = "https://ge.globo.com" if cat_nome == "Esportes" else "https://g1.globo.com"
+            items_cat.append({
+                "category": cat_nome, "color": info["color"], 
+                "title": f"Cobertura especial de {cat_nome} em tempo real", 
+                "link": fallback_link, 
+                "description": f"Clique para acessar a cobertura completa e atualizada da editoria de {cat_nome}."
+            })
         categorias_processadas[cat_nome] = {"id": info["id"], "color": info["color"], "lista": items_cat}
     return categorias_processadas, todas_noticias
 
@@ -264,7 +284,7 @@ def gerar_sitemap(lista_paises):
     with open("sitemap.xml", "w", encoding="utf-8") as f: f.write("\n".join(xml_content))
 
 def gerar_site():
-    print("Iniciando geração com Licença no Rodapé...")
+    print("Iniciando geração com correção de links e notícias...")
     paises = baixar_paises()
     categorias_dict, todas_noticias = buscar_noticias_por_categoria()
     
@@ -293,7 +313,7 @@ def gerar_site():
         f.write(Template(INDEX_TEMPLATE).render(paises=lista_paises, categorias=categorias_dict, ad_banner=AD_BANNER, monetag_meta=MONETAG_META, licenca_rodape=LICENCA_RODAPE, dominio=DOMINIO_SITE))
     
     gerar_sitemap(lista_paises)
-    print(f"Sucesso! {len(lista_paises)} países gerados com a licença no rodapé.")
+    print(f"Sucesso! {len(lista_paises)} países gerados com notícias corrigidas.")
 
 if __name__ == "__main__":
     gerar_site()
