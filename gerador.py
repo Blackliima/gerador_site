@@ -1,685 +1,695 @@
 import os
-import re
-import json
-import html
-import time
-import urllib.request
+import requests
 import xml.etree.ElementTree as ET
-from datetime import datetime, timezone
+from jinja2 import Template
+import urllib3
+from datetime import datetime
+import random
+import re
 
-# ==============================================================================
-# CONFIGURAÇÕES GERAIS DO PORTAL (LAYOUT ORIGINAL PRESERVADO)
-# ==============================================================================
-SITE_NAME = "Global News & Data"
-SITE_URL = "https://globalnewsdata.pages.dev"
-ADSENSE_PUB_ID = "ca-pub-5379027874215422"
-OUTPUT_DIR = "."
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
-CATEGORIES = {
-    "mundo": {
-        "title": "Mundo & Geopolítica",
-        "icon": "🌍",
-        "feeds": [
-            "https://news.google.com/rss/headlines/section/topic/WORLD?hl=pt-BR&gl=BR&ceid=BR:pt-419",
-            "https://feeds.bbci.co.uk/portuguese/rss.xml"
-        ]
-    },
-    "economia": {
-        "title": "Economia & Mercados",
-        "icon": "📈",
-        "feeds": [
-            "https://news.google.com/rss/headlines/section/topic/BUSINESS?hl=pt-BR&gl=BR&ceid=BR:pt-419"
-        ]
-    },
-    "tecnologia": {
-        "title": "Tecnologia & IA",
-        "icon": "💻",
-        "feeds": [
-            "https://news.google.com/rss/headlines/section/topic/TECHNOLOGY?hl=pt-BR&gl=BR&ceid=BR:pt-419"
-        ]
-    },
-    "vagas": {
-        "title": "Vagas & Home Office",
-        "icon": "💼",
-        "feeds": [
-            "https://news.google.com/rss/search?q=vagas+home+office+trabalho+remoto+emprego&hl=pt-BR&gl=BR&ceid=BR:pt-419"
-        ]
-    },
-    "filmes": {
-        "title": "Filmes, Séries & Streaming",
-        "icon": "🎬",
-        "feeds": [
-            "https://news.google.com/rss/search?q=filmes+series+netflix+estreias+cinema&hl=pt-BR&gl=BR&ceid=BR:pt-419"
-        ]
-    },
-    "games": {
-        "title": "Games & E-Sports",
-        "icon": "🎮",
-        "feeds": [
-            "https://news.google.com/rss/search?q=games+playstation+xbox+nintendo+pc+gaming&hl=pt-BR&gl=BR&ceid=BR:pt-419"
-        ]
-    },
-    "esportes": {
-        "title": "Esportes Globais",
-        "icon": "⚽",
-        "feeds": [
-            "https://news.google.com/rss/headlines/section/topic/SPORTS?hl=pt-BR&gl=BR&ceid=BR:pt-419"
-        ]
-    },
-    "saude": {
-        "title": "Qualidade de Vida & Saúde",
-        "icon": "🧬",
-        "feeds": [
-            "https://news.google.com/rss/headlines/section/topic/HEALTH?hl=pt-BR&gl=BR&ceid=BR:pt-419"
-        ]
-    }
+DOMINIO_SITE = "https://gerador-site.pages.dev"
+MONETAG_SCRIPT = '<script src="https://quge5.com/88/tag.min.js" data-zone="309679" async data-cfasync="false"></script>'
+GOOGLE_META = '<meta name="google-site-verification" content="pbgwZbVwgKMwqqqGYFcHeGGbV7EM7nBdlns1c_DN_Sw" />'
+ADSENSE_SCRIPT = '<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5379027874215422" crossorigin="anonymous"></script>'
+
+AD_BANNER = """
+<div style="text-align:center; margin: 30px 0; background:var(--card-bg); padding:20px; border-radius:12px; box-shadow: 0 4px 12px rgba(0,0,0,0.06); border: 1px dashed rgba(0,0,0,0.1);">
+    <p style="color:var(--text-light); font-size:10px; margin-bottom:8px; text-transform: uppercase; letter-spacing: 1.5px; font-weight:600;">Publicidade Patrocinada</p>
+    <script type="text/javascript">
+        atOptions = {
+            'key' : '7d8438dbf1b7a796906a9575be2722b3',
+            'format' : 'iframe',
+            'height' : 250,
+            'width' : 300,
+            'params' : {}
+        };
+    </script>
+    <script type="text/javascript" src="https://bauval.org/22/7d8438dbf1b7a796906a9575be2722b3"></script>
+</div>
+"""
+
+WIDGET_TRADUTOR_MODERNO = """
+<div class="language-picker-wrapper">
+    <div id="google_translate_element" style="display:none;"></div>
+    <select id="customLanguageSelect" onchange="mudarIdiomaGoogle(this.value)" class="lang-select">
+        <option value="pt">🇧🇷 Português</option>
+        <option value="en">🇺🇸 English</option>
+        <option value="es">🇪🇸 Español</option>
+        <option value="fr">🇫🇷 Français</option>
+        <option value="de">🇩🇪 Deutsch</option>
+        <option value="ja">🇯🇵 日本語</option>
+        <option value="zh-CN">🇨🇳 中文</option>
+    </select>
+</div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({pageLanguage: 'pt', includedLanguages: 'pt,en,es,fr,de,ja,zh-CN', autoDisplay: false}, 'google_translate_element');
 }
+function mudarIdiomaGoogle(lang) {
+  var select = document.querySelector('.goog-te-combo');
+  if (select) {
+    select.value = lang;
+    select.dispatchEvent(new Event('change'));
+  }
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+"""
 
-COUNTRIES = [
-    {"slug": "brasil", "name": "Brasil", "capital": "Brasília", "currency": "Real (BRL)", "pop": "216,4 milhões", "continent": "América do Sul", "gdp": "US$ 2,17 trilhões"},
-    {"slug": "estados-unidos", "name": "Estados Unidos", "capital": "Washington, D.C.", "currency": "Dólar Americano (USD)", "pop": "334,9 milhões", "continent": "América do Norte", "gdp": "US$ 27,36 trilhões"},
-    {"slug": "portugal", "name": "Portugal", "capital": "Lisboa", "currency": "Euro (EUR)", "pop": "10,5 milhões", "continent": "Europa", "gdp": "US$ 287 bilhões"},
-    {"slug": "reino-unido", "name": "Reino Unido", "capital": "Londres", "currency": "Libra Esterlina (GBP)", "pop": "67,7 milhões", "continent": "Europa", "gdp": "US$ 3,34 trilhões"},
-    {"slug": "japao", "name": "Japão", "capital": "Tóquio", "currency": "Iene (JPY)", "pop": "124,5 milhões", "continent": "Ásia", "gdp": "US$ 4,21 trilhões"},
-    {"slug": "alemanha", "name": "Alemanha", "capital": "Berlim", "currency": "Euro (EUR)", "pop": "84,4 milhões", "continent": "Europa", "gdp": "US$ 4,46 trilhões"},
-    {"slug": "canada", "name": "Canadá", "capital": "Ottawa", "currency": "Dólar Canadense (CAD)", "pop": "40,1 milhões", "continent": "América do Norte", "gdp": "US$ 2,14 trilhões"},
-    {"slug": "emirados-arabes", "name": "Emirados Árabes Unidos", "capital": "Abu Dhabi", "currency": "Dirham (AED)", "pop": "9,5 milhões", "continent": "Ásia", "gdp": "US$ 509 bilhões"}
-]
+LICENCA_RODAPE = """
+<div style="font-size: 13px; color: var(--text-light); line-height: 1.6; margin-top: 40px; padding: 25px; background: var(--card-bg); border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.03); border: 1px solid rgba(0,0,0,0.05);">
+    <p style="margin: 0 0 10px 0;"><strong>Licença e Termos de Uso:</strong> Global News & Data consolida dados públicos globais, análises e notícias em tempo real para fins informativos. O conteúdo é distribuído respeitando os direitos autorais e direcionando os leitores às fontes originais.</p>
+    <p style="margin: 0;"><a href="anuncie.html" style="color: var(--primary); text-decoration: none; font-weight: 600;">Anuncie Conosco / Publieditoriais</a> | © 2026 Global News & Data. Todos os direitos reservados. Licenciado sob Creative Commons Atribuição 4.0 Internacional.</p>
+</div>
+"""
 
-def clean_html(raw_html):
-    if not raw_html:
-        return ""
-    text = re.sub(r'<[^>]+>', '', raw_html)
-    text = html.unescape(text)
-    return " ".join(text.split())[:220] + "..."
-
-def fetch_rss(url, limit=6):
-    items = []
-    try:
-        req = urllib.request.Request(
-            url,
-            headers={'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) GlobalNewsBot/1.0'}
-        )
-        with urllib.request.urlopen(req, timeout=8) as response:
-            xml_data = response.read()
-        root = ET.fromstring(xml_data)
-        for item in root.findall('.//item')[:limit]:
-            title = item.findtext('title') or "Atualização"
-            link = item.findtext('link') or "#"
-            pub_date = item.findtext('pubDate') or datetime.now().strftime("%d/%m/%Y")
-            desc = clean_html(item.findtext('description') or "")
-            source_el = item.find('source')
-            source = source_el.text if source_el is not None else "Feed"
-
-            if " - " in title:
-                parts = title.rsplit(" - ", 1)
-                title = parts[0]
-                if source == "Feed":
-                    source = parts[1]
-
-            items.append({
-                "title": html.escape(title.strip()),
-                "link": link.strip(),
-                "date": pub_date[:16],
-                "desc": html.escape(desc),
-                "source": html.escape(source.strip())
-            })
-    except Exception as e:
-        pass
-    return items
-
-def collect_all_news():
-    news_data = {}
-    for cat_key, cat_info in CATEGORIES.items():
-        cat_items = []
-        seen = set()
-        for feed_url in cat_info["feeds"]:
-            for art in fetch_rss(feed_url, limit=6):
-                if art["title"] not in seen:
-                    seen.add(art["title"])
-                    cat_items.append(art)
-        if not cat_items:
-            cat_items.append({
-                "title": f"Plantão Global: {cat_info['title']}",
-                "link": "#",
-                "date": datetime.now().strftime("%d/%m/%Y"),
-                "desc": "Acompanhe as principais atualizações e relatórios em tempo real.",
-                "source": SITE_NAME
-            })
-        news_data[cat_key] = cat_items[:8]
-    return news_data
-
-def get_base_template(page_title, meta_desc, canonical_path, content_html, extra_schema=""):
-    now_str = datetime.now().strftime("%d/%m/%Y %H:%M")
-    nav_links = "".join([
-        f'<a href="index.html#{k}" class="nav-pill">{v["icon"]} {v["title"].split(" & ")[0]}</a>'
-        for k, v in CATEGORIES.items()
-    ])
-    country_links = "".join([
-        f'<a href="pais-{c["slug"]}.html">{c["name"]}</a>'
-        for c in COUNTRIES
-    ])
-
-    return f"""<!DOCTYPE html>
-<html lang="pt-BR" data-theme="dark">
+HTML_TEMPLATE = """
+<!DOCTYPE html>
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{page_title} | {SITE_NAME}</title>
-    <meta name="description" content="{meta_desc}">
-    <link rel="canonical" href="{SITE_URL}/{canonical_path}">
-    
-    <!-- Google AdSense -->
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client={ADSENSE_PUB_ID}" crossorigin="anonymous"></script>
-    
-    <!-- Monetag Multitag Ativa -->
-    <script src="https://alwingulla.com/88/tag.min.js" data-zone="90317" async data-cfasync="false"></script>
-
-    {extra_schema}
-
+    {{ adsense_script | safe }}
+    {{ monetag_script | safe }}
+    {{ google_meta | safe }}
+    <title>{{ country.name }} - Global News & Data | Notícias e Indicadores Oficiais</title>
+    <meta name="description" content="Tudo sobre {{ country.name }}: últimas notícias em tempo real, capital, população, economia, fuso horário e indicadores oficiais atualizados.">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌍</text></svg>">
     <style>
-        :root {{
-            --bg: #0b0f19;
-            --surface: #131a2a;
-            --surface-hover: #1b2438;
-            --border: #243049;
-            --text: #f1f5f9;
-            --text-muted: #94a3b8;
-            --primary: #3b82f6;
-            --accent: #10b981;
-        }}
-        [data-theme="light"] {{
-            --bg: #f8fafc;
-            --surface: #ffffff;
-            --surface-hover: #f1f5f9;
-            --border: #e2e8f0;
-            --text: #0f172a;
-            --text-muted: #475569;
-            --primary: #2563eb;
-            --accent: #059669;
-        }}
-        * {{ box-sizing: border-box; margin: 0; padding: 0; }}
-        body {{
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            background: var(--bg);
-            color: var(--text);
-            line-height: 1.6;
-        }}
-        a {{ color: inherit; text-decoration: none; }}
-        
-        header {{
-            background: var(--surface);
-            border-bottom: 1px solid var(--border);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }}
-        .header-top {{
-            max-width: 1280px;
-            margin: 0 auto;
-            padding: 14px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 12px;
-        }}
-        .brand {{
-            font-size: 1.45rem;
-            font-weight: 800;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }}
-        .brand span {{ color: var(--primary); }}
-        .controls {{ display: flex; align-items: center; gap: 10px; }}
-        .btn-control {{
-            background: var(--surface-hover);
-            border: 1px solid var(--border);
-            color: var(--text);
-            padding: 6px 12px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 0.85rem;
-            font-weight: 600;
-        }}
-        .nav-scroll {{
-            max-width: 1280px;
-            margin: 0 auto;
-            padding: 0 20px 12px;
-            display: flex;
-            gap: 8px;
-            overflow-x: auto;
-            scrollbar-width: none;
-        }}
-        .nav-pill {{
-            background: var(--bg);
-            border: 1px solid var(--border);
-            padding: 6px 13px;
-            border-radius: 999px;
-            font-size: 0.84rem;
-            font-weight: 600;
-            white-space: nowrap;
-        }}
-        .nav-pill:hover {{ border-color: var(--primary); color: var(--primary); }}
-
-        .container {{
-            max-width: 1280px;
-            margin: 24px auto;
-            padding: 0 20px;
-            display: grid;
-            grid-template-columns: 1fr 330px;
-            gap: 28px;
-        }}
-        @media (max-width: 960px) {{
-            .container {{ grid-template-columns: 1fr; }}
-        }}
-
-        .ad-slot {{
-            background: var(--surface);
-            border: 1px dashed var(--border);
-            border-radius: 8px;
-            padding: 12px;
-            margin: 18px 0;
-            text-align: center;
-        }}
-        .ad-label {{
-            font-size: 0.68rem;
-            text-transform: uppercase;
-            color: var(--text-muted);
-            margin-bottom: 4px;
-        }}
-
-        .section-block {{ margin-bottom: 36px; }}
-        .section-header {{
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 2px solid var(--border);
-            padding-bottom: 8px;
-            margin-bottom: 16px;
-        }}
-        .section-header h2 {{ font-size: 1.25rem; display: flex; align-items: center; gap: 8px; }}
-        .news-grid {{
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
-            gap: 16px;
-        }}
-        .card {{
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 10px;
-            padding: 16px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }}
-        .card:hover {{ border-color: var(--primary); }}
-        .card-meta {{
-            font-size: 0.75rem;
-            color: var(--primary);
-            font-weight: 700;
-            text-transform: uppercase;
-            margin-bottom: 6px;
-        }}
-        .card h3 {{ font-size: 1.02rem; margin-bottom: 8px; line-height: 1.4; }}
-        .card p {{ font-size: 0.86rem; color: var(--text-muted); margin-bottom: 12px; }}
-        .card-footer {{
-            font-size: 0.76rem;
-            color: var(--text-muted);
-            display: flex;
-            justify-content: space-between;
-            border-top: 1px solid var(--border);
-            padding-top: 8px;
-        }}
-
-        .widget {{
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 10px;
-            padding: 18px;
-            margin-bottom: 20px;
-        }}
-        .widget h3 {{ font-size: 1.05rem; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }}
-        .weather-select {{
-            width: 100%;
-            padding: 8px;
-            border-radius: 6px;
-            background: var(--bg);
-            color: var(--text);
-            border: 1px solid var(--border);
-            margin-bottom: 12px;
-        }}
-        .weather-display {{
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: var(--bg);
-            padding: 12px;
-            border-radius: 8px;
-        }}
-        .poll-option {{
-            display: block;
-            width: 100%;
-            text-align: left;
-            padding: 10px 12px;
-            margin-bottom: 8px;
-            background: var(--bg);
-            border: 1px solid var(--border);
-            color: var(--text);
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 0.88rem;
-        }}
-        .poll-option:hover {{ border-color: var(--primary); }}
-        .poll-bar-bg {{
-            height: 6px;
-            background: var(--border);
-            border-radius: 4px;
-            margin-top: 6px;
-            overflow: hidden;
-        }}
-        .poll-bar-fill {{ height: 100%; background: var(--primary); }}
-        .country-tags {{ display: flex; flex-wrap: wrap; gap: 6px; }}
-        .country-tags a {{
-            font-size: 0.8rem;
-            background: var(--bg);
-            border: 1px solid var(--border);
-            padding: 4px 10px;
-            border-radius: 6px;
-        }}
-
-        footer {{
-            background: var(--surface);
-            border-top: 1px solid var(--border);
-            padding: 32px 20px;
-            margin-top: 40px;
-            text-align: center;
-            font-size: 0.85rem;
-            color: var(--text-muted);
-        }}
+        :root { 
+            --primary: #2563eb; --primary-dark: #1d4ed8; --bg-color: #f8fafc; 
+            --card-bg: #ffffff; --text: #0f172a; --text-light: #64748b; 
+            --header-bg: linear-gradient(135deg, #0f172a, #1e3a8a); --border-color: #e2e8f0;
+        }
+        [data-theme="dark"] { 
+            --primary: #3b82f6; --primary-dark: #60a5fa; --bg-color: #030712; 
+            --card-bg: #111827; --text: #f9fafb; --text-light: #9ca3af; 
+            --header-bg: linear-gradient(135deg, #020617, #0f172a); --border-color: #1f2937;
+        }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; line-height: 1.6; color: var(--text); background: var(--bg-color); margin: 0; padding: 0; transition: background 0.3s, color 0.3s; }
+        .navbar { background: var(--card-bg); border-bottom: 1px solid var(--border-color); padding: 12px 20px; position: sticky; top: 0; z-index: 1000; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+        .nav-container { max-width: 1000px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
+        .back-link { color: var(--primary); text-decoration: none; font-weight: 600; font-size: 14px; display: flex; align-items: center; gap: 5px; }
+        .nav-right { display: flex; align-items: center; gap: 12px; }
+        .lang-select { background: var(--bg-color); color: var(--text); border: 1px solid var(--border-color); padding: 6px 12px; border-radius: 20px; font-weight: 600; font-size: 12px; cursor: pointer; outline: none; transition: border-color 0.2s; }
+        .lang-select:hover { border-color: var(--primary); }
+        .theme-btn { background: var(--bg-color); color: var(--text); border: 1px solid var(--border-color); padding: 6px 12px; border-radius: 20px; cursor: pointer; font-weight: 600; font-size: 12px; transition: all 0.2s; }
+        .theme-btn:hover { border-color: var(--primary); }
+        .container { max-width: 1000px; margin: 30px auto; padding: 0 20px; }
+        header { background: var(--header-bg); color: white; padding: 40px; border-radius: 16px; margin-bottom: 30px; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1); }
+        header h1 { margin: 0 0 10px 0; font-size: 32px; font-weight: 800; letter-spacing: -0.5px; }
+        header p { margin: 0; opacity: 0.9; font-size: 16px; }
+        .grid-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; margin-bottom: 35px; }
+        .stat-card { background: var(--card-bg); padding: 22px; border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02); border: 1px solid var(--border-color); }
+        .stat-card .label { font-size: 12px; color: var(--text-light); text-transform: uppercase; font-weight: 700; letter-spacing: 0.5px; }
+        .stat-card .value { font-size: 20px; color: var(--primary); font-weight: 700; margin-top: 6px; }
+        .info-box-robust { background: var(--card-bg); border: 1px solid var(--border-color); padding: 25px; border-radius: 14px; margin-bottom: 35px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02); }
+        .info-box-robust h3 { margin-top: 0; color: var(--primary); font-size: 19px; display: flex; align-items: center; gap: 8px; }
+        .info-box-robust p { margin: 0 0 12px 0; font-size: 15px; color: var(--text-light); line-height: 1.7; }
+        .faq-section { background: var(--card-bg); border: 1px solid var(--border-color); padding: 25px; border-radius: 14px; margin-bottom: 35px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02); }
+        .faq-section h3 { margin-top: 0; color: var(--primary); font-size: 19px; margin-bottom: 15px; }
+        .faq-item { margin-bottom: 15px; }
+        .faq-item h4 { margin: 0 0 5px 0; font-size: 16px; color: var(--text); }
+        .faq-item p { margin: 0; font-size: 14px; color: var(--text-light); line-height: 1.5; }
+        .curiosidade-box { background: linear-gradient(135deg, rgba(37,99,235,0.08), rgba(30,58,138,0.05)); border: 1px solid var(--primary); padding: 24px; border-radius: 14px; margin-bottom: 35px; }
+        .curiosidade-box h3 { margin-top: 0; color: var(--primary); font-size: 18px; display: flex; align-items: center; gap: 8px; }
+        .curiosidade-box p { margin: 0; font-size: 15px; color: var(--text); line-height: 1.6; }
+        .section-title { font-size: 22px; font-weight: 700; margin: 40px 0 20px 0; border-left: 5px solid var(--primary); padding-left: 12px; display: flex; align-items: center; }
+        .news-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+        .news-card { background: var(--card-bg); border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02); border: 1px solid var(--border-color); display: flex; flex-direction: column; overflow: hidden; transition: transform 0.2s, box-shadow 0.2s; }
+        .news-card:hover { transform: translateY(-3px); box-shadow: 0 10px 20px -3px rgba(0,0,0,0.05); }
+        .news-img { width: 100%; height: 160px; object-fit: cover; background: #e2e8f0; }
+        .news-content { padding: 20px; display: flex; flex-direction: column; justify-content: space-between; flex-grow: 1; }
+        .badge { display: inline-block; padding: 4px 10px; font-size: 11px; font-weight: 700; border-radius: 20px; text-transform: uppercase; margin-bottom: 12px; color: white; letter-spacing: 0.5px; }
+        .news-card h3 { margin: 0 0 10px 0; font-size: 17px; line-height: 1.4; }
+        .news-card h3 a { color: var(--text); text-decoration: none; transition: color 0.2s; }
+        .news-card h3 a:hover { color: var(--primary); }
+        .news-card p { margin: 0; font-size: 14px; color: var(--text-light); line-height: 1.5; }
+        .share-section { margin-top: 35px; background: var(--card-bg); padding: 20px; border-radius: 12px; border: 1px solid var(--border-color); text-align: center; }
+        .share-section p { margin: 0 0 12px 0; font-weight: 600; font-size: 14px; }
+        .share-btn { display: inline-block; padding: 8px 16px; margin: 4px; border-radius: 20px; color: white; text-decoration: none; font-size: 13px; font-weight: 600; }
+        .btn-whatsapp { background: #25d366; } .btn-twitter { background: #000000; } .btn-facebook { background: #1877f2; }
+        footer { text-align: center; margin-top: 50px; border-top: 1px solid var(--border-color); padding-top: 20px; }
     </style>
 </head>
-<body>
-
-    <header>
-        <div class="header-top">
-            <a href="index.html" class="brand">🌐 Global<span>News</span> & Data</a>
-            <div class="controls">
-                <div id="google_translate_element"></div>
-                <button class="btn-control" onclick="toggleTheme()" id="theme-btn">☀️ Modo Claro</button>
+<body data-theme="light">
+    <div class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="back-link">← Voltar ao Início Global</a>
+            <div class="nav-right">
+                {{ tradutor | safe }}
+                <button class="theme-btn" onclick="toggleTheme()">🌓 Tema</button>
             </div>
         </div>
-        <nav class="nav-scroll">
-            <a href="index.html" class="nav-pill">🏠 Início</a>
-            {nav_links}
-        </nav>
-    </header>
-
-    <div class="container">
-        <main>
-            {content_html}
-        </main>
-
-        <aside>
-            <div class="widget">
-                <h3>🌦️ Clima Global Ao Vivo</h3>
-                <select class="weather-select" id="city-selector" onchange="fetchWeather()">
-                    <option value="-23.55,-46.63">🇧🇷 São Paulo, Brasil</option>
-                    <option value="40.71,-74.00">🇺🇸 Nova York, EUA</option>
-                    <option value="51.50,-0.12">🇬🇧 Londres, Reino Unido</option>
-                    <option value="35.67,139.65">🇯🇵 Tóquio, Japão</option>
-                    <option value="38.72,-9.13">🇵🇹 Lisboa, Portugal</option>
-                    <option value="25.20,55.27">🇦🇪 Dubai, EAU</option>
-                </select>
-                <div class="weather-display" id="weather-box">
-                    <div>
-                        <strong id="weather-city">São Paulo</strong>
-                        <div style="font-size:0.8rem; color:var(--text-muted);" id="weather-wind">Vento: -- km/h</div>
-                    </div>
-                    <div style="font-size:1.6rem; font-weight:800; color:var(--primary);" id="weather-temp">--°C</div>
-                </div>
-            </div>
-
-            <div class="widget">
-                <h3>📊 Enquete do Leitor</h3>
-                <p style="font-size:0.88rem; margin-bottom:12px; color:var(--text-muted);">
-                    Qual setor vai gerar mais oportunidades globais nos próximos 12 meses?
-                </p>
-                <div id="poll-container">
-                    <button class="poll-option" onclick="votePoll(0)">🤖 Inteligência Artificial & Tech</button>
-                    <button class="poll-option" onclick="votePoll(1)">💼 Trabalho Remoto Internacional</button>
-                    <button class="poll-option" onclick="votePoll(2)">📈 Mercado Financeiro & Cripto</button>
-                    <button class="poll-option" onclick="votePoll(3)">🌱 Energia Verde & Sustentabilidade</button>
-                </div>
-                <div id="poll-status" style="font-size:0.78rem; color:var(--accent); margin-top:8px;"></div>
-            </div>
-
-            <div class="ad-slot">
-                <span class="ad-label">Publicidade</span>
-                <ins class="adsbygoogle"
-                     style="display:block; width:100%;"
-                     data-ad-client="{ADSENSE_PUB_ID}"
-                     data-ad-format="rectangle"
-                     data-full-width-responsive="true"></ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({{}});</script>
-            </div>
-
-            <div class="widget">
-                <h3>🗺️ Dados & Economia por País</h3>
-                <div class="country-tags" style="margin-top:8px;">
-                    {country_links}
-                </div>
-            </div>
-        </aside>
     </div>
+    <div class="container">
+        {{ ad_banner | safe }}
+        <header>
+            <h1>{{ country.name }}</h1>
+            <p>Painel analítico completo com estatísticas demográficas, manchetes globais e contexto geopolítico.</p>
+        </header>
+        
+        <div class="info-box-robust">
+            <h3>📖 Panorama Geopolítico e Econômico de {{ country.name }}</h3>
+            <p>O território de <strong>{{ country.name }}</strong> destaca-se no cenário internacional pela sua relevância na região de {{ country.region }}. Tendo {{ country.capital }} como sua principal referência administrativa, a nação movimenta fluxos comerciais estratégicos e atrai atenção constante nos mercados globais.</p>
+            <p>Nesta página interativa, você encontra dados oficiais consolidados, estatísticas populacionais, conversões de moeda e o monitoramento contínuo das principais editorias internacionais de notícias.</p>
+        </div>
 
-    <footer>
-        <p><strong>{SITE_NAME}</strong> — Monitoramento Internacional.</p>
-        <p style="margin-top:6px;"><a href="index.html">Início</a> • <a href="sitemap.xml">Sitemap</a> • <a href="privacidade.html">Privacidade</a></p>
-    </footer>
+        <div class="curiosidade-box">
+            <h3>💡 Curiosidade Global & Fato Marcante</h3>
+            <p>{{ country.curiosidade }}</p>
+        </div>
 
-    <script type="text/javascript">
-        function googleTranslateElementInit() {{
-            new google.translate.TranslateElement({{pageLanguage: 'pt', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}}, 'google_translate_element');
-        }}
-    </script>
-    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+        <div class="grid-stats">
+            <div class="stat-card"><div class="label">Capital Oficial</div><div class="value">{{ country.capital }}</div></div>
+            <div class="stat-card"><div class="label">Continente / Região</div><div class="value">{{ country.region }}</div></div>
+            <div class="stat-card"><div class="label">População Estimada</div><div class="value">{{ country.population }} hab.</div></div>
+            <div class="stat-card"><div class="label">Moeda Corrente</div><div class="value">{{ country.currency }}</div></div>
+            <div class="stat-card"><div class="label">Fuso Horário</div><div class="value">{{ country.timezone }}</div></div>
+            <div class="stat-card"><div class="label">Idioma Principal</div><div class="value">{{ country.language }}</div></div>
+        </div>
 
-    <script>
-        function toggleTheme() {{
-            const htmlEl = document.documentElement;
-            const current = htmlEl.getAttribute('data-theme');
-            const next = current === 'dark' ? 'light' : 'dark';
-            htmlEl.setAttribute('data-theme', next);
-            localStorage.setItem('gnd_theme', next);
-            document.getElementById('theme-btn').innerText = next === 'dark' ? '☀️ Modo Claro' : '🌙 Modo Escuro';
-        }}
-        (function initTheme() {{
-            const saved = localStorage.getItem('gnd_theme');
-            if (saved) {{
-                document.documentElement.setAttribute('data-theme', saved);
-                document.getElementById('theme-btn').innerText = saved === 'dark' ? '☀️ Modo Claro' : '🌙 Modo Escuro';
-            }}
-        }})();
-
-        async function fetchWeather() {{
-            const select = document.getElementById('city-selector');
-            const [lat, lon] = select.value.split(',');
-            const cityName = select.options[select.selectedIndex].text.split(',')[0];
-            try {{
-                const res = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${{lat}}&longitude=${{lon}}¤t_weather=true`);
-                const data = await res.json();
-                document.getElementById('weather-city').innerText = cityName;
-                document.getElementById('weather-temp').innerText = `${{Math.round(data.current_weather.temperature)}}°C`;
-                document.getElementById('weather-wind').innerText = `Vento: ${{data.current_weather.windspeed}} km/h`;
-            }} catch (e) {{
-                document.getElementById('weather-temp').innerText = "24°C";
-            }}
-        }}
-        fetchWeather();
-
-        const pollLabels = [
-            "🤖 Inteligência Artificial & Tech",
-            "💼 Trabalho Remoto Internacional",
-            "📈 Mercado Financeiro & Cripto",
-            "🌱 Energia Verde & Sustentabilidade"
-        ];
-        let pollVotes = JSON.parse(localStorage.getItem('gnd_poll_votes')) || [142, 98, 76, 54];
-        let hasVoted = localStorage.getItem('gnd_has_voted') === 'true';
-
-        function renderPoll() {{
-            if (!hasVoted) return;
-            const total = pollVotes.reduce((a, b) => a + b, 0);
-            const container = document.getElementById('poll-container');
-            container.innerHTML = pollLabels.map((label, idx) => {{
-                const pct = Math.round((pollVotes[idx] / total) * 100);
-                return `
-                    <div style="margin-bottom:10px; font-size:0.85rem;">
-                        <div style="display:flex; justify-content:space-between;">
-                            <span>${{label}}</span>
-                            <strong>${{pct}}%</strong>
-                        </div>
-                        <div class="poll-bar-bg"><div class="poll-bar-fill" style="width:${{pct}}%;"></div></div>
+        <div class="faq-section">
+            <h3>❓ Perguntas Frequentes sobre {{ country.name }} (SEO Info)</h3>
+            <div class="faq-item">
+                <h4>Qual é a capital e a moeda oficial de {{ country.name }}?</h4>
+                <p>A capital de {{ country.name }} é {{ country.capital }} e a moeda oficial utilizada em suas transações é o(a) {{ country.currency }}.</p>
+            </div>
+            <div class="faq-item">
+                <h4>Onde acompanhar notícias atualizadas de {{ country.name }}?</h4>
+                <p>No Global News & Data, você acompanha em tempo real as principais coberturas internacionais, análises econômicas, tecnológicas e esportivas conectadas às principais fontes do mundo.</p>
+            </div>
+            <div class="faq-item">
+                <h4>Qual é o idioma e o fuso horário predominante?</h4>
+                <p>O idioma oficial registrado é o(a) {{ country.language }} e o fuso horário de referência abrange a marcação {{ country.timezone }}.</p>
+            </div>
+        </div>
+        
+        {{ ad_banner | safe }}
+        
+        <h2 class="section-title">Manchetes de Impacto e Cobertura Global</h2>
+        <div class="news-grid">
+            {% for noticia in noticias %}
+            <div class="news-card">
+                <img src="{{ noticia.image }}" alt="Capa da Notícia" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
+                <div class="news-content">
+                    <div>
+                        <span class="badge" style="background-color: {{ noticia.color }};">{{ noticia.category }}</span>
+                        <h3><a href="{{ noticia.link }}" target="_blank" rel="nofollow">{{ noticia.title }}</a></h3>
                     </div>
-                `;
-            }}).join('');
-            document.getElementById('poll-status').innerText = `Obrigado pelo voto! Total: ${{total}}.`;
-        }}
+                    <p>{{ noticia.description }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        
+        <div class="share-section">
+            <p>Gostou deste relatório analítico? Compartilhe com amigos e redes:</p>
+            <a href="https://api.whatsapp.com/send?text=Confira%20os%20dados%20e%20noticias%20de%20{{ country.name }}%20{{ dominio }}/{{ country.file }}" target="_blank" class="share-btn btn-whatsapp">WhatsApp</a>
+            <a href="https://twitter.com/intent/tweet?text=Veja%20tudo%20sobre%20{{ country.name }}&url={{ dominio }}/{{ country.file }}" target="_blank" class="share-btn btn-twitter">Twitter / X</a>
+            <a href="https://www.facebook.com/sharer/sharer.php?u={{ dominio }}/{{ country.file }}" target="_blank" class="share-btn btn-facebook">Facebook</a>
+        </div>
 
-        function votePoll(index) {{
-            if (hasVoted) return;
-            pollVotes[index] += 1;
-            hasVoted = true;
-            localStorage.setItem('gnd_poll_votes', JSON.stringify(pollVotes));
-            localStorage.setItem('gnd_has_voted', 'true');
-            renderPoll();
-        }}
-        if (hasVoted) renderPoll();
+        {{ ad_banner | safe }}
+        <footer>
+            {{ licenca_rodape | safe }}
+        </footer>
+    </div>
+    <script>
+        function toggleTheme() {
+            const body = document.body;
+            const nextTheme = body.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+            body.setAttribute('data-theme', nextTheme);
+            localStorage.setItem('theme', nextTheme);
+        }
+        if (localStorage.getItem('theme') === 'dark') { document.body.setAttribute('data-theme', 'dark'); }
     </script>
 </body>
-</html>"""
+</html>
+"""
 
-def build_index(news_data):
-    sections_html = []
-    for idx, (cat_key, cat_info) in enumerate(CATEGORIES.items()):
-        articles = news_data.get(cat_key, [])
-        cards_html = "".join([
-            f"""
-            <article class="card">
-                <div>
-                    <div class="card-meta">{art['source']}</div>
-                    <h3><a href="{art['link']}" target="_blank" rel="noopener noreferrer">{art['title']}</a></h3>
-                    <p>{art['desc']}</p>
-                </div>
-                <div class="card-footer">
-                    <span>🕒 {art['date']}</span>
-                    <a href="{art['link']}" target="_blank" rel="noopener noreferrer" style="color:var(--primary); font-weight:600;">Ler matéria →</a>
-                </div>
-            </article>
-            """ for art in articles
-        ])
-        
-        ad_divider = f"""
-        <div class="ad-slot">
-            <span class="ad-label">Publicidade</span>
-            <ins class="adsbygoogle"
-                 style="display:block; width:100%;"
-                 data-ad-client="{ADSENSE_PUB_ID}"
-                 data-ad-format="auto"
-                 data-full-width-responsive="true"></ins>
-            <script>(adsbygoogle = window.adsbygoogle || []).push({{}});</script>
+INDEX_TEMPLATE = """
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {{ adsense_script | safe }}
+    {{ monetag_script | safe }}
+    {{ google_meta | safe }}
+    <title>Global News & Data - Portal Mundial de Notícias, Economia, Vagas e Saúde</title>
+    <meta name="description" content="Portal global completo com notícias em tempo real, vagas de emprego home office, economia, tecnologia, filmes, games, saúde e indicadores estatísticos.">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌍</text></svg>">
+    <style>
+        :root { 
+            --primary: #2563eb; --primary-dark: #1d4ed8; --bg-color: #f8fafc; 
+            --card-bg: #ffffff; --text: #0f172a; --text-light: #64748b; 
+            --header-bg: linear-gradient(135deg, #0f172a, #1e3a8a); --border-color: #e2e8f0;
+        }
+        [data-theme="dark"] { 
+            --primary: #3b82f6; --primary-dark: #60a5fa; --bg-color: #030712; 
+            --card-bg: #111827; --text: #f9fafb; --text-light: #9ca3af; 
+            --header-bg: linear-gradient(135deg, #020617, #0f172a); --border-color: #1f2937;
+        }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; line-height: 1.6; color: var(--text); background: var(--bg-color); margin: 0; padding: 0; transition: background 0.3s, color 0.3s; }
+        .navbar { background: var(--card-bg); border-bottom: 1px solid var(--border-color); padding: 12px 20px; position: sticky; top: 0; z-index: 1000; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+        .nav-container { max-width: 1000px; margin: 0 auto; display: flex; justify-content: flex-end; align-items: center; gap: 12px; }
+        .lang-select { background: var(--bg-color); color: var(--text); border: 1px solid var(--border-color); padding: 6px 12px; border-radius: 20px; font-weight: 600; font-size: 12px; cursor: pointer; outline: none; transition: border-color 0.2s; }
+        .lang-select:hover { border-color: var(--primary); }
+        .theme-btn { background: var(--bg-color); color: var(--text); border: 1px solid var(--border-color); padding: 6px 12px; border-radius: 20px; cursor: pointer; font-weight: 600; font-size: 12px; transition: all 0.2s; }
+        .theme-btn:hover { border-color: var(--primary); }
+        .container { max-width: 1000px; margin: 30px auto; padding: 0 20px; }
+        header { background: var(--header-bg); color: white; padding: 50px 30px; border-radius: 16px; margin-bottom: 25px; text-align: center; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1); }
+        header h1 { margin: 0 0 12px 0; font-size: 36px; font-weight: 800; letter-spacing: -0.5px; }
+        header p { margin: 0 0 25px 0; opacity: 0.9; font-size: 16px; max-width: 600px; margin-left: auto; margin-right: auto; }
+        .search-box { width: 100%; max-width: 500px; margin: 0 auto; display: block; padding: 14px 22px; font-size: 15px; border-radius: 30px; border: 1px solid var(--border-color); outline: none; background: var(--card-bg); color: var(--text); box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02); transition: border-color 0.2s; }
+        .search-box:focus { border-color: var(--primary); }
+        .nav-cats { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin: 30px 0; }
+        .nav-cats a { background: var(--card-bg); color: var(--text); padding: 8px 16px; border-radius: 20px; text-decoration: none; font-size: 13px; font-weight: 600; border: 1px solid var(--border-color); box-shadow: 0 2px 4px rgba(0,0,0,0.02); transition: all 0.2s; }
+        .nav-cats a:hover { background: var(--primary); color: white; border-color: var(--primary); }
+        .section-title { font-size: 24px; font-weight: 700; margin: 45px 0 20px 0; border-left: 5px solid var(--primary); padding-left: 12px; display: flex; align-items: center; justify-content: space-between; }
+        .blog-section { background: var(--card-bg); border: 1px solid var(--border-color); padding: 25px; border-radius: 14px; margin-bottom: 35px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02); }
+        .blog-section h3 { margin-top: 0; color: var(--primary); font-size: 20px; }
+        .blog-post { margin-bottom: 20px; border-bottom: 1px solid var(--border-color); padding-bottom: 15px; }
+        .blog-post:last-child { margin-bottom: 0; border-bottom: none; padding-bottom: 0; }
+        .blog-post h4 { margin: 0 0 6px 0; font-size: 17px; color: var(--text); }
+        .blog-post p { margin: 0; font-size: 14px; color: var(--text-light); line-height: 1.6; }
+        .countries-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 15px; margin-bottom: 30px; }
+        .country-card { background: var(--card-bg); padding: 20px; border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02); text-decoration: none; color: var(--text); display: block; border: 1px solid var(--border-color); transition: transform 0.2s, border-color 0.2s; }
+        .country-card:hover { transform: translateY(-3px); border-color: var(--primary); }
+        .country-card h3 { margin: 0 0 6px 0; color: var(--primary); font-size: 18px; font-weight: 700; }
+        .country-card p { margin: 0; font-size: 13px; color: var(--text-light); font-weight: 500; }
+        .news-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+        .news-card { background: var(--card-bg); border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02); border: 1px solid var(--border-color); display: flex; flex-direction: column; overflow: hidden; transition: transform 0.2s, box-shadow 0.2s; }
+        .news-card:hover { transform: translateY(-3px); box-shadow: 0 10px 20px -3px rgba(0,0,0,0.05); }
+        .news-img { width: 100%; height: 160px; object-fit: cover; background: #e2e8f0; }
+        .news-content { padding: 20px; display: flex; flex-direction: column; justify-content: space-between; flex-grow: 1; }
+        .badge { display: inline-block; align-self: flex-start; padding: 4px 10px; font-size: 11px; font-weight: 700; border-radius: 20px; text-transform: uppercase; margin-bottom: 12px; color: white; letter-spacing: 0.5px; }
+        .news-card h3 { margin: 0 0 10px 0; font-size: 18px; line-height: 1.4; }
+        .news-card h3 a { color: var(--text); text-decoration: none; transition: color 0.2s; }
+        .news-card h3 a:hover { color: var(--primary); }
+        .news-card p { margin: 0; font-size: 14px; color: var(--text-light); line-height: 1.5; }
+        footer { text-align: center; margin-top: 50px; border-top: 1px solid var(--border-color); padding-top: 20px; }
+    </style>
+</head>
+<body data-theme="light">
+    <div class="navbar">
+        <div class="nav-container">
+            {{ tradutor | safe }}
+            <button class="theme-btn" onclick="toggleTheme()">🌓 Tema</button>
         </div>
-        """ if idx in [1, 4] else ""
+    </div>
+    <div class="container">
+        {{ ad_banner | safe }}
+        <header>
+            <h1>Global News & Data</h1>
+            <p>O portal mundial definitivo para notícias, economia, vagas de emprego home office, entretenimento, games e dados globais.</p>
+            <input type="text" id="searchInput" class="search-box" placeholder="🔍 Pesquisar país por nome (ex: Brasil, Japão)..." onkeyup="filtrarPaises()">
+        </header>
+        
+        <div class="nav-cats">
+            <a href="#mundo">🌍 Mundo</a>
+            <a href="#tecnologia">💻 Tecnologia</a>
+            <a href="#economia">📈 Economia</a>
+            <a href="#esportes">⚽ Esportes</a>
+            <a href="#empregos">💼 Vagas & Home Office</a>
+            <a href="#entretenimento">🎬 Filmes & Séries</a>
+            <a href="#games">🎮 Games & Tech</a>
+            <a href="#saude">🥗 Qualidade de Vida</a>
+            <a href="#blog">📝 Blog & Análises</a>
+            <a href="#paises">🗺️ Países</a>
+        </div>
 
-        sections_html.append(f"""
-        <section class="section-block" id="{cat_key}">
-            <div class="section-header">
-                <h2>{cat_info['icon']} {cat_info['title']}</h2>
+        {% for cat_nome, cat_data in categorias.items() %}
+        <h2 id="{{ cat_data.id }}" class="section-title" style="border-color: {{ cat_data.color }};"><span>{{ cat_nome }}</span></h2>
+        <div class="news-grid">
+            {% for noticia in cat_data.lista %}
+            <div class="news-card">
+                <img src="{{ noticia.image }}" alt="Capa" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
+                <div class="news-content">
+                    <div>
+                        <span class="badge" style="background-color: {{ cat_data.color }};">{{ cat_nome }}</span>
+                        <h3><a href="{{ noticia.link }}" target="_blank" rel="nofollow">{{ noticia.title }}</a></h3>
+                    </div>
+                    <p>{{ noticia.description }}</p>
+                </div>
             </div>
-            <div class="news-grid">{cards_html}</div>
-        </section>
-        {ad_divider}
-        """)
+            {% endfor %}
+        </div>
+        {% if loop.index == 2 or loop.index == 5 %}{{ ad_banner | safe }}{% endif %}
+        {% endfor %}
 
-    html_out = get_base_template(
-        page_title="Notícias Globais, Economia, Vagas e Dados",
-        meta_desc="Portal internacional com notícias em tempo real, clima, vagas e indicadores.",
-        canonical_path="index.html",
-        content_html="\n".join(sections_html)
-    )
-    with open(os.path.join(OUTPUT_DIR, "index.html"), "w", encoding="utf-8") as f:
-        f.write(html_out)
-    print("✔ index.html gerado mantendo o layout original.")
+        {{ ad_banner | safe }}
 
-def build_country_pages(news_data):
-    world_news = news_data.get("mundo", [])[:4]
-    news_cards = "".join([
-        f"""
-        <article class="card">
-            <div>
-                <div class="card-meta">{art['source']}</div>
-                <h3><a href="{art['link']}" target="_blank" rel="noopener noreferrer">{art['title']}</a></h3>
-                <p>{art['desc']}</p>
+        <h2 id="blog" class="section-title"><span>📝 Blog & Artigos Especializados</span></h2>
+        <div class="blog-section">
+            <h3>Artigos em Destaque e Análises de Mercado</h3>
+            <div class="blog-post">
+                <h4>O Impacto da Inteligência Artificial na Economia Global em 2026</h4>
+                <p>Como as grandes potências estão regulamentando o avanço de algoritmos preditivos e transformando o mercado de trabalho internacional.</p>
             </div>
-            <div class="card-footer"><span>🕒 {art['date']}</span><span>Global</span></div>
-        </article>
-        """ for art in world_news
-    ])
+            <div class="blog-post">
+                <h4>Geopolítica do Petróleo e Rotas Comerciais Estratégicas</h4>
+                <p>Uma análise profunda sobre os fluxos de suprimento energético e as oscilações cambiais nas principais bolsas do mundo.</p>
+            </div>
+            <div class="blog-post">
+                <h4>Trabalho Remoto e Oportunidades Globais: O Guia Definitivo</h4>
+                <p>Descubra as principais tendências de vagas em modelo home office e como se destacar em processos seletivos internacionais.</p>
+            </div>
+        </div>
+        
+        <h2 id="paises" class="section-title"><span>🗺️ Explorar Países e Dados Oficiais (Global)</span></h2>
+        <div class="countries-grid" id="countriesGrid">
+            {% for p in paises %}
+            <a href="{{ p.file }}" class="country-card">
+                <h3>{{ p.name }}</h3>
+                <p>Ver indicadores →</p>
+            </a>
+            {% endfor %}
+        </div>
+        
+        {{ ad_banner | safe }}
+        <footer>
+            {{ licenca_rodape | safe }}
+        </footer>
+    </div>
+    <script>
+        function toggleTheme() {
+            const body = document.body;
+            const nextTheme = body.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+            body.setAttribute('data-theme', nextTheme);
+            localStorage.setItem('theme', nextTheme);
+        }
+        if (localStorage.getItem('theme') === 'dark') { document.body.setAttribute('data-theme', 'dark'); }
+        
+        function filtrarPaises() {
+            let input = document.getElementById('searchInput').value.toLowerCase();
+            let cards = document.getElementById('countriesGrid').getElementsByClassName('country-card');
+            for (let i = 0; i < cards.length; i++) {
+                let title = cards[i].getElementsByTagName('h3')[0].innerText.toLowerCase();
+                cards[i].style.display = title.includes(input) ? "" : "none";
+            }
+        }
+    </script>
+</body>
+</html>
+"""
 
-    for c in COUNTRIES:
-        filename = f"pais-{c['slug']}.html"
-        faq_schema = f"""
-        <script type="application/ld+json">
-        {{
-          "@context": "https://schema.org",
-          "@type": "FAQPage",
-          "mainEntity": [
-            {{
-              "@type": "Question",
-              "name": "Qual é a capital e a moeda oficial de {c['name']}?",
-              "acceptedAnswer": {{"@type": "Answer", "text": "A capital de {c['name']} é {c['capital']} e a moeda é {c['currency']}."}}
-            }}
-          ]
-        }}
-        </script>
-        """
-        content = f"""
-        <section class="section-block">
-            <div class="section-header"><h2>🏳️ Perfil Econômico: {c['name']}</h2></div>
-            <table class="data-table" style="width:100%; border-collapse:collapse; margin-bottom:20px;">
-                <tr><th style="padding:10px; border-bottom:1px solid var(--border); text-align:left;">Indicador</th><th style="padding:10px; border-bottom:1px solid var(--border); text-align:left;">Dado</th></tr>
-                <tr><td style="padding:10px; border-bottom:1px solid var(--border);">Capital</td><td style="padding:10px; border-bottom:1px solid var(--border);">{c['capital']}</td></tr>
-                <tr><td style="padding:10px; border-bottom:1px solid var(--border);">Moeda</td><td style="padding:10px; border-bottom:1px solid var(--border);">{c['currency']}</td></tr>
-                <tr><td style="padding:10px; border-bottom:1px solid var(--border);">PIB</td><td style="padding:10px; border-bottom:1px solid var(--border);">{c['gdp']}</td></tr>
-            </table>
-            <h3 style="margin-bottom:12px;">🌍 Manchetes Internacionais</h3>
-            <div class="news-grid">{news_cards}</div>
-        </section>
-        """
-        html_out = get_base_template(f"{c['name']} - Dados", f"Indicadores de {c['name']}", filename, content, faq_schema)
-        with open(os.path.join(OUTPUT_DIR, filename), "w", encoding="utf-8") as f:
-            f.write(html_out)
-    print("✔ Páginas de países geradas.")
+ANUNCIE_TEMPLATE = """
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {{ adsense_script | safe }}
+    {{ monetag_script | safe }}
+    {{ google_meta | safe }}
+    <title>Anuncie Conosco & Parcerias - Global News & Data</title>
+    <meta name="description" content="Divulgue sua marca, produto ou serviço no Global News & Data. Conheça nossas opções de publieditoriais, guest posts e patrocínios comerciais.">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌍</text></svg>">
+    <style>
+        :root { 
+            --primary: #2563eb; --primary-dark: #1d4ed8; --bg-color: #f8fafc; 
+            --card-bg: #ffffff; --text: #0f172a; --text-light: #64748b; 
+            --header-bg: linear-gradient(135deg, #0f172a, #1e3a8a); --border-color: #e2e8f0;
+        }
+        [data-theme="dark"] { 
+            --primary: #3b82f6; --primary-dark: #60a5fa; --bg-color: #030712; 
+            --card-bg: #111827; --text: #f9fafb; --text-light: #9ca3af; 
+            --header-bg: linear-gradient(135deg, #020617, #0f172a); --border-color: #1f2937;
+        }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; line-height: 1.6; color: var(--text); background: var(--bg-color); margin: 0; padding: 0; transition: background 0.3s, color 0.3s; }
+        .navbar { background: var(--card-bg); border-bottom: 1px solid var(--border-color); padding: 12px 20px; position: sticky; top: 0; z-index: 1000; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+        .nav-container { max-width: 1000px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+        .back-link { color: var(--primary); text-decoration: none; font-weight: 600; font-size: 14px; display: flex; align-items: center; gap: 5px; }
+        .container { max-width: 900px; margin: 40px auto; padding: 0 20px; }
+        header { background: var(--header-bg); color: white; padding: 50px 30px; border-radius: 16px; margin-bottom: 30px; text-align: center; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1); }
+        header h1 { margin: 0 0 12px 0; font-size: 34px; font-weight: 800; }
+        header p { margin: 0; opacity: 0.9; font-size: 16px; max-width: 600px; margin-left: auto; margin-right: auto; }
+        .content-card { background: var(--card-bg); border: 1px solid var(--border-color); padding: 35px; border-radius: 14px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02); margin-bottom: 30px; }
+        .content-card h2 { color: var(--primary); margin-top: 0; font-size: 22px; }
+        .content-card p { font-size: 15px; color: var(--text-light); line-height: 1.8; }
+        .contact-box { background: linear-gradient(135deg, rgba(37,99,235,0.08), rgba(30,58,138,0.05)); border: 1px solid var(--primary); padding: 25px; border-radius: 12px; text-align: center; margin-top: 30px; }
+        .contact-box h3 { color: var(--primary); margin-top: 0; font-size: 20px; }
+        .email-tag { display: inline-block; background: var(--primary); color: white; padding: 10px 20px; border-radius: 30px; text-decoration: none; font-weight: 700; margin-top: 10px; font-size: 16px; }
+        footer { text-align: center; margin-top: 50px; border-top: 1px solid var(--border-color); padding-top: 20px; }
+    </style>
+</head>
+<body data-theme="light">
+    <div class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="back-link">← Voltar ao Início Global</a>
+            {{ tradutor | safe }}
+        </div>
+    </div>
+    <div class="container">
+        <header>
+            <h1>Anuncie Conosco & Parcerias Comerciais</h1>
+            <p>Conecte sua marca a um público global altamente engajado através de publieditoriais e patrocínios estratégicos.</p>
+        </header>
 
-def build_privacy_page():
-    content = """<section class="section-block"><div class="section-header"><h2>Privacidade</h2></div><p>Conteúdo protegido e em conformidade.</p></section>"""
-    html_out = get_base_template("Privacidade", "Privacidade", "privacidade.html", content)
-    with open(os.path.join(OUTPUT_DIR, "privacidade.html"), "w", encoding="utf-8") as f:
-        f.write(html_out)
+        <div class="content-card">
+            <h2>Por que anunciar no Global News & Data?</h2>
+            <p>O <strong>Global News & Data</strong> é um portal internacional automatizado que consolida notícias em tempo real, dados demográficos, oportunidades de emprego, indicadores econômicos e tecnológicos de dezenas de nações. Nosso tráfego é altamente qualificado, composto por leitores, profissionais, estudantes e empresários.</p>
+            
+            <h2>Modalidades de Parceria Aceitas</h2>
+            <p><strong>1. Publieditoriais / Guest Posts:</strong> Publicação de artigos otimizados para SEO contendo o perfil da sua empresa, serviços ou produtos, com links de alta autoridade apontando para o seu site.</p>
+            <p><strong>2. Banners Patrocinados:</strong> Inserção de espaços publicitários customizados nas editorias de maior relevância.</p>
+            <p><strong>3. Campanhas Globais:</strong> Parcerias de médio e longo prazo para marcas que desejam expansão internacional.</p>
 
-def build_seo_files():
-    today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
-    urls = [f"{SITE_URL}/index.html", f"{SITE_URL}/privacidade.html"] + [f"{SITE_URL}/pais-{c['slug']}.html" for c in COUNTRIES]
-    sitemap = f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + "".join([f'  <url><loc>{u}</loc><lastmod>{today}</lastmod></url>\n' for u in urls]) + '</urlset>'
-    with open(os.path.join(OUTPUT_DIR, "sitemap.xml"), "w", encoding="utf-8") as f: f.write(sitemap)
-    with open(os.path.join(OUTPUT_DIR, "robots.txt"), "w", encoding="utf-8") as f: f.write("User-agent: *\nAllow: /\n")
+            <div class="contact-box">
+                <h3>Interessado em impulsionar o seu negócio?</h3>
+                <p>Entre em contato diretamente com a nossa equipe comercial para avaliarmos a sua proposta e enviarmos o nosso mídia kit:</p>
+                <a href="mailto:contato@globalnewsdata.com" class="email-tag">contato@globalnewsdata.com</a>
+            </div>
+        </div>
+
+        <footer>
+            {{ licenca_rodape | safe }}
+        </footer>
+    </div>
+</body>
+</html>
+"""
+
+def buscar_noticias_por_categoria():
+    fontes = {
+        "Mundo": {"id": "mundo", "color": "#2563eb", "url": "https://g1.globo.com/rss/g1/mundo/"},
+        "Tecnologia": {"id": "tecnologia", "color": "#7c3aed", "url": "https://g1.globo.com/rss/g1/tecnologia/"},
+        "Economia": {"id": "economia", "color": "#059669", "url": "https://g1.globo.com/rss/g1/economia/"},
+        "Esportes": {"id": "esportes", "color": "#dc2626", "url": "https://ge.globo.com/rss/ge/"},
+        "Vagas & Home Office": {"id": "empregos", "color": "#ea580c", "url": "https://g1.globo.com/rss/g1/educacao/concursos-e-emprego/"},
+        "Filmes & Séries": {"id": "entretenimento", "color": "#db2777", "url": "https://g1.globo.com/rss/g1/pop-arte/"},
+        "Games & Tech": {"id": "games", "color": "#9333ea", "url": "https://g1.globo.com/rss/g1/tecnologia/games/"},
+        "Qualidade de Vida": {"id": "saude", "color": "#16a34a", "url": "https://g1.globo.com/rss/g1/ciencia-e-saude/"}
+    }
+    
+    imagens_por_categoria = {
+        "Mundo": [
+            "https://images.unsplash.com/photo-1521295121783-8a321d551ad2?w=600&auto=format&fit=crop&q=60",
+            "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=600&auto=format&fit=crop&q=60",
+            "https://images.unsplash.com/photo-1508739773434-c26b3d09e071?w=600&auto=format&fit=crop&q=60",
+            "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=600&auto=format&fit=crop&q=60"
+        ],
+        "Tecnologia": [
+            "https://images.unsplash.com/photo-1518770660439-4636190af475?w=600&auto=format&fit=crop&q=60",
+            "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=600&auto=format&fit=crop&q=60",
+            "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=600&auto=format&fit=crop&q=60",
+            "https://images.unsplash.com/photo-1531482615713-2afd69097998?w=600&auto=format&fit=crop&q=60"
+        ],
+        "Economia": [
+            "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=600&auto=format&fit=crop&q=60",
+            "https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?w=600&auto=format&fit=crop&q=60",
+            "https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?w=600&auto=format&fit=crop&q=60",
+            "https://images.unsplash.com/photo-1559526324-4b87b5e36e44?w=600&auto=format&fit=crop&q=60"
+        ],
+        "Esportes": [
+            "https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=600&auto=format&fit=crop&q=60",
+            "https://images.unsplash.com/photo-1517649763962-0c623066013b?w=600&auto=format&fit=crop&q=60",
+            "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=600&auto=format&fit=crop&q=60",
+            "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=600&auto=format&fit=crop&q=60"
+        ],
+        "Vagas & Home Office": [
+            "https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60",
+            "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=600&auto=format&fit=crop&q=60",
+            "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=600&auto=format&fit=crop&q=60",
+            "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&auto=format&fit=crop&q=60"
+        ],
+        "Filmes & Séries": [
+            "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=600&auto=format&fit=crop&q=60",
+            "https://images.unsplash.com/photo-1512070679279-8988d2210cbc?w=600&auto=format&fit=crop&q=60",
+            "https://images.unsplash.com/photo-1598899134739-24c46f58b8c0?w=600&auto=format&fit=crop&q=60",
+            "https://images.unsplash.com/photo-1522869635100-9f4c5e86aa37?w=600&auto=format&fit=crop&q=60"
+        ],
+        "Games & Tech": [
+            "https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=600&auto=format&fit=crop&q=60",
+            "https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=600&auto=format&fit=crop&q=60",
+            "https://images.unsplash.com/photo-1612287233002-91d0f5367c33?w=600&auto=format&fit=crop&q=60",
+            "https://images.unsplash.com/photo-1511512578047-dfb367046420?w=600&auto=format&fit=crop&q=60"
+        ],
+        "Qualidade de Vida": [
+            "https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=600&auto=format&fit=crop&q=60",
+            "https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=600&auto=format&fit=crop&q=60",
+            "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&auto=format&fit=crop&q=60",
+            "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=600&auto=format&fit=crop&q=60"
+        ]
+    }
+
+    fallbacks_por_categoria = {
+        "Mundo": [
+            {"title": "Acordos Diplomáticos Globais Definem Novas Rotas Comerciais", "desc": "Lideres internacionais firmam pactos estratégicos para estabilizar o suprimento global."},
+            {"title": "Cúpula Internacional Debate Transição Energética e Sustentabilidade", "desc": "Representantes de dezenas de nações alinham metas de inovação verde."}
+        ],
+        "Tecnologia": [
+            {"title": "A Revolução da Inteligência Artificial Generativa nos Mercados", "desc": "Empresas adotam modelos preditivos avançados para otimizar processos."},
+            {"title": "Expansão da Infraestrutura de Conectividade de Alta Velocidade", "desc": "Investimentos bilionários ampliam o acesso digital em grandes centros."}
+        ],
+        "Economia": [
+            {"title": "Bolsas Internacionais Reagem a Indicadores de Inflação e Juros", "desc": "Analistas monitoram de perto as oscilações das principais moedas globais."},
+            {"title": "Fluxo de Investimentos Estrangeiros Aponta Crescimento", "desc": "Setores produtivos registram aportes voltados para modernização."}
+        ],
+        "Esportes": [
+            {"title": "Campeonatos Internacionais de Futebol Entram em Fase Decisiva", "desc": "Clubes e seleções intensificam preparativos para confrontos mundiais."},
+            {"title": "Grandes Ligas de Basquete e Tênis Movimentam Torcedores", "desc": "Calendário esportivo global traz partidas eletrizantes de alto rendimento."}
+        ],
+        "Vagas & Home Office": [
+            {"title": "Grandes Empresas Abrem Centenas de Vagas para Trabalho Remoto (Home Office)", "desc": "Oportunidades internacionais e nacionais oferecem flexibilidade e contratação imediata para diversas áreas."},
+            {"title": "Novas Oportunidades em Concursos Públicos e Processos Seletivos", "desc": "Confira os editais abertos com milhares de vagas e inscrições disponíveis esta semana."},
+            {"title": "Setor de Tecnologia Anuncia Crescimento na Contratação de Desenvolvedores", "desc": "Demanda por profissionais remotos impulsiona o mercado de trabalho digital global."},
+            {"title": "Dicas Essenciais para Se Destacar em Entrevistas de Emprego Online", "desc": "Especialistas em RH revelam o que os recrutadores buscam em candidatos em modelo home office."}
+        ],
+        "Filmes & Séries": [
+            {"title": "Grandes Estreias Dominam as Bilheterias e Plataformas de Streaming", "desc": "Produções cinematográficas e séries arrebatam o público internacional."},
+            {"title": "Festival Internacional de Música Anuncia Line-up Histórico", "desc": "Artistas consagrados se preparam para turnês globais de grande porte."}
+        ],
+        "Games & Tech": [
+            {"title": "Lançamentos de Jogos AAA Agitam o Mercado de Consoles e PC", "desc": "Títulos altamente aguardados trazem gráficos hiper-realistas e novas mecânicas."},
+            {"title": "Campeonatos Mundiais de Esports Batem Recordes de Audiência", "desc": "Competições profissionais de eSports reúnem milhões de espectadores online."}
+        ],
+        "Qualidade de Vida": [
+            {"title": "Hábitos Simples para Melhorar a Saúde Mental e o Foco Diário", "desc": "Especialistas em bem-estar destacam a importância de pausas estratégicas."},
+            {"title": "A Importância de uma Boa Noite de Sono para a Longevidade", "desc": "Estudos recentes comprovam o impacto do descanso adequado na imunidade."}
+        ]
+    }
+
+    categorias_processadas, todas_noticias = {}, []
+    for cat_nome, info in fontes.items():
+        items_cat = []
+        imgs_disponiveis = imagens_por_categoria.get(cat_nome, imagens_por_categoria["Mundo"])
+        fallback_lista = fallbacks_por_categoria.get(cat_nome, fallbacks_por_categoria["Mundo"])
+        
+        try:
+            resp = requests.get(info["url"], verify=False, timeout=6)
+            if resp.status_code == 200:
+                root = ET.fromstring(resp.content)
+                for idx, item in enumerate(root.findall('.//item')[:4]):
+                    title_elem = item.find('title')
+                    link_elem = item.find('link')
+                    desc_elem = item.find('description')
+                    
+                    titulo = title_elem.text if title_elem is not None and title_elem.text else fallback_lista[idx % len(fallback_lista)]["title"]
+                    link = link_elem.text if link_elem is not None and link_elem.text else "https://g1.globo.com"
+                    desc = desc_elem.text if desc_elem is not None and desc_elem.text else fallback_lista[idx % len(fallback_lista)]["desc"]
+                    
+                    if "<" in desc:
+                        desc = re.sub('<.*?>', '', desc)
+
+                    img_url = imgs_disponiveis[idx % len(imgs_disponiveis)]
+                    
+                    noticia_obj = {
+                        "category": cat_nome, "color": info["color"],
+                        "title": titulo, "link": link, "image": img_url,
+                        "description": desc[:140] + "..." if len(desc) > 140 else desc
+                    }
+                    items_cat.append(noticia_obj)
+                    todas_noticias.append(noticia_obj)
+        except: pass
+        
+        if not items_cat:
+            for idx in range(4):
+                fb_item = fallback_lista[idx % len(fallback_lista)]
+                items_cat.append({
+                    "category": cat_nome, "color": info["color"], 
+                    "title": fb_item["title"], 
+                    "link": "https://g1.globo.com", 
+                    "image": imgs_disponiveis[idx % len(imgs_disponiveis)],
+                    "description": fb_item["desc"]
+                })
+        categorias_processadas[cat_nome] = {"id": info["id"], "color": info["color"], "lista": items_cat}
+    return categorias_processadas, todas_noticias
+
+def baixar_paises():
+    try:
+        response = requests.get("https://restcountries.com/v3.1/all", verify=False, timeout=15)
+        if response.status_code == 200: return response.json()
+    except: pass
+    return [
+        {"name": {"common": "Brasil"}, "capital": ["Brasília"], "region": "Americas", "population": 212000000, "currencies": {"BRL": {"name": "Real"}}, "timezones": ["UTC-3"], "languages": {"por": "Português"}},
+        {"name": {"common": "Estados Unidos"}, "capital": ["Washington, D.C."], "region": "Americas", "population": 331000000, "currencies": {"USD": {"name": "Dólar"}}, "timezones": ["UTC-5"], "languages": {"eng": "Inglês"}},
+        {"name": {"common": "Portugal"}, "capital": ["Lisboa"], "region": "Europe", "population": 10300000, "currencies": {"EUR": {"name": "Euro"}}, "timezones": ["UTC"], "languages": {"por": "Português"}},
+        {"name": {"common": "Japão"}, "capital": ["Tóquio"], "region": "Asia", "population": 125000000, "currencies": {"JPY": {"name": "Iene"}}, "timezones": ["UTC+9"], "languages": {"jpn": "Japonês"}},
+        {"name": {"common": "França"}, "capital": ["Paris"], "region": "Europe", "population": 67000000, "currencies": {"EUR": {"name": "Euro"}}, "timezones": ["UTC+1"], "languages": {"fra": "Francês"}}
+    ]
+
+def gerar_sitemap(lista_paises):
+    data_hoje = datetime.now().strftime("%Y-%m-%d")
+    xml_content = ['<?xml version="1.0" encoding="UTF-8"?>', '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
+    xml_content.append(f'  <url><loc>{DOMINIO_SITE}/index.html</loc><lastmod>{data_hoje}</lastmod><changefreq>hourly</changefreq><priority>1.0</priority></url>')
+    xml_content.append(f'  <url><loc>{DOMINIO_SITE}/anuncie.html</loc><lastmod>{data_hoje}</lastmod><changefreq>monthly</changefreq><priority>0.5</priority></url>')
+    for p in lista_paises:
+        xml_content.append(f'  <url><loc>{DOMINIO_SITE}/{p["file"]}</loc><lastmod>{data_hoje}</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>')
+    xml_content.append('</urlset>')
+    with open("sitemap.xml", "w", encoding="utf-8") as f: f.write("\n".join(xml_content))
+
+def gerar_site():
+    print("Gerando portal unificado com Vagas, Home Office, Saúde, Games e AdSense/Monetag...")
+    paises = baixar_paises()
+    categorias_dict, todas_noticias = buscar_noticias_por_categoria()
+    
+    template = Template(HTML_TEMPLATE)
+    lista_paises = []
+    
+    lista_curiosidades = [
+        "Este território abriga marcos históricos impressionantes e ecossistemas únicos que atraem milhões de visitantes anualmente.",
+        "Conhecido por sua rica herança cultural, este país desempenha um papel geopolítico e econômico fundamental em sua região.",
+        "A culinária e as tradições locais deste país misturam influências ancestrais e modernas de forma surpreendente.",
+        "Do ponto de vista geográfico, esta nação apresenta paisagens diversificadas que vão de metrópoles vibrantes a reservas naturais preservadas."
+    ]
+
+    for item in paises:
+        try:
+            name = item.get('name', {}).get('common', 'Desconhecido')
+            file_name = name.lower().replace(' ', '-').replace('(', '').replace(')', '').replace('.', '') + ".html"
+            
+            capital_val = item.get('capital', ['N/A'])
+            capital_str = capital_val[0] if isinstance(capital_val, list) and len(capital_val) > 0 else 'N/A'
+
+            country_data = {
+                "name": name, "capital": capital_str,
+                "region": item.get('region', 'N/A'), "population": f"{item.get('population', 0):,}".replace(',', '.'),
+                "currency": list(item.get('currencies', {}).values())[0]['name'] if item.get('currencies') else 'N/A',
+                "timezone": ", ".join(item.get('timezones', ['UTC'])) if isinstance(item.get('timezones'), list) else str(item.get('timezones', 'UTC')),
+                "language": list(item.get('languages', {}).values())[0] if item.get('languages') else 'N/A',
+                "file": file_name,
+                "curiosidade": random.choice(lista_curiosidades)
+            }
+            noticias_pais = list(todas_noticias)
+            random.shuffle(noticias_pais)
+            with open(file_name, "w", encoding="utf-8") as f:
+                f.write(template.render(country=country_data, noticias=noticias_pais[:8], ad_banner=AD_BANNER, tradutor=WIDGET_TRADUTOR_MODERNO, adsense_script=ADSENSE_SCRIPT, monetag_script=MONETAG_SCRIPT, google_meta=GOOGLE_META, licenca_rodape=LICENCA_RODAPE, dominio=DOMINIO_SITE))
+            lista_paises.append({"name": name, "file": file_name})
+        except: continue
+
+    with open("index.html", "w", encoding="utf-8") as f:
+        f.write(Template(INDEX_TEMPLATE).render(paises=lista_paises, categorias=categorias_dict, ad_banner=AD_BANNER, tradutor=WIDGET_TRADUTOR_MODERNO, adsense_script=ADSENSE_SCRIPT, monetag_script=MONETAG_SCRIPT, google_meta=GOOGLE_META, licenca_rodape=LICENCA_RODAPE, dominio=DOMINIO_SITE))
+    
+    with open("anuncie.html", "w", encoding="utf-8") as f:
+        f.write(Template(ANUNCIE_TEMPLATE).render(ad_banner=AD_BANNER, tradutor=WIDGET_TRADUTOR_MODERNO, adsense_script=ADSENSE_SCRIPT, monetag_script=MONETAG_SCRIPT, google_meta=GOOGLE_META, licenca_rodape=LICENCA_RODAPE, dominio=DOMINIO_SITE))
+
+    gerar_sitemap(lista_paises)
+    print(f"Sucesso absoluto! Portal robusto unificado gerado com sucesso.")
 
 if __name__ == "__main__":
-    news = collect_all_news()
-    build_index(news)
-    build_country_pages(news)
-    build_privacy_page()
-    build_seo_files()
-    print("=== Atualização concluída com sucesso mantendo o design original! ===")
-
+    gerar_site()
