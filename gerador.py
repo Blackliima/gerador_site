@@ -314,8 +314,8 @@ INDEX_TEMPLATE = """
             <a href="#tecnologia">💻 Tecnologia</a>
             <a href="#economia">📈 Economia</a>
             <a href="#esportes">⚽ Esportes</a>
-            <a href="#entretenimento">🎬 Entretenimento</a>
-            <a href="#games">🎮 Games</a>
+            <a href="#entretenimento">🎬 Filmes & Séries</a>
+            <a href="#games">🎮 Games & Tech</a>
             <a href="#saude">🥗 Qualidade de Vida</a>
             <a href="#blog">📝 Blog & Análises</a>
             <a href="#paises">🗺️ Países</a>
@@ -479,8 +479,8 @@ def buscar_noticias_por_categoria():
         "Tecnologia": {"id": "tecnologia", "color": "#7c3aed", "url": "https://g1.globo.com/rss/g1/tecnologia/"},
         "Economia": {"id": "economia", "color": "#059669", "url": "https://g1.globo.com/rss/g1/economia/"},
         "Esportes": {"id": "esportes", "color": "#dc2626", "url": "https://ge.globo.com/rss/ge/"},
-        "Entretenimento": {"id": "entretenimento", "color": "#db2777", "url": "https://g1.globo.com/rss/g1/pop-arte/"},
-        "Games": {"id": "games", "color": "#9333ea", "url": "https://g1.globo.com/rss/g1/tecnologia/games/"},
+        "Filmes & Séries": {"id": "entretenimento", "color": "#db2777", "url": "https://g1.globo.com/rss/g1/pop-arte/"},
+        "Games & Tech": {"id": "games", "color": "#9333ea", "url": "https://g1.globo.com/rss/g1/tecnologia/games/"},
         "Qualidade de Vida": {"id": "saude", "color": "#16a34a", "url": "https://g1.globo.com/rss/g1/ciencia-e-saude/"}
     }
     
@@ -509,13 +509,13 @@ def buscar_noticias_por_categoria():
             "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=600&auto=format&fit=crop&q=60",
             "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=600&auto=format&fit=crop&q=60"
         ],
-        "Entretenimento": [
+        "Filmes & Séries": [
             "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=600&auto=format&fit=crop&q=60",
             "https://images.unsplash.com/photo-1512070679279-8988d2210cbc?w=600&auto=format&fit=crop&q=60",
             "https://images.unsplash.com/photo-1598899134739-24c46f58b8c0?w=600&auto=format&fit=crop&q=60",
             "https://images.unsplash.com/photo-1522869635100-9f4c5e86aa37?w=600&auto=format&fit=crop&q=60"
         ],
-        "Games": [
+        "Games & Tech": [
             "https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=600&auto=format&fit=crop&q=60",
             "https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=600&auto=format&fit=crop&q=60",
             "https://images.unsplash.com/photo-1612287233002-91d0f5367c33?w=600&auto=format&fit=crop&q=60",
@@ -554,13 +554,13 @@ def buscar_noticias_por_categoria():
             {"title": "Preparativos para Competições Globais Atraem Atenção", "desc": "Comitês organizadores detalham estruturas para os próximos grandes eventos."},
             {"title": "Análise Tática: O Desempenho das Equipes na Temporada", "desc": "Especialistas esportivos avaliam as estratégias e o rendimento físico."}
         ],
-        "Entretenimento": [
+        "Filmes & Séries": [
             {"title": "Grandes Estreias Dominam as Bilheterias e Plataformas de Streaming", "desc": "Produções cinematográficas e séries arrebatam o público internacional."},
             {"title": "Festival Internacional de Música Anuncia Line-up Histórico", "desc": "Artistas consagrados se preparam para turnês globais de grande porte."},
             {"title": "A Influência das Redes Sociais na Indústria da Cultura Pop", "desc": "Tendências digitais moldam o comportamento de consumo de entretenimento."},
             {"title": "Bastidores: Os Segredos por Trás dos Maiores Sucessos da TV", "desc": "Diretores revelam inovações tecnológicas utilizadas nas produções recentes."}
         ],
-        "Games": [
+        "Games & Tech": [
             {"title": "Lançamentos de Jogos AAA Agitam o Mercado de Consoles e PC", "desc": "Títulos altamente aguardados trazem gráficos hiper-realistas e novas mecânicas."},
             {"title": "Campeonatos Mundiais de Esports Batem Recordes de Audiência", "desc": "Competições profissionais de eSports reúnem milhões de espectadores online."},
             {"title": "A Evolução da Realidade Virtual no Desenvolvimento de Games", "desc": "Estúdios apostam em imersão total para revolucionar a experiência do jogador."},
@@ -644,7 +644,7 @@ def gerar_sitemap(lista_paises):
     with open("sitemap.xml", "w", encoding="utf-8") as f: f.write("\n".join(xml_content))
 
 def gerar_site():
-    print("Iniciando geração com a Multitag da Monetag integrada...")
+    print("Gerando portal ultra robusto com todas as editorias, AdSense e Monetag...")
     paises = baixar_paises()
     categorias_dict, todas_noticias = buscar_noticias_por_categoria()
     
@@ -689,7 +689,7 @@ def gerar_site():
         f.write(Template(ANUNCIE_TEMPLATE).render(ad_banner=AD_BANNER, tradutor=WIDGET_TRADUTOR_MODERNO, adsense_script=ADSENSE_SCRIPT, monetag_script=MONETAG_SCRIPT, google_meta=GOOGLE_META, licenca_rodape=LICENCA_RODAPE, dominio=DOMINIO_SITE))
 
     gerar_sitemap(lista_paises)
-    print(f"Sucesso! Multitag da Monetag integrada em todo o portal.")
+    print(f"Sucesso! Portal atualizado com todas as editorias e tags de monetização.")
 
 if __name__ == "__main__":
     gerar_site()
