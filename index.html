@@ -23,6 +23,8 @@
         body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; line-height: 1.6; color: var(--text); background: var(--bg-color); margin: 0; padding: 0; transition: background 0.3s, color 0.3s; }
         .navbar { background: var(--card-bg); border-bottom: 1px solid var(--border-color); padding: 12px 20px; position: sticky; top: 0; z-index: 1000; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
         .nav-container { max-width: 1000px; margin: 0 auto; display: flex; justify-content: flex-end; align-items: center; gap: 12px; }
+        .lang-select { background: var(--bg-color); color: var(--text); border: 1px solid var(--border-color); padding: 6px 12px; border-radius: 20px; font-weight: 600; font-size: 12px; cursor: pointer; outline: none; transition: border-color 0.2s; }
+        .lang-select:hover { border-color: var(--primary); }
         .theme-btn { background: var(--bg-color); color: var(--text); border: 1px solid var(--border-color); padding: 6px 12px; border-radius: 20px; cursor: pointer; font-weight: 600; font-size: 12px; transition: all 0.2s; }
         .theme-btn:hover { border-color: var(--primary); }
         .container { max-width: 1000px; margin: 30px auto; padding: 0 20px; }
@@ -57,10 +59,28 @@
     <div class="navbar">
         <div class="nav-container">
             
-<div id="google_translate_element" style="display:inline-block;"></div>
+<div class="language-picker-wrapper">
+    <div id="google_translate_element" style="display:none;"></div>
+    <select id="customLanguageSelect" onchange="mudarIdiomaGoogle(this.value)" class="lang-select">
+        <option value="pt">🇧🇷 Português</option>
+        <option value="en">🇺🇸 English</option>
+        <option value="es">🇪🇸 Español</option>
+        <option value="fr">🇫🇷 Français</option>
+        <option value="de">🇩🇪 Deutsch</option>
+        <option value="ja">🇯🇵 日本語</option>
+        <option value="zh-CN">🇨🇳 中文</option>
+    </select>
+</div>
 <script type="text/javascript">
 function googleTranslateElementInit() {
-  new google.translate.TranslateElement({pageLanguage: 'pt', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
+  new google.translate.TranslateElement({pageLanguage: 'pt', includedLanguages: 'pt,en,es,fr,de,ja,zh-CN', autoDisplay: false}, 'google_translate_element');
+}
+function mudarIdiomaGoogle(lang) {
+  var select = document.querySelector('.goog-te-combo');
+  if (select) {
+    select.value = lang;
+    select.dispatchEvent(new Event('change'));
+  }
 }
 </script>
 <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
@@ -124,6 +144,18 @@ function googleTranslateElementInit() {
                 <div class="news-content">
                     <div>
                         <span class="badge" style="background-color: #7c3aed;">Tecnologia</span>
+                        <h3><a href="https://g1.globo.com/mundo/noticia/2026/11/13/hackers-norte-coreanos-roubaram-us-400-milhoes-com-videochamadas-manipuladas-por-ia-diz-fbi.ghtml" target="_blank" rel="nofollow">Hackers norte-coreanos roubam US$ 400 mi com IA para financiar programa de armas do governo, diz FBI</a></h3>
+                    </div>
+                    <p>        Ataque hacker ao Tesouro Nacional expõe dados de 30 mil cadastros e 4 mil chaves PIX
+Hackers apoiados pela Coreia do Norte roubaram ...</p>
+                </div>
+            </div>
+            
+            <div class="news-card">
+                <img src="https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?w=600&auto=format&fit=crop&q=60" alt="Capa" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
+                <div class="news-content">
+                    <div>
+                        <span class="badge" style="background-color: #7c3aed;">Tecnologia</span>
                         <h3><a href="https://g1.globo.com/tecnologia/noticia/2026/11/13/servicos-da-microsoft-sofrem-instabilidade-quinta-e-sexta.ghtml" target="_blank" rel="nofollow">Microsoft diz que Outlook, Teams e Copilot estão sendo 'gradualmente restaurados'</a></h3>
                     </div>
                     <p>        Serviços Microsoft caem em 70 países; empresa faz reparos
@@ -132,7 +164,7 @@ A Microsoft informou nesta sexta-feira (13) que Outlook, Teams e Copilot e...</p
             </div>
             
             <div class="news-card">
-                <img src="https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?w=600&auto=format&fit=crop&q=60" alt="Capa" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
+                <img src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=600&auto=format&fit=crop&q=60" alt="Capa" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
                 <div class="news-content">
                     <div>
                         <span class="badge" style="background-color: #7c3aed;">Tecnologia</span>
@@ -144,7 +176,7 @@ Uma falha global nos serviços da Microsoft afeta empresas, governos e serv...</
             </div>
             
             <div class="news-card">
-                <img src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=600&auto=format&fit=crop&q=60" alt="Capa" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
+                <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=600&auto=format&fit=crop&q=60" alt="Capa" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
                 <div class="news-content">
                     <div>
                         <span class="badge" style="background-color: #7c3aed;">Tecnologia</span>
@@ -152,18 +184,6 @@ Uma falha global nos serviços da Microsoft afeta empresas, governos e serv...</
                     </div>
                     <p>        Serviços Microsoft caem em 70 países; empresa faz reparos
 A queda de serviços da Microsoft virou tema de memes nas redes sociais. Us...</p>
-                </div>
-            </div>
-            
-            <div class="news-card">
-                <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=600&auto=format&fit=crop&q=60" alt="Capa" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
-                <div class="news-content">
-                    <div>
-                        <span class="badge" style="background-color: #7c3aed;">Tecnologia</span>
-                        <h3><a href="https://g1.globo.com/tecnologia/noticia/2026/11/13/microsoft-descarta-ataque-hacker-apos-falha-global-afetar-outlook-teams-e-copilot.ghtml" target="_blank" rel="nofollow">Microsoft descarta ataque hacker após falha global afetar Outlook, Teams e Copilot</a></h3>
-                    </div>
-                    <p>        Serviços Microsoft caem em 70 países; empresa faz reparos
-A Microsoft descartou nesta sexta-feira (13) que um ataque hacker tenha pr...</p>
                 </div>
             </div>
             
@@ -237,21 +257,6 @@ A Microsoft descartou nesta sexta-feira (13) que um ataque hacker tenha pr...</p
         
         <h2 id="paises" class="section-title">Explorar Países e Dados (Global)</h2>
         <div class="countries-grid" id="countriesGrid">
-            
-            <a href="brasil.html" class="country-card">
-                <h3>Brasil</h3>
-                <p>Ver dados estatísticos →</p>
-            </a>
-            
-            <a href="estados-unidos.html" class="country-card">
-                <h3>Estados Unidos</h3>
-                <p>Ver dados estatísticos →</p>
-            </a>
-            
-            <a href="portugal.html" class="country-card">
-                <h3>Portugal</h3>
-                <p>Ver dados estatísticos →</p>
-            </a>
             
         </div>
         

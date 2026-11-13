@@ -29,11 +29,29 @@ AD_BANNER = """
 </div>
 """
 
-WIDGET_TRADUTOR = """
-<div id="google_translate_element" style="display:inline-block;"></div>
+WIDGET_TRADUTOR_MODERNO = """
+<div class="language-picker-wrapper">
+    <div id="google_translate_element" style="display:none;"></div>
+    <select id="customLanguageSelect" onchange="mudarIdiomaGoogle(this.value)" class="lang-select">
+        <option value="pt">🇧🇷 Português</option>
+        <option value="en">🇺🇸 English</option>
+        <option value="es">🇪🇸 Español</option>
+        <option value="fr">🇫🇷 Français</option>
+        <option value="de">🇩🇪 Deutsch</option>
+        <option value="ja">🇯🇵 日本語</option>
+        <option value="zh-CN">🇨🇳 中文</option>
+    </select>
+</div>
 <script type="text/javascript">
 function googleTranslateElementInit() {
-  new google.translate.TranslateElement({pageLanguage: 'pt', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
+  new google.translate.TranslateElement({pageLanguage: 'pt', includedLanguages: 'pt,en,es,fr,de,ja,zh-CN', autoDisplay: false}, 'google_translate_element');
+}
+function mudarIdiomaGoogle(lang) {
+  var select = document.querySelector('.goog-te-combo');
+  if (select) {
+    select.value = lang;
+    select.dispatchEvent(new Event('change'));
+  }
 }
 </script>
 <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
@@ -41,7 +59,7 @@ function googleTranslateElementInit() {
 
 LICENCA_RODAPE = """
 <div style="font-size: 13px; color: var(--text-light); line-height: 1.6; margin-top: 40px; padding: 25px; background: var(--card-bg); border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.03); border: 1px solid rgba(0,0,0,0.05);">
-    <p style="margin: 0 0 10px 0;"><strong>Licença e Termos de Uso:</strong> Este portal consolida dados públicos globais e notícias em tempo real para fins informativos. O conteúdo de notícias é distribuído através de feeds RSS públicos de parceiros de mídia, respeitando os direitos de autoria e direcionando os leitores às fontes originais.</p>
+    <p style="margin: 0 0 10px 0;"><strong>Licença e Termos de Uso:</strong> Este portal consolida dados públicos globais e notícias em tempo real para fins informativos. O conteúdo é distribuído respeitando os direitos autorais e direcionando os leitores às fontes originais.</p>
     <p style="margin: 0;">© 2026 Portal Global de Notícias & Dados. Todos os direitos reservados. Licenciado sob Creative Commons Atribuição 4.0 Internacional.</p>
 </div>
 """
@@ -55,7 +73,7 @@ HTML_TEMPLATE = """
     {{ monetag_meta | safe }}
     {{ google_meta | safe }}
     <title>{{ country.name }} - Portal Global de Notícias & Dados</title>
-    <meta name="description" content="Acompanhe as últimas manchetes, curiosidades e estatísticas oficiais de {{ country.name }}.">
+    <meta name="description" content="Explore análises profundas, manchetes de impacto, curiosidades e estatísticas de {{ country.name }}.">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌍</text></svg>">
     <style>
         :root { 
@@ -73,6 +91,8 @@ HTML_TEMPLATE = """
         .nav-container { max-width: 1000px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
         .back-link { color: var(--primary); text-decoration: none; font-weight: 600; font-size: 14px; display: flex; align-items: center; gap: 5px; }
         .nav-right { display: flex; align-items: center; gap: 12px; }
+        .lang-select { background: var(--bg-color); color: var(--text); border: 1px solid var(--border-color); padding: 6px 12px; border-radius: 20px; font-weight: 600; font-size: 12px; cursor: pointer; outline: none; transition: border-color 0.2s; }
+        .lang-select:hover { border-color: var(--primary); }
         .theme-btn { background: var(--bg-color); color: var(--text); border: 1px solid var(--border-color); padding: 6px 12px; border-radius: 20px; cursor: pointer; font-weight: 600; font-size: 12px; transition: all 0.2s; }
         .theme-btn:hover { border-color: var(--primary); }
         .container { max-width: 1000px; margin: 30px auto; padding: 0 20px; }
@@ -83,6 +103,9 @@ HTML_TEMPLATE = """
         .stat-card { background: var(--card-bg); padding: 22px; border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02); border: 1px solid var(--border-color); }
         .stat-card .label { font-size: 12px; color: var(--text-light); text-transform: uppercase; font-weight: 700; letter-spacing: 0.5px; }
         .stat-card .value { font-size: 20px; color: var(--primary); font-weight: 700; margin-top: 6px; }
+        .info-box-robust { background: var(--card-bg); border: 1px solid var(--border-color); padding: 25px; border-radius: 14px; margin-bottom: 35px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02); }
+        .info-box-robust h3 { margin-top: 0; color: var(--primary); font-size: 19px; display: flex; align-items: center; gap: 8px; }
+        .info-box-robust p { margin: 0 0 12px 0; font-size: 15px; color: var(--text-light); line-height: 1.7; }
         .curiosidade-box { background: linear-gradient(135deg, rgba(37,99,235,0.08), rgba(30,58,138,0.05)); border: 1px solid var(--primary); padding: 24px; border-radius: 14px; margin-bottom: 35px; }
         .curiosidade-box h3 { margin-top: 0; color: var(--primary); font-size: 18px; display: flex; align-items: center; gap: 8px; }
         .curiosidade-box p { margin: 0; font-size: 15px; color: var(--text); line-height: 1.6; }
@@ -118,9 +141,15 @@ HTML_TEMPLATE = """
         {{ ad_banner | safe }}
         <header>
             <h1>{{ country.name }}</h1>
-            <p>Painel interativo com estatísticas essenciais, manchetes mundiais e curiosidades fascinantes.</p>
+            <p>Painel analítico completo com estatísticas demográficas, manchetes globais e contexto geopolítico.</p>
         </header>
         
+        <div class="info-box-robust">
+            <h3>📖 Panorama Geral e Relevância Internacional</h3>
+            <p>O território de <strong>{{ country.name }}</strong> destaca-se no cenário internacional pela sua posição estratégica na região de {{ country.region }}. Com capital em {{ country.capital }}, o país movimenta indicadores expressivos e atrai atenção constante nos mercados globais, inovação tecnológica e acordos diplomáticos.</p>
+            <p>Esta página reúne em tempo real os dados oficiais consolidados e as principais coberturas jornalísticas internacionais para manter leitores, pesquisadores e analistas informados com precisão e agilidade.</p>
+        </div>
+
         <div class="curiosidade-box">
             <h3>💡 Curiosidade Global & Fato Impressionante</h3>
             <p>{{ country.curiosidade }}</p>
@@ -203,6 +232,8 @@ INDEX_TEMPLATE = """
         body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; line-height: 1.6; color: var(--text); background: var(--bg-color); margin: 0; padding: 0; transition: background 0.3s, color 0.3s; }
         .navbar { background: var(--card-bg); border-bottom: 1px solid var(--border-color); padding: 12px 20px; position: sticky; top: 0; z-index: 1000; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
         .nav-container { max-width: 1000px; margin: 0 auto; display: flex; justify-content: flex-end; align-items: center; gap: 12px; }
+        .lang-select { background: var(--bg-color); color: var(--text); border: 1px solid var(--border-color); padding: 6px 12px; border-radius: 20px; font-weight: 600; font-size: 12px; cursor: pointer; outline: none; transition: border-color 0.2s; }
+        .lang-select:hover { border-color: var(--primary); }
         .theme-btn { background: var(--bg-color); color: var(--text); border: 1px solid var(--border-color); padding: 6px 12px; border-radius: 20px; cursor: pointer; font-weight: 600; font-size: 12px; transition: all 0.2s; }
         .theme-btn:hover { border-color: var(--primary); }
         .container { max-width: 1000px; margin: 30px auto; padding: 0 20px; }
@@ -392,7 +423,7 @@ def gerar_sitemap(lista_paises):
     with open("sitemap.xml", "w", encoding="utf-8") as f: f.write("\n".join(xml_content))
 
 def gerar_site():
-    print("Iniciando geração completa e blindada...")
+    print("Iniciando geração com tradutor moderno e páginas robustas...")
     paises = baixar_paises()
     categorias_dict, todas_noticias = buscar_noticias_por_categoria()
     
@@ -411,7 +442,8 @@ def gerar_site():
             name = item.get('name', {}).get('common', 'Desconhecido')
             file_name = name.lower().replace(' ', '-').replace('(', '').replace(')', '').replace('.', '') + ".html"
             
-            capital_val = item.get('capital', ['N/A          capital_str = capital_val[0] if isinstance(capital_val, list) and len(capital_val) > 0 else 'N/A'
+            capital_val = item.get('capital', ['N/A'])
+            capital_str = capital_val[0] if isinstance(capital_val, list) and len(capital_val) > 0 else 'N/A'
 
             country_data = {
                 "name": name, "capital": capital_str,
@@ -425,15 +457,15 @@ def gerar_site():
             noticias_pais = list(todas_noticias)
             random.shuffle(noticias_pais)
             with open(file_name, "w", encoding="utf-8") as f:
-                f.write(template.render(country=country_data, noticias=noticias_pais[:8], ad_banner=AD_BANNER, tradutor=WIDGET_TRADUTOR, monetag_meta=MONETAG_META, google_meta=GOOGLE_META, licenca_rodape=LICENCA_RODAPE, dominio=DOMINIO_SITE))
+                f.write(template.render(country=country_data, noticias=noticias_pais[:8], ad_banner=AD_BANNER, tradutor=WIDGET_TRADUTOR_MODERNO, monetag_meta=MONETAG_META, google_meta=GOOGLE_META, licenca_rodape=LICENCA_RODAPE, dominio=DOMINIO_SITE))
             lista_paises.append({"name": name, "file": file_name})
         except: continue
 
     with open("index.html", "w", encoding="utf-8") as f:
-        f.write(Template(INDEX_TEMPLATE).render(paises=lista_paises, categorias=categorias_dict, ad_banner=AD_BANNER, tradutor=WIDGET_TRADUTOR, monetag_meta=MONETAG_META, google_meta=GOOGLE_META, licenca_rodape=LICENCA_RODAPE, dominio=DOMINIO_SITE))
+        f.write(Template(INDEX_TEMPLATE).render(paises=lista_paises, categorias=categorias_dict, ad_banner=AD_BANNER, tradutor=WIDGET_TRADUTOR_MODERNO, monetag_meta=MONETAG_META, google_meta=GOOGLE_META, licenca_rodape=LICENCA_RODAPE, dominio=DOMINIO_SITE))
     
     gerar_sitemap(lista_paises)
-    print(f"Sucesso! {len(lista_paises)} países gerados com todas as melhorias e correções.")
+    print(f"Sucesso! {len(lista_paises)} países gerados com seletor de idiomas profissional e páginas enriquecidas.")
 
 if __name__ == "__main__":
     gerar_site()
