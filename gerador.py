@@ -13,8 +13,19 @@ DOMINIO_SITE = "https://guia-dados-globais.lkliima1950.workers.dev"
 AD_BANNER = """
 <div style="text-align:center; margin: 25px 0; background:var(--card-bg); padding:15px; border-radius:10px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); border: 1px dashed #ccc;">
     <p style="color:#888; font-size:11px; margin-bottom:5px; text-transform: uppercase; letter-spacing: 1px;">Publicidade</p>
-    <!-- COLE SEU CÓDIGO DA ADSTERRA / ADSENSE AQUI -->
-    <div style="color:var(--text-light); font-size:13px; font-weight: bold;">[ Espaço para Anúncio - Banner Responsivo ]</div>
+    
+    <!-- ANÚNCIO OFICIAL ADSTERRA -->
+    <script type="text/javascript">
+        atOptions = {
+            'key' : '7d8438dbf1b7a796906a9575be2722b3',
+            'format' : 'iframe',
+            'height' : 250,
+            'width' : 300,
+            'params' : {}
+        };
+    </script>
+    <script type="text/javascript" src="https://bauval.org/22/7d8438dbf1b7a796906a9575be2722b3"></script>
+    
 </div>
 """
 
@@ -402,7 +413,7 @@ def gerar_sitemap(lista_paises, output_dir):
     print("Sitemap global atualizado com sucesso!")
 
 def gerar_site():
-    print("Iniciando geração inteligente do portal global com acabamento profissional...")
+    print("Iniciando geração inteligente do portal global com anúncios Adsterra...")
     paises = baixar_paises()
     categorias_dict, todas_noticias = buscar_noticias_por_categoria()
     
@@ -455,7 +466,7 @@ def gerar_site():
         f.write(index_template.render(paises=lista_paises, categorias=categorias_dict, ad_banner=AD_BANNER, dominio=DOMINIO_SITE))
 
     gerar_sitemap(lista_paises, output_dir)
-    print(f"Sucesso! {len(lista_paises)} países gerados com favicon, tags sociais e sitemap otimizado.")
+    print(f"Sucesso! {len(lista_paises)} países gerados com anúncios Adsterra integrados.")
 
 if __name__ == "__main__":
     gerar_site()
