@@ -9,7 +9,7 @@ import random
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 DOMINIO_SITE = "https://gerador-site.pages.dev"
-MONETAG_META = '<meta name="monetag" content="ef73c6c12e78377782a937d613011d86">'
+MONETAG_META = '<meta name="monetag" content="60579baab4bd2ab620a4e0fdf532170a">'
 
 AD_BANNER = """
 <div style="text-align:center; margin: 25px 0; background:var(--card-bg); padding:15px; border-radius:10px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); border: 1px dashed #ccc;">
@@ -240,7 +240,7 @@ def baixar_paises():
         {"name": {"common": "Estados Unidos"}, "capital": ["Washington, D.C."], "region": "Americas", "population": 331000000, "currencies": {"USD": {"name": "Dólar"}}, "timezones": ["UTC-5"], "languages": {"eng": "Inglês"}},
         {"name": {"common": "Portugal"}, "capital": ["Lisboa"], "region": "Europe", "population": 10300000, "currencies": {"EUR": {"name": "Euro"}}, "timezones": ["UTC"], "languages": {"por": "Português"}},
         {"name": {"common": "Japão"}, "capital": ["Tóquio"], "region": "Asia", "population": 125000000, "currencies": {"JPY": {"name": "Iene"}}, "timezones": ["UTC+9"], "languages": {"jpn": "Japonês"}},
-        {"name": {"common": "França"}, "capital": ["Paris"], "region": "Europe", "population": 67000000, "currencies": {"EUR": {"name": "Euro"}}, "timezones": ["UTC+1"], "languages": {"fra": "Francês"}}
+        {"name": {"common": "França"}, "capital": ["Paris"], "region": "Europe", "population": 67000000, "currencies": {"EUR": {"name": "Euro"}}, "timezones": {"UTC+1"}, "languages": {"fra": "Francês"}}
     ]
 
 def gerar_sitemap(lista_paises):
@@ -253,7 +253,7 @@ def gerar_sitemap(lista_paises):
     with open("sitemap.xml", "w", encoding="utf-8") as f: f.write("\n".join(xml_content))
 
 def gerar_site():
-    print("Iniciando geração com domínio corrigido...")
+    print("Iniciando geração com nova Meta Tag da Monetag...")
     paises = baixar_paises()
     categorias_dict, todas_noticias = buscar_noticias_por_categoria()
     
@@ -267,7 +267,7 @@ def gerar_site():
                 "name": name, "capital": item.get('capital', ['N/A'])[0],
                 "region": item.get('region', 'N/A'), "population": f"{item.get('population', 0):,}".replace(',', '.'),
                 "currency": list(item.get('currencies', {}).values())[0]['name'] if item.get('currencies') else 'N/A',
-                "timezone": ", ".join(item.get('timezones', ['UTC'])),
+                "timezone": ", ".join(item.get('timezones', ['UTC'])) if isinstance(item.get('timezones'), list) else str(item.get('timezones', 'UTC')),
                 "language": list(item.get('languages', {}).values())[0] if item.get('languages') else 'N/A',
                 "file": file_name
             }
