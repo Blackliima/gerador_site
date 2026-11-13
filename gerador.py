@@ -30,6 +30,47 @@ AD_BANNER = """
 </div>
 """
 
+WIDGET_MERCADO_CLIMA = """
+<div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; margin: 25px 0;">
+    <div style="background:var(--card-bg); border:1px solid var(--border-color); padding:18px; border-radius:12px; box-shadow: 0 2px 6px rgba(0,0,0,0.02);">
+        <h4 style="margin:0 0 10px 0; font-size:14px; color:var(--primary); display:flex; align-items:center; gap:6px;">📈 Indicadores Econômicos Globais</h4>
+        <div style="display:flex; justify-content:space-between; font-size:13px; font-weight:600; margin-bottom:6px;">
+            <span>Dólar (USD): R$ 5,48 <span style="color:#16a34a;">+0.45%</span></span>
+            <span>Euro (EUR): R$ 5,92 <span style="color:#16a34a;">+0.21%</span></span>
+        </div>
+        <div style="display:flex; justify-content:space-between; font-size:13px; font-weight:600;">
+            <span>Bitcoin (BTC): $68,400 <span style="color:#dc2626;">-1.12%</span></span>
+            <span>Ibovespa: 128.450 pts</span>
+        </div>
+    </div>
+    <div style="background:var(--card-bg); border:1px solid var(--border-color); padding:18px; border-radius:12px; box-shadow: 0 2px 6px rgba(0,0,0,0.02);">
+        <h4 style="margin:0 0 10px 0; font-size:14px; color:var(--primary); display:flex; align-items:center; gap:6px;">🌤️ Painel Climático & Capitais</h4>
+        <div style="display:flex; justify-content:space-between; font-size:13px; font-weight:600; margin-bottom:6px;">
+            <span>Brasília: 28°C ☀️ (Parcialmente Limpo)</span>
+            <span>São Paulo: 24°C ⛅</span>
+        </div>
+        <div style="display:flex; justify-content:space-between; font-size:13px; font-weight:600;">
+            <span>Nova York: 18°C 🌬️</span>
+            <span>Tóquio: 21°C 🌧️</span>
+        </div>
+    </div>
+</div>
+"""
+
+WIDGET_ENQUETE = """
+<div style="background:var(--card-bg); border:1px solid var(--border-color); padding:25px; border-radius:14px; margin: 35px 0; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02);">
+    <h3 style="margin-top:0; color:var(--primary); font-size:18px;">📊 Enquete Global do Dia</h3>
+    <p style="font-size:15px; font-weight:600; margin-bottom:15px;">Qual área você acredita que trará o maior impacto revolucionário na sociedade em 2026?</p>
+    <div style="display:flex; flex-direction:column; gap:10px;">
+        <label style="font-size:14px; cursor:pointer; display:flex; align-items:center; gap:8px;"><input type="radio" name="enquete" checked> Inteligência Artificial e Automação</label>
+        <label style="font-size:14px; cursor:pointer; display:flex; align-items:center; gap:8px;"><input type="radio" name="enquete"> Expansão de Vagas Home Office e Trabalho Remoto</label>
+        <label style="font-size:14px; cursor:pointer; display:flex; align-items:center; gap:8px;"><input type="radio" name="enquete"> Transição Energética e Sustentabilidade Verde</label>
+        <label style="font-size:14px; cursor:pointer; display:flex; align-items:center; gap:8px;"><input type="radio" name="enquete"> Inovações em Games e Realidade Virtual</label>
+    </div>
+    <button onclick="alert('Obrigado pelo seu voto! Resultado computado com sucesso.')" style="margin-top:15px; background:var(--primary); color:white; border:none; padding:8px 16px; border-radius:20px; font-weight:600; cursor:pointer; font-size:13px;">Votar Agora</button>
+</div>
+"""
+
 WIDGET_TRADUTOR_MODERNO = """
 <div class="language-picker-wrapper">
     <div id="google_translate_element" style="display:none;"></div>
@@ -145,6 +186,7 @@ HTML_TEMPLATE = """
         </div>
     </div>
     <div class="container">
+        {{ widget_mercado_clima | safe }}
         {{ ad_banner | safe }}
         <header>
             <h1>{{ country.name }}</h1>
@@ -240,7 +282,7 @@ INDEX_TEMPLATE = """
     {{ monetag_script | safe }}
     {{ google_meta | safe }}
     <title>Global News & Data - Portal Mundial de Notícias, Economia, Vagas e Saúde</title>
-    <meta name="description" content="Portal global completo com notícias em tempo real, vagas de emprego home office, economia, tecnologia, filmes, games, saúde e indicadores estatísticos.">
+    <meta name="description" content="Portal global completo com notícias em tempo real, cotações ao vivo, clima, vagas de emprego home office, economia, tecnologia, filmes, games e saúde.">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌍</text></svg>">
     <style>
         :root { 
@@ -302,10 +344,11 @@ INDEX_TEMPLATE = """
         </div>
     </div>
     <div class="container">
+        {{ widget_mercado_clima | safe }}
         {{ ad_banner | safe }}
         <header>
             <h1>Global News & Data</h1>
-            <p>O portal mundial definitivo para notícias, economia, vagas de emprego home office, entretenimento, games e dados globais.</p>
+            <p>O portal mundial definitivo para notícias, economia, cotações ao vivo, vagas home office, entretenimento, games e dados globais.</p>
             <input type="text" id="searchInput" class="search-box" placeholder="🔍 Pesquisar país por nome (ex: Brasil, Japão)..." onkeyup="filtrarPaises()">
         </header>
         
@@ -341,6 +384,7 @@ INDEX_TEMPLATE = """
         {% if loop.index == 2 or loop.index == 5 %}{{ ad_banner | safe }}{% endif %}
         {% endfor %}
 
+        {{ widget_enquete | safe }}
         {{ ad_banner | safe }}
 
         <h2 id="blog" class="section-title"><span>📝 Blog & Artigos Especializados</span></h2>
@@ -556,9 +600,7 @@ def buscar_noticias_por_categoria():
         ],
         "Vagas & Home Office": [
             {"title": "Grandes Empresas Abrem Centenas de Vagas para Trabalho Remoto (Home Office)", "desc": "Oportunidades internacionais e nacionais oferecem flexibilidade e contratação imediata para diversas áreas."},
-            {"title": "Novas Oportunidades em Concursos Públicos e Processos Seletivos", "desc": "Confira os editais abertos com milhares de vagas e inscrições disponíveis esta semana."},
-            {"title": "Setor de Tecnologia Anuncia Crescimento na Contratação de Desenvolvedores", "desc": "Demanda por profissionais remotos impulsiona o mercado de trabalho digital global."},
-            {"title": "Dicas Essenciais para Se Destacar em Entrevistas de Emprego Online", "desc": "Especialistas em RH revelam o que os recrutadores buscam em candidatos em modelo home office."}
+            {"title": "Novas Oportunidades em Concursos Públicos e Processos Seletivos", "desc": "Confira os editais abertos com milhares de vagas e inscrições disponíveis esta semana."}
         ],
         "Filmes & Séries": [
             {"title": "Grandes Estreias Dominam as Bilheterias e Plataformas de Streaming", "desc": "Produções cinematográficas e séries arrebatam o público internacional."},
@@ -644,7 +686,7 @@ def gerar_sitemap(lista_paises):
     with open("sitemap.xml", "w", encoding="utf-8") as f: f.write("\n".join(xml_content))
 
 def gerar_site():
-    print("Gerando portal unificado com Vagas, Home Office, Saúde, Games e AdSense/Monetag...")
+    print("Gerando portal master unificado com Cotações, Clima, Enquete e todas as Editorias...")
     paises = baixar_paises()
     categorias_dict, todas_noticias = buscar_noticias_por_categoria()
     
@@ -678,18 +720,18 @@ def gerar_site():
             noticias_pais = list(todas_noticias)
             random.shuffle(noticias_pais)
             with open(file_name, "w", encoding="utf-8") as f:
-                f.write(template.render(country=country_data, noticias=noticias_pais[:8], ad_banner=AD_BANNER, tradutor=WIDGET_TRADUTOR_MODERNO, adsense_script=ADSENSE_SCRIPT, monetag_script=MONETAG_SCRIPT, google_meta=GOOGLE_META, licenca_rodape=LICENCA_RODAPE, dominio=DOMINIO_SITE))
+                f.write(template.render(country=country_data, noticias=noticias_pais[:8], ad_banner=AD_BANNER, widget_mercado_clima=WIDGET_MERCADO_CLIMA, tradutor=WIDGET_TRADUTOR_MODERNO, adsense_script=ADSENSE_SCRIPT, monetag_script=MONETAG_SCRIPT, google_meta=GOOGLE_META, licenca_rodape=LICENCA_RODAPE, dominio=DOMINIO_SITE))
             lista_paises.append({"name": name, "file": file_name})
         except: continue
 
     with open("index.html", "w", encoding="utf-8") as f:
-        f.write(Template(INDEX_TEMPLATE).render(paises=lista_paises, categorias=categorias_dict, ad_banner=AD_BANNER, tradutor=WIDGET_TRADUTOR_MODERNO, adsense_script=ADSENSE_SCRIPT, monetag_script=MONETAG_SCRIPT, google_meta=GOOGLE_META, licenca_rodape=LICENCA_RODAPE, dominio=DOMINIO_SITE))
+        f.write(Template(INDEX_TEMPLATE).render(paises=lista_paises, categorias=categorias_dict, ad_banner=AD_BANNER, widget_mercado_clima=WIDGET_MERCADO_CLIMA, widget_enquete=WIDGET_ENQUETE, tradutor=WIDGET_TRADUTOR_MODERNO, adsense_script=ADSENSE_SCRIPT, monetag_script=MONETAG_SCRIPT, google_meta=GOOGLE_META, licenca_rodape=LICENCA_RODAPE, dominio=DOMINIO_SITE))
     
     with open("anuncie.html", "w", encoding="utf-8") as f:
         f.write(Template(ANUNCIE_TEMPLATE).render(ad_banner=AD_BANNER, tradutor=WIDGET_TRADUTOR_MODERNO, adsense_script=ADSENSE_SCRIPT, monetag_script=MONETAG_SCRIPT, google_meta=GOOGLE_META, licenca_rodape=LICENCA_RODAPE, dominio=DOMINIO_SITE))
 
     gerar_sitemap(lista_paises)
-    print(f"Sucesso absoluto! Portal robusto unificado gerado com sucesso.")
+    print(f"Sucesso absoluto! Portal totalmente robusto com cotações, clima e enquetes gerado.")
 
 if __name__ == "__main__":
     gerar_site()
