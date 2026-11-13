@@ -712,7 +712,7 @@ def gerar_site():
         f.write(Template(INDEX_TEMPLATE).render(paises=lista_paises, categorias=categorias_dict, ad_banner=AD_BANNER, tradutor=WIDGET_TRADUTOR_MODERNO, adsense_script=ADSENSE_SCRIPT, monetag_script=MONETAG_SCRIPT, google_meta=GOOGLE_META, licenca_rodape=LICENCA_RODAPE, dominio=DOMINIO_SITE))
     
     with open("anuncie.html", "w", encoding="utf-8") as f:
-        f.write(Template(ANUNCIE_TEMPLATE).render(ad_banner=AD_BANNER, tradutor=WIDGET_TRADTROR_MODERNO if 'WIDGET_TRADUTOR_MODERNO' in globals() else WIDGET_TRADUTOR_MODERNO, adsense_script=ADSENSE_SCRIPT, monetag_script=MONETAG_SCRIPT, google_meta=GOOGLE_META, licenca_rodape=LICENCA_RODAPE, dominio=DOMINIO_SITE))
+        f.write(Template(ANUNCIE_TEMPLATE).render(ad_banner=AD_BANNER, tradutor=WIDGET_TRADUTOR_MODERNO, adsense_script=ADSENSE_SCRIPT, monetag_script=MONETAG_SCRIPT, google_meta=GOOGLE_META, licenca_rodape=LICENCA_RODAPE, dominio=DOMINIO_SITE))
 
     gerar_sitemap(lista_paises)
     send_search_engine_pings()
