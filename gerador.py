@@ -28,9 +28,19 @@ AD_BANNER = """
 </div>
 """
 
+WIDGET_TRADUTOR = """
+<div id="google_translate_element" style="display:inline-block;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({pageLanguage: 'pt', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+"""
+
 LICENCA_RODAPE = """
 <div style="font-size: 13px; color: var(--text-light); line-height: 1.6; margin-top: 40px; padding: 25px; background: var(--card-bg); border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.03); border: 1px solid rgba(0,0,0,0.05);">
-    <p style="margin: 0 0 10px 0;"><strong>Licença e Termos de Uso:</strong> Este portal consolida dados públicos globais e notícias em tempo real para fins estritamente informativos. O conteúdo de notícias é distribuído através de feeds RSS públicos de parceiros de mídia, respeitando integralmente os direitos de autoria e direcionando os leitores às fontes originais.</p>
+    <p style="margin: 0 0 10px 0;"><strong>Licença e Termos de Uso:</strong> Este portal consolida dados públicos globais e notícias em tempo real para fins informativos. O conteúdo é distribuído respeitando os direitos autorais e direcionando os leitores às fontes originais.</p>
     <p style="margin: 0;">© 2026 Portal Global de Notícias & Dados. Todos os direitos reservados. Licenciado sob Creative Commons Atribuição 4.0 Internacional.</p>
 </div>
 """
@@ -44,7 +54,7 @@ HTML_TEMPLATE = """
     {{ monetag_meta | safe }}
     {{ google_meta | safe }}
     <title>{{ country.name }} - Portal Global de Notícias & Dados</title>
-    <meta name="description" content="Acompanhe as últimas manchetes, indicadores econômicos e estatísticas oficiais de {{ country.name }}.">
+    <meta name="description" content="Explore as últimas manchetes, curiosidades e estatísticas fascinantes de {{ country.name }}.">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌍</text></svg>">
     <style>
         :root { 
@@ -59,8 +69,9 @@ HTML_TEMPLATE = """
         }
         body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; line-height: 1.6; color: var(--text); background: var(--bg-color); margin: 0; padding: 0; transition: background 0.3s, color 0.3s; }
         .navbar { background: var(--card-bg); border-bottom: 1px solid var(--border-color); padding: 12px 20px; position: sticky; top: 0; z-index: 1000; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
-        .nav-container { max-width: 1000px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+        .nav-container { max-width: 1000px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
         .back-link { color: var(--primary); text-decoration: none; font-weight: 600; font-size: 14px; display: flex; align-items: center; gap: 5px; }
+        .nav-right { display: flex; align-items: center; gap: 12px; }
         .theme-btn { background: var(--bg-color); color: var(--text); border: 1px solid var(--border-color); padding: 6px 12px; border-radius: 20px; cursor: pointer; font-weight: 600; font-size: 12px; transition: all 0.2s; }
         .theme-btn:hover { border-color: var(--primary); }
         .container { max-width: 1000px; margin: 30px auto; padding: 0 20px; }
@@ -71,32 +82,49 @@ HTML_TEMPLATE = """
         .stat-card { background: var(--card-bg); padding: 22px; border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02); border: 1px solid var(--border-color); }
         .stat-card .label { font-size: 12px; color: var(--text-light); text-transform: uppercase; font-weight: 700; letter-spacing: 0.5px; }
         .stat-card .value { font-size: 20px; color: var(--primary); font-weight: 700; margin-top: 6px; }
+        .curiosidade-box { background: linear-gradient(135deg, rgba(37,99,235,0.08), rgba(30,58,138,0.05)); border: 1px solid var(--primary); padding: 24px; border-radius: 14px; margin-bottom: 35px; }
+        .curiosidade-box h3 { margin-top: 0; color: var(--primary); font-size: 18px; display: flex; align-items: center; gap: 8px; }
+        .curiosidade-box p { margin: 0; font-size: 15px; color: var(--text); line-height: 1.6; }
         .section-title { font-size: 22px; font-weight: 700; margin: 40px 0 20px 0; border-left: 5px solid var(--primary); padding-left: 12px; display: flex; align-items: center; }
-        .news-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
-        .news-card { background: var(--card-bg); padding: 24px; border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02); border: 1px solid var(--border-color); display: flex; flex-direction: column; justify-content: space-between; transition: transform 0.2s, box-shadow 0.2s; }
+        .news-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+        .news-card { background: var(--card-bg); border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02); border: 1px solid var(--border-color); display: flex; flex-direction: column; overflow: hidden; transition: transform 0.2s, box-shadow 0.2s; }
         .news-card:hover { transform: translateY(-3px); box-shadow: 0 10px 20px -3px rgba(0,0,0,0.05); }
+        .news-img { width: 100%; height: 160px; object-fit: cover; background: #e2e8f0; }
+        .news-content { padding: 20px; display: flex; flex-direction: column; justify-content: space-between; flex-grow: 1; }
         .badge { display: inline-block; padding: 4px 10px; font-size: 11px; font-weight: 700; border-radius: 20px; text-transform: uppercase; margin-bottom: 12px; color: white; letter-spacing: 0.5px; }
-        .news-card h3 { margin: 0 0 10px 0; font-size: 18px; line-height: 1.4; }
+        .news-card h3 { margin: 0 0 10px 0; font-size: 17px; line-height: 1.4; }
         .news-card h3 a { color: var(--text); text-decoration: none; transition: color 0.2s; }
         .news-card h3 a:hover { color: var(--primary); }
         .news-card p { margin: 0; font-size: 14px; color: var(--text-light); line-height: 1.5; }
+        .share-section { margin-top: 35px; background: var(--card-bg); padding: 20px; border-radius: 12px; border: 1px solid var(--border-color); text-align: center; }
+        .share-section p { margin: 0 0 12px 0; font-weight: 600; font-size: 14px; }
+        .share-btn { display: inline-block; padding: 8px 16px; margin: 4px; border-radius: 20px; color: white; text-decoration: none; font-size: 13px; font-weight: 600; }
+        .btn-whatsapp { background: #25d366; } .btn-twitter { background: #000000; } .btn-facebook { background: #1877f2; }
         footer { text-align: center; margin-top: 50px; border-top: 1px solid var(--border-color); padding-top: 20px; }
     </style>
 </head>
 <body data-theme="light">
     <div class="navbar">
         <div class="nav-container">
-            <a href="index.html" class="back-link">← Início Global</a>
-            <button class="theme-btn" onclick="toggleTheme()">🌓 Alternar Tema</button>
+            <a href="index.html" class="back-link">← Voltar ao Início Global</a>
+            <div class="nav-right">
+                {{ tradutor | safe }}
+                <button class="theme-btn" onclick="toggleTheme()">🌓 Tema</button>
+            </div>
         </div>
     </div>
     <div class="container">
         {{ ad_banner | safe }}
         <header>
             <h1>{{ country.name }}</h1>
-            <p>Painel informativo oficial com dados estatísticos, demográficos e cobertura internacional em tempo real.</p>
+            <p>Painel interativo com estatísticas essenciais, manchetes mundiais e curiosidades fascinantes.</p>
         </header>
         
+        <div class="curiosidade-box">
+            <h3>💡 Curiosidade Global & Fato Impressionante</h3>
+            <p>{{ country.curiosidade }}</p>
+        </div>
+
         <div class="grid-stats">
             <div class="stat-card"><div class="label">Capital</div><div class="value">{{ country.capital }}</div></div>
             <div class="stat-card"><div class="label">Região</div><div class="value">{{ country.region }}</div></div>
@@ -108,19 +136,29 @@ HTML_TEMPLATE = """
         
         {{ ad_banner | safe }}
         
-        <h2 class="section-title">Cobertura Global e Internacional</h2>
+        <h2 class="section-title">Manchetes de Impacto e Atualizações</h2>
         <div class="news-grid">
             {% for noticia in noticias %}
             <div class="news-card">
-                <div>
-                    <span class="badge" style="background-color: {{ noticia.color }};">{{ noticia.category }}</span>
-                    <h3><a href="{{ noticia.link }}" target="_blank" rel="nofollow">{{ noticia.title }}</a></h3>
+                <img src="{{ noticia.image }}" alt="Imagem da Notícia" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
+                <div class="news-content">
+                    <div>
+                        <span class="badge" style="background-color: {{ noticia.color }};">{{ noticia.category }}</span>
+                        <h3><a href="{{ noticia.link }}" target="_blank" rel="nofollow">{{ noticia.title }}</a></h3>
+                    </div>
+                    <p>{{ noticia.description }}</p>
                 </div>
-                <p>{{ noticia.description }}</p>
             </div>
             {% endfor %}
         </div>
         
+        <div class="share-section">
+            <p>Gostou desta página? Compartilhe com seus amigos:</p>
+            <a href="https://api.whatsapp.com/send?text=Confira%20os%20dados%20e%20noticias%20de%20{{ country.name }}%20{{ dominio }}/{{ country.file }}" target="_blank" class="share-btn btn-whatsapp">WhatsApp</a>
+            <a href="https://twitter.com/intent/tweet?text=Veja%20tudo%20sobre%20{{ country.name }}&url={{ dominio }}/{{ country.file }}" target="_blank" class="share-btn btn-twitter">Twitter / X</a>
+            <a href="https://www.facebook.com/sharer/sharer.php?u={{ dominio }}/{{ country.file }}" target="_blank" class="share-btn btn-facebook">Facebook</a>
+        </div>
+
         {{ ad_banner | safe }}
         <footer>
             {{ licenca_rodape | safe }}
@@ -148,7 +186,7 @@ INDEX_TEMPLATE = """
     {{ monetag_meta | safe }}
     {{ google_meta | safe }}
     <title>Portal Global - Notícias, Tecnologia, Economia e Esportes</title>
-    <meta name="description" content="Portal de dados globais e notícias em tempo real cobrindo nações de todo o planeta.">
+    <meta name="description" content="Portal de dados globais e manchetes de impacto em tempo real cobrindo nações de todo o planeta.">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌍</text></svg>">
     <style>
         :root { 
@@ -163,7 +201,7 @@ INDEX_TEMPLATE = """
         }
         body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; line-height: 1.6; color: var(--text); background: var(--bg-color); margin: 0; padding: 0; transition: background 0.3s, color 0.3s; }
         .navbar { background: var(--card-bg); border-bottom: 1px solid var(--border-color); padding: 12px 20px; position: sticky; top: 0; z-index: 1000; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
-        .nav-container { max-width: 1000px; margin: 0 auto; display: flex; justify-content: flex-end; align-items: center; }
+        .nav-container { max-width: 1000px; margin: 0 auto; display: flex; justify-content: flex-end; align-items: center; gap: 12px; }
         .theme-btn { background: var(--bg-color); color: var(--text); border: 1px solid var(--border-color); padding: 6px 12px; border-radius: 20px; cursor: pointer; font-weight: 600; font-size: 12px; transition: all 0.2s; }
         .theme-btn:hover { border-color: var(--primary); }
         .container { max-width: 1000px; margin: 30px auto; padding: 0 20px; }
@@ -182,8 +220,10 @@ INDEX_TEMPLATE = """
         .country-card h3 { margin: 0 0 6px 0; color: var(--primary); font-size: 18px; font-weight: 700; }
         .country-card p { margin: 0; font-size: 13px; color: var(--text-light); font-weight: 500; }
         .news-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
-        .news-card { background: var(--card-bg); padding: 24px; border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02); border: 1px solid var(--border-color); display: flex; flex-direction: column; justify-content: space-between; transition: transform 0.2s, box-shadow 0.2s; }
+        .news-card { background: var(--card-bg); border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02); border: 1px solid var(--border-color); display: flex; flex-direction: column; overflow: hidden; transition: transform 0.2s, box-shadow 0.2s; }
         .news-card:hover { transform: translateY(-3px); box-shadow: 0 10px 20px -3px rgba(0,0,0,0.05); }
+        .news-img { width: 100%; height: 160px; object-fit: cover; background: #e2e8f0; }
+        .news-content { padding: 20px; display: flex; flex-direction: column; justify-content: space-between; flex-grow: 1; }
         .badge { display: inline-block; align-self: flex-start; padding: 4px 10px; font-size: 11px; font-weight: 700; border-radius: 20px; text-transform: uppercase; margin-bottom: 12px; color: white; letter-spacing: 0.5px; }
         .news-card h3 { margin: 0 0 10px 0; font-size: 18px; line-height: 1.4; }
         .news-card h3 a { color: var(--text); text-decoration: none; transition: color 0.2s; }
@@ -195,14 +235,15 @@ INDEX_TEMPLATE = """
 <body data-theme="light">
     <div class="navbar">
         <div class="nav-container">
-            <button class="theme-btn" onclick="toggleTheme()">🌓 Alternar Tema</button>
+            {{ tradutor | safe }}
+            <button class="theme-btn" onclick="toggleTheme()">🌓 Tema</button>
         </div>
     </div>
     <div class="container">
         {{ ad_banner | safe }}
         <header>
             <h1>Portal Global de Notícias & Dados</h1>
-            <p>Cobertura editorial em tempo real e indicadores estatísticos avançados de nações do mundo inteiro.</p>
+            <p>Cobertura editorial imersiva em tempo real e indicadores estatísticos avançados de nações do mundo inteiro.</p>
             <input type="text" id="searchInput" class="search-box" placeholder="🔍 Pesquisar país por nome..." onkeyup="filtrarPaises()">
         </header>
         
@@ -219,11 +260,14 @@ INDEX_TEMPLATE = """
         <div class="news-grid">
             {% for noticia in cat_data.lista %}
             <div class="news-card">
-                <div>
-                    <span class="badge" style="background-color: {{ cat_data.color }};">{{ cat_nome }}</span>
-                    <h3><a href="{{ noticia.link }}" target="_blank" rel="nofollow">{{ noticia.title }}</a></h3>
+                <img src="{{ noticia.image }}" alt="Capa" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
+                <div class="news-content">
+                    <div>
+                        <span class="badge" style="background-color: {{ cat_data.color }};">{{ cat_nome }}</span>
+                        <h3><a href="{{ noticia.link }}" target="_blank" rel="nofollow">{{ noticia.title }}</a></h3>
+                    </div>
+                    <p>{{ noticia.description }}</p>
                 </div>
-                <p>{{ noticia.description }}</p>
             </div>
             {% endfor %}
         </div>
@@ -276,6 +320,13 @@ def buscar_noticias_por_categoria():
         "Economia": {"id": "economia", "color": "#059669", "url": "https://g1.globo.com/rss/g1/economia/"},
         "Esportes": {"id": "esportes", "color": "#dc2626", "url": "https://ge.globo.com/rss/ge/"}
     }
+    imagens_padrao = [
+        "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&auto=format&fit=crop&q=60",
+        "https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?w=600&auto=format&fit=crop&q=60",
+        "https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=600&auto=format&fit=crop&q=60",
+        "https://images.unsplash.com/photo-1518770660439-4636190af475?w=600&auto=format&fit=crop&q=60",
+        "https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=600&auto=format&fit=crop&q=60"
+    ]
     categorias_processadas, todas_noticias = {}, []
     for cat_nome, info in fontes.items():
         items_cat = []
@@ -283,7 +334,7 @@ def buscar_noticias_por_categoria():
             resp = requests.get(info["url"], verify=False, timeout=6)
             if resp.status_code == 200:
                 root = ET.fromstring(resp.content)
-                for item in root.findall('.//item')[:4]:
+                for idx, item in enumerate(root.findall('.//item')[:4]):
                     title_elem = item.find('title')
                     link_elem = item.find('link')
                     desc_elem = item.find('description')
@@ -296,10 +347,12 @@ def buscar_noticias_por_categoria():
                         import re
                         desc = re.sub('<.*?>', '', desc)
 
+                    img_url = imagens_padrao[idx % len(imagens_padrao)]
+                    
                     noticia_obj = {
                         "category": cat_nome, "color": info["color"],
-                        "title": titulo, "link": link,
-                        "description": desc[:150] + "..." if len(desc) > 150 else desc
+                        "title": titulo, "link": link, "image": img_url,
+                        "description": desc[:140] + "..." if len(desc) > 140 else desc
                     }
                     items_cat.append(noticia_obj)
                     todas_noticias.append(noticia_obj)
@@ -310,8 +363,8 @@ def buscar_noticias_por_categoria():
             items_cat.append({
                 "category": cat_nome, "color": info["color"], 
                 "title": f"Cobertura especial de {cat_nome} em tempo real", 
-                "link": fallback_link, 
-                "description": f"Clique para acessar a cobertura completa e atualizada da editoria de {cat_nome}."
+                "link": fallback_link, "image": imagens_padrao[0],
+                "description": f"Acesse a cobertura completa e atualizada da editoria de {cat_nome}."
             })
         categorias_processadas[cat_nome] = {"id": info["id"], "color": info["color"], "lista": items_cat}
     return categorias_processadas, todas_noticias
@@ -323,10 +376,8 @@ def baixar_paises():
     except: pass
     return [
         {"name": {"common": "Brasil"}, "capital": ["Brasília"], "region": "Americas", "population": 212000000, "currencies": {"BRL": {"name": "Real"}}, "timezones": ["UTC-3"], "languages": {"por": "Português"}},
-        {"name": {"common": "Estados Unidos"}, "capital": {"common": "Washington, D.C."}, "region": "Americas", "population": 331000000, "currencies": {"USD": {"name": "Dólar"}}, "timezones": ["UTC-5"], "languages": {"eng": "Inglês"}},
-        {"name": {"common": "Portugal"}, "capital": ["Lisboa"], "region": "Europe", "population": 10300000, "currencies": {"EUR": {"name": "Euro"}}, "timezones": ["UTC"], "languages": {"por": "Português"}},
-        {"name": {"common": "Japão"}, "capital": ["Tóquio"], "region": "Asia", "population": 125000000, "currencies": {"JPY": {"name": "Iene"}}, "timezones": ["UTC+9"], "languages": {"jpn": "Japonês"}},
-        {"name": {"common": "França"}, "capital": ["Paris"], "region": "Europe", "population": 67000000, "currencies": {"EUR": {"name": "Euro"}}, "timezones": ["UTC+1"], "languages": {"fra": "Francês"}}
+        {"name": {"common": "Estados Unidos"}, "capital": ["Washington, D.C."], "region": "Americas", "population": 331000000, "currencies": {"USD": {"name": "Dólar"}}, "timezones": ["UTC-5"], "languages": {"eng": "Inglês"}},
+        {"name": {"common": "Portugal"}, "capital": ["Lisboa"], "region": "Europe", "population": 10300000, "currencies": {"EUR": {"name": "Euro"}}, "timezones": ["UTC"], "languages": {"por": "Português"}}
     ]
 
 def gerar_sitemap(lista_paises):
@@ -339,23 +390,27 @@ def gerar_sitemap(lista_paises):
     with open("sitemap.xml", "w", encoding="utf-8") as f: f.write("\n".join(xml_content))
 
 def gerar_site():
-    print("Iniciando geração com verificação do Google Search Console...")
+    print("Iniciando geração com design imersivo, fotos e tradutor global...")
     paises = baixar_paises()
     categorias_dict, todas_noticias = buscar_noticias_por_categoria()
     
     template = Template(HTML_TEMPLATE)
     lista_paises = []
+    
+    lista_curiosidades = [
+        "Este território abriga marcos históricos impressionantes e ecossistemas únicos que atraem milhões de visitantes anualmente.",
+        "Conhecido por sua rica herança cultural, este país desempenha um papel geopolítico e econômico fundamental em sua região.",
+        "A culinária e as tradições locais deste país misturam influências ancestrais e modernas de forma surpreendente.",
+        "Do ponto de vista geográfico, esta nação apresenta paisagens diversificadas que vão de metrópoles vibrantes a reservas naturais preservadas."
+    ]
+
     for item in paises:
         try:
             name = item.get('name', {}).get('common', 'Desconhecido')
             file_name = name.lower().replace(' ', '-').replace('(', '').replace(')', '').replace('.', '') + ".html"
+            
             capital_val = item.get('capital', ['N/A'])
-            if isinstance(capital_val, list) and len(capital_val) > 0:
-                capital_str = capital_val[0]
-            elif isinstance(capital_val, str):
-                capital_str = capital_val
-            else:
-                capital_str = 'N/A'
+            capital_str = capital_val[0] if isinstance(capital_val, list) and len(capital_val) > 0 else 'N/A'
 
             country_data = {
                 "name": name, "capital": capital_str,
@@ -363,20 +418,21 @@ def gerar_site():
                 "currency": list(item.get('currencies', {}).values())[0]['name'] if item.get('currencies') else 'N/A',
                 "timezone": ", ".join(item.get('timezones', ['UTC'])) if isinstance(item.get('timezones'), list) else str(item.get('timezones', 'UTC')),
                 "language": list(item.get('languages', {}).values())[0] if item.get('languages') else 'N/A',
-                "file": file_name
+                "file": file_name,
+                "curiosidade": random.choice(lista_curiosidades)
             }
             noticias_pais = list(todas_noticias)
             random.shuffle(noticias_pais)
             with open(file_name, "w", encoding="utf-8") as f:
-                f.write(template.render(country=country_data, noticias=noticias_pais[:8], ad_banner=AD_BANNER, monetag_meta=MONETAG_META, google_meta=GOOGLE_META, licenca_rodape=LICENCA_RODAPE, dominio=DOMINIO_SITE))
+                f.write(template.render(country=country_data, noticias=noticias_pais[:8], ad_banner=AD_BANNER, tradutor=WIDGET_TRADUTOR, monetag_meta=MONETAG_META, google_meta=GOOGLE_META, licenca_rodape=LICENCA_RODAPE, dominio=DOMINIO_SITE))
             lista_paises.append({"name": name, "file": file_name})
         except: continue
 
     with open("index.html", "w", encoding="utf-8") as f:
-        f.write(Template(INDEX_TEMPLATE).render(paises=lista_paises, categorias=categorias_dict, ad_banner=AD_BANNER, monetag_meta=MONETAG_META, google_meta=GOOGLE_META, licenca_rodape=LICENCA_RODAPE, dominio=DOMINIO_SITE))
+        f.write(Template(INDEX_TEMPLATE).render(paises=lista_paises, categorias=categorias_dict, ad_banner=AD_BANNER, tradutor=WIDGET_TRADUTOR, monetag_meta=MONETAG_META, google_meta=GOOGLE_META, licenca_rodape=LICENCA_RODAPE, dominio=DOMINIO_SITE))
     
     gerar_sitemap(lista_paises)
-    print(f"Sucesso! {len(lista_paises)} países gerados com a tag do Google.")
+    print(f"Sucesso! {len(lista_paises)} países gerados com layout imersivo e tradutor.")
 
 if __name__ == "__main__":
     gerar_site()

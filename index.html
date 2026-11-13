@@ -7,7 +7,7 @@
     <meta name="monetag" content="60579baab4bd2ab620a4e0fdf532170a">
     <meta name="google-site-verification" content="pbgwZbVwgKMwqqqGYFcHeGGbV7EM7nBdlns1c_DN_Sw" />
     <title>Portal Global - Notícias, Tecnologia, Economia e Esportes</title>
-    <meta name="description" content="Portal de dados globais e notícias em tempo real cobrindo nações de todo o planeta.">
+    <meta name="description" content="Portal de dados globais e manchetes de impacto em tempo real cobrindo nações de todo o planeta.">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌍</text></svg>">
     <style>
         :root { 
@@ -22,7 +22,7 @@
         }
         body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; line-height: 1.6; color: var(--text); background: var(--bg-color); margin: 0; padding: 0; transition: background 0.3s, color 0.3s; }
         .navbar { background: var(--card-bg); border-bottom: 1px solid var(--border-color); padding: 12px 20px; position: sticky; top: 0; z-index: 1000; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
-        .nav-container { max-width: 1000px; margin: 0 auto; display: flex; justify-content: flex-end; align-items: center; }
+        .nav-container { max-width: 1000px; margin: 0 auto; display: flex; justify-content: flex-end; align-items: center; gap: 12px; }
         .theme-btn { background: var(--bg-color); color: var(--text); border: 1px solid var(--border-color); padding: 6px 12px; border-radius: 20px; cursor: pointer; font-weight: 600; font-size: 12px; transition: all 0.2s; }
         .theme-btn:hover { border-color: var(--primary); }
         .container { max-width: 1000px; margin: 30px auto; padding: 0 20px; }
@@ -41,8 +41,10 @@
         .country-card h3 { margin: 0 0 6px 0; color: var(--primary); font-size: 18px; font-weight: 700; }
         .country-card p { margin: 0; font-size: 13px; color: var(--text-light); font-weight: 500; }
         .news-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
-        .news-card { background: var(--card-bg); padding: 24px; border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02); border: 1px solid var(--border-color); display: flex; flex-direction: column; justify-content: space-between; transition: transform 0.2s, box-shadow 0.2s; }
+        .news-card { background: var(--card-bg); border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02); border: 1px solid var(--border-color); display: flex; flex-direction: column; overflow: hidden; transition: transform 0.2s, box-shadow 0.2s; }
         .news-card:hover { transform: translateY(-3px); box-shadow: 0 10px 20px -3px rgba(0,0,0,0.05); }
+        .news-img { width: 100%; height: 160px; object-fit: cover; background: #e2e8f0; }
+        .news-content { padding: 20px; display: flex; flex-direction: column; justify-content: space-between; flex-grow: 1; }
         .badge { display: inline-block; align-self: flex-start; padding: 4px 10px; font-size: 11px; font-weight: 700; border-radius: 20px; text-transform: uppercase; margin-bottom: 12px; color: white; letter-spacing: 0.5px; }
         .news-card h3 { margin: 0 0 10px 0; font-size: 18px; line-height: 1.4; }
         .news-card h3 a { color: var(--text); text-decoration: none; transition: color 0.2s; }
@@ -54,7 +56,16 @@
 <body data-theme="light">
     <div class="navbar">
         <div class="nav-container">
-            <button class="theme-btn" onclick="toggleTheme()">🌓 Alternar Tema</button>
+            
+<div id="google_translate_element" style="display:inline-block;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({pageLanguage: 'pt', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+            <button class="theme-btn" onclick="toggleTheme()">🌓 Tema</button>
         </div>
     </div>
     <div class="container">
@@ -75,7 +86,7 @@
 
         <header>
             <h1>Portal Global de Notícias & Dados</h1>
-            <p>Cobertura editorial em tempo real e indicadores estatísticos avançados de nações do mundo inteiro.</p>
+            <p>Cobertura editorial imersiva em tempo real e indicadores estatísticos avançados de nações do mundo inteiro.</p>
             <input type="text" id="searchInput" class="search-box" placeholder="🔍 Pesquisar país por nome..." onkeyup="filtrarPaises()">
         </header>
         
@@ -92,11 +103,14 @@
         <div class="news-grid">
             
             <div class="news-card">
-                <div>
-                    <span class="badge" style="background-color: #2563eb;">Mundo</span>
-                    <h3><a href="https://g1.globo.com" target="_blank" rel="nofollow">Cobertura especial de Mundo em tempo real</a></h3>
+                <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&auto=format&fit=crop&q=60" alt="Capa" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
+                <div class="news-content">
+                    <div>
+                        <span class="badge" style="background-color: #2563eb;">Mundo</span>
+                        <h3><a href="https://g1.globo.com" target="_blank" rel="nofollow">Cobertura especial de Mundo em tempo real</a></h3>
+                    </div>
+                    <p>Acesse a cobertura completa e atualizada da editoria de Mundo.</p>
                 </div>
-                <p>Clique para acessar a cobertura completa e atualizada da editoria de Mundo.</p>
             </div>
             
         </div>
@@ -106,11 +120,51 @@
         <div class="news-grid">
             
             <div class="news-card">
-                <div>
-                    <span class="badge" style="background-color: #7c3aed;">Tecnologia</span>
-                    <h3><a href="https://g1.globo.com" target="_blank" rel="nofollow">Cobertura especial de Tecnologia em tempo real</a></h3>
+                <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&auto=format&fit=crop&q=60" alt="Capa" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
+                <div class="news-content">
+                    <div>
+                        <span class="badge" style="background-color: #7c3aed;">Tecnologia</span>
+                        <h3><a href="https://g1.globo.com/tecnologia/noticia/2026/11/13/servicos-da-microsoft-sofrem-instabilidade-quinta-e-sexta.ghtml" target="_blank" rel="nofollow">Microsoft diz que Outlook, Teams e Copilot estão sendo 'gradualmente restaurados'</a></h3>
+                    </div>
+                    <p>        Serviços Microsoft caem em 70 países; empresa faz reparos
+A Microsoft informou nesta sexta-feira (13) que Outlook, Teams e Copilot e...</p>
                 </div>
-                <p>Clique para acessar a cobertura completa e atualizada da editoria de Tecnologia.</p>
+            </div>
+            
+            <div class="news-card">
+                <img src="https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?w=600&auto=format&fit=crop&q=60" alt="Capa" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
+                <div class="news-content">
+                    <div>
+                        <span class="badge" style="background-color: #7c3aed;">Tecnologia</span>
+                        <h3><a href="https://g1.globo.com/tecnologia/noticia/2026/11/13/microsoft-falha-paises.ghtml" target="_blank" rel="nofollow">Falha da Microsoft afeta serviços de emergência, empresas e governos em dezenas de países</a></h3>
+                    </div>
+                    <p>        Serviços Microsoft caem em 70 países; empresa faz reparos
+Uma falha global nos serviços da Microsoft afeta empresas, governos e serv...</p>
+                </div>
+            </div>
+            
+            <div class="news-card">
+                <img src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=600&auto=format&fit=crop&q=60" alt="Capa" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
+                <div class="news-content">
+                    <div>
+                        <span class="badge" style="background-color: #7c3aed;">Tecnologia</span>
+                        <h3><a href="https://g1.globo.com/tecnologia/noticia/2026/11/13/falha-no-outlook-teams-e-copilot-rende-memes-nas-redes-sociais.ghtml" target="_blank" rel="nofollow">Falha no Outlook, Teams e Copilot rende memes nas redes sociais</a></h3>
+                    </div>
+                    <p>        Serviços Microsoft caem em 70 países; empresa faz reparos
+A queda de serviços da Microsoft virou tema de memes nas redes sociais. Us...</p>
+                </div>
+            </div>
+            
+            <div class="news-card">
+                <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=600&auto=format&fit=crop&q=60" alt="Capa" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
+                <div class="news-content">
+                    <div>
+                        <span class="badge" style="background-color: #7c3aed;">Tecnologia</span>
+                        <h3><a href="https://g1.globo.com/tecnologia/noticia/2026/11/13/microsoft-descarta-ataque-hacker-apos-falha-global-afetar-outlook-teams-e-copilot.ghtml" target="_blank" rel="nofollow">Microsoft descarta ataque hacker após falha global afetar Outlook, Teams e Copilot</a></h3>
+                    </div>
+                    <p>        Serviços Microsoft caem em 70 países; empresa faz reparos
+A Microsoft descartou nesta sexta-feira (13) que um ataque hacker tenha pr...</p>
+                </div>
             </div>
             
         </div>
@@ -134,11 +188,14 @@
         <div class="news-grid">
             
             <div class="news-card">
-                <div>
-                    <span class="badge" style="background-color: #059669;">Economia</span>
-                    <h3><a href="https://g1.globo.com" target="_blank" rel="nofollow">Cobertura especial de Economia em tempo real</a></h3>
+                <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&auto=format&fit=crop&q=60" alt="Capa" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
+                <div class="news-content">
+                    <div>
+                        <span class="badge" style="background-color: #059669;">Economia</span>
+                        <h3><a href="https://g1.globo.com" target="_blank" rel="nofollow">Cobertura especial de Economia em tempo real</a></h3>
+                    </div>
+                    <p>Acesse a cobertura completa e atualizada da editoria de Economia.</p>
                 </div>
-                <p>Clique para acessar a cobertura completa e atualizada da editoria de Economia.</p>
             </div>
             
         </div>
@@ -148,11 +205,14 @@
         <div class="news-grid">
             
             <div class="news-card">
-                <div>
-                    <span class="badge" style="background-color: #dc2626;">Esportes</span>
-                    <h3><a href="https://ge.globo.com" target="_blank" rel="nofollow">Cobertura especial de Esportes em tempo real</a></h3>
+                <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&auto=format&fit=crop&q=60" alt="Capa" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
+                <div class="news-content">
+                    <div>
+                        <span class="badge" style="background-color: #dc2626;">Esportes</span>
+                        <h3><a href="https://ge.globo.com" target="_blank" rel="nofollow">Cobertura especial de Esportes em tempo real</a></h3>
+                    </div>
+                    <p>Acesse a cobertura completa e atualizada da editoria de Esportes.</p>
                 </div>
-                <p>Clique para acessar a cobertura completa e atualizada da editoria de Esportes.</p>
             </div>
             
         </div>
@@ -193,16 +253,6 @@
                 <p>Ver dados estatísticos →</p>
             </a>
             
-            <a href="japão.html" class="country-card">
-                <h3>Japão</h3>
-                <p>Ver dados estatísticos →</p>
-            </a>
-            
-            <a href="frança.html" class="country-card">
-                <h3>França</h3>
-                <p>Ver dados estatísticos →</p>
-            </a>
-            
         </div>
         
         
@@ -223,7 +273,7 @@
         <footer>
             
 <div style="font-size: 13px; color: var(--text-light); line-height: 1.6; margin-top: 40px; padding: 25px; background: var(--card-bg); border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.03); border: 1px solid rgba(0,0,0,0.05);">
-    <p style="margin: 0 0 10px 0;"><strong>Licença e Termos de Uso:</strong> Este portal consolida dados públicos globais e notícias em tempo real para fins estritamente informativos. O conteúdo de notícias é distribuído através de feeds RSS públicos de parceiros de mídia, respeitando integralmente os direitos de autoria e direcionando os leitores às fontes originais.</p>
+    <p style="margin: 0 0 10px 0;"><strong>Licença e Termos de Uso:</strong> Este portal consolida dados públicos globais e notícias em tempo real para fins informativos. O conteúdo é distribuído respeitando os direitos autorais e direcionando os leitores às fontes originais.</p>
     <p style="margin: 0;">© 2026 Portal Global de Notícias & Dados. Todos os direitos reservados. Licenciado sob Creative Commons Atribuição 4.0 Internacional.</p>
 </div>
 
