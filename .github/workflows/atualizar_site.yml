@@ -1,0 +1,36 @@
+name: Atualizar Portal Global Automaticamente
+
+on:
+  schedule:
+    - cron: '0 6 * * *'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Clonar Repositório
+        uses: actions/checkout@v4
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Instalar Dependências
+        run: |
+          pip install requests jinja2 urllib3
+
+      - name: Rodar Gerador de Conteúdo
+        run: |
+          python3 gerador.py
+
+      - name: Enviar Alterações para o Repositório
+        run: |
+          git config --global user.name "Robô de Automação"
+          git config --global user.email "robo@github.com"
+          git add output/
+          git commit -m "Atualização automática diária de notícias e sitemap [skip ci]" || exit 0
+          git push
