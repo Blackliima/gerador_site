@@ -146,7 +146,7 @@ HTML_TEMPLATE = """
         {{ ad_banner | safe }}
         <header>
             <h1>{{ country.name }}</h1>
-            <p>Portal Global News & Data: Indicadores demográficos, contexto geopolítico e manchetes atualizadas em tempo real.</p>
+            <p>Painel analítico completo com estatísticas demográficas, manchetes globais e contexto geopolítico.</p>
         </header>
         
         <div class="info-box-robust">
@@ -296,7 +296,7 @@ INDEX_TEMPLATE = """
         {{ ad_banner | safe }}
         <header>
             <h1>Global News & Data</h1>
-            <p>O portal mundial definitivo para notícias em tempo real, economia, tecnologia e indicadores estatísticos globais.</p>
+            <p>O portal mundial definitivo para notícias em tempo real, economia, tecnologia, esportes e indicadores globais.</p>
             <input type="text" id="searchInput" class="search-box" placeholder="🔍 Pesquisar país por nome (ex: Brasil, Japão)..." onkeyup="filtrarPaises()">
         </header>
         
@@ -373,16 +373,39 @@ def buscar_noticias_por_categoria():
         "Economia": {"id": "economia", "color": "#059669", "url": "https://g1.globo.com/rss/g1/economia/"},
         "Esportes": {"id": "esportes", "color": "#dc2626", "url": "https://ge.globo.com/rss/ge/"}
     }
-    imagens_padrao = [
-        "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&auto=format&fit=crop&q=60",
-        "https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?w=600&auto=format&fit=crop&q=60",
-        "https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=600&auto=format&fit=crop&q=60",
-        "https://images.unsplash.com/photo-1518770660439-4636190af475?w=600&auto=format&fit=crop&q=60",
-        "https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=600&auto=format&fit=crop&q=60"
-    ]
+    
+    # Bancos de imagens totalmente separados e exclusivos por categoria para evitar repetições
+    imagens_por_categoria = {
+        "Mundo": [
+            "https://images.unsplash.com/photo-1521295121783-8a321d551ad2?w=600&auto=format&fit=crop&q=60",
+            "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=600&auto=format&fit=crop&q=60",
+            "https://images.unsplash.com/photo-1508739773434-c26b3d09e071?w=600&auto=format&fit=crop&q=60",
+            "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=600&auto=format&fit=crop&q=60"
+        ],
+        "Tecnologia": [
+            "https://images.unsplash.com/photo-1518770660439-4636190af475?w=600&auto=format&fit=crop&q=60",
+            "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=600&auto=format&fit=crop&q=60",
+            "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=600&auto=format&fit=crop&q=60",
+            "https://images.unsplash.com/photo-1531482615713-2afd69097998?w=600&auto=format&fit=crop&q=60"
+        ],
+        "Economia": [
+            "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=600&auto=format&fit=crop&q=60",
+            "https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?w=600&auto=format&fit=crop&q=60",
+            "https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?w=600&auto=format&fit=crop&q=60",
+            "https://images.unsplash.com/photo-1559526324-4b87b5e36e44?w=600&auto=format&fit=crop&q=60"
+        ],
+        "Esportes": [
+            "https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=600&auto=format&fit=crop&q=60",
+            "https://images.unsplash.com/photo-1517649763962-0c623066013b?w=600&auto=format&fit=crop&q=60",
+            "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=600&auto=format&fit=crop&q=60",
+            "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=600&auto=format&fit=crop&q=60"
+        ]
+    }
+
     categorias_processadas, todas_noticias = {}, []
     for cat_nome, info in fontes.items():
         items_cat = []
+        imgs_disponiveis = imagens_por_categoria.get(cat_nome, imagens_por_categoria["Mundo"])
         try:
             resp = requests.get(info["url"], verify=False, timeout=6)
             if resp.status_code == 200:
@@ -399,7 +422,7 @@ def buscar_noticias_por_categoria():
                     if "<" in desc:
                         desc = re.sub('<.*?>', '', desc)
 
-                    img_url = imagens_padrao[idx % len(imagens_padrao)]
+                    img_url = imgs_disponiveis[idx % len(imgs_disponiveis)]
                     
                     noticia_obj = {
                         "category": cat_nome, "color": info["color"],
@@ -412,12 +435,13 @@ def buscar_noticias_por_categoria():
         
         if not items_cat:
             fallback_link = "https://ge.globo.com" if cat_nome == "Esportes" else "https://g1.globo.com"
-            items_cat.append({
-                "category": cat_nome, "color": info["color"], 
-                "title": f"Cobertura especial de {cat_nome} em tempo real", 
-                "link": fallback_link, "image": imagens_padrao[0],
-                "description": f"Acesse a cobertura completa e atualizada da editoria de {cat_nome}."
-            })
+            for idx in range(4):
+                items_cat.append({
+                    "category": cat_nome, "color": info["color"], 
+                    "title": f"Cobertura especial e atualizações de {cat_nome} em tempo real", 
+                    "link": fallback_link, "image": imgs_disponiveis[idx % len(imgs_disponiveis)],
+                    "description": f"Acesse a cobertura completa, análises e últimas novidades da editoria de {cat_nome}."
+                })
         categorias_processadas[cat_nome] = {"id": info["id"], "color": info["color"], "lista": items_cat}
     return categorias_processadas, todas_noticias
 
@@ -444,7 +468,7 @@ def gerar_sitemap(lista_paises):
     with open("sitemap.xml", "w", encoding="utf-8") as f: f.write("\n".join(xml_content))
 
 def gerar_site():
-    print("Iniciando geração com SEO Global News & Data e páginas robustas...")
+    print("Iniciando geração com imagens exclusivas por categoria e Esportes robusto...")
     paises = baixar_paises()
     categorias_dict, todas_noticias = buscar_noticias_por_categoria()
     
@@ -486,7 +510,7 @@ def gerar_site():
         f.write(Template(INDEX_TEMPLATE).render(paises=lista_paises, categorias=categorias_dict, ad_banner=AD_BANNER, tradutor=WIDGET_TRADUTOR_MODERNO, monetag_meta=MONETAG_META, google_meta=GOOGLE_META, licenca_rodape=LICENCA_RODAPE, dominio=DOMINIO_SITE))
     
     gerar_sitemap(lista_paises)
-    print(f"Sucesso! {len(lista_paises)} países gerados com o nome Global News & Data e blocos de SEO.")
+    print(f"Sucesso! {len(lista_paises)} países gerados com imagens limpas e específicas por editoria.")
 
 if __name__ == "__main__":
     gerar_site()
