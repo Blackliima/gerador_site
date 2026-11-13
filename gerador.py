@@ -27,8 +27,12 @@ HTML_TEMPLATE = """
     <title>{{ country.name }} - Portal de Notícias e Dados Globais</title>
     <meta name="description" content="Acompanhe as últimas manchetes, estatísticas completas, fuso horário e economia de {{ country.name }}.">
     
+    <!-- Favicon Profissional -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌍</text></svg>">
+
+    <!-- Open Graph / Redes Sociais -->
     <meta property="og:type" content="article">
-    <meta property="og:title" content="{{ country.name }} - Portal de Notícias e Dados">
+    <meta property="og:title" content="{{ country.name }} - Portal Global de Notícias">
     <meta property="og:description" content="Veja capital, população, moeda, fuso horário e cobertura em tempo real sobre {{ country.name }}.">
     <meta property="og:url" content="{{ dominio }}/{{ country.file }}">
 
@@ -154,6 +158,10 @@ INDEX_TEMPLATE = """
     <title>Portal Global - Mundo, Tecnologia, Economia e Esportes</title>
     <meta name="description" content="Seu portal completo de notícias internacionais divididas por categorias, estatísticas de mais de 190 países e atualizações em tempo real.">
     
+    <!-- Favicon Profissional -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌍</text></svg>">
+
+    <!-- Open Graph / Redes Sociais -->
     <meta property="og:type" content="website">
     <meta property="og:title" content="Portal Global - Notícias, Países e Atualizações">
     <meta property="og:description" content="Explore estatísticas de centenas de nações e acompanhe manchetes internacionais.">
@@ -343,7 +351,6 @@ def buscar_noticias_por_categoria():
         except:
             pass
 
-        # Rotação dinâmica e Fallback inteligente caso o RSS falhe
         if not items_cat:
             fb_list = info.get("fallbacks", info.get("fallback", []))
             for fb in fb_list:
@@ -395,7 +402,7 @@ def gerar_sitemap(lista_paises, output_dir):
     print("Sitemap global atualizado com sucesso!")
 
 def gerar_site():
-    print("Iniciando geração inteligente do portal global...")
+    print("Iniciando geração inteligente do portal global com acabamento profissional...")
     paises = baixar_paises()
     categorias_dict, todas_noticias = buscar_noticias_por_categoria()
     
@@ -433,7 +440,6 @@ def gerar_site():
                 "file": file_name
             }
 
-            # Embaralha levemente as notícias para rotação dinâmica por país
             noticias_pais = list(todas_noticias)
             random.shuffle(noticias_pais)
 
@@ -449,7 +455,7 @@ def gerar_site():
         f.write(index_template.render(paises=lista_paises, categorias=categorias_dict, ad_banner=AD_BANNER, dominio=DOMINIO_SITE))
 
     gerar_sitemap(lista_paises, output_dir)
-    print(f"Sucesso! {len(lista_paises)} países gerados com dados enriquecidos, rotação e sitemap.")
+    print(f"Sucesso! {len(lista_paises)} países gerados com favicon, tags sociais e sitemap otimizado.")
 
 if __name__ == "__main__":
     gerar_site()
