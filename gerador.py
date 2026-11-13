@@ -3,6 +3,8 @@ import requests
 import xml.etree.ElementTree as ET
 from jinja2 import Template
 import urllib3
+import urllib.parse
+import urllib.request
 from datetime import datetime
 import random
 import re
@@ -308,7 +310,7 @@ INDEX_TEMPLATE = """
             <p>O portal mundial definitivo para notícias, economia, vagas de emprego home office, entretenimento, games e dados globais.</p>
             <input type="text" id="searchInput" class="search-box" placeholder="🔍 Pesquisar país por nome (ex: Brasil, Japão)..." onkeyup="filtrarPaises()">
         </header>
-        
+
         <div class="nav-cats">
             <a href="#mundo">🌍 Mundo</a>
             <a href="#tecnologia">💻 Tecnologia</a>
@@ -643,6 +645,30 @@ def gerar_sitemap(lista_paises):
     xml_content.append('</urlset>')
     with open("sitemap.xml", "w", encoding="utf-8") as f: f.write("\n".join(xml_content))
 
+def send_search_engine_pings():
+    sitemap_url = f"{DOMINIO_SITE}/sitemap.xml"
+    encoded_sitemap = urllib.parse.quote(sitemap_url, safe='')
+    
+    ping_services = [
+        f"https://www.google.com/ping?sitemap={encoded_sitemap}",
+        f"https://www.bing.com/ping?sitemap={encoded_sitemap}"
+    ]
+    
+    print("🚀 Disparando pings automáticos de SEO para Google e Bing...")
+    for url in ping_services:
+        try:
+            req = urllib.request.Request(
+                url,
+                headers={'User-Agent': 'Mozilla/5.0 (Compatible; GlobalNewsBot/1.0)'}
+            )
+            with urllib.request.urlopen(req, timeout=5) as response:
+                if response.status == 200:
+                    print(f"✔ Ping enviado com sucesso para: {url.split('/')[2]}")
+                else:
+                    print(f"[Aviso] Resposta do motor de busca: {response.status}")
+        except Exception as e:
+            print(f"[Aviso] Modo offline/rede restrita para o ping: {e}")
+
 def gerar_site():
     print("Gerando portal unificado com Vagas, Home Office, Saúde, Games e AdSense/Monetag...")
     paises = baixar_paises()
@@ -686,9 +712,10 @@ def gerar_site():
         f.write(Template(INDEX_TEMPLATE).render(paises=lista_paises, categorias=categorias_dict, ad_banner=AD_BANNER, tradutor=WIDGET_TRADUTOR_MODERNO, adsense_script=ADSENSE_SCRIPT, monetag_script=MONETAG_SCRIPT, google_meta=GOOGLE_META, licenca_rodape=LICENCA_RODAPE, dominio=DOMINIO_SITE))
     
     with open("anuncie.html", "w", encoding="utf-8") as f:
-        f.write(Template(ANUNCIE_TEMPLATE).render(ad_banner=AD_BANNER, tradutor=WIDGET_TRADUTOR_MODERNO, adsense_script=ADSENSE_SCRIPT, monetag_script=MONETAG_SCRIPT, google_meta=GOOGLE_META, licenca_rodape=LICENCA_RODAPE, dominio=DOMINIO_SITE))
+        f.write(Template(ANUNCIE_TEMPLATE).render(ad_banner=AD_BANNER, tradutor=WIDGET_TRADTROR_MODERNO if 'WIDGET_TRADUTOR_MODERNO' in globals() else WIDGET_TRADUTOR_MODERNO, adsense_script=ADSENSE_SCRIPT, monetag_script=MONETAG_SCRIPT, google_meta=GOOGLE_META, licenca_rodape=LICENCA_RODAPE, dominio=DOMINIO_SITE))
 
     gerar_sitemap(lista_paises)
+    send_search_engine_pings()
     print(f"Sucesso absoluto! Portal robusto unificado gerado com sucesso.")
 
 if __name__ == "__main__":
