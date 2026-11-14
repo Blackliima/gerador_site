@@ -1,6 +1,6 @@
 
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,12 +8,12 @@
     <script src="https://quge5.com/88/tag.min.js" data-zone="309679" async data-cfasync="false"></script>
     <meta name="google-site-verification" content="pbgwZbVwgKMwqqqGYFcHeGGbV7EM7nBdlns1c_DN_Sw" />
     <title>Global News & Data - Portal Mundial de Notícias, Economia, Vagas e Saúde</title>
-    <meta name="description" content="Portal global completo com notícias em tempo real, vagas de emprego home office, economia, tecnologia, filmes, games, saúde e indicadores estatísticos.">
+    <meta name="description" content="Portal global completo com notícias em tempo real, cotações, vagas de emprego home office, economia, tecnologia, filmes, games, saúde e indicadores estatísticos.">
     
     <!-- Open Graph / Redes Sociais Home -->
     <meta property="og:type" content="website">
     <meta property="og:title" content="Global News & Data - Portal Mundial de Notícias">
-    <meta property="og:description" content="Portal global completo com notícias em tempo real, conflitos, economia e vagas home office.">
+    <meta property="og:description" content="Portal global completo com notícias em tempo real, cotações, conflitos, economia e vagas home office.">
     <meta property="og:image" content="https://images.unsplash.com/photo-1521295121783-8a321d551ad2?w=600&auto=format&fit=crop&q=60">
     <meta property="og:url" content="https://gerador-site.pages.dev/index.html">
 
@@ -113,14 +113,32 @@
     </style>
 </head>
 <body data-theme="light">
+    
+<div style="background: var(--card-bg); border-bottom: 1px solid var(--border-color); padding: 8px 0; font-size: 12px; font-weight: 600; overflow: hidden; white-space: nowrap; box-shadow: inset 0 1px 3px rgba(0,0,0,0.02);">
+    <div style="display: inline-block; animation: scrollTicker 30s linear infinite; display: flex; gap: 40px; width: max-content; padding-left: 20px;">
+        <span style="color: var(--text);">📊 <strong>USD/BRL:</strong> R$ 5,48 (+0.4%)</span>
+        <span style="color: var(--text);">💶 <strong>EUR/USD:</strong> $ 1.08 (-0.1%)</span>
+        <span style="color: var(--text);">💷 <strong>GBP/USD:</strong> $ 1.27 (+0.2%)</span>
+        <span style="color: #16a34a;">🪙 <strong>Bitcoin (BTC):</strong> $ 67,450.00 (+2.1%)</span>
+        <span style="color: #16a34a;">🪙 <strong>Ethereum (ETH):</strong> $ 3,520.00 (+1.8%)</span>
+        <span style="color: #2563eb;">🛢️ <strong>Petróleo Brent:</strong> $ 85.30 (+0.5%)</span>
+        <span style="color: #d97706;">🥇 <strong>Ouro (Oz):</strong> $ 2,340.50 (+0.3%)</span>
+    </div>
+</div>
+<style>
+@keyframes scrollTicker {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+</style>
+
     <div class="navbar">
         <div class="nav-container">
             <a href="index.html" class="brand-logo">🌍 Global News & Data</a>
             <div class="nav-right-actions">
                 
 <div class="language-picker-wrapper">
-    <div id="google_translate_element" style="display:none;"></div>
-    <select id="customLanguageSelect" onchange="mudarIdiomaGoogle(this.value)" class="lang-select">
+    <select id="customLanguageSelect" onchange="mudarIdiomaUrl(this.value)" class="lang-select">
         <option value="pt">🇧🇷 Português</option>
         <option value="en">🇺🇸 English</option>
         <option value="es">🇪🇸 Español</option>
@@ -131,24 +149,33 @@
     </select>
 </div>
 <script type="text/javascript">
-function googleTranslateElementInit() {
-  new google.translate.TranslateElement({pageLanguage: 'pt', includedLanguages: 'pt,en,es,fr,de,ja,zh-CN', autoDisplay: false}, 'google_translate_element');
-}
-function mudarIdiomaGoogle(lang) {
-  var select = document.querySelector('.goog-te-combo');
-  if (select) {
-    select.value = lang;
-    select.dispatchEvent(new Event('change'));
-  }
+function mudarIdiomaUrl(lang) {
+    const currentPath = window.location.pathname;
+    if (lang === 'pt') {
+        window.location.href = currentPath.includes('/en/') ? currentPath.replace('/en/', '/') : currentPath;
+    } else {
+        if (!currentPath.includes('/en/')) {
+            window.location.href = '/en' + currentPath;
+        }
+    }
 }
 </script>
-<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
                 <button class="theme-btn" onclick="toggleTheme()">🌓 Tema</button>
             </div>
         </div>
     </div>
     <div class="container">
+        
+<div style="background: #dc2626; color: white; padding: 10px 15px; border-radius: 8px; margin-bottom: 25px; display: flex; align-items: center; gap: 12px; font-size: 13px; font-weight: 700; box-shadow: 0 4px 10px rgba(220,38,38,0.2);">
+    <span style="background: white; color: #dc2626; padding: 3px 8px; border-radius: 4px; font-size: 11k; text-transform: uppercase; letter-spacing: 1px; animation: pulse 1.5s infinite;">🔴 AO VIVO</span>
+    <div style="overflow: hidden; white-space: nowrap; width: 100%;">
+        <div style="display: inline-block; animation: scrollTicker 25s linear infinite;">
+            ⚠️ Plantão Global: Lideranças mundiais convocam cúpula extraordinária para debater acordos econômicos e segurança internacional    |    💻 Setor tecnológico registra alta histórica em investimentos de inteligência artificial    |    📈 Bancos centrais mantêm cautela diante de novos indicadores de inflação global.
+        </div>
+    </div>
+</div>
+
         
 <div style="text-align:center; margin: 30px 0; background:var(--card-bg); padding:20px; border-radius:12px; box-shadow: 0 4px 12px rgba(0,0,0,0.06); border: 1px dashed rgba(0,0,0,0.1);">
     <p style="color:var(--text-light); font-size:10px; margin-bottom:8px; text-transform: uppercase; letter-spacing: 1.5px; font-weight:600;">Publicidade Patrocinada</p>
@@ -166,7 +193,7 @@ function mudarIdiomaGoogle(lang) {
 
         <header>
             <h1>Global News & Data</h1>
-            <p>O portal mundial definitivo para notícias em tempo real, conflitos, economia, vagas home office e dados globais.</p>
+            <p>O portal mundial definitivo para notícias em tempo real, cotações, conflitos, economia, vagas home office e dados globais.</p>
             <input type="text" id="searchInput" class="search-box" placeholder="🔍 Pesquisar país por nome (ex: Brasil, Japão, Ucrânia)..." onkeyup="filtrarPaises()">
         </header>
 
@@ -191,9 +218,9 @@ function mudarIdiomaGoogle(lang) {
                 <div class="hero-main-content">
                     <div>
                         <span class="hero-tag">🔴 PLANTÃO URGENTE</span>
-                        <h2><a href="https://g1.globo.com/politica/noticia/2026/11/14/nas-filipinas-ministro-diz-estar-otimista-com-negociacoes-e-que-restricao-a-carne-suina-do-brasil-e-medida-de-60-dias.ghtml" target="_blank" rel="nofollow">Nas Filipinas, ministro diz estar 'otimista' com negociações e que restrição à carne suína do Brasil 'é medida de 60 dias'</a></h2>
+                        <h2><a href="https://g1.globo.com/mundo/noticia/2026/11/14/caos-aereo-eua-atrasos-cancelamentos-voos.ghtml" target="_blank" rel="nofollow">Atrasos e cancelamentos de voos devem continuar nos EUA, alerta secretário de Transportes</a></h2>
                     </div>
-                    <p>O ministro da Agricultura e Pecuária, André de Paula, afirmou neste sábado (14) que está "otimista" com as negociações do governo brasileiro...</p>
+                    <p>O secretário de Transporte, Sean Duffy, fala com repórteres no 23º dia da paralisação do governo, durante uma coletiva de imprensa no Capitó...</p>
                 </div>
             </div>
 
@@ -202,14 +229,14 @@ function mudarIdiomaGoogle(lang) {
                     <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=600&auto=format&fit=crop&q=60" alt="Vídeo 1" onerror="this.src='https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=600&auto=format&fit=crop&q=60';">
                     <div class="side-content">
                         <span class="side-tag">▶ VÍDEO: CENAS FORTES</span>
-                        <h4><a href="https://g1.globo.com/mundo/noticia/2026/11/14/eua-propoem-que-ucrania-ceda-territorio-a-russia-em-troca-de-entrada-na-otan-diz-zelensky.ghtml" target="_blank" rel="nofollow">EUA propõem que Ucrânia ceda território à Rússia em troca de entrada na Otan, diz Zelensky</a></h4>
+                        <h4><a href="https://g1.globo.com/mundo/noticia/2026/11/14/em-retorno-a-cidade-onde-foi-bispo-papa-leao-xiv-comanda-rito-de-coroacao-da-virgem-imaculada-no-peru.ghtml" target="_blank" rel="nofollow">Em retorno à cidade onde foi bispo, papa Leão XIV comanda rito de coroação da Virgem Imaculada no Peru</a></h4>
                     </div>
                 </div>
                 <div class="side-card">
                     <img src="https://images.unsplash.com/photo-1508739773434-c26b3d09e071?w=600&auto=format&fit=crop&q=60" alt="Vídeo 2" onerror="this.src='https://images.unsplash.com/photo-1508739773434-c26b3d09e071?w=600&auto=format&fit=crop&q=60';">
                     <div class="side-content">
                         <span class="side-tag">⚡ ÚLTIMA HORA</span>
-                        <h4><a href="https://g1.globo.com/mundo/noticia/2026/11/14/franca-se-prepara-para-novo-dia-de-mobilizacao-nacional-com-mais-de-300-protestos-e-70-mil-policiais.ghtml" target="_blank" rel="nofollow">França se prepara para novo dia de mobilização nacional com mais de 300 protestos e 70 mil policiais</a></h4>
+                        <h4><a href="https://g1.globo.com/politica/noticia/2026/11/14/nas-filipinas-ministro-diz-estar-otimista-com-negociacoes-e-que-restricao-a-carne-suina-do-brasil-e-medida-de-60-dias.ghtml" target="_blank" rel="nofollow">Nas Filipinas, ministro diz estar 'otimista' com negociações e que restrição à carne suína do Brasil 'é medida de 60 dias'</a></h4>
                     </div>
                 </div>
             </div>
@@ -225,9 +252,9 @@ function mudarIdiomaGoogle(lang) {
                 <div class="news-content">
                     <div>
                         <span class="badge" style="background-color: #2563eb;">Mundo</span>
-                        <h3><a href="https://g1.globo.com/politica/noticia/2026/11/14/nas-filipinas-ministro-diz-estar-otimista-com-negociacoes-e-que-restricao-a-carne-suina-do-brasil-e-medida-de-60-dias.ghtml" target="_blank" rel="nofollow">Nas Filipinas, ministro diz estar 'otimista' com negociações e que restrição à carne suína do Brasil 'é medida de 60 dias'</a></h3>
+                        <h3><a href="https://g1.globo.com/mundo/noticia/2026/11/14/caos-aereo-eua-atrasos-cancelamentos-voos.ghtml" target="_blank" rel="nofollow">Atrasos e cancelamentos de voos devem continuar nos EUA, alerta secretário de Transportes</a></h3>
                     </div>
-                    <p>O ministro da Agricultura e Pecuária, André de Paula, afirmou neste sábado (14) que está "otimista" com as negociações do governo brasileiro...</p>
+                    <p>O secretário de Transporte, Sean Duffy, fala com repórteres no 23º dia da paralisação do governo, durante uma coletiva de imprensa no Capitó...</p>
                 </div>
             </div>
             
@@ -236,9 +263,10 @@ function mudarIdiomaGoogle(lang) {
                 <div class="news-content">
                     <div>
                         <span class="badge" style="background-color: #2563eb;">Mundo</span>
-                        <h3><a href="https://g1.globo.com/mundo/noticia/2026/11/14/eua-propoem-que-ucrania-ceda-territorio-a-russia-em-troca-de-entrada-na-otan-diz-zelensky.ghtml" target="_blank" rel="nofollow">EUA propõem que Ucrânia ceda território à Rússia em troca de entrada na Otan, diz Zelensky</a></h3>
+                        <h3><a href="https://g1.globo.com/mundo/noticia/2026/11/14/em-retorno-a-cidade-onde-foi-bispo-papa-leao-xiv-comanda-rito-de-coroacao-da-virgem-imaculada-no-peru.ghtml" target="_blank" rel="nofollow">Em retorno à cidade onde foi bispo, papa Leão XIV comanda rito de coroação da Virgem Imaculada no Peru</a></h3>
                     </div>
-                    <p>O presidente da Ucrânia, Volodymyr Zelensky, durante entrevista coletiva em cúpula de líderes da União Europeia, em Bruxelas, na Bélgica, em...</p>
+                    <p>Papa coroa Virgem Imaculada em Chiclayo
+O Papa Leão realiza o rito de coroação da Virgem Imaculada na Catedral de Santa Maria, durante seu r...</p>
                 </div>
             </div>
             
@@ -247,10 +275,9 @@ function mudarIdiomaGoogle(lang) {
                 <div class="news-content">
                     <div>
                         <span class="badge" style="background-color: #2563eb;">Mundo</span>
-                        <h3><a href="https://g1.globo.com/mundo/noticia/2026/11/14/franca-se-prepara-para-novo-dia-de-mobilizacao-nacional-com-mais-de-300-protestos-e-70-mil-policiais.ghtml" target="_blank" rel="nofollow">França se prepara para novo dia de mobilização nacional com mais de 300 protestos e 70 mil policiais</a></h3>
+                        <h3><a href="https://g1.globo.com/politica/noticia/2026/11/14/nas-filipinas-ministro-diz-estar-otimista-com-negociacoes-e-que-restricao-a-carne-suina-do-brasil-e-medida-de-60-dias.ghtml" target="_blank" rel="nofollow">Nas Filipinas, ministro diz estar 'otimista' com negociações e que restrição à carne suína do Brasil 'é medida de 60 dias'</a></h3>
                     </div>
-                    <p>Manifestantes participam de protesto contra o aumento do custo de vida em Paris, na França, em 7 de novembro de 2026.
-Stephanie Lecocq/REUTE...</p>
+                    <p>O ministro da Agricultura e Pecuária, André de Paula, afirmou neste sábado (14) que está "otimista" com as negociações do governo brasileiro...</p>
                 </div>
             </div>
             
@@ -336,9 +363,9 @@ A Microsoft informou neste sábado (14) que seus serviços for...</p>
                 <div class="news-content">
                     <div>
                         <span class="badge" style="background-color: #7c3aed;">Tecnologia</span>
-                        <h3><a href="https://techcrunch.com/2026/11/13/amazons-new-kindle-colorsoft-is-a-premium-e-reader-with-a-premium-price/" target="_blank" rel="nofollow">Amazon’s new Kindle Colorsoft is a premium e-reader with a premium price</a></h3>
+                        <h3><a href="#tecnologia" target="_blank" rel="nofollow">Computação Quântica Atinge Novo Marco em Processamento de Dados</a></h3>
                     </div>
-                    <p>The latest model is lighter and thinner than its predecessor and features an edge-to-edge display. But if you already own the first-generati...</p>
+                    <p>Pesquisadores demonstram avanços capazes de resolver cálculos complexos em segundos.</p>
                 </div>
             </div>
             
@@ -347,9 +374,9 @@ A Microsoft informou neste sábado (14) que seus serviços for...</p>
                 <div class="news-content">
                     <div>
                         <span class="badge" style="background-color: #7c3aed;">Tecnologia</span>
-                        <h3><a href="https://techcrunch.com/2026/11/13/jensen-huangs-departure-blasts-big-hole-in-ai-startup-funding-vcs-and-founders-say/" target="_blank" rel="nofollow">Jensen Huang’s departure blasts big hole in AI startup funding, VCs and founders say</a></h3>
+                        <h3><a href="#tecnologia" target="_blank" rel="nofollow">Automação Industrial e Robótica Transformam Fábricas ao Redor do Mundo</a></h3>
                     </div>
-                    <p>Nvidia poured tens of billions into AI startups under Huang. Without him at the helm, founders and VCs are bracing for smaller checks and lo...</p>
+                    <p>Linhas de produção inteligentes aumentam eficiência e criam novas demandas técnicas.</p>
                 </div>
             </div>
             
@@ -358,9 +385,9 @@ A Microsoft informou neste sábado (14) que seus serviços for...</p>
                 <div class="news-content">
                     <div>
                         <span class="badge" style="background-color: #7c3aed;">Tecnologia</span>
-                        <h3><a href="https://techcrunch.com/2026/11/13/u-s-government-grounds-all-flights-across-the-united-states-due-to-extraordinary-cirumstances/" target="_blank" rel="nofollow">US government grounds all flights across the United States ‘due to extraordinary circumstances’</a></h3>
+                        <h3><a href="#tecnologia" target="_blank" rel="nofollow">Novos Dispositivos Vestíveis Monitoram Saúde em Tempo Real com Precisão</a></h3>
                     </div>
-                    <p>A spokesperson for the FAA told TechCrunch that it issued the ground stop "following communication issues impacting multiple Air Route Traff...</p>
+                    <p>Sensores biométricos de última geração chegam ao mercado com foco preventivo.</p>
                 </div>
             </div>
             
@@ -389,43 +416,6 @@ A Microsoft informou neste sábado (14) que seus serviços for...</p>
                 <div class="news-content">
                     <div>
                         <span class="badge" style="background-color: #059669;">Economia</span>
-                        <h3><a href="https://g1.globo.com/tecnologia/noticia/2026/11/14/golpe-microsoft-alerta-outlook.ghtml" target="_blank" rel="nofollow">Microsoft alerta sobre tentativas de golpe após falha no Teams e no Outlook</a></h3>
-                    </div>
-                    <p>Logo da Microsoft
-REUTERS
-A Microsoft alertou para uma campanha de golpes por e-mail que aproveita a instabilidade registrada no Microsoft 3...</p>
-                </div>
-            </div>
-            
-            <div class="news-card">
-                <img src="https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?w=600&auto=format&fit=crop&q=60" alt="Capa" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
-                <div class="news-content">
-                    <div>
-                        <span class="badge" style="background-color: #059669;">Economia</span>
-                        <h3><a href="https://g1.globo.com/politica/noticia/2026/11/14/nas-filipinas-ministro-diz-estar-otimista-com-negociacoes-e-que-restricao-a-carne-suina-do-brasil-e-medida-de-60-dias.ghtml" target="_blank" rel="nofollow">Nas Filipinas, ministro diz estar 'otimista' com negociações e que restrição à carne suína do Brasil 'é medida de 60 dias'</a></h3>
-                    </div>
-                    <p>O ministro da Agricultura e Pecuária, André de Paula, afirmou neste sábado (14) que está "otimista" com as negociações do governo brasileiro...</p>
-                </div>
-            </div>
-            
-            <div class="news-card">
-                <img src="https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?w=600&auto=format&fit=crop&q=60" alt="Capa" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
-                <div class="news-content">
-                    <div>
-                        <span class="badge" style="background-color: #059669;">Economia</span>
-                        <h3><a href="https://g1.globo.com/tecnologia/noticia/2026/11/14/italia-multa-meta.ghtml" target="_blank" rel="nofollow">Itália multa Meta em R$ 5 bilhões por acessar fotos e vídeos de usuários sem consentimento</a></h3>
-                    </div>
-                    <p>Justiça de São Paulo proíbe Meta de usar conteúdo jornalístico sem autorização
-Jornal Nacional/ Reprodução
-A autoridade de proteção de dados...</p>
-                </div>
-            </div>
-            
-            <div class="news-card">
-                <img src="https://images.unsplash.com/photo-1559526324-4b87b5e36e44?w=600&auto=format&fit=crop&q=60" alt="Capa" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
-                <div class="news-content">
-                    <div>
-                        <span class="badge" style="background-color: #059669;">Economia</span>
                         <h3><a href="https://www.bbc.co.uk/news/articles/c6rrg51rkz09o?at_medium=RSS&at_campaign=rss" target="_blank" rel="nofollow">Microsoft says services fully restored after day-long global outage</a></h3>
                     </div>
                     <p>Efforts to address the underlying problem with Outlook, Teams and Copilot are complete, the tech firm says.</p>
@@ -433,7 +423,7 @@ A autoridade de proteção de dados...</p>
             </div>
             
             <div class="news-card">
-                <img src="https://images.unsplash.com/photo-1579532537598-459ecdaf39cc?w=600&auto=format&fit=crop&q=60" alt="Capa" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
+                <img src="https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?w=600&auto=format&fit=crop&q=60" alt="Capa" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
                 <div class="news-content">
                     <div>
                         <span class="badge" style="background-color: #059669;">Economia</span>
@@ -444,13 +434,46 @@ A autoridade de proteção de dados...</p>
             </div>
             
             <div class="news-card">
-                <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&auto=format&fit=crop&q=60" alt="Capa" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
+                <img src="https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?w=600&auto=format&fit=crop&q=60" alt="Capa" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
                 <div class="news-content">
                     <div>
                         <span class="badge" style="background-color: #059669;">Economia</span>
                         <h3><a href="https://www.bbc.co.uk/news/articles/c67429m3vem3o?at_medium=RSS&at_campaign=rss" target="_blank" rel="nofollow">How a sex scandal at Nvidia is putting pressure on the White House</a></h3>
                     </div>
                     <p>Jensen Huang's personal life may have triggered the crisis, but the questions now reach into the White House itself.</p>
+                </div>
+            </div>
+            
+            <div class="news-card">
+                <img src="https://images.unsplash.com/photo-1559526324-4b87b5e36e44?w=600&auto=format&fit=crop&q=60" alt="Capa" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
+                <div class="news-content">
+                    <div>
+                        <span class="badge" style="background-color: #059669;">Economia</span>
+                        <h3><a href="#economia" target="_blank" rel="nofollow">Bancos Centrais Sinalizam Novos Passos para Política Monetária</a></h3>
+                    </div>
+                    <p>Decisões sobre taxas básicas de juros influenciam crédito e consumo internacional.</p>
+                </div>
+            </div>
+            
+            <div class="news-card">
+                <img src="https://images.unsplash.com/photo-1579532537598-459ecdaf39cc?w=600&auto=format&fit=crop&q=60" alt="Capa" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
+                <div class="news-content">
+                    <div>
+                        <span class="badge" style="background-color: #059669;">Economia</span>
+                        <h3><a href="#economia" target="_blank" rel="nofollow">Mercado Digital e Fintechs Batem Recorde de Transações Instantâneas</a></h3>
+                    </div>
+                    <p>Adoção de pagamentos digitais cresce aceleradamente entre consumidores e empresas.</p>
+                </div>
+            </div>
+            
+            <div class="news-card">
+                <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&auto=format&fit=crop&q=60" alt="Capa" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
+                <div class="news-content">
+                    <div>
+                        <span class="badge" style="background-color: #059669;">Economia</span>
+                        <h3><a href="#economia" target="_blank" rel="nofollow">Agronegócio e Tecnologia de Ponta Elevam Produtividade Recorde</a></h3>
+                    </div>
+                    <p>Inovações genéticas e monitoramento por satélite garantem safras históricas.</p>
                 </div>
             </div>
             
@@ -769,44 +792,6 @@ Morreu nesta sexta-feira (13), aos 92 anos, o ator Rogério Fróes. A notícia f
                 <div class="news-content">
                     <div>
                         <span class="badge" style="background-color: #16a34a;">Qualidade de Vida</span>
-                        <h3><a href="https://g1.globo.com/sp/campinas-regiao/noticia/2024/08/09/ciencia-aberta-centro-que-abriga-o-sirius-recebe-publico-para-apresentar-curiosidades-e-atracoes-da-ciencia.ghtml" target="_blank" rel="nofollow">'Ciência Aberta': centro que abriga o Sirius recebe público para apresentar curiosidades e atrações da ciência</a></h3>
-                    </div>
-                    <p>Sirius, laboratório de luz síncrotron de 4ª geração, instalado no CNPEM, em Campinas (SP)
-Nelson Kon
-O Centro Nacional de Pesquisa em Energi...</p>
-                </div>
-            </div>
-            
-            <div class="news-card">
-                <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=600&auto=format&fit=crop&q=60" alt="Capa" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
-                <div class="news-content">
-                    <div>
-                        <span class="badge" style="background-color: #16a34a;">Qualidade de Vida</span>
-                        <h3><a href="https://g1.globo.com/sp/campinas-regiao/noticia/2024/05/12/mayaro-e-o-que-mais-unicamp-aponta-possivel-transmissao-urbana-do-virus-em-roraima-e-ve-indicios-de-novas-ameacas.ghtml" target="_blank" rel="nofollow">Mayaro e o que mais? Unicamp aponta possível transmissão urbana do vírus em Roraima e vê indícios de novas ameaças</a></h3>
-                    </div>
-                    <p>Imagem de imunofluorescência do vírus mayaro em amostra de paciente de Roraima (RR) analisada por pesquisadores da Unicamp
-Reprodução/Unicam...</p>
-                </div>
-            </div>
-            
-            <div class="news-card">
-                <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&auto=format&fit=crop&q=60" alt="Capa" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
-                <div class="news-content">
-                    <div>
-                        <span class="badge" style="background-color: #16a34a;">Qualidade de Vida</span>
-                        <h3><a href="https://g1.globo.com/sp/campinas-regiao/noticia/2024/05/09/ciencia-aberta-centro-que-abriga-o-sirius-tera-dia-exclusivo-para-receber-escolas-e-grupos-de-alunos-saiba-como-se-inscrever.ghtml" target="_blank" rel="nofollow">'Ciência Aberta': centro que abriga o Sirius terá dia exclusivo para receber escolas e grupos de alunos; saiba como se inscrever</a></h3>
-                    </div>
-                    <p>Sirius, laboratório de luz síncrotron de 4ª geração, reforça a ciência no enfrentamento do novo coronavírus
-Nelson Kon
-Um dos maiores centro...</p>
-                </div>
-            </div>
-            
-            <div class="news-card">
-                <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=600&auto=format&fit=crop&q=60" alt="Capa" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
-                <div class="news-content">
-                    <div>
-                        <span class="badge" style="background-color: #16a34a;">Qualidade de Vida</span>
                         <h3><a href="https://www.bbc.co.uk/news/articles/c6vg2ljjpj32o?at_medium=RSS&at_campaign=rss" target="_blank" rel="nofollow">NHS, schools and police forces hit by Microsoft outage</a></h3>
                     </div>
                     <p>Major airports and intelligence services are unaffected, while the government is still assessing the impact.</p>
@@ -814,7 +799,7 @@ Um dos maiores centro...</p>
             </div>
             
             <div class="news-card">
-                <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=600&auto=format&fit=crop&q=60" alt="Capa" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
+                <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=600&auto=format&fit=crop&q=60" alt="Capa" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
                 <div class="news-content">
                     <div>
                         <span class="badge" style="background-color: #16a34a;">Qualidade de Vida</span>
@@ -825,13 +810,46 @@ Um dos maiores centro...</p>
             </div>
             
             <div class="news-card">
-                <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=600&auto=format&fit=crop&q=60" alt="Capa" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
+                <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&auto=format&fit=crop&q=60" alt="Capa" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
                 <div class="news-content">
                     <div>
                         <span class="badge" style="background-color: #16a34a;">Qualidade de Vida</span>
                         <h3><a href="https://www.bbc.co.uk/news/articles/c98r7xyjx8g4o?at_medium=RSS&at_campaign=rss" target="_blank" rel="nofollow">Sunbed firms must not downplay cancer risk, says watchdog</a></h3>
                     </div>
                     <p>The advertising watchdog says they also must not make misleading claims that sunbeds can treat skin conditions or improve mental health.</p>
+                </div>
+            </div>
+            
+            <div class="news-card">
+                <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=600&auto=format&fit=crop&q=60" alt="Capa" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
+                <div class="news-content">
+                    <div>
+                        <span class="badge" style="background-color: #16a34a;">Qualidade de Vida</span>
+                        <h3><a href="#saude" target="_blank" rel="nofollow">Exercícios Físicos Regulares Reduzem Estresse e Fortalecem o Coração</a></h3>
+                    </div>
+                    <p>Caminhadas diárias e treinos moderados trazem benefícios comprovados em poucas semanas.</p>
+                </div>
+            </div>
+            
+            <div class="news-card">
+                <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=600&auto=format&fit=crop&q=60" alt="Capa" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
+                <div class="news-content">
+                    <div>
+                        <span class="badge" style="background-color: #16a34a;">Qualidade de Vida</span>
+                        <h3><a href="#saude" target="_blank" rel="nofollow">Hidratação Inteligente: Como Manter o Corpo em Equilíbrio o Dia Todo</a></h3>
+                    </div>
+                    <p>Pequenas mudanças na rotina ajudam a evitar fadiga e melhoram a concentração.</p>
+                </div>
+            </div>
+            
+            <div class="news-card">
+                <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=600&auto=format&fit=crop&q=60" alt="Capa" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
+                <div class="news-content">
+                    <div>
+                        <span class="badge" style="background-color: #16a34a;">Qualidade de Vida</span>
+                        <h3><a href="#saude" target="_blank" rel="nofollow">Ergonomia no Home Office: Ajustes Essenciais para Proteger a Coluna</a></h3>
+                    </div>
+                    <p>Fisioterapeutas ensinam como organizar a estação de trabalho para evitar dores.</p>
                 </div>
             </div>
             

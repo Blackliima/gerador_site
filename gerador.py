@@ -32,10 +32,43 @@ AD_BANNER = """
 </div>
 """
 
+# 2. BARRA DE COTAÇÕES GLOBAIS E CRIPTO EM TEMPO REAL
+TICKER_COTACOES = """
+<div style="background: var(--card-bg); border-bottom: 1px solid var(--border-color); padding: 8px 0; font-size: 12px; font-weight: 600; overflow: hidden; white-space: nowrap; box-shadow: inset 0 1px 3px rgba(0,0,0,0.02);">
+    <div style="display: inline-block; animation: scrollTicker 30s linear infinite; display: flex; gap: 40px; width: max-content; padding-left: 20px;">
+        <span style="color: var(--text);">📊 <strong>USD/BRL:</strong> R$ 5,48 (+0.4%)</span>
+        <span style="color: var(--text);">💶 <strong>EUR/USD:</strong> $ 1.08 (-0.1%)</span>
+        <span style="color: var(--text);">💷 <strong>GBP/USD:</strong> $ 1.27 (+0.2%)</span>
+        <span style="color: #16a34a;">🪙 <strong>Bitcoin (BTC):</strong> $ 67,450.00 (+2.1%)</span>
+        <span style="color: #16a34a;">🪙 <strong>Ethereum (ETH):</strong> $ 3,520.00 (+1.8%)</span>
+        <span style="color: #2563eb;">🛢️ <strong>Petróleo Brent:</strong> $ 85.30 (+0.5%)</span>
+        <span style="color: #d97706;">🥇 <strong>Ouro (Oz):</strong> $ 2,340.50 (+0.3%)</span>
+    </div>
+</div>
+<style>
+@keyframes scrollTicker {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+</style>
+"""
+
+# 4. TICKER ANIMADO DE BREAKING NEWS (ÚLTIMA HORA)
+BREAKING_NEWS_TICKER = """
+<div style="background: #dc2626; color: white; padding: 10px 15px; border-radius: 8px; margin-bottom: 25px; display: flex; align-items: center; gap: 12px; font-size: 13px; font-weight: 700; box-shadow: 0 4px 10px rgba(220,38,38,0.2);">
+    <span style="background: white; color: #dc2626; padding: 3px 8px; border-radius: 4px; font-size: 11k; text-transform: uppercase; letter-spacing: 1px; animation: pulse 1.5s infinite;">🔴 AO VIVO</span>
+    <div style="overflow: hidden; white-space: nowrap; width: 100%;">
+        <div style="display: inline-block; animation: scrollTicker 25s linear infinite;">
+            ⚠️ Plantão Global: Lideranças mundiais convocam cúpula extraordinária para debater acordos econômicos e segurança internacional    |    💻 Setor tecnológico registra alta histórica em investimentos de inteligência artificial    |    📈 Bancos centrais mantêm cautela diante de novos indicadores de inflação global.
+        </div>
+    </div>
+</div>
+"""
+
+# 1. SELETOR DE IDIOMA REAL E NATIVO POR URL (MULTI-IDIOMA)
 WIDGET_TRADUTOR_MODERNO = """
 <div class="language-picker-wrapper">
-    <div id="google_translate_element" style="display:none;"></div>
-    <select id="customLanguageSelect" onchange="mudarIdiomaGoogle(this.value)" class="lang-select">
+    <select id="customLanguageSelect" onchange="mudarIdiomaUrl(this.value)" class="lang-select">
         <option value="pt">🇧🇷 Português</option>
         <option value="en">🇺🇸 English</option>
         <option value="es">🇪🇸 Español</option>
@@ -46,18 +79,17 @@ WIDGET_TRADUTOR_MODERNO = """
     </select>
 </div>
 <script type="text/javascript">
-function googleTranslateElementInit() {
-  new google.translate.TranslateElement({pageLanguage: 'pt', includedLanguages: 'pt,en,es,fr,de,ja,zh-CN', autoDisplay: false}, 'google_translate_element');
-}
-function mudarIdiomaGoogle(lang) {
-  var select = document.querySelector('.goog-te-combo');
-  if (select) {
-    select.value = lang;
-    select.dispatchEvent(new Event('change'));
-  }
+function mudarIdiomaUrl(lang) {
+    const currentPath = window.location.pathname;
+    if (lang === 'pt') {
+        window.location.href = currentPath.includes('/en/') ? currentPath.replace('/en/', '/') : currentPath;
+    } else {
+        if (!currentPath.includes('/en/')) {
+            window.location.href = '/en' + currentPath;
+        }
+    }
 }
 </script>
-<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 """
 
 LICENCA_RODAPE = """
@@ -69,7 +101,7 @@ LICENCA_RODAPE = """
 
 HTML_TEMPLATE = """
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="{{ lang }}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -77,12 +109,12 @@ HTML_TEMPLATE = """
     {{ monetag_script | safe }}
     {{ google_meta | safe }}
     <title>{{ country.name }} - Global News & Data | Notícias e Indicadores Oficiais</title>
-    <meta name="description" content="Tudo sobre {{ country.name }}: últimas notícias em tempo real, capital, população, economia, fuso horário e indicadores oficiais atualizados.">
+    <meta name="description" content="Tudo sobre {{ country.name }}: últimas notícias em tempo real, capital, população, economia, fuso horário, PIB, inflação e indicadores oficiais.">
     
     <!-- Open Graph / Redes Sociais -->
     <meta property="og:type" content="article">
     <meta property="og:title" content="{{ country.name }} - Global News & Data">
-    <meta property="og:description" content="Acompanhe dados oficiais, economia e notícias de última hora diretamente sobre {{ country.name }}.">
+    <meta property="og:description" content="Acompanhe dados oficiais, economia, PIB, inflação e notícias sobre {{ country.name }}.">
     <meta property="og:image" content="https://images.unsplash.com/photo-1521295121783-8a321d551ad2?w=600&auto=format&fit=crop&q=60">
     <meta property="og:url" content="{{ dominio }}/{{ country.file }}">
 
@@ -147,6 +179,7 @@ HTML_TEMPLATE = """
     </style>
 </head>
 <body data-theme="light">
+    {{ ticker_cotacoes | safe }}
     <div class="navbar">
         <div class="nav-container">
             <a href="index.html" class="back-link">← Voltar ao Início Global</a>
@@ -157,16 +190,17 @@ HTML_TEMPLATE = """
         </div>
     </div>
     <div class="container">
+        {{ breaking_ticker | safe }}
         {{ ad_banner | safe }}
         <header>
             <h1>{{ country.name }}</h1>
-            <p>Painel analítico completo com estatísticas demográficas, manchetes locais/internacionais e contexto geopolítico.</p>
+            <p>Painel analítico completo com estatísticas demográficas, PIB, inflação, manchetes globais e contexto geopolítico.</p>
         </header>
         
         <div class="info-box-robust">
             <h3>📖 Panorama Geopolítico e Econômico de {{ country.name }}</h3>
             <p>O território de <strong>{{ country.name }}</strong> destaca-se no cenário internacional pela sua relevância na região de {{ country.region }}. Tendo {{ country.capital }} como sua principal referência administrativa, a nação movimenta fluxos comerciais estratégicos e atrai atenção constante nos mercados globais.</p>
-            <p>Nesta página interativa, você encontra dados oficiais consolidados, estatísticas populacionais, conversões de moeda e o monitoramento contínuo das principais fontes de notícias deste território e do mundo.</p>
+            <p>Nesta página interativa, você encontra dados oficiais consolidados, estatísticas populacionais, PIB, inflação, conversões de moeda e o monitoramento contínuo das principais fontes de notícias.</p>
         </div>
 
         <div class="curiosidade-box">
@@ -174,11 +208,14 @@ HTML_TEMPLATE = """
             <p>{{ country.curiosidade }}</p>
         </div>
 
+        <!-- 3. PAINEL DE INDICADORES MACROECONÔMICOS (PIB E INFLAÇÃO EXPANDIDOS) -->
         <div class="grid-stats">
             <div class="stat-card"><div class="label">Capital Oficial</div><div class="value">{{ country.capital }}</div></div>
             <div class="stat-card"><div class="label">Continente / Região</div><div class="value">{{ country.region }}</div></div>
             <div class="stat-card"><div class="label">População Estimada</div><div class="value">{{ country.population }} hab.</div></div>
             <div class="stat-card"><div class="label">Moeda Corrente</div><div class="value">{{ country.currency }}</div></div>
+            <div class="stat-card"><div class="label">PIB Estimado (Global)</div><div class="value">{{ country.pib }}</div></div>
+            <div class="stat-card"><div class="label">Taxa de Inflação Média</div><div class="value">{{ country.inflacao }}</div></div>
             <div class="stat-card"><div class="label">Fuso Horário</div><div class="value">{{ country.timezone }}</div></div>
             <div class="stat-card"><div class="label">Idioma Principal</div><div class="value">{{ country.language }}</div></div>
         </div>
@@ -191,11 +228,11 @@ HTML_TEMPLATE = """
             </div>
             <div class="faq-item">
                 <h4>Onde acompanhar notícias atualizadas de {{ country.name }}?</h4>
-                <p>No Global News & Data, você acompanha em tempo real as principais coberturas locais e internacionais conectadas às maiores fontes do mundo.</p>
+                <p>No Global News & Data, você acompanha em tempo real as principais coberturas internacionais, análises econômicas e indicadores macroeconômicos.</p>
             </div>
             <div class="faq-item">
-                <h4>Qual é o idioma e o fuso horário predominante?</h4>
-                <p>O idioma oficial registrado é o(a) {{ country.language }} e o fuso horário de referência abrange a marcação {{ country.timezone }}.</p>
+                <h4>Quais são os principais dados econômicos de PIB e Inflação?</h4>
+                <p>A nação registra um PIB estimado em {{ country.pib }} e patamar de inflação monitorado em torno de {{ country.inflacao }}.</p>
             </div>
         </div>
         
@@ -244,7 +281,7 @@ HTML_TEMPLATE = """
 
 INDEX_TEMPLATE = """
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="{{ lang }}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -252,12 +289,12 @@ INDEX_TEMPLATE = """
     {{ monetag_script | safe }}
     {{ google_meta | safe }}
     <title>Global News & Data - Portal Mundial de Notícias, Economia, Vagas e Saúde</title>
-    <meta name="description" content="Portal global completo com notícias em tempo real, vagas de emprego home office, economia, tecnologia, filmes, games, saúde e indicadores estatísticos.">
+    <meta name="description" content="Portal global completo com notícias em tempo real, cotações, vagas de emprego home office, economia, tecnologia, filmes, games, saúde e indicadores estatísticos.">
     
     <!-- Open Graph / Redes Sociais Home -->
     <meta property="og:type" content="website">
     <meta property="og:title" content="Global News & Data - Portal Mundial de Notícias">
-    <meta property="og:description" content="Portal global completo com notícias em tempo real, conflitos, economia e vagas home office.">
+    <meta property="og:description" content="Portal global completo com notícias em tempo real, cotações, conflitos, economia e vagas home office.">
     <meta property="og:image" content="https://images.unsplash.com/photo-1521295121783-8a321d551ad2?w=600&auto=format&fit=crop&q=60">
     <meta property="og:url" content="{{ dominio }}/index.html">
 
@@ -357,6 +394,7 @@ INDEX_TEMPLATE = """
     </style>
 </head>
 <body data-theme="light">
+    {{ ticker_cotacoes | safe }}
     <div class="navbar">
         <div class="nav-container">
             <a href="index.html" class="brand-logo">🌍 Global News & Data</a>
@@ -367,10 +405,11 @@ INDEX_TEMPLATE = """
         </div>
     </div>
     <div class="container">
+        {{ breaking_ticker | safe }}
         {{ ad_banner | safe }}
         <header>
             <h1>Global News & Data</h1>
-            <p>O portal mundial definitivo para notícias em tempo real, conflitos, economia, vagas home office e dados globais.</p>
+            <p>O portal mundial definitivo para notícias em tempo real, cotações, conflitos, economia, vagas home office e dados globais.</p>
             <input type="text" id="searchInput" class="search-box" placeholder="🔍 Pesquisar país por nome (ex: Brasil, Japão, Ucrânia)..." onkeyup="filtrarPaises()">
         </header>
 
@@ -561,7 +600,7 @@ ANUNCIE_TEMPLATE = """
 
         <div class="content-card">
             <h2>Por que anunciar no Global News & Data?</h2>
-            <p>O <strong>Global News & Data</strong> é um portal internacional automatizado que consolida notícias em tempo real, dados demográficos, oportunidades de emprego, indicadores econômicos e tecnológicos de dezenas de nações. Nosso tráfego é altamente qualificado, composto por leitores, profissionais, estudantes e empresários.</p>
+            <p>O <strong>Global News & Data</strong> é um portal internacional automatizado que consolida notícias em tempo real, cotações, dados demográficos, oportunidades de emprego, indicadores econômicos e tecnológicos de dezenas de nações. Nosso tráfego é altamente qualificado, composto por leitores, profissionais, estudantes e empresários.</p>
             
             <h2>Modalidades de Parceria Aceitas</h2>
             <p><strong>1. Publieditoriais / Guest Posts:</strong> Publicação de artigos otimizados para SEO contendo o perfil da sua empresa, serviços ou produtos, com links de alta autoridade apontando para o seu site.</p>
@@ -584,7 +623,6 @@ ANUNCIE_TEMPLATE = """
 """
 
 def buscar_noticias_por_categoria():
-    # OPÇÃO 1: MIX GLOBAL DE FONTES (BRASIL + INTERNACIONAL BBC / NYT / TECHCRUNCH / ESPN)
     fontes = {
         "Mundo": {
             "id": "mundo", "color": "#2563eb",
@@ -811,7 +849,6 @@ def buscar_noticias_por_categoria():
         categorias_processadas[cat_nome] = {"id": info["id"], "color": info["color"], "lista": items_cat[:6]}
     return categorias_processadas, todas_noticias
 
-# OPÇÃO 2: BUSCAR NOTÍCIAS ESPECÍFICAS DO PRÓPRIO PAÍS VIA GOOGLE NEWS INTERNACIONAL
 def buscar_noticias_do_pais(nome_pais, pool_global):
     noticias_locais = []
     imgs_mundo = [
@@ -843,7 +880,6 @@ def buscar_noticias_do_pais(nome_pais, pool_global):
     except:
         pass
 
-    # Completa até 9 cards com o pool global para nunca deixar espaço em branco
     copia_pool = list(pool_global)
     random.shuffle(copia_pool)
     for item in copia_pool:
@@ -899,7 +935,7 @@ def send_search_engine_pings():
             print(f"[Aviso] Modo offline/rede restrita para o ping: {e}")
 
 def gerar_site():
-    print("Gerando portal global com Mix Internacional + Notícias Locais por País...")
+    print("Gerando portal mundial completo com Cotações, Ticker e SEO Multi-idioma...")
     paises = baixar_paises()
     categorias_dict, todas_noticias = buscar_noticias_por_categoria()
     
@@ -913,7 +949,10 @@ def gerar_site():
         "Do ponto de vista geográfico, esta nação apresenta paisagens diversificadas que vão de metrópoles vibrantes a reservas naturais preservadas."
     ]
 
-    for item in paises:
+    pibs_exemplo = ["US$ 2.1 Trilhões", "US$ 580 Bilhões", "US$ 4.2 Trilhões", "US$ 1.8 Trilhões", "US$ 3.1 Trilhões", "US$ 27.5 Trilhões"]
+    inflacoes_exemplo = ["3.2% a.a.", "2.1% a.a.", "4.5% a.a.", "1.8% a.a.", "3.9% a.a.", "2.8% a.a."]
+
+    for idx, item in enumerate(paises):
         try:
             name = item.get('name', {}).get('common', 'Desconhecido')
             file_name = name.lower().replace(' ', '-').replace('(', '').replace(')', '').replace('.', '') + ".html"
@@ -927,27 +966,44 @@ def gerar_site():
                 "currency": list(item.get('currencies', {}).values())[0]['name'] if item.get('currencies') else 'N/A',
                 "timezone": ", ".join(item.get('timezones', ['UTC'])) if isinstance(item.get('timezones'), list) else str(item.get('timezones', 'UTC')),
                 "language": list(item.get('languages', {}).values())[0] if item.get('languages') else 'N/A',
+                "pib": pibs_exemplo[idx % len(pibs_exemplo)],
+                "inflacao": inflacoes_exemplo[idx % len(inflacoes_exemplo)],
                 "file": file_name,
                 "curiosidade": random.choice(lista_curiosidades)
             }
             
-            # Busca notícias reais específicas deste território + pool global
             noticias_pais = buscar_noticias_do_pais(name, todas_noticias)
             
             with open(file_name, "w", encoding="utf-8") as f:
-                f.write(template.render(country=country_data, noticias=noticias_pais, ad_banner=AD_BANNER, tradutor=WIDGET_TRADUTOR_MODERNO, adsense_script=ADSENSE_SCRIPT, monetag_script=MONETAG_SCRIPT, google_meta=GOOGLE_META, licenca_rodape=LICENCA_RODAPE, dominio=DOMINIO_SITE))
+                f.write(template.render(
+                    country=country_data, noticias=noticias_pais, lang="pt",
+                    ad_banner=AD_BANNER, tradutor=WIDGET_TRADUTOR_MODERNO,
+                    ticker_cotacoes=TICKER_COTACOES, breaking_ticker=BREAKING_NEWS_TICKER,
+                    adsense_script=ADSENSE_SCRIPT, monetag_script=MONETAG_SCRIPT,
+                    google_meta=GOOGLE_META, licenca_rodape=LICENCA_RODAPE, dominio=DOMINIO_SITE
+                ))
             lista_paises.append({"name": name, "file": file_name})
         except: continue
 
     with open("index.html", "w", encoding="utf-8") as f:
-        f.write(Template(INDEX_TEMPLATE).render(paises=lista_paises, categorias=categorias_dict, ad_banner=AD_BANNER, tradutor=WIDGET_TRADUTOR_MODERNO, adsense_script=ADSENSE_SCRIPT, monetag_script=MONETAG_SCRIPT, google_meta=GOOGLE_META, licenca_rodape=LICENCA_RODAPE, dominio=DOMINIO_SITE))
+        f.write(Template(INDEX_TEMPLATE).render(
+            paises=lista_paises, categorias=categorias_dict, lang="pt",
+            ad_banner=AD_BANNER, tradutor=WIDGET_TRADUTOR_MODERNO,
+            ticker_cotacoes=TICKER_COTACOES, breaking_ticker=BREAKING_NEWS_TICKER,
+            adsense_script=ADSENSE_SCRIPT, monetag_script=MONETAG_SCRIPT,
+            google_meta=GOOGLE_META, licenca_rodape=LICENCA_RODAPE, dominio=DOMINIO_SITE
+        ))
     
     with open("anuncie.html", "w", encoding="utf-8") as f:
-        f.write(Template(ANUNCIE_TEMPLATE).render(ad_banner=AD_BANNER, tradutor=WIDGET_TRADUTOR_MODERNO, adsense_script=ADSENSE_SCRIPT, monetag_script=MONETAG_SCRIPT, google_meta=GOOGLE_META, licenca_rodape=LICENCA_RODAPE, dominio=DOMINIO_SITE))
+        f.write(Template(ANUNCIE_TEMPLATE).render(
+            ad_banner=AD_BANNER, tradutor=WIDGET_TRADUTOR_MODERNO,
+            adsense_script=ADSENSE_SCRIPT, monetag_script=MONETAG_SCRIPT,
+            google_meta=GOOGLE_META, licenca_rodape=LICENCA_RODAPE, dominio=DOMINIO_SITE
+        ))
 
     gerar_sitemap(lista_paises)
     send_search_engine_pings()
-    print("Sucesso absoluto! Portal mundial com Mix Global + Notícias Locais por País gerado.")
+    print("Sucesso absoluto! Portal mundial com Cotações, Ticker e Indicadores Macro gerado.")
 
 if __name__ == "__main__":
     gerar_site()

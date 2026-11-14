@@ -44,8 +44,7 @@
             <a href="index.html" class="back-link">← Voltar ao Início Global</a>
             
 <div class="language-picker-wrapper">
-    <div id="google_translate_element" style="display:none;"></div>
-    <select id="customLanguageSelect" onchange="mudarIdiomaGoogle(this.value)" class="lang-select">
+    <select id="customLanguageSelect" onchange="mudarIdiomaUrl(this.value)" class="lang-select">
         <option value="pt">🇧🇷 Português</option>
         <option value="en">🇺🇸 English</option>
         <option value="es">🇪🇸 Español</option>
@@ -56,18 +55,17 @@
     </select>
 </div>
 <script type="text/javascript">
-function googleTranslateElementInit() {
-  new google.translate.TranslateElement({pageLanguage: 'pt', includedLanguages: 'pt,en,es,fr,de,ja,zh-CN', autoDisplay: false}, 'google_translate_element');
-}
-function mudarIdiomaGoogle(lang) {
-  var select = document.querySelector('.goog-te-combo');
-  if (select) {
-    select.value = lang;
-    select.dispatchEvent(new Event('change'));
-  }
+function mudarIdiomaUrl(lang) {
+    const currentPath = window.location.pathname;
+    if (lang === 'pt') {
+        window.location.href = currentPath.includes('/en/') ? currentPath.replace('/en/', '/') : currentPath;
+    } else {
+        if (!currentPath.includes('/en/')) {
+            window.location.href = '/en' + currentPath;
+        }
+    }
 }
 </script>
-<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
         </div>
     </div>
@@ -79,7 +77,7 @@ function mudarIdiomaGoogle(lang) {
 
         <div class="content-card">
             <h2>Por que anunciar no Global News & Data?</h2>
-            <p>O <strong>Global News & Data</strong> é um portal internacional automatizado que consolida notícias em tempo real, dados demográficos, oportunidades de emprego, indicadores econômicos e tecnológicos de dezenas de nações. Nosso tráfego é altamente qualificado, composto por leitores, profissionais, estudantes e empresários.</p>
+            <p>O <strong>Global News & Data</strong> é um portal internacional automatizado que consolida notícias em tempo real, cotações, dados demográficos, oportunidades de emprego, indicadores econômicos e tecnológicos de dezenas de nações. Nosso tráfego é altamente qualificado, composto por leitores, profissionais, estudantes e empresários.</p>
             
             <h2>Modalidades de Parceria Aceitas</h2>
             <p><strong>1. Publieditoriais / Guest Posts:</strong> Publicação de artigos otimizados para SEO contendo o perfil da sua empresa, serviços ou produtos, com links de alta autoridade apontando para o seu site.</p>
