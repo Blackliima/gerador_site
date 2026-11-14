@@ -78,6 +78,14 @@ HTML_TEMPLATE = """
     {{ google_meta | safe }}
     <title>{{ country.name }} - Global News & Data | Notícias e Indicadores Oficiais</title>
     <meta name="description" content="Tudo sobre {{ country.name }}: últimas notícias em tempo real, capital, população, economia, fuso horário e indicadores oficiais atualizados.">
+    
+    <!-- Open Graph / Redes Sociais (WhatsApp, Facebook, Twitter) -->
+    <meta property="property" content="og:type" content="article">
+    <meta property="og:title" content="{{ country.name }} - Global News & Data">
+    <meta property="og:description" content="Acompanhe dados oficiais, economia e notícias de última hora sobre {{ country.name }}.">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1521295121783-8a321d551ad2?w=600&auto=format&fit=crop&q=60">
+    <meta property="og:url" content="{{ dominio }}/{{ country.file }}">
+
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌍</text></svg>">
     <style>
         :root { 
@@ -245,6 +253,14 @@ INDEX_TEMPLATE = """
     {{ google_meta | safe }}
     <title>Global News & Data - Portal Mundial de Notícias, Economia, Vagas e Saúde</title>
     <meta name="description" content="Portal global completo com notícias em tempo real, vagas de emprego home office, economia, tecnologia, filmes, games, saúde e indicadores estatísticos.">
+    
+    <!-- Open Graph / Redes Sociais Home -->
+    <meta property="property" content="og:type" content="website">
+    <meta property="og:title" content="Global News & Data - Portal Mundial de Notícias">
+    <meta property="og:description" content="Portal global completo com notícias em tempo real, conflitos, economia e vagas home office.">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1521295121783-8a321d551ad2?w=600&auto=format&fit=crop&q=60">
+    <meta property="og:url" content="{{ dominio }}/index.html">
+
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌍</text></svg>">
     <style>
         :root { 
@@ -302,7 +318,7 @@ INDEX_TEMPLATE = """
 
         .section-title { font-size: 22px; font-weight: 700; margin: 45px 0 20px 0; border-left: 5px solid var(--primary); padding-left: 12px; display: flex; align-items: center; justify-content: space-between; }
         
-        /* NOVO DESIGN DO BLOG & ARTIGOS ESPECIALIZADOS (ROBUSTO) */
+        /* BLOG ROBUSTO */
         .blog-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 35px; }
         @media(max-width: 900px) { .blog-grid { grid-template-columns: repeat(2, 1fr); } }
         @media(max-width: 600px) { .blog-grid { grid-template-columns: 1fr; } }
@@ -425,7 +441,6 @@ INDEX_TEMPLATE = """
 
         {{ ad_banner | safe }}
 
-        <!-- NOVO BLOG & ARTIGOS ESPECIALIZADOS ROBUSTO -->
         <h2 id="blog" class="section-title"><span>📝 Blog & Artigos Especializados</span></h2>
         <div class="blog-grid">
             <div class="blog-card">
@@ -809,7 +824,7 @@ def send_search_engine_pings():
             print(f"[Aviso] Modo offline/rede restrita para o ping: {e}")
 
 def gerar_site():
-    print("Gerando portal unificado com Blog Especializado Robusto...")
+    print("Gerando portal unificado com SEO Social Open Graph...")
     paises = baixar_paises()
     categorias_dict, todas_noticias = buscar_noticias_por_categoria()
     
@@ -855,7 +870,7 @@ def gerar_site():
 
     gerar_sitemap(lista_paises)
     send_search_engine_pings()
-    print("Sucesso absoluto! Portal com Blog Robusto gerado com sucesso.")
+    print("Sucesso absoluto! Portal com compartilhamento viral configurado.")
 
 if __name__ == "__main__":
     gerar_site()

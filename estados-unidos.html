@@ -9,6 +9,14 @@
     <meta name="google-site-verification" content="pbgwZbVwgKMwqqqGYFcHeGGbV7EM7nBdlns1c_DN_Sw" />
     <title>Estados Unidos - Global News & Data | Notícias e Indicadores Oficiais</title>
     <meta name="description" content="Tudo sobre Estados Unidos: últimas notícias em tempo real, capital, população, economia, fuso horário e indicadores oficiais atualizados.">
+    
+    <!-- Open Graph / Redes Sociais (WhatsApp, Facebook, Twitter) -->
+    <meta property="property" content="og:type" content="article">
+    <meta property="og:title" content="Estados Unidos - Global News & Data">
+    <meta property="og:description" content="Acompanhe dados oficiais, economia e notícias de última hora sobre Estados Unidos.">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1521295121783-8a321d551ad2?w=600&auto=format&fit=crop&q=60">
+    <meta property="og:url" content="https://gerador-site.pages.dev/estados-unidos.html">
+
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌍</text></svg>">
     <style>
         :root { 
@@ -23,14 +31,14 @@
         }
         body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; line-height: 1.6; color: var(--text); background: var(--bg-color); margin: 0; padding: 0; transition: background 0.3s, color 0.3s; }
         .navbar { background: var(--card-bg); border-bottom: 1px solid var(--border-color); padding: 12px 20px; position: sticky; top: 0; z-index: 1000; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
-        .nav-container { max-width: 1000px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
+        .nav-container { max-width: 1050px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
         .back-link { color: var(--primary); text-decoration: none; font-weight: 600; font-size: 14px; display: flex; align-items: center; gap: 5px; }
         .nav-right { display: flex; align-items: center; gap: 12px; }
         .lang-select { background: var(--bg-color); color: var(--text); border: 1px solid var(--border-color); padding: 6px 12px; border-radius: 20px; font-weight: 600; font-size: 12px; cursor: pointer; outline: none; transition: border-color 0.2s; }
         .lang-select:hover { border-color: var(--primary); }
         .theme-btn { background: var(--bg-color); color: var(--text); border: 1px solid var(--border-color); padding: 6px 12px; border-radius: 20px; cursor: pointer; font-weight: 600; font-size: 12px; transition: all 0.2s; }
         .theme-btn:hover { border-color: var(--primary); }
-        .container { max-width: 1000px; margin: 30px auto; padding: 0 20px; }
+        .container { max-width: 1050px; margin: 30px auto; padding: 0 20px; }
         header { background: var(--header-bg); color: white; padding: 40px; border-radius: 16px; margin-bottom: 30px; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1); }
         header h1 { margin: 0 0 10px 0; font-size: 32px; font-weight: 800; letter-spacing: -0.5px; }
         header p { margin: 0; opacity: 0.9; font-size: 16px; }
@@ -50,7 +58,9 @@
         .curiosidade-box h3 { margin-top: 0; color: var(--primary); font-size: 18px; display: flex; align-items: center; gap: 8px; }
         .curiosidade-box p { margin: 0; font-size: 15px; color: var(--text); line-height: 1.6; }
         .section-title { font-size: 22px; font-weight: 700; margin: 40px 0 20px 0; border-left: 5px solid var(--primary); padding-left: 12px; display: flex; align-items: center; }
-        .news-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+        .news-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        @media(max-width: 900px) { .news-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media(max-width: 600px) { .news-grid { grid-template-columns: 1fr; } }
         .news-card { background: var(--card-bg); border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02); border: 1px solid var(--border-color); display: flex; flex-direction: column; overflow: hidden; transition: transform 0.2s, box-shadow 0.2s; }
         .news-card:hover { transform: translateY(-3px); box-shadow: 0 10px 20px -3px rgba(0,0,0,0.05); }
         .news-img { width: 100%; height: 160px; object-fit: cover; background: #e2e8f0; }
@@ -180,49 +190,25 @@ function mudarIdiomaGoogle(lang) {
         <div class="news-grid">
             
             <div class="news-card">
-                <img src="https://images.unsplash.com/photo-1521295121783-8a321d551ad2?w=600&auto=format&fit=crop&q=60" alt="Capa da Notícia" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
+                <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=600&auto=format&fit=crop&q=60" alt="Capa da Notícia" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
                 <div class="news-content">
                     <div>
-                        <span class="badge" style="background-color: #2563eb;">Mundo</span>
-                        <h3><a href="https://g1.globo.com/mundo/noticia/2026/11/14/eua-propoem-que-ucrania-ceda-territorio-a-russia-em-troca-de-entrada-na-otan-diz-zelensky.ghtml" target="_blank" rel="nofollow">EUA propõem que Ucrânia ceda território à Rússia em troca de entrada na Otan, diz Zelensky</a></h3>
+                        <span class="badge" style="background-color: #16a34a;">Qualidade de Vida</span>
+                        <h3><a href="https://g1.globo.com/bemestar/blog/longevidade-modo-de-usar/post/2023/07/09/cuidado-para-nao-sabotar-o-seu-futuro-eu.ghtml" target="_blank" rel="nofollow">Cuidado para não sabotar o seu futuro eu</a></h3>
                     </div>
-                    <p>        O presidente da Ucrânia, Volodymyr Zelensky, durante entrevista coletiva em cúpula de líderes da União Europeia, em Bruxelas, na Bél...</p>
+                    <p>        Hal Hershfield é professor de marketing, decisão comportamental e psicologia da Universidade da Califórnia, Los Angeles. Mês passado...</p>
                 </div>
             </div>
             
             <div class="news-card">
-                <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=600&auto=format&fit=crop&q=60" alt="Capa da Notícia" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
+                <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=600&auto=format&fit=crop&q=60" alt="Capa da Notícia" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
                 <div class="news-content">
                     <div>
-                        <span class="badge" style="background-color: #2563eb;">Mundo</span>
-                        <h3><a href="https://g1.globo.com/mundo/noticia/2026/11/14/franca-se-prepara-para-novo-dia-de-mobilizacao-nacional-com-mais-de-300-protestos-e-70-mil-policiais.ghtml" target="_blank" rel="nofollow">França se prepara para novo dia de mobilização nacional com mais de 300 protestos e 70 mil policiais</a></h3>
+                        <span class="badge" style="background-color: #16a34a;">Qualidade de Vida</span>
+                        <h3><a href="https://g1.globo.com/rj/rio-de-janeiro/noticia/2023/07/12/mc-marcinho-usa-terapia-conhecida-como-ecmo-especie-de-pulmao-artificial-entenda-como-funciona.ghtml" target="_blank" rel="nofollow">MC Marcinho usa terapia conhecida como ECMO, espécie de pulmão artificial; entenda como funciona</a></h3>
                     </div>
-                    <p>        Manifestantes participam de protesto contra o aumento do custo de vida em Paris, na França, em 7 de novembro de 2026.
-Stephanie Leco...</p>
-                </div>
-            </div>
-            
-            <div class="news-card">
-                <img src="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=600&auto=format&fit=crop&q=60" alt="Capa da Notícia" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
-                <div class="news-content">
-                    <div>
-                        <span class="badge" style="background-color: #db2777;">Filmes & Séries</span>
-                        <h3><a href="https://g1.globo.com/pop-arte/noticia/2026/11/14/morre-aos-92-anos-rogerio-froes.ghtml" target="_blank" rel="nofollow">Morre aos 92 anos Rogério Fróes, ator de 'O Bem-Amado' e 'Selva de Pedra'</a></h3>
-                    </div>
-                    <p>        Ator Rogério Fróes morre aos 92 anos
-Morreu nesta sexta-feira (13), aos 92 anos, o ator Rogério Fróes. A notícia foi confirmada por ...</p>
-                </div>
-            </div>
-            
-            <div class="news-card">
-                <img src="https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=600&auto=format&fit=crop&q=60" alt="Capa da Notícia" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
-                <div class="news-content">
-                    <div>
-                        <span class="badge" style="background-color: #dc2626;">Esportes</span>
-                        <h3><a href="https://ge.globo.com/sp/mogi-das-cruzes-suzano/noticia/2026/11/13/veja-os-destaques-do-esporte-no-diario-tv-1a-edicao-desta-sexta-feira-13-de-novembro.ghtml" target="_blank" rel="nofollow">Veja os destaques do esporte no Diário TV 1ª Edição desta sexta-feira, 13 de novembro</a></h3>
-                    </div>
-                    <p>    Dupla de Mogi reforça Brasil na busca pelo tetra da Copa do Mundo de Futebol de Amputados
-Mogi Basquete vence Osasco e mantém vice-lider...</p>
+                    <p>        ECMO: entenda como funciona a terapia usada em MC Marcinho
+Um dos maiores nomes da história do funk carioca, Marcio André Nepomuceno...</p>
                 </div>
             </div>
             
@@ -239,15 +225,37 @@ Brendan Greene leva o anonimato em seu apelido na internet, mas...</p>
             </div>
             
             <div class="news-card">
-                <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=600&auto=format&fit=crop&q=60" alt="Capa da Notícia" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
+                <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=600&auto=format&fit=crop&q=60" alt="Capa da Notícia" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
+                <div class="news-content">
+                    <div>
+                        <span class="badge" style="background-color: #9333ea;">Games & Tech</span>
+                        <h3><a href="https://g1.globo.com/tecnologia/games/brasil-game-show/2017/noticia/assassins-creed-origins-quer-levar-mais-liberdade-e-conhecimento-para-jogadores-diz-produtor.ghtml" target="_blank" rel="nofollow">'Assassin's Creed Origins' quer levar mais liberdade e conhecimento para jogadores, diz produtor</a></h3>
+                    </div>
+                    <p>        Bruno Guerin, produtor de 'Assassin's Creed Origins', comenta novidades do game
+Liberdade e conhecimento. Mais do que nunca, esses s...</p>
+                </div>
+            </div>
+            
+            <div class="news-card">
+                <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&auto=format&fit=crop&q=60" alt="Capa da Notícia" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
+                <div class="news-content">
+                    <div>
+                        <span class="badge" style="background-color: #059669;">Economia</span>
+                        <h3><a href="#economia" target="_blank" rel="nofollow">Agronegócio e Tecnologia de Ponta Elevam Produtividade Recorde</a></h3>
+                    </div>
+                    <p>Inovações genéticas e monitoramento por satélite garantem safras históricas.</p>
+                </div>
+            </div>
+            
+            <div class="news-card">
+                <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=600&auto=format&fit=crop&q=60" alt="Capa da Notícia" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
                 <div class="news-content">
                     <div>
                         <span class="badge" style="background-color: #16a34a;">Qualidade de Vida</span>
-                        <h3><a href="https://g1.globo.com/sp/campinas-regiao/noticia/2024/08/09/ciencia-aberta-centro-que-abriga-o-sirius-recebe-publico-para-apresentar-curiosidades-e-atracoes-da-ciencia.ghtml" target="_blank" rel="nofollow">'Ciência Aberta': centro que abriga o Sirius recebe público para apresentar curiosidades e atrações da ciência</a></h3>
+                        <h3><a href="https://g1.globo.com/sp/campinas-regiao/noticia/2024/05/12/mayaro-e-o-que-mais-unicamp-aponta-possivel-transmissao-urbana-do-virus-em-roraima-e-ve-indicios-de-novas-ameacas.ghtml" target="_blank" rel="nofollow">Mayaro e o que mais? Unicamp aponta possível transmissão urbana do vírus em Roraima e vê indícios de novas ameaças</a></h3>
                     </div>
-                    <p>        Sirius, laboratório de luz síncrotron de 4ª geração, instalado no CNPEM, em Campinas (SP)
-Nelson Kon
-O Centro Nacional de Pesquisa e...</p>
+                    <p>        Imagem de imunofluorescência do vírus mayaro em amostra de paciente de Roraima (RR) analisada por pesquisadores da Unicamp
+Reproduçã...</p>
                 </div>
             </div>
             
@@ -265,15 +273,26 @@ A autoridade de proteção ...</p>
             </div>
             
             <div class="news-card">
-                <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=600&auto=format&fit=crop&q=60" alt="Capa da Notícia" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
+                <img src="https://images.unsplash.com/photo-1522869635100-9f4c5e86aa37?w=600&auto=format&fit=crop&q=60" alt="Capa da Notícia" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
                 <div class="news-content">
                     <div>
-                        <span class="badge" style="background-color: #059669;">Economia</span>
-                        <h3><a href="https://g1.globo.com/tecnologia/noticia/2026/11/14/italia-multa-meta.ghtml" target="_blank" rel="nofollow">Itália multa Meta em R$ 5 bilhões por acessar fotos e vídeos de usuários sem consentimento</a></h3>
+                        <span class="badge" style="background-color: #db2777;">Filmes & Séries</span>
+                        <h3><a href="https://g1.globo.com/pop-arte/noticia/2026/11/13/christian-cousins-ex-ator-mirim-de-um-tira-no-jardim-de-infancia-morre-aos-43-anos.ghtml" target="_blank" rel="nofollow">Christian Cousins, ex-ator mirim de 'Um Tira no Jardim de Infância', morre aos 43 anos</a></h3>
                     </div>
-                    <p>        Justiça de São Paulo proíbe Meta de usar conteúdo jornalístico sem autorização
-Jornal Nacional/ Reprodução
-A autoridade de proteção ...</p>
+                    <p>        O ator Christian Cousins; na segunda foto, ele está com seu irmão gemêo, Joey 
+Reprodução/Instagram
+Christian Cousins, ex-ator mirim...</p>
+                </div>
+            </div>
+            
+            <div class="news-card">
+                <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=600&auto=format&fit=crop&q=60" alt="Capa da Notícia" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
+                <div class="news-content">
+                    <div>
+                        <span class="badge" style="background-color: #2563eb;">Mundo</span>
+                        <h3><a href="https://g1.globo.com/mundo/noticia/2026/11/14/eua-propoem-que-ucrania-ceda-territorio-a-russia-em-troca-de-entrada-na-otan-diz-zelensky.ghtml" target="_blank" rel="nofollow">EUA propõem que Ucrânia ceda território à Rússia em troca de entrada na Otan, diz Zelensky</a></h3>
+                    </div>
+                    <p>        O presidente da Ucrânia, Volodymyr Zelensky, durante entrevista coletiva em cúpula de líderes da União Europeia, em Bruxelas, na Bél...</p>
                 </div>
             </div>
             

@@ -9,6 +9,14 @@
     <meta name="google-site-verification" content="pbgwZbVwgKMwqqqGYFcHeGGbV7EM7nBdlns1c_DN_Sw" />
     <title>Brasil - Global News & Data | Notícias e Indicadores Oficiais</title>
     <meta name="description" content="Tudo sobre Brasil: últimas notícias em tempo real, capital, população, economia, fuso horário e indicadores oficiais atualizados.">
+    
+    <!-- Open Graph / Redes Sociais (WhatsApp, Facebook, Twitter) -->
+    <meta property="property" content="og:type" content="article">
+    <meta property="og:title" content="Brasil - Global News & Data">
+    <meta property="og:description" content="Acompanhe dados oficiais, economia e notícias de última hora sobre Brasil.">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1521295121783-8a321d551ad2?w=600&auto=format&fit=crop&q=60">
+    <meta property="og:url" content="https://gerador-site.pages.dev/brasil.html">
+
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌍</text></svg>">
     <style>
         :root { 
@@ -23,14 +31,14 @@
         }
         body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; line-height: 1.6; color: var(--text); background: var(--bg-color); margin: 0; padding: 0; transition: background 0.3s, color 0.3s; }
         .navbar { background: var(--card-bg); border-bottom: 1px solid var(--border-color); padding: 12px 20px; position: sticky; top: 0; z-index: 1000; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
-        .nav-container { max-width: 1000px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
+        .nav-container { max-width: 1050px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
         .back-link { color: var(--primary); text-decoration: none; font-weight: 600; font-size: 14px; display: flex; align-items: center; gap: 5px; }
         .nav-right { display: flex; align-items: center; gap: 12px; }
         .lang-select { background: var(--bg-color); color: var(--text); border: 1px solid var(--border-color); padding: 6px 12px; border-radius: 20px; font-weight: 600; font-size: 12px; cursor: pointer; outline: none; transition: border-color 0.2s; }
         .lang-select:hover { border-color: var(--primary); }
         .theme-btn { background: var(--bg-color); color: var(--text); border: 1px solid var(--border-color); padding: 6px 12px; border-radius: 20px; cursor: pointer; font-weight: 600; font-size: 12px; transition: all 0.2s; }
         .theme-btn:hover { border-color: var(--primary); }
-        .container { max-width: 1000px; margin: 30px auto; padding: 0 20px; }
+        .container { max-width: 1050px; margin: 30px auto; padding: 0 20px; }
         header { background: var(--header-bg); color: white; padding: 40px; border-radius: 16px; margin-bottom: 30px; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1); }
         header h1 { margin: 0 0 10px 0; font-size: 32px; font-weight: 800; letter-spacing: -0.5px; }
         header p { margin: 0; opacity: 0.9; font-size: 16px; }
@@ -50,7 +58,9 @@
         .curiosidade-box h3 { margin-top: 0; color: var(--primary); font-size: 18px; display: flex; align-items: center; gap: 8px; }
         .curiosidade-box p { margin: 0; font-size: 15px; color: var(--text); line-height: 1.6; }
         .section-title { font-size: 22px; font-weight: 700; margin: 40px 0 20px 0; border-left: 5px solid var(--primary); padding-left: 12px; display: flex; align-items: center; }
-        .news-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+        .news-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        @media(max-width: 900px) { .news-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media(max-width: 600px) { .news-grid { grid-template-columns: 1fr; } }
         .news-card { background: var(--card-bg); border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02); border: 1px solid var(--border-color); display: flex; flex-direction: column; overflow: hidden; transition: transform 0.2s, box-shadow 0.2s; }
         .news-card:hover { transform: translateY(-3px); box-shadow: 0 10px 20px -3px rgba(0,0,0,0.05); }
         .news-img { width: 100%; height: 160px; object-fit: cover; background: #e2e8f0; }
@@ -132,7 +142,7 @@ function mudarIdiomaGoogle(lang) {
 
         <div class="curiosidade-box">
             <h3>💡 Curiosidade Global & Fato Marcante</h3>
-            <p>A culinária e as tradições locais deste país misturam influências ancestrais e modernas de forma surpreendente.</p>
+            <p>Do ponto de vista geográfico, esta nação apresenta paisagens diversificadas que vão de metrópoles vibrantes a reservas naturais preservadas.</p>
         </div>
 
         <div class="grid-stats">
@@ -180,74 +190,26 @@ function mudarIdiomaGoogle(lang) {
         <div class="news-grid">
             
             <div class="news-card">
-                <img src="https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=600&auto=format&fit=crop&q=60" alt="Capa da Notícia" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
-                <div class="news-content">
-                    <div>
-                        <span class="badge" style="background-color: #dc2626;">Esportes</span>
-                        <h3><a href="https://ge.globo.com/sp/mogi-das-cruzes-suzano/noticia/2026/11/13/veja-os-destaques-do-esporte-no-diario-tv-1a-edicao-desta-sexta-feira-13-de-novembro.ghtml" target="_blank" rel="nofollow">Veja os destaques do esporte no Diário TV 1ª Edição desta sexta-feira, 13 de novembro</a></h3>
-                    </div>
-                    <p>    Dupla de Mogi reforça Brasil na busca pelo tetra da Copa do Mundo de Futebol de Amputados
-Mogi Basquete vence Osasco e mantém vice-lider...</p>
-                </div>
-            </div>
-            
-            <div class="news-card">
-                <img src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=600&auto=format&fit=crop&q=60" alt="Capa da Notícia" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
-                <div class="news-content">
-                    <div>
-                        <span class="badge" style="background-color: #2563eb;">Mundo</span>
-                        <h3><a href="https://g1.globo.com/mundo/noticia/2026/11/14/papa-leao-xiv-volta-a-cidade-onde-viveu-por-quase-10-anos-e-reune-500-mil-pessoas-em-missa-no-peru.ghtml" target="_blank" rel="nofollow">Papa Leão XIV volta à cidade onde viveu por quase 10 anos e reúne 500 mil pessoas em missa no Peru</a></h3>
-                    </div>
-                    <p>        A história do papa Leão XIV com Chiclayo, no Peru
-O Papa Leão acena ao chegar ao arcebispado de Chiclayo, durante seu retorno à regi...</p>
-                </div>
-            </div>
-            
-            <div class="news-card">
-                <img src="https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?w=600&auto=format&fit=crop&q=60" alt="Capa da Notícia" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
+                <img src="https://images.unsplash.com/photo-1579532537598-459ecdaf39cc?w=600&auto=format&fit=crop&q=60" alt="Capa da Notícia" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
                 <div class="news-content">
                     <div>
                         <span class="badge" style="background-color: #059669;">Economia</span>
-                        <h3><a href="https://g1.globo.com/tecnologia/noticia/2026/11/14/microsoft-afirma-que-servicos-foram-totalmente-restabelecidos-apos-falha-global.ghtml" target="_blank" rel="nofollow">Microsoft afirma que serviços foram totalmente restabelecidos após falha global</a></h3>
+                        <h3><a href="#economia" target="_blank" rel="nofollow">Mercado Digital e Fintechs Batem Recorde de Transações Instantâneas</a></h3>
                     </div>
-                    <p>        Como a falha da Microsoft afetou serviços e eventos em diversas partes do mundo
-A Microsoft informou neste sábado (14) que seus serv...</p>
+                    <p>Adoção de pagamentos digitais cresce aceleradamente entre consumidores e empresas.</p>
                 </div>
             </div>
             
             <div class="news-card">
-                <img src="https://images.unsplash.com/photo-1598899134739-24c46f58b8c0?w=600&auto=format&fit=crop&q=60" alt="Capa da Notícia" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
+                <img src="https://images.unsplash.com/photo-1478720568477-152d9b164e26?w=600&auto=format&fit=crop&q=60" alt="Capa da Notícia" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
                 <div class="news-content">
                     <div>
                         <span class="badge" style="background-color: #db2777;">Filmes & Séries</span>
-                        <h3><a href="https://g1.globo.com/pop-arte/noticia/2026/11/13/christian-cousins-ex-ator-mirim-de-um-tira-no-jardim-de-infancia-morre-aos-43-anos.ghtml" target="_blank" rel="nofollow">Christian Cousins, ex-ator mirim de 'Um Tira no Jardim de Infância', morre aos 43 anos</a></h3>
+                        <h3><a href="https://g1.globo.com/pop-arte/noticia/2026/11/13/candidatas-africanas-ao-miss-universo-enfrentam-dificuldades-para-obter-visto-americano-e-podem-ficar-fora-da-competicao.ghtml" target="_blank" rel="nofollow">Candidatas africanas ao Miss Universo enfrentam dificuldades para obter visto americano e podem ficar fora da competição</a></h3>
                     </div>
-                    <p>        O ator Christian Cousins; na segunda foto, ele está com seu irmão gemêo, Joey 
-Reprodução/Instagram
-Christian Cousins, ex-ator mirim...</p>
-                </div>
-            </div>
-            
-            <div class="news-card">
-                <img src="https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?w=600&auto=format&fit=crop&q=60" alt="Capa da Notícia" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
-                <div class="news-content">
-                    <div>
-                        <span class="badge" style="background-color: #059669;">Economia</span>
-                        <h3><a href="https://g1.globo.com/empreendedorismo/noticia/2026/11/14/dividas-do-mei-serao-perdoadas-automaticamente.ghtml" target="_blank" rel="nofollow">Dívidas do MEI serão perdoadas automaticamente: veja 10 perguntas e respostas sobre a medida</a></h3>
-                    </div>
-                    <p>        Presidente Lula (PT) durante a sanção dos novos limites do MEI e envio de PEC sobre tarifa zero no transporte coletivo aos fins de s...</p>
-                </div>
-            </div>
-            
-            <div class="news-card">
-                <img src="https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=600&auto=format&fit=crop&q=60" alt="Capa da Notícia" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
-                <div class="news-content">
-                    <div>
-                        <span class="badge" style="background-color: #9333ea;">Games & Tech</span>
-                        <h3><a href="https://g1.globo.com/tecnologia/games/brasil-game-show/2017/noticia/quem-e-playerunknown-o-desconhecido-que-criou-battlegrounds-game-fenomeno-de-2017.ghtml" target="_blank" rel="nofollow">Quem é 'PlayerUnknown', o desconhecido que criou 'Battlegrounds', game fenômeno de 2017</a></h3>
-                    </div>
-                    <p>        Brendan Greene, criador do hit 'Battlegrounds', fala com o G1 na BGS
-Brendan Greene leva o anonimato em seu apelido na internet, mas...</p>
+                    <p>        Miss Zimbábue relata dificuldade para conseguir visto americano.
+Reprodução/Ins tagram
+Candidatas africanas ao Miss Universo enfrent...</p>
                 </div>
             </div>
             
@@ -264,15 +226,71 @@ Liberdade e conhecimento. Mais do que nunca, esses s...</p>
             </div>
             
             <div class="news-card">
-                <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=600&auto=format&fit=crop&q=60" alt="Capa da Notícia" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
+                <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=600&auto=format&fit=crop&q=60" alt="Capa da Notícia" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
                 <div class="news-content">
                     <div>
-                        <span class="badge" style="background-color: #7c3aed;">Tecnologia</span>
-                        <h3><a href="https://g1.globo.com/tecnologia/noticia/2026/11/14/italia-multa-meta.ghtml" target="_blank" rel="nofollow">Itália multa Meta em R$ 5 bilhões por acessar fotos e vídeos de usuários sem consentimento</a></h3>
+                        <span class="badge" style="background-color: #059669;">Economia</span>
+                        <h3><a href="#economia" target="_blank" rel="nofollow">Bolsas Internacionais Reagem a Indicadores de Inflação e Juros</a></h3>
                     </div>
-                    <p>        Justiça de São Paulo proíbe Meta de usar conteúdo jornalístico sem autorização
-Jornal Nacional/ Reprodução
-A autoridade de proteção ...</p>
+                    <p>Analistas monitoram de perto as oscilações das principais moedas e índices globais.</p>
+                </div>
+            </div>
+            
+            <div class="news-card">
+                <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&auto=format&fit=crop&q=60" alt="Capa da Notícia" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
+                <div class="news-content">
+                    <div>
+                        <span class="badge" style="background-color: #059669;">Economia</span>
+                        <h3><a href="#economia" target="_blank" rel="nofollow">Agronegócio e Tecnologia de Ponta Elevam Produtividade Recorde</a></h3>
+                    </div>
+                    <p>Inovações genéticas e monitoramento por satélite garantem safras históricas.</p>
+                </div>
+            </div>
+            
+            <div class="news-card">
+                <img src="https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?w=600&auto=format&fit=crop&q=60" alt="Capa da Notícia" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
+                <div class="news-content">
+                    <div>
+                        <span class="badge" style="background-color: #dc2626;">Esportes</span>
+                        <h3><a href="#esportes" target="_blank" rel="nofollow">Fórmula 1 e Automobilismo: Novas Atualizações Prometem Disputa Acirrada</a></h3>
+                    </div>
+                    <p>Engenheiros revelam pacotes aerodinâmicos que podem mudar o rumo do campeonato.</p>
+                </div>
+            </div>
+            
+            <div class="news-card">
+                <img src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=600&auto=format&fit=crop&q=60" alt="Capa da Notícia" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
+                <div class="news-content">
+                    <div>
+                        <span class="badge" style="background-color: #2563eb;">Mundo</span>
+                        <h3><a href="https://g1.globo.com/politica/noticia/2026/11/14/lula-se-encontra-com-presidente-das-filipinas-e-fala-em-integrar-minerais-criticos-do-brasil-com-industria-local-de-semicondutores.ghtml" target="_blank" rel="nofollow">Lula se encontra com presidente das Filipinas e fala em integrar minerais críticos do Brasil com indústria local de semicondutores</a></h3>
+                    </div>
+                    <p>        Lula se encontra com o presidente das Filipinas, Ferdinand Marcos Jr, em Manila
+Ricardo Stuckert/Presidência da República
+O presiden...</p>
+                </div>
+            </div>
+            
+            <div class="news-card">
+                <img src="https://images.unsplash.com/photo-1521295121783-8a321d551ad2?w=600&auto=format&fit=crop&q=60" alt="Capa da Notícia" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
+                <div class="news-content">
+                    <div>
+                        <span class="badge" style="background-color: #2563eb;">Mundo</span>
+                        <h3><a href="https://g1.globo.com/politica/noticia/2026/11/14/nas-filipinas-ministro-diz-estar-otimista-com-negociacoes-e-que-restricao-a-carne-suina-do-brasil-e-medida-de-60-dias.ghtml" target="_blank" rel="nofollow">Nas Filipinas, ministro diz estar 'otimista' com negociações e que restrição à carne suína do Brasil 'é medida de 60 dias'</a></h3>
+                    </div>
+                    <p>        O ministro da Agricultura e Pecuária, André de Paula, afirmou neste sábado (14) que está "otimista" com as negociações do governo br...</p>
+                </div>
+            </div>
+            
+            <div class="news-card">
+                <img src="https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?w=600&auto=format&fit=crop&q=60" alt="Capa da Notícia" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
+                <div class="news-content">
+                    <div>
+                        <span class="badge" style="background-color: #2563eb;">Mundo</span>
+                        <h3><a href="https://g1.globo.com/mundo/noticia/2026/11/14/papa-leao-xiv-volta-a-cidade-onde-viveu-por-quase-10-anos-e-reune-500-mil-pessoas-em-missa-no-peru.ghtml" target="_blank" rel="nofollow">Papa Leão XIV volta à cidade onde viveu por quase 10 anos e reúne 500 mil pessoas em missa no Peru</a></h3>
+                    </div>
+                    <p>        A história do papa Leão XIV com Chiclayo, no Peru
+O Papa Leão acena ao chegar ao arcebispado de Chiclayo, durante seu retorno à regi...</p>
                 </div>
             </div>
             
