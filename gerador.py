@@ -642,74 +642,76 @@ def buscar_noticias_por_categoria():
         }
     }
     
-    # Bancos de imagens diversificados e específicos por nicho para garantir rotação real a cada 6 horas
+    # Bancos de imagens robustos e específicos por nicho com cache-busting dinâmico (tstamp)
+    tstamp = int(datetime.now().timestamp())
     imagens_por_categoria = {
         "Mundo": [
-            "https://images.unsplash.com/photo-1521295121783-8a321d551ad2?w=600&auto=format&fit=crop&q=60",
-            "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=600&auto=format&fit=crop&q=60",
-            "https://images.unsplash.com/photo-1508739773434-c26b3d09e071?w=600&auto=format&fit=crop&q=60",
-            "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=600&auto=format&fit=crop&q=60",
-            "https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?w=600&auto=format&fit=crop&q=60",
-            "https://images.unsplash.com/photo-1541872703-74c5e44368f9?w=600&auto=format&fit=crop&q=60",
-            "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&auto=format&fit=crop&q=60",
-            "https://images.unsplash.com/photo-1509228468518-180dd4864904?w=600&auto=format&fit=crop&q=60"
+            f"https://images.unsplash.com/photo-1521295121783-8a321d551ad2?w=600&auto=format&fit=crop&q=60&v={tstamp}",
+            f"https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=600&auto=format&fit=crop&q=60&v={tstamp}",
+            f"https://images.unsplash.com/photo-1508739773434-c26b3d09e071?w=600&auto=format&fit=crop&q=60&v={tstamp}",
+            f"https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=600&auto=format&fit=crop&q=60&v={tstamp}",
+            f"https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?w=600&auto=format&fit=crop&q=60&v={tstamp}",
+            f"https://images.unsplash.com/photo-1541872703-74c5e44368f9?w=600&auto=format&fit=crop&q=60&v={tstamp}",
+            f"https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&auto=format&fit=crop&q=60&v={tstamp}",
+            f"https://images.unsplash.com/photo-1509228468518-180dd4864904?w=600&auto=format&fit=crop&q=60&v={tstamp}"
         ],
         "Tecnologia": [
-            "https://images.unsplash.com/photo-1518770660439-4636190af475?w=600&auto=format&fit=crop&q=60",
-            "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=600&auto=format&fit=crop&q=60",
-            "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=600&auto=format&fit=crop&q=60",
-            "https://images.unsplash.com/photo-1531482615713-2afd69097998?w=600&auto=format&fit=crop&q=60",
-            "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=600&auto=format&fit=crop&q=60",
-            "https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=600&auto=format&fit=crop&q=60",
-            "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=600&auto=format&fit=crop&q=60"
+            f"https://images.unsplash.com/photo-1518770660439-4636190af475?w=600&auto=format&fit=crop&q=60&v={tstamp}",
+            f"https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=600&auto=format&fit=crop&q=60&v={tstamp}",
+            f"https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=600&auto=format&fit=crop&q=60&v={tstamp}",
+            f"https://images.unsplash.com/photo-1531482615713-2afd69097998?w=600&auto=format&fit=crop&q=60&v={tstamp}",
+            f"https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=600&auto=format&fit=crop&q=60&v={tstamp}",
+            f"https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=600&auto=format&fit=crop&q=60&v={tstamp}",
+            f"https://images.unsplash.com/photo-1535223289827-42f1e9919769?w=600&auto=format&fit=crop&q=60&v={tstamp}"
         ],
         "Economia": [
-            "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=600&auto=format&fit=crop&q=60",
-            "https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?w=600&auto=format&fit=crop&q=60",
-            "https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?w=600&auto=format&fit=crop&q=60",
-            "https://images.unsplash.com/photo-1559526324-4b87b5e36e44?w=600&auto=format&fit=crop&q=60",
-            "https://images.unsplash.com/photo-1579532537598-459ecdaf39cc?w=600&auto=format&fit=crop&q=60",
-            "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&auto=format&fit=crop&q=60"
+            f"https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=600&auto=format&fit=crop&q=60&v={tstamp}",
+            f"https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?w=600&auto=format&fit=crop&q=60&v={tstamp}",
+            f"https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?w=600&auto=format&fit=crop&q=60&v={tstamp}",
+            f"https://images.unsplash.com/photo-1559526324-4b87b5e36e44?w=600&auto=format&fit=crop&q=60&v={tstamp}",
+            f"https://images.unsplash.com/photo-1579532537598-459ecdaf39cc?w=600&auto=format&fit=crop&q=60&v={tstamp}",
+            f"https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&auto=format&fit=crop&q=60&v={tstamp}",
+            f"https://images.unsplash.com/photo-1565372195458-9de0b320ef04?w=600&auto=format&fit=crop&q=60&v={tstamp}"
         ],
         "Esportes": [
-            "https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=600&auto=format&fit=crop&q=60",
-            "https://images.unsplash.com/photo-1517649763962-0c623066013b?w=600&auto=format&fit=crop&q=60",
-            "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=600&auto=format&fit=crop&q=60",
-            "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=600&auto=format&fit=crop&q=60",
-            "https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?w=600&auto=format&fit=crop&q=60",
-            "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=600&auto=format&fit=crop&q=60"
+            f"https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=600&auto=format&fit=crop&q=60&v={tstamp}",
+            f"https://images.unsplash.com/photo-1517649763962-0c623066013b?w=600&auto=format&fit=crop&q=60&v={tstamp}",
+            f"https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=600&auto=format&fit=crop&q=60&v={tstamp}",
+            f"https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=600&auto=format&fit=crop&q=60&v={tstamp}",
+            f"https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?w=600&auto=format&fit=crop&q=60&v={tstamp}",
+            f"https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=600&auto=format&fit=crop&q=60&v={tstamp}"
         ],
         "Vagas & Home Office": [
-            "https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60",
-            "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=600&auto=format&fit=crop&q=60",
-            "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=600&auto=format&fit=crop&q=60",
-            "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&auto=format&fit=crop&q=60",
-            "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600&auto=format&fit=crop&q=60",
-            "https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=600&auto=format&fit=crop&q=60"
+            f"https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60&v={tstamp}",
+            f"https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=600&auto=format&fit=crop&q=60&v={tstamp}",
+            f"https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=600&auto=format&fit=crop&q=60&v={tstamp}",
+            f"https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&auto=format&fit=crop&q=60&v={tstamp}",
+            f"https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600&auto=format&fit=crop&q=60&v={tstamp}",
+            f"https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=600&auto=format&fit=crop&q=60&v={tstamp}"
         ],
         "Filmes & Séries": [
-            "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=600&auto=format&fit=crop&q=60",
-            "https://images.unsplash.com/photo-1512070679279-8988d2210cbc?w=600&auto=format&fit=crop&q=60",
-            "https://images.unsplash.com/photo-1598899134739-24c46f58b8c0?w=600&auto=format&fit=crop&q=60",
-            "https://images.unsplash.com/photo-1522869635100-9f4c5e86aa37?w=600&auto=format&fit=crop&q=60",
-            "https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=600&auto=format&fit=crop&q=60",
-            "https://images.unsplash.com/photo-1478720568477-152d9b164e26?w=600&auto=format&fit=crop&q=60"
+            f"https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=600&auto=format&fit=crop&q=60&v={tstamp}",
+            f"https://images.unsplash.com/photo-1512070679279-8988d2210cbc?w=600&auto=format&fit=crop&q=60&v={tstamp}",
+            f"https://images.unsplash.com/photo-1598899134739-24c46f58b8c0?w=600&auto=format&fit=crop&q=60&v={tstamp}",
+            f"https://images.unsplash.com/photo-1522869635100-9f4c5e86aa37?w=600&auto=format&fit=crop&q=60&v={tstamp}",
+            f"https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=600&auto=format&fit=crop&q=60&v={tstamp}",
+            f"https://images.unsplash.com/photo-1478720568477-152d9b164e26?w=600&auto=format&fit=crop&q=60&v={tstamp}"
         ],
         "Games & Tech": [
-            "https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=600&auto=format&fit=crop&q=60",
-            "https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=600&auto=format&fit=crop&q=60",
-            "https://images.unsplash.com/photo-1612287233002-91d0f5367c33?w=600&auto=format&fit=crop&q=60",
-            "https://images.unsplash.com/photo-1511512578047-dfb367046420?w=600&auto=format&fit=crop&q=60",
-            "https://images.unsplash.com/photo-1542751371-adc38448a05e?w=600&auto=format&fit=crop&q=60",
-            "https://images.unsplash.com/photo-1552820728-8b83bb6b773f?w=600&auto=format&fit=crop&q=60"
+            f"https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=600&auto=format&fit=crop&q=60&v={tstamp}",
+            f"https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=600&auto=format&fit=crop&q=60&v={tstamp}",
+            f"https://images.unsplash.com/photo-1612287233002-91d0f5367c33?w=600&auto=format&fit=crop&q=60&v={tstamp}",
+            f"https://images.unsplash.com/photo-1511512578047-dfb367046420?w=600&auto=format&fit=crop&q=60&v={tstamp}",
+            f"https://images.unsplash.com/photo-1542751371-adc38448a05e?w=600&auto=format&fit=crop&q=60&v={tstamp}",
+            f"https://images.unsplash.com/photo-1552820728-8b83bb6b773f?w=600&auto=format&fit=crop&q=60&v={tstamp}"
         ],
         "Qualidade de Vida": [
-            "https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=600&auto=format&fit=crop&q=60",
-            "https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=600&auto=format&fit=crop&q=60",
-            "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&auto=format&fit=crop&q=60",
-            "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=600&auto=format&fit=crop&q=60",
-            "https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=600&auto=format&fit=crop&q=60",
-            "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=600&auto=format&fit=crop&q=60"
+            f"https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=600&auto=format&fit=crop&q=60&v={tstamp}",
+            f"https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=600&auto=format&fit=crop&q=60&v={tstamp}",
+            f"https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&auto=format&fit=crop&q=60&v={tstamp}",
+            f"https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=600&auto=format&fit=crop&q=60&v={tstamp}",
+            f"https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=600&auto=format&fit=crop&q=60&v={tstamp}",
+            f"https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=600&auto=format&fit=crop&q=60&v={tstamp}"
         ]
     }
 
@@ -758,13 +760,10 @@ def buscar_noticias_por_categoria():
 
     categorias_processadas, todas_noticias = {}, []
     
-    # Embaralha os arrays de imagens a cada execução para garantir que a cada 6h mude a foto por nicho
-    for cat_nome in imagens_por_categoria:
-        random.shuffle(imagens_por_categoria[cat_nome])
-
     for cat_nome, info in fontes.items():
         items_cat = []
-        imgs_disponiveis = imagens_por_categoria.get(cat_nome, imagens_por_categoria["Mundo"])
+        imgs_disponiveis = list(imagens_por_categoria.get(cat_nome, imagens_por_categoria["Mundo"]))
+        random.shuffle(imgs_disponiveis) # Embaralha estritamente por ciclo
         fallback_lista = fallbacks_por_categoria.get(cat_nome, fallbacks_por_categoria["Mundo"])
         
         limite_por_fonte = 3 if len(info["urls"]) > 1 else 6
@@ -774,7 +773,7 @@ def buscar_noticias_por_categoria():
                 resp = requests.get(url_rss, verify=False, timeout=7)
                 if resp.status_code == 200:
                     root = ET.fromstring(resp.content)
-                    for idx_item, item in enumerate(root.findall('.//item')[:limite_por_fonte]):
+                    for item in root.findall('.//item')[:limite_por_fonte]:
                         title_elem = item.find('title')
                         link_elem = item.find('link')
                         desc_elem = item.find('description')
@@ -790,8 +789,8 @@ def buscar_noticias_por_categoria():
                         if not desc.strip():
                             desc = "Cobertura internacional atualizada em tempo real."
 
-                        # Pega uma imagem rotacionada dinamicamente do banco do nicho
-                        img_url = imgs_disponiveis[(len(items_cat) + random.randint(0, 5)) % len(imgs_disponiveis)]
+                        # Garante exclusividade de imagem pegando da lista embaralhada sem repetir na mesma página
+                        img_url = imgs_disponiveis[len(items_cat) % len(imgs_disponiveis)]
                         
                         noticia_obj = {
                             "category": cat_nome, "color": info["color"],
@@ -806,7 +805,7 @@ def buscar_noticias_por_categoria():
         while len(items_cat) < 6:
             idx = len(items_cat)
             fb_item = fallback_lista[idx % len(fallback_lista)]
-            img_url = imgs_disponiveis[(idx + random.randint(0, 3)) % len(imgs_disponiveis)]
+            img_url = imgs_disponiveis[idx % len(imgs_disponiveis)]
             noticia_fb = {
                 "category": cat_nome, "color": info["color"], 
                 "title": fb_item["title"], 
@@ -817,7 +816,6 @@ def buscar_noticias_por_categoria():
             items_cat.append(noticia_fb)
             todas_noticias.append(noticia_fb)
 
-        # Embaralha os itens da categoria para que a ordem e as fotos mudem a cada 6h
         random.shuffle(items_cat)
         categorias_processadas[cat_nome] = {"id": info["id"], "color": info["color"], "lista": items_cat[:6]}
         
@@ -825,11 +823,12 @@ def buscar_noticias_por_categoria():
 
 def buscar_noticias_do_pais(nome_pais, pool_global):
     noticias_locais = []
+    tstamp = int(datetime.now().timestamp())
     imgs_mundo = [
-        "https://images.unsplash.com/photo-1521295121783-8a321d551ad2?w=600&auto=format&fit=crop&q=60",
-        "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=600&auto=format&fit=crop&q=60",
-        "https://images.unsplash.com/photo-1508739773434-c26b3d09e071?w=600&auto=format&fit=crop&q=60",
-        "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=600&auto=format&fit=crop&q=60"
+        f"https://images.unsplash.com/photo-1521295121783-8a321d551ad2?w=600&auto=format&fit=crop&q=60&v={tstamp}",
+        f"https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=600&auto=format&fit=crop&q=60&v={tstamp}",
+        f"https://images.unsplash.com/photo-1508739773434-c26b3d09e071?w=600&auto=format&fit=crop&q=60&v={tstamp}",
+        f"https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=600&auto=format&fit=crop&q=60&v={tstamp}"
     ]
     random.shuffle(imgs_mundo)
     try:
@@ -909,7 +908,7 @@ def send_search_engine_pings():
 
 def gerar_site():
     timestamp_atual = datetime.now().strftime("%d/%m/%Y às %H:%M")
-    print(f"Gerando portal unificado com rotação de imagens por nicho em {timestamp_atual}...")
+    print(f"Gerando portal unificado com anti-cache de imagens e SEO potencializado em {timestamp_atual}...")
     
     paises = baixar_paises()
     categorias_dict, todas_noticias = buscar_noticias_por_categoria()
@@ -981,7 +980,7 @@ def gerar_site():
 
     gerar_sitemap(lista_paises)
     send_search_engine_pings()
-    print("Sucesso absoluto! Portal atualizado com imagens rotativas por nicho e carimbo dinâmico.")
+    print("Sucesso absoluto! Portal potencializado com exclusividade de imagens por página e anti-cache ativado.")
 
 if __name__ == "__main__":
     gerar_site()
