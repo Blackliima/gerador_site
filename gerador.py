@@ -63,7 +63,7 @@ BREAKING_NEWS_TICKER = """
 
 LICENCA_RODAPE = """
 <div style="font-size: 13px; color: var(--text-light); line-height: 1.6; margin-top: 40px; padding: 25px; background: var(--card-bg); border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.03); border: 1px solid rgba(0,0,0,0.05);">
-    <p style="margin: 0 0 10px 0;"><strong>Aviso Legal:</strong> O <strong>Brasil Oportunidades & Vagas</strong> é um portal independente focado em divulgar editais de concursos públicos, oportunidades de emprego, vagas home office e notícias econômicas para todo o território nacional. Não coletamos dados pessoais e direcionamos os usuários para as fontes oficiais de inscrição.</p>
+    <p style="margin: 0 0 10px 0;"><strong>Aviso Legal:</strong> O <strong>Brasil Oportunidades & Vagas</strong> é um portal independente focado em divulgar editais de concursos públicos, oportunidades de emprego, vagas home office e notícias econômicas para todo o território nacional.</p>
     <p style="margin: 0;"><a href="anuncie.html" style="color: var(--primary); text-decoration: none; font-weight: 600;">Anuncie Vagas / Publieditoriais</a> | © 2026 Brasil Oportunidades & Vagas. Todos os direitos reservados.</p>
 </div>
 """
@@ -78,7 +78,7 @@ INDEX_TEMPLATE = """
     {{ monetag_script | safe }}
     {{ google_meta | safe }}
     <title>Brasil Oportunidades & Vagas - Concursos, Empregos e Editais Abertos</title>
-    <meta name="description" content="Encontre editais de concursos públicos abertos, vagas de emprego CLT, oportunidades de trabalho Home Office e notícias de economia no Brasil. Atualizado em {{ timestamp }}.">
+    <meta name="description" content="Encontre editais de concursos públicos abertos, vagas de emprego CLT, oportunidades de trabalho Home Office e notícias de economia no Brasil.">
     
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Brasil Oportunidades & Vagas">
@@ -117,7 +117,8 @@ INDEX_TEMPLATE = """
         .nav-cats a:hover { background: var(--primary); color: white; border-color: var(--primary); }
         .section-title { font-size: 22px; font-weight: 700; margin: 45px 0 20px 0; border-left: 5px solid var(--primary); padding-left: 12px; display: flex; align-items: center; justify-content: space-between; }
         
-        .news-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; width: 100%; }
+        /* Grid Blindado e Alinhado Perfeitamente */
+        .news-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; width: 100%; margin-top: 15px; }
         @media(max-width: 900px) { .news-grid { grid-template-columns: repeat(2, 1fr); } }
         @media(max-width: 600px) { .news-grid { grid-template-columns: 1fr; } }
         
@@ -234,7 +235,7 @@ ESTADO_TEMPLATE = """
     {{ monetag_script | safe }}
     {{ google_meta | safe }}
     <title>Vagas e Concursos em {{ estado.name }} - Brasil Oportunidades</title>
-    <meta name="description" content="Confira editais de concursos públicos, vagas de emprego e oportunidades profissionais em {{ estado.name }}. Atualizado em {{ timestamp }}.">
+    <meta name="description" content="Confira editais de concursos públicos, vagas de emprego e oportunidades profissionais em {{ estado.name }}.">
     
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="Brasil Oportunidades & Vagas">
@@ -270,7 +271,7 @@ ESTADO_TEMPLATE = """
         .info-box p { margin: 0 0 10px 0; color: var(--text-light); font-size: 14.5px; }
         .section-title { font-size: 22px; font-weight: 700; margin: 40px 0 20px 0; border-left: 5px solid var(--primary); padding-left: 12px; }
         
-        .news-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; width: 100%; }
+        .news-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; width: 100%; margin-top: 15px; }
         @media(max-width: 900px) { .news-grid { grid-template-columns: repeat(2, 1fr); } }
         @media(max-width: 600px) { .news-grid { grid-template-columns: 1fr; } }
         
@@ -351,11 +352,11 @@ ANUNCIE_TEMPLATE = """
     {{ adsense_script | safe }}
     {{ monetag_script | safe }}
     {{ google_meta | safe }}
-    <title>Anuncie Vagas e Concursos - Brasil Oportunidades</title>
+    <title>Anuncie Concursos, Vagas e Publieditoriais</title>
     <meta name="description" content="Divulgue sua vaga de emprego, processo seletivo ou curso preparatório no Brasil Oportunidades & Vagas.">
     
     <meta property="og:type" content="website">
-    <meta property="og:title" content="Anuncie Vagas e Concursos - Brasil Oportunidades">
+    <meta property="og:title" content="Anuncie Concursos, Vagas e Publieditoriais">
     <meta property="og:description" content="Divulgue sua vaga de emprego ou edital no portal.">
     <meta property="og:image" content="https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=1200&auto=format&fit=crop&q=80">
     <meta property="og:url" content="{{ dominio }}/anuncie.html">
@@ -616,7 +617,7 @@ def gerar_site():
         
     gerar_sitemap(lista_estados_gerados)
     send_pings()
-    print("Sucesso absoluto! Portal transformado em foco total em Vagas, Concursos e Brasil.")
+    print("Sucesso absoluto! Portal limpo, blindado e reestruturado.")
 
 if __name__ == "__main__":
     gerar_site()
