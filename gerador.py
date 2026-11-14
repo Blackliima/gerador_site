@@ -108,7 +108,6 @@ HTML_TEMPLATE = """
     <title>{{ country.name }} - Global News & Data | Notícias e Indicadores Oficiais</title>
     <meta name="description" content="Tudo sobre {{ country.name }}: últimas notícias em tempo real, capital, população, economia, fuso horário, PIB, inflação e indicadores oficiais. Atualizado em {{ timestamp }}.">
     
-    <!-- Open Graph / Redes Sociais Blindadas -->
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="Global News & Data">
     <meta property="og:title" content="{{ country.name }} - Global News & Data">
@@ -286,7 +285,6 @@ INDEX_TEMPLATE = """
     <title>Global News & Data - Portal Mundial de Notícias, Economia, Vagas e Saúde</title>
     <meta name="description" content="Portal global completo com notícias em tempo real, cotações, vagas de emprego home office, economia, tecnologia, filmes, games, saúde e indicadores estatísticos. Atualizado em {{ timestamp }}.">
     
-    <!-- Open Graph Home Blindado -->
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Global News & Data">
     <meta property="og:title" content="Global News & Data - Portal Mundial de Notícias">
@@ -533,7 +531,6 @@ ANUNCIE_TEMPLATE = """
     <title>Anuncie Conosco & Parcerias - Global News & Data</title>
     <meta name="description" content="Divulgue sua marca, produto ou serviço no Global News & Data. Conheça nossas opções de publieditoriais, guest posts e patrocínios comerciais.">
     
-    <!-- Open Graph Anuncie Blindado -->
     <meta property="og:type" content="website">
     <meta property="og:title" content="Anuncie Conosco & Parcerias - Global News & Data">
     <meta property="og:description" content="Divulgue sua marca no Global News & Data. Conheça nossas opções de publieditoriais e patrocínios.">
@@ -607,7 +604,6 @@ ANUNCIE_TEMPLATE = """
 """
 
 def buscar_noticias_por_categoria():
-    # Fontes agora altamente diversificadas (BBC, TechCrunch, ESPN, Reuters, CNN Brasil, G1, etc.)
     fontes = {
         "Mundo": {
             "id": "mundo", "color": "#2563eb",
@@ -769,7 +765,7 @@ def buscar_noticias_por_categoria():
             {"title": "Bastidores de Produção: Como Efeitos Visuais Criam Mundos Hiper-Realistas", "desc": "Estúdios revelam segredos tecnológicos por trás dos maiores sucessos do cinema atual."}
         ],
         "Games & Tech": [
-            {"title": "Lançamentos de Jogos AAA Agitam o Mercado de Consoles e PC", "desc": "Títulos altamente aguardados traz gráficos hiper-realistas e novas mecânicas."},
+            {"title": "Lançamentos de Jogos AAA Agitam o Mercado de Consoles e PC", "desc": "Títulos altamente aguardados trazem gráficos hiper-realistas e novas mecânicas."},
             {"title": "Campeonatos Mundiais de Esports Batem Recordes de Audiência", "desc": "Competições profissionais de eSports reúnem milhões de espectadores simultâneos."},
             {"title": "Novas Placas Gráficas e Hardware Elevam Desempenho em Jogos Competitivos", "desc": "Fabricantes apresentam componentes otimizados para altas taxas de quadros."}
         ],
@@ -793,7 +789,7 @@ def buscar_noticias_por_categoria():
                 resp = requests.get(url_rss, verify=False, timeout=7)
                 if resp.status_code == 200:
                     root = ET.fromstring(resp.content)
-                    for item in root.findall('.//item')[:3]:  # Pega até 3 de cada fonte para misturar bem
+                    for item in root.findall('.//item')[:3]:
                         title_elem = item.find('title')
                         link_elem = item.find('link')
                         desc_elem = item.find('description')
@@ -994,8 +990,7 @@ def gerar_site():
             timestamp=timestamp_atual,
             ad_banner=AD_BANNER, tradutor=WIDGET_TRADUTOR_MODERNO,
             adsense_script=ADSENSE_SCRIPT, monetag_script=MONETAG_SCRIPT,
-            google_meta=GOOGLE_META, licenca_rodape=LICENCA_RODAPE, dominio=UI = WIDGET_TRADUTOR_MODERNO,
-            dominio=DOMINIO_SITE
+            google_meta=GOOGLE_META, licenca_rodape=LICENCA_RODAPE, dominio=DOMINIO_SITE
         ))
 
     gerar_sitemap(lista_paises)
