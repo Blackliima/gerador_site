@@ -92,14 +92,14 @@ HTML_TEMPLATE = """
         }
         body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; line-height: 1.6; color: var(--text); background: var(--bg-color); margin: 0; padding: 0; transition: background 0.3s, color 0.3s; }
         .navbar { background: var(--card-bg); border-bottom: 1px solid var(--border-color); padding: 12px 20px; position: sticky; top: 0; z-index: 1000; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
-        .nav-container { max-width: 1000px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
+        .nav-container { max-width: 1050px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
         .back-link { color: var(--primary); text-decoration: none; font-weight: 600; font-size: 14px; display: flex; align-items: center; gap: 5px; }
         .nav-right { display: flex; align-items: center; gap: 12px; }
         .lang-select { background: var(--bg-color); color: var(--text); border: 1px solid var(--border-color); padding: 6px 12px; border-radius: 20px; font-weight: 600; font-size: 12px; cursor: pointer; outline: none; transition: border-color 0.2s; }
         .lang-select:hover { border-color: var(--primary); }
         .theme-btn { background: var(--bg-color); color: var(--text); border: 1px solid var(--border-color); padding: 6px 12px; border-radius: 20px; cursor: pointer; font-weight: 600; font-size: 12px; transition: all 0.2s; }
         .theme-btn:hover { border-color: var(--primary); }
-        .container { max-width: 1000px; margin: 30px auto; padding: 0 20px; }
+        .container { max-width: 1050px; margin: 30px auto; padding: 0 20px; }
         header { background: var(--header-bg); color: white; padding: 40px; border-radius: 16px; margin-bottom: 30px; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1); }
         header h1 { margin: 0 0 10px 0; font-size: 32px; font-weight: 800; letter-spacing: -0.5px; }
         header p { margin: 0; opacity: 0.9; font-size: 16px; }
@@ -119,12 +119,14 @@ HTML_TEMPLATE = """
         .curiosidade-box h3 { margin-top: 0; color: var(--primary); font-size: 18px; display: flex; align-items: center; gap: 8px; }
         .curiosidade-box p { margin: 0; font-size: 15px; color: var(--text); line-height: 1.6; }
         .section-title { font-size: 22px; font-weight: 700; margin: 40px 0 20px 0; border-left: 5px solid var(--primary); padding-left: 12px; display: flex; align-items: center; }
-        .news-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+        .news-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        @media(max-width: 900px) { .news-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media(max-width: 600px) { .news-grid { grid-template-columns: 1fr; } }
         .news-card { background: var(--card-bg); border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02); border: 1px solid var(--border-color); display: flex; flex-direction: column; overflow: hidden; transition: transform 0.2s, box-shadow 0.2s; }
         .news-card:hover { transform: translateY(-3px); box-shadow: 0 10px 20px -3px rgba(0,0,0,0.05); }
         .news-img { width: 100%; height: 160px; object-fit: cover; background: #e2e8f0; }
         .news-content { padding: 20px; display: flex; flex-direction: column; justify-content: space-between; flex-grow: 1; }
-        .badge { display: inline-block; padding: 4px 10px; font-size: 11px; font-weight: 700; border-radius: 20px; text-transform: uppercase; margin-bottom: 12px; color: white; letter-spacing: 0.5px; }
+        .badge { display: inline-block; align-self: flex-start; padding: 4px 10px; font-size: 11px; font-weight: 700; border-radius: 20px; text-transform: uppercase; margin-bottom: 12px; color: white; letter-spacing: 0.5px; }
         .news-card h3 { margin: 0 0 10px 0; font-size: 17px; line-height: 1.4; }
         .news-card h3 a { color: var(--text); text-decoration: none; transition: color 0.2s; }
         .news-card h3 a:hover { color: var(--primary); }
@@ -257,14 +259,14 @@ INDEX_TEMPLATE = """
         }
         body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; line-height: 1.6; color: var(--text); background: var(--bg-color); margin: 0; padding: 0; transition: background 0.3s, color 0.3s; }
         .navbar { background: var(--card-bg); border-bottom: 1px solid var(--border-color); padding: 12px 20px; position: sticky; top: 0; z-index: 1000; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
-        .nav-container { max-width: 1050px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+        .nav-container { max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 12px; }
         .brand-logo { font-weight: 800; font-size: 18px; color: var(--primary); text-decoration: none; display: flex; align-items: center; gap: 6px; }
         .nav-right-actions { display: flex; align-items: center; gap: 10px; }
         .lang-select { background: var(--bg-color); color: var(--text); border: 1px solid var(--border-color); padding: 6px 12px; border-radius: 20px; font-weight: 600; font-size: 12px; cursor: pointer; outline: none; transition: border-color 0.2s; }
         .lang-select:hover { border-color: var(--primary); }
         .theme-btn { background: var(--bg-color); color: var(--text); border: 1px solid var(--border-color); padding: 6px 12px; border-radius: 20px; cursor: pointer; font-weight: 600; font-size: 12px; transition: all 0.2s; }
         .theme-btn:hover { border-color: var(--primary); }
-        .container { max-width: 1050px; margin: 25px auto; padding: 0 20px; }
+        .container { max-width: 1100px; margin: 25px auto; padding: 0 20px; }
         header { background: var(--header-bg); color: white; padding: 40px 20px; border-radius: 16px; margin-bottom: 25px; text-align: center; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1); }
         header h1 { margin: 0 0 10px 0; font-size: 34px; font-weight: 800; letter-spacing: -0.5px; }
         header p { margin: 0 0 20px 0; opacity: 0.9; font-size: 15px; max-width: 600px; margin-left: auto; margin-right: auto; }
@@ -310,16 +312,21 @@ INDEX_TEMPLATE = """
         .country-card:hover { transform: translateY(-3px); border-color: var(--primary); }
         .country-card h3 { margin: 0 0 6px 0; color: var(--primary); font-size: 18px; font-weight: 700; }
         .country-card p { margin: 0; font-size: 13px; color: var(--text-light); font-weight: 500; }
-        .news-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+
+        /* GRADE DE 3 COLUNAS CHEIAS */
+        .news-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        @media(max-width: 900px) { .news-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media(max-width: 600px) { .news-grid { grid-template-columns: 1fr; } }
+
         .news-card { background: var(--card-bg); border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02); border: 1px solid var(--border-color); display: flex; flex-direction: column; overflow: hidden; transition: transform 0.2s, box-shadow 0.2s; }
         .news-card:hover { transform: translateY(-3px); box-shadow: 0 10px 20px -3px rgba(0,0,0,0.05); }
-        .news-img { width: 100%; height: 160px; object-fit: cover; background: #e2e8f0; }
+        .news-img { width: 100%; height: 165px; object-fit: cover; background: #e2e8f0; }
         .news-content { padding: 20px; display: flex; flex-direction: column; justify-content: space-between; flex-grow: 1; }
         .badge { display: inline-block; align-self: flex-start; padding: 4px 10px; font-size: 11px; font-weight: 700; border-radius: 20px; text-transform: uppercase; margin-bottom: 12px; color: white; letter-spacing: 0.5px; }
-        .news-card h3 { margin: 0 0 10px 0; font-size: 18px; line-height: 1.4; }
+        .news-card h3 { margin: 0 0 10px 0; font-size: 17px; line-height: 1.4; }
         .news-card h3 a { color: var(--text); text-decoration: none; transition: color 0.2s; }
         .news-card h3 a:hover { color: var(--primary); }
-        .news-card p { margin: 0; font-size: 14px; color: var(--text-light); line-height: 1.5; }
+        .news-card p { margin: 0; font-size: 13.5px; color: var(--text-light); line-height: 1.5; }
         footer { text-align: center; margin-top: 50px; border-top: 1px solid var(--border-color); padding-top: 20px; }
     </style>
 </head>
@@ -357,7 +364,6 @@ INDEX_TEMPLATE = """
         <!-- SEÇÃO HERO GRID DE DESTAQUE (ESTILO G1 COM VÍDEOS E CHOQUE) -->
         {% if categorias.get('Mundo') and categorias['Mundo'].lista|length >= 3 %}
         <div class="hero-grid">
-            <!-- DESTAQUE PRINCIPAL ESQUERDA -->
             <div class="hero-main">
                 <img src="{{ categorias['Mundo'].lista[0].image }}" alt="Destaque" onerror="this.src='https://images.unsplash.com/photo-1521295121783-8a321d551ad2?w=600&auto=format&fit=crop&q=60';">
                 <div class="hero-main-content">
@@ -369,7 +375,6 @@ INDEX_TEMPLATE = """
                 </div>
             </div>
 
-            <!-- DESTAQUES DIREITA (VÍDEOS E ALTO IMPACTO) -->
             <div class="hero-side">
                 <div class="side-card">
                     <img src="{{ categorias['Mundo'].lista[1].image }}" alt="Vídeo 1" onerror="this.src='https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=600&auto=format&fit=crop&q=60';">
@@ -558,49 +563,65 @@ def buscar_noticias_por_categoria():
             "https://images.unsplash.com/photo-1521295121783-8a321d551ad2?w=600&auto=format&fit=crop&q=60",
             "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=600&auto=format&fit=crop&q=60",
             "https://images.unsplash.com/photo-1508739773434-c26b3d09e071?w=600&auto=format&fit=crop&q=60",
-            "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=600&auto=format&fit=crop&q=60"
+            "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=600&auto=format&fit=crop&q=60",
+            "https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?w=600&auto=format&fit=crop&q=60",
+            "https://images.unsplash.com/photo-1541872703-74c5e44368f9?w=600&auto=format&fit=crop&q=60"
         ],
         "Tecnologia": [
             "https://images.unsplash.com/photo-1518770660439-4636190af475?w=600&auto=format&fit=crop&q=60",
             "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=600&auto=format&fit=crop&q=60",
             "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=600&auto=format&fit=crop&q=60",
-            "https://images.unsplash.com/photo-1531482615713-2afd69097998?w=600&auto=format&fit=crop&q=60"
+            "https://images.unsplash.com/photo-1531482615713-2afd69097998?w=600&auto=format&fit=crop&q=60",
+            "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=600&auto=format&fit=crop&q=60",
+            "https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=600&auto=format&fit=crop&q=60"
         ],
         "Economia": [
             "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=600&auto=format&fit=crop&q=60",
             "https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?w=600&auto=format&fit=crop&q=60",
             "https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?w=600&auto=format&fit=crop&q=60",
-            "https://images.unsplash.com/photo-1559526324-4b87b5e36e44?w=600&auto=format&fit=crop&q=60"
+            "https://images.unsplash.com/photo-1559526324-4b87b5e36e44?w=600&auto=format&fit=crop&q=60",
+            "https://images.unsplash.com/photo-1579532537598-459ecdaf39cc?w=600&auto=format&fit=crop&q=60",
+            "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&auto=format&fit=crop&q=60"
         ],
         "Esportes": [
             "https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=600&auto=format&fit=crop&q=60",
             "https://images.unsplash.com/photo-1517649763962-0c623066013b?w=600&auto=format&fit=crop&q=60",
             "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=600&auto=format&fit=crop&q=60",
-            "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=600&auto=format&fit=crop&q=60"
+            "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=600&auto=format&fit=crop&q=60",
+            "https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?w=600&auto=format&fit=crop&q=60",
+            "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=600&auto=format&fit=crop&q=60"
         ],
         "Vagas & Home Office": [
             "https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60",
             "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=600&auto=format&fit=crop&q=60",
             "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=600&auto=format&fit=crop&q=60",
-            "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&auto=format&fit=crop&q=60"
+            "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&auto=format&fit=crop&q=60",
+            "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600&auto=format&fit=crop&q=60",
+            "https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=600&auto=format&fit=crop&q=60"
         ],
         "Filmes & Séries": [
             "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=600&auto=format&fit=crop&q=60",
             "https://images.unsplash.com/photo-1512070679279-8988d2210cbc?w=600&auto=format&fit=crop&q=60",
             "https://images.unsplash.com/photo-1598899134739-24c46f58b8c0?w=600&auto=format&fit=crop&q=60",
-            "https://images.unsplash.com/photo-1522869635100-9f4c5e86aa37?w=600&auto=format&fit=crop&q=60"
+            "https://images.unsplash.com/photo-1522869635100-9f4c5e86aa37?w=600&auto=format&fit=crop&q=60",
+            "https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=600&auto=format&fit=crop&q=60",
+            "https://images.unsplash.com/photo-1478720568477-152d9b164e26?w=600&auto=format&fit=crop&q=60"
         ],
         "Games & Tech": [
             "https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=600&auto=format&fit=crop&q=60",
             "https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=600&auto=format&fit=crop&q=60",
             "https://images.unsplash.com/photo-1612287233002-91d0f5367c33?w=600&auto=format&fit=crop&q=60",
-            "https://images.unsplash.com/photo-1511512578047-dfb367046420?w=600&auto=format&fit=crop&q=60"
+            "https://images.unsplash.com/photo-1511512578047-dfb367046420?w=600&auto=format&fit=crop&q=60",
+            "https://images.unsplash.com/photo-1542751371-adc38448a05e?w=600&auto=format&fit=crop&q=60",
+            "https://images.unsplash.com/photo-1552820728-8b83bb6b773f?w=600&auto=format&fit=crop&q=60"
         ],
         "Qualidade de Vida": [
             "https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=600&auto=format&fit=crop&q=60",
             "https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=600&auto=format&fit=crop&q=60",
             "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&auto=format&fit=crop&q=60",
-            "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=600&auto=format&fit=crop&q=60"
+            "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=600&auto=format&fit=crop&q=60",
+            "https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=600&auto=format&fit=crop&q=60",
+            "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=600&auto=format&fit=crop&q=60"
         ]
     }
 
@@ -608,35 +629,66 @@ def buscar_noticias_por_categoria():
         "Mundo": [
             {"title": "Escalada de Conflitos Internacionais e Tensões Globais Exigem Alerta", "desc": "Especialistas monitoram de perto os desdobramentos diplomáticos e militares nas principais frentes mundiais."},
             {"title": "VÍDEO: Momento Chocante de Reviravolta em Zona de Crise", "desc": "Imagens capturadas ao vivo mostram o impacto de eventos drásticos que paralisaram autoridades."},
-            {"title": "Acordos de Última Hora Tentam Evitar Crise Energética Global", "desc": "Líderes mundiais se reúnem em caráter de urgência para negociar medidas de estabilização."}
+            {"title": "Acordos de Última Hora Tentam Evitar Crise Energética Global", "desc": "Líderes mundiais se reúnem em caráter de urgência para negociar medidas de estabilização."},
+            {"title": "Rotas Marítimas Estratégicas Sofrem Bloqueio e Afetam Comércio Mundial", "desc": "Navios cargueiros desviam rotas após alertas de segurança emitidos por agências internacionais."},
+            {"title": "Cúpula de Emergência da ONU Debate Segurança e Ajuda Humanitária", "desc": "Representantes de 190 países buscam consenso para evitar agravamento de crises regionais."},
+            {"title": "Novas Sanções Econômicas Redesenham Alianças entre Grandes Potências", "desc": "Medidas anunciadas hoje impactam diretamente exportações e cadeias de suprimentos."}
         ],
         "Tecnologia": [
-            {"title": "A Revolução da Inteligência Artificial Generativa nos Mercados", "desc": "Empresas adotam modelos preditivos avançados para otimizar processos."},
-            {"title": "Expansão da Infraestrutura de Conectividade de Alta Velocidade", "desc": "Investimentos bilionários ampliam o acesso digital em grandes centros."}
+            {"title": "A Revolução da Inteligência Artificial Generativa nos Mercados", "desc": "Empresas adotam modelos preditivos avançados para otimizar processos e reduzir custos."},
+            {"title": "Expansão da Infraestrutura de Conectividade de Alta Velocidade", "desc": "Investimentos bilionários ampliam o acesso digital e redes de fibra em grandes centros."},
+            {"title": "Cibersegurança em Alerta: Novos Protocolos Contra Ataques Globais", "desc": "Especialistas revelam ferramentas essenciais para blindar dados corporativos e pessoais."},
+            {"title": "Computação Quântica Atinge Novo Marco em Processamento de Dados", "desc": "Pesquisadores demonstram avanços capazes de resolver cálculos complexos em segundos."},
+            {"title": "Automação Industrial e Robótica Transformam Fábricas ao Redor do Mundo", "desc": "Linhas de produção inteligentes aumentam eficiência e criam novas demandas técnicas."},
+            {"title": "Novos Dispositivos Vestíveis Monitoram Saúde em Tempo Real com Precisão", "desc": "Sensores biométricos de última geração chegam ao mercado com foco preventivo."}
         ],
         "Economia": [
-            {"title": "Bolsas Internacionais Reagem a Indicadores de Inflação e Juros", "desc": "Analistas monitoram de perto as oscilações das principais moedas globais."},
-            {"title": "Fluxo de Investimentos Estrangeiros Aponta Crescimento", "desc": "Setores produtivos registram aportes voltados para modernização."}
+            {"title": "Bolsas Internacionais Reagem a Indicadores de Inflação e Juros", "desc": "Analistas monitoram de perto as oscilações das principais moedas e índices globais."},
+            {"title": "Fluxo de Investimentos Estrangeiros Aponta Crescimento em Setores-Chave", "desc": "Setores produtivos e de infraestrutura registram aportes voltados para modernização."},
+            {"title": "Cotação do Petróleo e Commodities Impulsiona Exportações Globais", "desc": "Movimentação nos mercados futuros traz oportunidades e exige cautela dos investidores."},
+            {"title": "Bancos Centrais Sinalizam Novos Passos para Política Monetária", "desc": "Decisões sobre taxas básicas de juros influenciam crédito e consumo internacional."},
+            {"title": "Mercado Digital e Fintechs Batem Recorde de Transações Instantâneas", "desc": "Adoção de pagamentos digitais cresce aceleradamente entre consumidores e empresas."},
+            {"title": "Agronegócio e Tecnologia de Ponta Elevam Produtividade Recorde", "desc": "Inovações genéticas e monitoramento por satélite garantem safras históricas."}
         ],
         "Esportes": [
-            {"title": "Campeonatos Internacionais de Futebol Entram em Fase Decisiva", "desc": "Clubes e seleções intensificam preparativos para confrontos mundiais."},
-            {"title": "Grandes Ligas de Basquete e Tênis Movimentam Torcedores", "desc": "Calendário esportivo global traz partidas eletrizantes de alto rendimento."}
+            {"title": "Campeonatos Internacionais de Futebol Entram em Fase Decisiva", "desc": "Clubes e seleções intensificam preparativos para confrontos mundiais eletrizantes."},
+            {"title": "Grandes Ligas de Basquete e Tênis Movimentam Torcedores pelo Mundo", "desc": "Calendário esportivo global traz partidas históricas e recordes individuais."},
+            {"title": "Preparação Olímpica: Atletas Quebram Marcas em Competições Preparatórias", "desc": "Delegações ajustam treinamentos de alta performance visando pódios internacionais."},
+            {"title": "Mercado da Bola Agita Bastidores com Contratações Milionárias", "desc": "Equipes europeias e sul-americanas disputam reforços de peso para a temporada."},
+            {"title": "Fórmula 1 e Automobilismo: Novas Atualizações Prometem Disputa Acirrada", "desc": "Engenheiros revelam pacotes aerodinâmicos que podem mudar o rumo do campeonato."},
+            {"title": "Tecnologia no Esporte: Análise de Dados Revoluciona Estratégias de Jogo", "desc": "Comissões técnicas utilizam inteligência artificial para prevenir lesões e otimizar táticas."}
         ],
         "Vagas & Home Office": [
-            {"title": "Grandes Empresas Abrem Centenas de Vagas para Trabalho Remoto (Home Office)", "desc": "Oportunidades internacionais e nacionais oferecem flexibilidade e contratação imediata para diversas áreas."},
-            {"title": "Novas Oportunidades em Concursos Públicos e Processos Seletivos", "desc": "Confira os editais abertos com milhares de vagas e inscrições disponíveis esta semana."}
+            {"title": "Grandes Empresas Abrem Centenas de Vagas para Trabalho Remoto (Home Office)", "desc": "Oportunidades internacionais e nacionais oferecem flexibilidade e contratação imediata."},
+            {"title": "Novas Oportunidades em Concursos Públicos e Processos Seletivos", "desc": "Confira os editais abertos com milhares de vagas e inscrições disponíveis esta semana."},
+            {"title": "Setor de Tecnologia Anuncia Crescimento na Contratação de Desenvolvedores", "desc": "Demanda por profissionais remotos impulsiona o mercado de trabalho digital global."},
+            {"title": "Dicas Essenciais para Se Destacar em Entrevistas de Emprego Online", "desc": "Especialistas em RH revelam o que os recrutadores buscam em candidatos home office."},
+            {"title": "Empresas Estrangeiras Buscam Profissionais Bilíngues para Trabalho à Distância", "desc": "Salários em dólar e euro atraem talentos de diversas áreas administrativas e técnicas."},
+            {"title": "Qualificação Gratuita: Cursos Online Impulsionam Currículos em Alta Demanda", "desc": "Plataformas abrem inscrições para certificações rápidas focadas em recolocação."}
         ],
         "Filmes & Séries": [
-            {"title": "Grandes Estreias Dominam as Bilheterias e Plataformas de Streaming", "desc": "Produções cinematográficas e séries arrebatam o público internacional."},
-            {"title": "Festival Internacional de Música Anuncia Line-up Histórico", "desc": "Artistas consagrados se preparam para turnês globais de grande porte."}
+            {"title": "Grandes Estreias Dominam as Bilheterias e Plataformas de Streaming", "desc": "Produções cinematográficas e séries arrebatam o público internacional neste fim de semana."},
+            {"title": "Festival Internacional de Música Anuncia Line-up Histórico", "desc": "Artistas consagrados se preparam para turnês globais de grande porte."},
+            {"title": "Bastidores de Produção: Como Efeitos Visuais Criam Mundos Hiper-Realistas", "desc": "Estúdios revelam segredos tecnológicos por trás dos maiores sucessos do cinema atual."},
+            {"title": "Séries de Suspense e Ficção Científica Lideram Rankings de Audiência", "desc": "Tramas envolventes conquistam maratonas e geram debates intensos nas redes sociais."},
+            {"title": "Premiações Internacionais Destacam Novos Diretores e Roteiros Originais", "desc": "Crítica especializada aponta renovação criativa nas produções independentes."},
+            {"title": "Clássicos do Cinema Ganham Versões Restauradas em Alta Definição", "desc": "Obras marcantes retornam às telas para encantar antigas e novas gerações."}
         ],
         "Games & Tech": [
             {"title": "Lançamentos de Jogos AAA Agitam o Mercado de Consoles e PC", "desc": "Títulos altamente aguardados trazem gráficos hiper-realistas e novas mecânicas."},
-            {"title": "Campeonatos Mundiais de Esports Batem Recordes de Audiência", "desc": "Competições profissionais de eSports reúnem milhões de espectadores online."}
+            {"title": "Campeonatos Mundiais de Esports Batem Recordes de Audiência", "desc": "Competições profissionais de eSports reúnem milhões de espectadores simultâneos."},
+            {"title": "Novas Placas Gráficas e Hardware Elevam Desempenho em Jogos Competitivos", "desc": "Fabricantes apresentam componentes otimizados para altas taxas de quadros."},
+            {"title": "Jogos Independentes Surpreendem pela Criatividade e Conquistam Prêmios", "desc": "Pequenos estúdios mostram que boas ideias superam orçamentos milionários."},
+            {"title": "Realidade Virtual e Aumentada Ganham Novos Títulos Imersivos", "desc": "Experiências interativas avançam com controles mais precisos e confortáveis."},
+            {"title": "Atualizações Gratuitas Expandem Universos de Jogos Online Populares", "desc": "Novos mapas, modos de jogo e eventos sazonais mantêm comunidades engajadas."}
         ],
         "Qualidade de Vida": [
-            {"title": "Hábitos Simples para Melhorar a Saúde Mental e o Foco Diário", "desc": "Especialistas em bem-estar destacam a importância de pausas estratégicas."},
-            {"title": "A Importância de uma Boa Noite de Sono para a Longevidade", "desc": "Estudos recentes comprovam o impacto do descanso adequado na imunidade."}
+            {"title": "Hábitos Simples para Melhorar a Saúde Mental e o Foco Diário", "desc": "Especialistas em bem-estar destacam a importância de pausas estratégicas na rotina."},
+            {"title": "A Importância de uma Boa Noite de Sono para a Longevidade", "desc": "Estudos recentes comprovam o impacto do descanso adequado na imunidade e memória."},
+            {"title": "Alimentação Equilibrada: Alimentos que Aumentam Energia e Disposição", "desc": "Nutricionistas indicam combinações práticas para manter o organismo saudável."},
+            {"title": "Exercícios Físicos Regulares Reduzem Estresse e Fortalecem o Coração", "desc": "Caminhadas diárias e treinos moderados trazem benefícios comprovados em poucas semanas."},
+            {"title": "Hidratação Inteligente: Como Manter o Corpo em Equilíbrio o Dia Todo", "desc": "Pequenas mudanças na rotina ajudam a evitar fadiga e melhoram a concentração."},
+            {"title": "Ergonomia no Home Office: Ajustes Essenciais para Proteger a Coluna", "desc": "Fisioterapeutas ensinam como organizar a estação de trabalho para evitar dores."}
         ]
     }
 
@@ -647,10 +699,10 @@ def buscar_noticias_por_categoria():
         fallback_lista = fallbacks_por_categoria.get(cat_nome, fallbacks_por_categoria["Mundo"])
         
         try:
-            resp = requests.get(info["url"], verify=False, timeout=6)
+            resp = requests.get(info["url"], verify=False, timeout=8)
             if resp.status_code == 200:
                 root = ET.fromstring(resp.content)
-                for idx, item in enumerate(root.findall('.//item')[:4]):
+                for idx, item in enumerate(root.findall('.//item')[:6]):
                     title_elem = item.find('title')
                     link_elem = item.find('link')
                     desc_elem = item.find('description')
@@ -673,16 +725,20 @@ def buscar_noticias_por_categoria():
                     todas_noticias.append(noticia_obj)
         except: pass
         
-        if not items_cat:
-            for idx in range(4):
-                fb_item = fallback_lista[idx % len(fallback_lista)]
-                items_cat.append({
-                    "category": cat_nome, "color": info["color"], 
-                    "title": fb_item["title"], 
-                    "link": "https://g1.globo.com", 
-                    "image": imgs_disponiveis[idx % len(imgs_disponiveis)],
-                    "description": fb_item["desc"]
-                })
+        # GARANTE QUE TODA CATEGORIA TENHA SEMPRE 6 NOTÍCIAS COMPLETAS (2 LINHAS DE 3 CARDS)
+        while len(items_cat) < 6:
+            idx = len(items_cat)
+            fb_item = fallback_lista[idx % len(fallback_lista)]
+            noticia_fb = {
+                "category": cat_nome, "color": info["color"], 
+                "title": fb_item["title"], 
+                "link": f"#{info['id']}", 
+                "image": imgs_disponiveis[idx % len(imgs_disponiveis)],
+                "description": fb_item["desc"]
+            }
+            items_cat.append(noticia_fb)
+            todas_noticias.append(noticia_fb)
+
         categorias_processadas[cat_nome] = {"id": info["id"], "color": info["color"], "lista": items_cat}
     return categorias_processadas, todas_noticias
 
@@ -732,7 +788,7 @@ def send_search_engine_pings():
             print(f"[Aviso] Modo offline/rede restrita para o ping: {e}")
 
 def gerar_site():
-    print("Gerando portal unificado com Layout Estilo G1 e Destaques de Impacto...")
+    print("Gerando portal unificado 100% preenchido (6 cards por categoria + Hero G1)...")
     paises = baixar_paises()
     categorias_dict, todas_noticias = buscar_noticias_por_categoria()
     
@@ -766,7 +822,7 @@ def gerar_site():
             noticias_pais = list(todas_noticias)
             random.shuffle(noticias_pais)
             with open(file_name, "w", encoding="utf-8") as f:
-                f.write(template.render(country=country_data, noticias=noticias_pais[:8], ad_banner=AD_BANNER, tradutor=WIDGET_TRADUTOR_MODERNO, adsense_script=ADSENSE_SCRIPT, monetag_script=MONETAG_SCRIPT, google_meta=GOOGLE_META, licenca_rodape=LICENCA_RODAPE, dominio=DOMINIO_SITE))
+                f.write(template.render(country=country_data, noticias=noticias_pais[:9], ad_banner=AD_BANNER, tradutor=WIDGET_TRADUTOR_MODERNO, adsense_script=ADSENSE_SCRIPT, monetag_script=MONETAG_SCRIPT, google_meta=GOOGLE_META, licenca_rodape=LICENCA_RODAPE, dominio=DOMINIO_SITE))
             lista_paises.append({"name": name, "file": file_name})
         except: continue
 
@@ -778,7 +834,7 @@ def gerar_site():
 
     gerar_sitemap(lista_paises)
     send_search_engine_pings()
-    print(f"Sucesso absoluto! Portal atualizado com o novo design de impacto.")
+    print("Sucesso absoluto! Portal 100% preenchido gerado com sucesso.")
 
 if __name__ == "__main__":
     gerar_site()
