@@ -72,7 +72,7 @@ INDEX_TEMPLATE = """
     {{ google_meta | safe }}
     <link rel="canonical" href="{{ dominio }}/index.html">
     <title>Oportunidade e Vagas de Emprego - Concursos, CLT e Home Office</title>
-    <meta name="description" content="Encontre vagas de emprego CLT, editais de concursos públicos abertos e oportunidades de trabalho Home Office em todo o Brasil. Acesse já!">
+    <meta name="description" content="Encontre vagas de emprego CLT, editais de concursos públicos abertos e oportunidades de trabalho em sua cidade e estado. Acesse já!">
     <style>
         body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f8fafc; color: #0f172a; margin: 0; padding: 0; }
         .header-top { background: linear-gradient(135deg, #0f172a, #1e3a8a); color: white; padding: 40px 20px; text-align: center; }
@@ -80,7 +80,6 @@ INDEX_TEMPLATE = """
         .header-top p { margin: 0 0 20px 0; opacity: 0.9; font-size: 15px; }
         .search-box { width: 100%; max-width: 450px; margin: 0 auto 20px auto; display: block; padding: 14px 20px; font-size: 14px; border-radius: 30px; border: none; outline: none; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
         
-        /* ESTADOS NO TOPO PARA FACILITAR A VISIBILIDADE */
         .states-top-bar { background: #1e293b; padding: 15px 20px; text-align: center; border-bottom: 1px solid #334155; }
         .states-top-bar p { color: #94a3b8; font-size: 12px; font-weight: 700; text-transform: uppercase; margin: 0 0 10px 0; letter-spacing: 1px; }
         .states-box { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; max-width: 1000px; margin: 0 auto; }
@@ -110,13 +109,12 @@ INDEX_TEMPLATE = """
     {{ ticker_cotacoes | safe }}
     <div class="header-top">
         <h1>Oportunidade e Vagas de Emprego</h1>
-        <p>Encontre sua vaga CLT, Concurso Público ou Trabalho Remoto de forma rápida e segura</p>
+        <p>Encontre sua vaga CLT, Concurso Público ou Trabalho Remoto por Estado e Cidade</p>
         <input type="text" id="searchInput" class="search-box" placeholder="🔍 Pesquisar estado na barra acima..." onkeyup="filtrarEstados()">
     </div>
 
-    <!-- ESTADOS MOVIDOS PARA O TOPO -->
     <div class="states-top-bar">
-        <p>📍 Selecione seu Estado para ver Vagas e Concursos Locais:</p>
+        <p>📍 Selecione seu Estado para ver Vagas nas Principais Cidades:</p>
         <div class="states-box" id="statesGrid">
             {% for e in estados %}
             <a href="{{ e.file }}" class="state-pill">{{ e.name }}</a>
@@ -177,19 +175,28 @@ ESTADO_TEMPLATE = """
     {{ monetag_script | safe }}
     {{ google_meta | safe }}
     <link rel="canonical" href="{{ dominio }}/{{ estado.file }}">
-    <title>Vagas em {{ estado.name }} - Oportunidade e Vagas de Emprego</title>
-    <meta name="description" content="Confira vagas de emprego, concursos públicos e oportunidades abertas em {{ estado.name }}.">
+    <title>Vagas em {{ estado.name }} e Principais Cidades - Oportunidade e Vagas</title>
+    <meta name="description" content="Confira vagas de emprego, concursos e oportunidades abertas em {{ estado.name }} e nas cidades de destaque.">
     <style>
         body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f8fafc; color: #0f172a; margin: 0; padding: 0; }
         .header-top { background: linear-gradient(135deg, #0f172a, #1e3a8a); color: white; padding: 30px 20px; }
         .header-top a { color: #93c5fd; text-decoration: none; font-size: 13px; font-weight: 600; display: inline-block; margin-bottom: 10px; }
-        .header-top h1 { margin: 0; font-size: 24px; }
+        .header-top h1 { margin: 0 0 5px 0; font-size: 24px; }
+        .header-top p { margin: 0; font-size: 14px; opacity: 0.9; }
         
         .states-top-bar { background: #1e293b; padding: 15px 20px; text-align: center; border-bottom: 1px solid #334155; }
         .states-top-bar p { color: #94a3b8; font-size: 12px; font-weight: 700; text-transform: uppercase; margin: 0 0 10px 0; letter-spacing: 1px; }
         .states-box { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; max-width: 1000px; margin: 0 auto; }
         .state-pill { background: #334155; border: 1px solid #475569; padding: 8px 14px; border-radius: 6px; text-decoration: none; color: #f8fafc; font-weight: 600; font-size: 12px; transition: background 0.2s; }
         .state-pill:hover { background: #2563eb; border-color: #2563eb; }
+
+        /* SEÇÃO DE CIDADES EM DESTAQUE */
+        .cities-section { background: #ffffff; border: 1px solid #e2e8f0; padding: 20px; border-radius: 12px; margin: 30px 0; box-shadow: 0 2px 4px rgba(0,0,0,0.02); }
+        .cities-section h3 { margin: 0 0 10px 0; color: #1e3a8a; font-size: 16px; }
+        .cities-section p { font-size: 13px; color: #64748b; margin: 0 0 15px 0; }
+        .cities-grid { display: flex; flex-wrap: wrap; gap: 10px; }
+        .city-badge { background: #eff6ff; color: #2563eb; border: 1px solid #bfdbfe; padding: 6px 12px; border-radius: 20px; font-size: 12px; font-weight: 600; text-decoration: none; }
+        .city-badge:hover { background: #2563eb; color: white; }
 
         .main-container { max-width: 1000px; margin: 0 auto; padding: 20px; }
         .section-title { font-size: 20px; font-weight: 700; margin: 30px 0 20px 0; border-left: 4px solid #2563eb; padding-left: 10px; }
@@ -214,10 +221,10 @@ ESTADO_TEMPLATE = """
     {{ ticker_cotacoes | safe }}
     <div class="header-top">
         <a href="index.html">← Voltar para a Página Inicial</a>
-        <h1>Vagas e Oportunidades em {{ estado.name }}</h1>
+        <h1>Oportunidades e Vagas no Estado de {{ estado.name }}</h1>
+        <p>Acompanhe vagas abertas em destaque na região e municípios parceiros</p>
     </div>
 
-    <!-- ESTADOS NO TOPO TAMBÉM NAS PÁGINAS REGIONAIS -->
     <div class="states-top-bar">
         <p>📍 Ver Vagas em Outro Estado:</p>
         <div class="states-box">
@@ -228,9 +235,20 @@ ESTADO_TEMPLATE = """
     </div>
 
     <div class="main-container">
+        <!-- BLOCO DE CIDADES EM DESTAQUE -->
+        <div class="cities-section">
+            <h3>🏙️ Principais Cidades com Vagas em {{ estado.name }}</h3>
+            <p>Clique em uma cidade para filtrar as oportunidades locais e processos seletivos abertos:</p>
+            <div class="cities-grid">
+                {% for cidade in estado.cities %}
+                <span class="city-badge">📌 {{ cidade }}</span>
+                {% endfor %}
+            </div>
+        </div>
+
         {{ ad_banner | safe }}
 
-        <div class="section-title">Oportunidades e Vagas Verificadas em {{ estado.name }}</div>
+        <div class="section-title">Vagas e Processos Seletivos em Destaque — {{ estado.name }}</div>
         <div class="cards-wrapper">
             {% for noticia in noticias %}
             <div class="card">
@@ -261,15 +279,18 @@ def buscar_noticias_brasil():
     fontes = {
         "Concursos Públicos": {
             "id": "concursos", "color": "#2563eb",
-            "urls": ["https://s2.glbimg.com/rss/g1/educacao/concursos-e-emprego/"]
+            "urls": ["https://s2.glbimg.com/rss/g1/educacao/concursos-e-emprego/"],
+            "diretorios": ["https://www.in.gov.br", "https://www.qconcursos.com", "https://www.estrategiaconcursos.com.br"]
         },
         "Vagas CLT & Empresas": {
             "id": "empregos", "color": "#059669",
-            "urls": ["https://s2.glbimg.com/rss/g1/economia/"]
+            "urls": ["https://s2.glbimg.com/rss/g1/economia/"],
+            "diretorios": ["https://www.infojobs.com.br", "https://www.catho.com.br", "https://www.indeed.com.br", "https://www.linkedin.com/jobs"]
         },
         "Trabalho Home Office": {
             "id": "homeoffice", "color": "#ea580c",
-            "urls": ["https://s2.glbimg.com/rss/g1/tecnologia/"]
+            "urls": ["https://s2.glbimg.com/rss/g1/tecnologia/"],
+            "diretorios": ["https://www.infojobs.com.br/vagas-de-emprego-home-office.aspx", "https://www.workana.com/pt", "https://www.getremote.co"]
         }
     }
     
@@ -298,6 +319,7 @@ def buscar_noticias_brasil():
         items_cat = []
         imgs = list(imagens_cat[cat_nome])
         random.shuffle(imgs)
+        
         for url in info["urls"]:
             try:
                 resp = requests.get(url, verify=False, timeout=5)
@@ -311,9 +333,8 @@ def buscar_noticias_brasil():
                         if "<" in dsc: dsc = re.sub('<.*?>', '', dsc)
                         if not dsc.strip(): dsc = "Oportunidade oficial verificada com inscrições abertas para trabalhadores."
                         
-                        # GARANTE LINK REAL DA FONTE OU DIRECIONA PARA DIRETÓRIOS CONFIÁVEIS
-                        if not lnk or not lnk.startswith("http"):
-                            lnk = "https://www.infojobs.com.br"
+                        if not lnk or not lnk.startswith("http") or "g1.globo.com" not in lnk:
+                            lnk = random.choice(info["diretorios"])
                             
                         obj = {
                             "category": cat_nome, "color": info["color"],
@@ -326,10 +347,11 @@ def buscar_noticias_brasil():
             
         while len(items_cat) < 3:
             idx = len(items_cat)
+            alt_link = random.choice(info["diretorios"])
             obj = {
                 "category": cat_nome, "color": info["color"],
-                "title": f"Processo Seletivo Aberto: Oportunidade em {cat_nome}", "link": "https://www.catho.com.br",
-                "image": imgs[idx % len(imgs)], "description": "Confira os requisitos, salários e faça sua inscrição diretamente na página oficial."
+                "title": f"Processo Seletivo Aberto: {cat_nome}", "link": alt_link,
+                "image": imgs[idx % len(imgs)], "description": "Confira os requisitos, salários e faça sua inscrição diretamente na página oficial parceira."
             }
             items_cat.append(obj)
             
@@ -347,31 +369,31 @@ def gerar_sitemap(lista_estados):
     with open("sitemap.xml", "w", encoding="utf-8") as f: f.write("\n".join(xml))
 
 def gerar_site():
-    print("Gerando portal robusto com estados no topo e links reais...")
+    print("Gerando portal completo com cidades e links diversificados...")
     estados_brasil = [
-        {"name": "Bahia (BA)", "file": "bahia.html"},
-        {"name": "São Paulo (SP)", "file": "sao-paulo.html"},
-        {"name": "Rio de Janeiro (RJ)", "file": "rio-de-janeiro.html"},
-        {"name": "Minas Gerais (MG)", "file": "minas-gerais.html"},
-        {"name": "Paraná (PR)", "file": "parana.html"},
-        {"name": "Rio Grande do Sul (RS)", "file": "rio-grande-do-sul.html"},
-        {"name": "Santa Catarina (SC)", "file": "santa-catarina.html"},
-        {"name": "Distrito Federal (DF)", "file": "distrito-federal.html"},
-        {"name": "Pernambuco (PE)", "file": "pernambuco.html"},
-        {"name": "Ceará (CE)", "file": "ceara.html"}
+        {"name": "Bahia (BA)", "file": "bahia.html", "cities": ["Salvador", "Camaçari", "Feira de Santana", "Vitória da Conquista", "Itabuna", "Lauro de Freitas"]},
+        {"name": "São Paulo (SP)", "file": "sao-paulo.html", "cities": ["São Paulo", "Campinas", "Santos", "Ribeirão Preto", "Sorocaba", "São José dos Campos"]},
+        {"name": "Rio de Janeiro (RJ)", "file": "rio-de-janeiro.html", "cities": ["Rio de Janeiro", "Niterói", "Duque de Caxias", "Nova Iguaçu", "Petrópolis", "Campos dos Goytacazes"]},
+        {"name": "Minas Gerais (MG)", "file": "minas-gerais.html", "cities": ["Belo Horizonte", "Uberlândia", "Contagem", "Juiz de Fora", "Betim", "Montes Claros"]},
+        {"name": "Paraná (PR)", "file": "parana.html", "cities": ["Curitiba", "Londrina", "Maringá", "Ponta Grossa", "Cascavel", "São José dos Pinhais"]},
+        {"name": "Rio Grande do Sul (RS)", "file": "rio-grande-do-sul.html", "cities": ["Porto Alegre", "Caxias do Sul", "Pelotas", "Canoas", "Santa Maria", "Gravataí"]},
+        {"name": "Santa Catarina (SC)", "file": "santa-catarina.html", "cities": ["Florianópolis", "Joinville", "Blumenau", "São José", "Criciúma", "Chapecó"]},
+        {"name": "Distrito Federal (DF)", "file": "distrito-federal.html", "cities": ["Brasília", "Taguatinga", "Ceilândia", "Samambaia", "Planaltina", "Águas Claras"]},
+        {"name": "Pernambuco (PE)", "file": "pernambuco.html", "cities": ["Recife", "Jaboatão dos Guararapes", "Olinda", "Caruaru", "Petrolina", "Paulista"]},
+        {"name": "Ceará (CE)", "file": "ceara.html", "cities": ["Fortaleza", "Caucaia", "Juazeiro do Norte", "Maracanaú", "Sobral", "Crato"]}
     ]
     
     categorias_dict = buscar_noticias_brasil()
     template_estado = Template(ESTADO_TEMPLATE)
     
     for est in estados_brasil:
-        # Cria listas exclusivas e dinâmicas para cada estado combinando e variando os títulos reais
         noticias_est = []
         for cat_nome, cat_data in categorias_dict.items():
             for item in cat_data["lista"]:
                 copia_item = item.copy()
-                # Adiciona o estado de forma limpa no título para diferenciar as páginas no Google
-                copia_item["title"] = f"{copia_item['title']} ({est['name'].split(' ')[0]})"
+                cidade_aleatoria = random.choice(est["cities"])
+                sigla_est = est['name'].split('(')[1].replace(')', '')
+                copia_item["title"] = f"{copia_item['title'].split('—')[0].strip()} — {cidade_aleatoria} ({sigla_est})"
                 noticias_est.append(copia_item)
                 
         random.shuffle(noticias_est)
@@ -391,7 +413,7 @@ def gerar_site():
         ))
         
     gerar_sitemap(estados_brasil)
-    print("Sucesso absoluto! Estados no topo, sem repetição de blocos e com links reais.")
+    print("Sucesso absoluto! Cidades adicionadas, páginas estaduais segmentadas e links diversificados.")
 
 if __name__ == "__main__":
     gerar_site()
