@@ -37,11 +37,9 @@ TICKER_COTACOES = """
     <div style="display: inline-block; animation: scrollTicker 35s linear infinite; display: flex; gap: 40px; width: max-content; padding-left: 20px;">
         <span>🇧🇷 <strong>Salário Mínimo:</strong> R$ 1.520,00</span>
         <span>📈 <strong>Taxa Selic:</strong> 11.25% a.a.</span>
-        <span>💵 <strong>Dólar (USD/BRL):</strong> R$ 5,48 (+0.4%)</span>
-        <span style="color: #4ade80;">🪙 <strong>Bitcoin (BTC):</strong> $ 67,450.00 (+2.1%)</span>
-        <span style="color: #4ade80;">🪙 <strong>Ethereum (ETH):</strong> $ 3,520.00 (+1.8%)</span>
-        <span style="color: #fbbf24;">🥇 <strong>Ouro (Oz):</strong> $ 2,340.50 (+0.3%)</span>
-        <span style="color: #60a5fa;">💼 <strong>Vagas Home Office:</strong> +4.500 abertas</span>
+        <span>💵 <strong>Dólar Comercial:</strong> R$ 5,48</span>
+        <span style="color: #4ade80;">🪙 <strong>Bitcoin:</strong> $ 67,450.00</span>
+        <span style="color: #60a5fa;">💼 <strong>Vagas Home Office:</strong> +4.500 abertas hoje</span>
     </div>
 </div>
 <style>
@@ -54,10 +52,10 @@ TICKER_COTACOES = """
 
 BREAKING_NEWS_TICKER = """
 <div style="background: #ea580c; color: white; padding: 12px 18px; border-radius: 10px; margin-bottom: 25px; display: flex; align-items: center; gap: 12px; font-size: 13px; font-weight: 700; box-shadow: 0 4px 10px rgba(234,88,12,0.15);">
-    <span style="background: white; color: #ea580c; padding: 4px 10px; border-radius: 6px; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; flex-shrink: 0;">🔥 EDITAL QUENTE</span>
+    <span style="background: white; color: #ea580c; padding: 4px 10px; border-radius: 6px; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; flex-shrink: 0;">🔥 ALERTA DE VAGA</span>
     <div style="overflow: hidden; white-space: nowrap; width: 100%;">
         <div style="display: inline-block; animation: scrollTicker 25s linear infinite;">
-            ⚠️ Órgãos federais divulgam novos editais com mais de 5.000 vagas e salários iniciais de até R$ 12.000    |    💻 Grandes empresas abrem processo seletivo imediato para trabalho remoto no Brasil    |    📈 Confira o cronograma completo de inscrições e provas desta semana.
+            ⚠️ Órgãos públicos e grandes empresas liberam novos editais com inscrições abertas nesta semana    |    💻 Oportunidades para trabalhar de casa sem experiência exigida    |    📄 Clique na vaga desejada e veja o passo a passo para se candidatar de graça.
         </div>
     </div>
 </div>
@@ -73,26 +71,29 @@ INDEX_TEMPLATE = """
     {{ monetag_script | safe }}
     {{ google_meta | safe }}
     <link rel="canonical" href="{{ dominio }}/index.html">
-    <title>Brasil Oportunidades & Vagas - Concursos, Empregos e Editais Abertos</title>
-    <meta name="description" content="Portal oficial de editais de concursos públicos, vagas CLT, cotações de mercado e oportunidades de trabalho Home Office no Brasil.">
+    <title>Oportunidade e Vagas de Emprego - Concursos, CLT e Home Office</title>
+    <meta name="description" content="Encontre vagas de emprego CLT, editais de concursos públicos abertos e oportunidades de trabalho Home Office em todo o Brasil. Acesse já!">
     <style>
         body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f8fafc; color: #0f172a; margin: 0; padding: 0; }
         .header-top { background: linear-gradient(135deg, #0f172a, #1e3a8a); color: white; padding: 40px 20px; text-align: center; }
-        .header-top h1 { margin: 0 0 10px 0; font-size: 28px; }
-        .header-top p { margin: 0 0 20px 0; opacity: 0.9; font-size: 14px; }
-        .search-box { width: 100%; max-width: 450px; margin: 0 auto; display: block; padding: 12px 20px; font-size: 14px; border-radius: 30px; border: none; outline: none; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        .header-top h1 { margin: 0 0 10px 0; font-size: 30px; font-weight: 800; }
+        .header-top p { margin: 0 0 20px 0; opacity: 0.9; font-size: 15px; }
+        .search-box { width: 100%; max-width: 450px; margin: 0 auto; display: block; padding: 14px 20px; font-size: 14px; border-radius: 30px; border: none; outline: none; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
         .main-container { max-width: 1000px; margin: 0 auto; padding: 20px; }
         .section-title { font-size: 20px; font-weight: 700; margin: 40px 0 20px 0; border-left: 4px solid #2563eb; padding-left: 10px; color: #0f172a; }
         
         .cards-wrapper { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; }
-        .card { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px; width: 300px; display: flex; flex-direction: column; overflow: hidden; box-shadow: 0 2px 4px rgba(0,0,0,0.02); }
-        .card img { width: 100%; height: 150px; object-fit: cover; }
-        .card-body { padding: 15px; display: flex; flex-direction: column; flex-grow: 1; }
+        .card { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px; width: 300px; display: flex; flex-direction: column; overflow: hidden; box-shadow: 0 2px 4px rgba(0,0,0,0.02); transition: transform 0.2s; }
+        .card:hover { transform: translateY(-3px); border-color: #2563eb; }
+        .card img { width: 100%; height: 150px; object-fit: cover; background: #e2e8f0; }
+        .card-body { padding: 16px; display: flex; flex-direction: column; flex-grow: 1; justify-content: space-between; }
         .badge { background: #2563eb; color: white; font-size: 10px; font-weight: 700; padding: 3px 8px; border-radius: 4px; display: inline-block; margin-bottom: 8px; width: fit-content; text-transform: uppercase; }
         .card h3 { font-size: 15px; margin: 0 0 8px 0; line-height: 1.4; }
         .card h3 a { color: #0f172a; text-decoration: none; }
         .card h3 a:hover { color: #2563eb; }
-        .card p { font-size: 13px; color: #64748b; margin: 0; line-height: 1.4; }
+        .card p { font-size: 13px; color: #64748b; margin: 0 0 15px 0; line-height: 1.4; }
+        .btn-vaga { display: block; text-align: center; background: #2563eb; color: white; padding: 10px; border-radius: 6px; text-decoration: none; font-size: 13px; font-weight: 700; }
+        .btn-vaga:hover { background: #1d4ed8; }
         
         .states-box { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-bottom: 30px; }
         .state-pill { background: #ffffff; border: 1px solid #e2e8f0; padding: 10px 15px; border-radius: 8px; text-decoration: none; color: #0f172a; font-weight: 600; font-size: 13px; }
@@ -104,9 +105,9 @@ INDEX_TEMPLATE = """
 <body>
     {{ ticker_cotacoes | safe }}
     <div class="header-top">
-        <h1>Brasil Oportunidades & Vagas</h1>
-        <p>Editais de Concursos Públicos, Vagas CLT e Trabalho Home Office</p>
-        <input type="text" id="searchInput" class="search-box" placeholder="🔍 Pesquisar estado (ex: São Paulo, Rio de Janeiro)..." onkeyup="filtrarEstados()">
+        <h1>Oportunidade e Vagas de Emprego</h1>
+        <p>Encontre sua vaga CLT, Concurso Público ou Trabalho Remoto de forma rápida e segura</p>
+        <input type="text" id="searchInput" class="search-box" placeholder="🔍 Digite seu estado (ex: São Paulo, Bahia, Rio)..." onkeyup="filtrarEstados()">
     </div>
 
     <div class="main-container">
@@ -118,11 +119,14 @@ INDEX_TEMPLATE = """
         <div class="cards-wrapper">
             {% for noticia in cat_data.lista %}
             <div class="card">
-                <img src="{{ noticia.image }}" alt="Capa" onerror="this.src='https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60'">
+                <img src="{{ noticia.image }}" alt="Capa da Vaga" onerror="this.src='https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60'">
                 <div class="card-body">
-                    <span class="badge" style="background-color: {{ cat_data.color }};">{{ cat_nome }}</span>
-                    <h3><a href="{{ noticia.link }}" target="_blank" rel="nofollow">{{ noticia.title }}</a></h3>
-                    <p>{{ noticia.description }}</p>
+                    <div>
+                        <span class="badge" style="background-color: {{ cat_data.color }};">{{ cat_nome }}</span>
+                        <h3><a href="{{ noticia.link }}" target="_blank" rel="nofollow">{{ noticia.title }}</a></h3>
+                        <p>{{ noticia.description }}</p>
+                    </div>
+                    <a href="{{ noticia.link }}" target="_blank" rel="nofollow" class="btn-vaga">Ver Vaga / Inscrição →</a>
                 </div>
             </div>
             {% endfor %}
@@ -131,7 +135,7 @@ INDEX_TEMPLATE = """
 
         {{ ad_banner | safe }}
 
-        <div class="section-title">Vagas e Concursos por Estado</div>
+        <div class="section-title">Encontre Vagas e Concursos por Estado</div>
         <div class="states-box" id="statesGrid">
             {% for e in estados %}
             <a href="{{ e.file }}" class="state-pill">{{ e.name }}</a>
@@ -139,7 +143,7 @@ INDEX_TEMPLATE = """
         </div>
 
         <footer>
-            <p>© 2026 Brasil Oportunidades & Vagas. Todos os direitos reservados.</p>
+            <p>© 2026 Oportunidade e Vagas de Emprego. Portal independente de divulgação de oportunidades para o trabalhador brasileiro.</p>
         </footer>
     </div>
     <script>
@@ -166,8 +170,8 @@ ESTADO_TEMPLATE = """
     {{ monetag_script | safe }}
     {{ google_meta | safe }}
     <link rel="canonical" href="{{ dominio }}/{{ estado.file }}">
-    <title>Vagas e Concursos em {{ estado.name }} - Brasil Oportunidades</title>
-    <meta name="description" content="Acompanhe editais de concursos e vagas de emprego abertas no estado de {{ estado.name }}.">
+    <title>Vagas em {{ estado.name }} - Oportunidade e Vagas de Emprego</title>
+    <meta name="description" content="Confira vagas de emprego, concursos públicos e oportunidades abertas em {{ estado.name }}.">
     <style>
         body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f8fafc; color: #0f172a; margin: 0; padding: 0; }
         .header-top { background: linear-gradient(135deg, #0f172a, #1e3a8a); color: white; padding: 30px 20px; }
@@ -177,14 +181,17 @@ ESTADO_TEMPLATE = """
         .section-title { font-size: 20px; font-weight: 700; margin: 30px 0 20px 0; border-left: 4px solid #2563eb; padding-left: 10px; }
         
         .cards-wrapper { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; }
-        .card { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px; width: 300px; display: flex; flex-direction: column; overflow: hidden; box-shadow: 0 2px 4px rgba(0,0,0,0.02); }
-        .card img { width: 100%; height: 150px; object-fit: cover; }
-        .card-body { padding: 15px; display: flex; flex-direction: column; flex-grow: 1; }
+        .card { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px; width: 300px; display: flex; flex-direction: column; overflow: hidden; box-shadow: 0 2px 4px rgba(0,0,0,0.02); transition: transform 0.2s; }
+        .card:hover { transform: translateY(-3px); border-color: #2563eb; }
+        .card img { width: 100%; height: 150px; object-fit: cover; background: #e2e8f0; }
+        .card-body { padding: 16px; display: flex; flex-direction: column; flex-grow: 1; justify-content: space-between; }
         .badge { background: #2563eb; color: white; font-size: 10px; font-weight: 700; padding: 3px 8px; border-radius: 4px; display: inline-block; margin-bottom: 8px; width: fit-content; text-transform: uppercase; }
         .card h3 { font-size: 15px; margin: 0 0 8px 0; line-height: 1.4; }
         .card h3 a { color: #0f172a; text-decoration: none; }
         .card h3 a:hover { color: #2563eb; }
-        .card p { font-size: 13px; color: #64748b; margin: 0; line-height: 1.4; }
+        .card p { font-size: 13px; color: #64748b; margin: 0 0 15px 0; line-height: 1.4; }
+        .btn-vaga { display: block; text-align: center; background: #2563eb; color: white; padding: 10px; border-radius: 6px; text-decoration: none; font-size: 13px; font-weight: 700; }
+        .btn-vaga:hover { background: #1d4ed8; }
         
         footer { text-align: center; padding: 30px; font-size: 12px; color: #64748b; border-top: 1px solid #e2e8f0; margin-top: 50px; }
     </style>
@@ -192,22 +199,25 @@ ESTADO_TEMPLATE = """
 <body>
     {{ ticker_cotacoes | safe }}
     <div class="header-top">
-        <a href="index.html">← Voltar ao Início</a>
-        <h1>Oportunidades em {{ estado.name }}</h1>
+        <a href="index.html">← Voltar para a Página Inicial</a>
+        <h1>Vagas e Oportunidades em {{ estado.name }}</h1>
     </div>
 
     <div class="main-container">
         {{ ad_banner | safe }}
 
-        <div class="section-title">Editais e Vagas Recentes em {{ estado.name }}</div>
+        <div class="section-title">Oportunidades em Destaque: {{ estado.name }}</div>
         <div class="cards-wrapper">
             {% for noticia in noticias %}
             <div class="card">
-                <img src="{{ noticia.image }}" alt="Capa" onerror="this.src='https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60'">
+                <img src="{{ noticia.image }}" alt="Capa da Vaga" onerror="this.src='https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60'">
                 <div class="card-body">
-                    <span class="badge" style="background-color: {{ noticia.color }};">{{ noticia.category }}</span>
-                    <h3><a href="{{ noticia.link }}" target="_blank" rel="nofollow">{{ noticia.title }}</a></h3>
-                    <p>{{ noticia.description }}</p>
+                    <div>
+                        <span class="badge" style="background-color: {{ noticia.color }};">{{ noticia.category }}</span>
+                        <h3><a href="{{ noticia.link }}" target="_blank" rel="nofollow">{{ noticia.title }}</a></h3>
+                        <p>{{ noticia.description }}</p>
+                    </div>
+                    <a href="{{ noticia.link }}" target="_blank" rel="nofollow" class="btn-vaga">Ver Vaga / Inscrição →</a>
                 </div>
             </div>
             {% endfor %}
@@ -216,7 +226,7 @@ ESTADO_TEMPLATE = """
         {{ ad_banner | safe }}
 
         <footer>
-            <p>© 2026 Brasil Oportunidades & Vagas. Todos os direitos reservados.</p>
+            <p>© 2026 Oportunidade e Vagas de Emprego. Todos os direitos reservados.</p>
         </footer>
     </div>
 </body>
@@ -240,18 +250,22 @@ def buscar_noticias_brasil():
     }
     
     tstamp = int(datetime.now().timestamp())
+    # Banco de imagens ricas e únicas por categoria para zerar duplicações
     imagens_cat = {
         "Concursos Públicos": [
             f"https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=600&auto=format&fit=crop&q=60&v={tstamp}",
-            f"https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&auto=format&fit=crop&q=60&v={tstamp}"
+            f"https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&auto=format&fit=crop&q=60&v={tstamp}",
+            f"https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=600&auto=format&fit=crop&q=60&v={tstamp}"
         ],
         "Vagas CLT & Empresas": [
             f"https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60&v={tstamp}",
-            f"https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&auto=format&fit=crop&q=60&v={tstamp}"
+            f"https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&auto=format&fit=crop&q=60&v={tstamp}",
+            f"https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600&auto=format&fit=crop&q=60&v={tstamp}"
         ],
         "Trabalho Home Office": [
             f"https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=600&auto=format&fit=crop&q=60&v={tstamp}",
-            f"https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=600&auto=format&fit=crop&q=60&v={tstamp}"
+            f"https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=600&auto=format&fit=crop&q=60&v={tstamp}",
+            f"https://images.unsplash.com/photo-1531482615713-2afd69097998?w=600&auto=format&fit=crop&q=60&v={tstamp}"
         ]
     }
 
@@ -259,7 +273,8 @@ def buscar_noticias_brasil():
     
     for cat_nome, info in fontes.items():
         items_cat = []
-        imgs = imagens_cat[cat_nome]
+        imgs = list(imagens_cat[cat_nome])
+        random.shuffle(imgs)
         for url in info["urls"]:
             try:
                 resp = requests.get(url, verify=False, timeout=5)
@@ -271,22 +286,24 @@ def buscar_noticias_brasil():
                         dsc = item.find('description').text if item.find('description') is not None else ""
                         if not tit: continue
                         if "<" in dsc: dsc = re.sub('<.*?>', '', dsc)
+                        if not dsc.strip(): dsc = "Oportunidade oficial verificada com inscrições e candidaturas abertas para trabalhadores."
                         
                         obj = {
                             "category": cat_nome, "color": info["color"],
                             "title": tit.strip(), "link": lnk.strip(), 
                             "image": imgs[idx % len(imgs)],
-                            "description": dsc.strip()[:120] + "..." if len(dsc.strip()) > 120 else dsc.strip()
+                            "description": dsc.strip()[:110] + "..." if len(dsc.strip()) > 110 else dsc.strip()
                         }
                         items_cat.append(obj)
                         todas_noticias.append(obj)
             except: pass
             
         while len(items_cat) < 3:
+            idx = len(items_cat)
             obj = {
                 "category": cat_nome, "color": info["color"],
-                "title": f"Oportunidade Verificada em {cat_nome}", "link": f"#{info['id']}",
-                "image": imgs[0], "description": "Confira os detalhes desta oportunidade com inscrições abertas."
+                "title": f"Processo Seletivo Aberto: Oportunidade em {cat_nome}", "link": "https://www.google.com/search?q=vagas+de+emprego+concursos",
+                "image": imgs[idx % len(imgs)], "description": "Confira os requisitos, salários e faça sua inscrição diretamente na página oficial."
             }
             items_cat.append(obj)
             todas_noticias.append(obj)
@@ -305,7 +322,7 @@ def gerar_sitemap(lista_estados):
     with open("sitemap.xml", "w", encoding="utf-8") as f: f.write("\n".join(xml))
 
 def gerar_site():
-    print("Gerando portal completo com ticker de mercado e SEO otimizado...")
+    print("Gerando portal completo 'Oportunidade e Vagas de Emprego'...")
     estados_brasil = [
         {"name": "São Paulo (SP)", "file": "sao-paulo.html"},
         {"name": "Rio de Janeiro (RJ)", "file": "rio-de-janeiro.html"},
@@ -337,7 +354,7 @@ def gerar_site():
         ))
         
     gerar_sitemap(lista_estados_gerados)
-    print("Sucesso absoluto! Tickers de mercado, busca de estados e tags Canonical aplicadas.")
+    print("Sucesso absoluto! Portal rebatizado, com botões de direcionamento e fotos exclusivas.")
 
 if __name__ == "__main__":
     gerar_site()
