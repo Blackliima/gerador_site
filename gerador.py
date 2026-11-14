@@ -126,7 +126,7 @@ HTML_TEMPLATE = """
         .news-card:hover { transform: translateY(-3px); box-shadow: 0 10px 20px -3px rgba(0,0,0,0.05); }
         .news-img { width: 100%; height: 160px; object-fit: cover; background: #e2e8f0; }
         .news-content { padding: 20px; display: flex; flex-direction: column; justify-content: space-between; flex-grow: 1; }
-        .badge { display: inline-block; align-self: flex-start; padding: 4px 10px; font-size: 11px; font-weight: 700; border-radius: 20px; text-transform: uppercase; margin-bottom: 12px; color: white; letter-spacing: 0.5px; }
+        .badge { display: inline-block; padding: 4px 10px; font-size: 11px; font-weight: 700; border-radius: 20px; text-transform: uppercase; margin-bottom: 12px; color: white; letter-spacing: 0.5px; }
         .news-card h3 { margin: 0 0 10px 0; font-size: 17px; line-height: 1.4; }
         .news-card h3 a { color: var(--text); text-decoration: none; transition: color 0.2s; }
         .news-card h3 a:hover { color: var(--primary); }
@@ -301,12 +301,22 @@ INDEX_TEMPLATE = """
         .side-card h4 a:hover { color: var(--primary); }
 
         .section-title { font-size: 22px; font-weight: 700; margin: 45px 0 20px 0; border-left: 5px solid var(--primary); padding-left: 12px; display: flex; align-items: center; justify-content: space-between; }
-        .blog-section { background: var(--card-bg); border: 1px solid var(--border-color); padding: 25px; border-radius: 14px; margin-bottom: 35px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02); }
-        .blog-section h3 { margin-top: 0; color: var(--primary); font-size: 20px; }
-        .blog-post { margin-bottom: 20px; border-bottom: 1px solid var(--border-color); padding-bottom: 15px; }
-        .blog-post:last-child { margin-bottom: 0; border-bottom: none; padding-bottom: 0; }
-        .blog-post h4 { margin: 0 0 6px 0; font-size: 17px; color: var(--text); }
-        .blog-post p { margin: 0; font-size: 14px; color: var(--text-light); line-height: 1.6; }
+        
+        /* NOVO DESIGN DO BLOG & ARTIGOS ESPECIALIZADOS (ROBUSTO) */
+        .blog-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 35px; }
+        @media(max-width: 900px) { .blog-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media(max-width: 600px) { .blog-grid { grid-template-columns: 1fr; } }
+        
+        .blog-card { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 14px; padding: 25px; display: flex; flex-direction: column; justify-content: space-between; box-shadow: 0 4px 10px rgba(0,0,0,0.02); transition: transform 0.2s, border-color 0.2s; position: relative; overflow: hidden; }
+        .blog-card:hover { transform: translateY(-4px); border-color: var(--primary); }
+        .blog-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: linear-gradient(90deg, var(--primary), var(--primary-dark)); }
+        .blog-meta { display: flex; justify-content: space-between; align-items: center; font-size: 11px; font-weight: 700; color: var(--text-light); text-transform: uppercase; margin-bottom: 12px; }
+        .blog-tag { background: rgba(37,99,235,0.1); color: var(--primary); padding: 3px 10px; border-radius: 20px; }
+        .blog-card h4 { margin: 0 0 10px 0; font-size: 17px; line-height: 1.4; color: var(--text); }
+        .blog-card p { margin: 0 0 15px 0; font-size: 14px; color: var(--text-light); line-height: 1.6; }
+        .blog-read-more { font-size: 13px; font-weight: 700; color: var(--primary); text-decoration: none; display: inline-flex; align-items: center; gap: 4px; margin-top: auto; }
+        .blog-read-more:hover { text-decoration: underline; }
+
         .countries-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 15px; margin-bottom: 30px; }
         .country-card { background: var(--card-bg); padding: 20px; border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02); text-decoration: none; color: var(--text); display: block; border: 1px solid var(--border-color); transition: transform 0.2s, border-color 0.2s; }
         .country-card:hover { transform: translateY(-3px); border-color: var(--primary); }
@@ -415,20 +425,32 @@ INDEX_TEMPLATE = """
 
         {{ ad_banner | safe }}
 
+        <!-- NOVO BLOG & ARTIGOS ESPECIALIZADOS ROBUSTO -->
         <h2 id="blog" class="section-title"><span>📝 Blog & Artigos Especializados</span></h2>
-        <div class="blog-section">
-            <h3>Artigos em Destaque e Análises de Mercado</h3>
-            <div class="blog-post">
-                <h4>O Impacto dos Conflitos Internacionais na Economia Global</h4>
-                <p>Como as tensões geopolíticas recentes afetam o câmbio, o petróleo e as principais bolsas internacionais em tempo real.</p>
+        <div class="blog-grid">
+            <div class="blog-card">
+                <div>
+                    <div class="blog-meta"><span class="blog-tag">Geopolítica</span><span>⏱️ 5 min de leitura</span></div>
+                    <h4>O Impacto dos Conflitos Internacionais na Economia Global em 2026</h4>
+                    <p>Como as tensões geopolíticas recentes afetam o câmbio, o petróleo e as principais bolsas internacionais em tempo real.</p>
+                </div>
+                <a href="#mundo" class="blog-read-more">Ler Análise Completa →</a>
             </div>
-            <div class="blog-post">
-                <h4>Geopolítica do Petróleo e Rotas Comerciais Estratégicas</h4>
-                <p>Uma análise profunda sobre os fluxos de suprimento energético e as oscilações cambiais nas principais bolsas do mundo.</p>
+            <div class="blog-card">
+                <div>
+                    <div class="blog-meta"><span class="blog-tag">Mercado</span><span>⏱️ 4 min de leitura</span></div>
+                    <h4>Geopolítica do Petróleo e Rotas Comerciais Estratégicas</h4>
+                    <p>Uma análise profunda sobre os fluxos de suprimento energético e as oscilações cambiais nas principais bolsas do mundo.</p>
+                </div>
+                <a href="#economia" class="blog-read-more">Ler Análise Completa →</a>
             </div>
-            <div class="blog-post">
-                <h4>Trabalho Remoto e Oportunidades Globais: O Guia Definitivo</h4>
-                <p>Descubra as principais tendências de vagas em modelo home office e como se destacar em processos seletivos internacionais.</p>
+            <div class="blog-card">
+                <div>
+                    <div class="blog-meta"><span class="blog-tag">Carreira & Tech</span><span>⏱️ 6 min de leitura</span></div>
+                    <h4>Trabalho Remoto e Oportunidades Globais: O Guia Definitivo</h4>
+                    <p>Descubra as principais tendências de vagas em modelo home office e como se destacar em processos seletivos internacionais.</p>
+                </div>
+                <a href="#empregos" class="blog-read-more">Ler Análise Completa →</a>
             </div>
         </div>
         
@@ -725,7 +747,6 @@ def buscar_noticias_por_categoria():
                     todas_noticias.append(noticia_obj)
         except: pass
         
-        # GARANTE QUE TODA CATEGORIA TENHA SEMPRE 6 NOTÍCIAS COMPLETAS (2 LINHAS DE 3 CARDS)
         while len(items_cat) < 6:
             idx = len(items_cat)
             fb_item = fallback_lista[idx % len(fallback_lista)]
@@ -788,7 +809,7 @@ def send_search_engine_pings():
             print(f"[Aviso] Modo offline/rede restrita para o ping: {e}")
 
 def gerar_site():
-    print("Gerando portal unificado 100% preenchido (6 cards por categoria + Hero G1)...")
+    print("Gerando portal unificado com Blog Especializado Robusto...")
     paises = baixar_paises()
     categorias_dict, todas_noticias = buscar_noticias_por_categoria()
     
@@ -834,7 +855,7 @@ def gerar_site():
 
     gerar_sitemap(lista_paises)
     send_search_engine_pings()
-    print("Sucesso absoluto! Portal 100% preenchido gerado com sucesso.")
+    print("Sucesso absoluto! Portal com Blog Robusto gerado com sucesso.")
 
 if __name__ == "__main__":
     gerar_site()
