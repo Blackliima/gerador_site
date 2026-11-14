@@ -8,62 +8,41 @@
     <script src="https://quge5.com/88/tag.min.js" data-zone="309679" async data-cfasync="false"></script>
     <meta name="google-site-verification" content="pbgwZbVwgKMwqqqGYFcHeGGbV7EM7nBdlns1c_DN_Sw" />
     <title>Vagas e Concursos em Bahia (BA) - Brasil Oportunidades</title>
-    <meta name="description" content="Confira editais de concursos públicos, vagas de emprego e oportunidades profissionais em Bahia (BA).">
-    
-    <meta property="og:type" content="article">
-    <meta property="og:site_name" content="Brasil Oportunidades & Vagas">
-    <meta property="og:title" content="Vagas e Concursos em Bahia (BA)">
-    <meta property="og:description" content="Acompanhe editais abertos e vagas de emprego em Bahia (BA) em tempo real.">
-    <meta property="og:image" content="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=1200&auto=format&fit=crop&q=80">
-    <meta property="og:url" content="https://gerador-site.pages.dev/bahia.html">
-
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💼</text></svg>">
     <style>
         :root { 
             --primary: #2563eb; --primary-dark: #1d4ed8; --bg-color: #f8fafc; 
             --card-bg: #ffffff; --text: #0f172a; --text-light: #64748b; 
             --header-bg: linear-gradient(135deg, #0f172a, #1e3a8a); --border-color: #e2e8f0;
         }
-        [data-theme="dark"] { 
-            --primary: #3b82f6; --primary-dark: #60a5fa; --bg-color: #030712; 
-            --card-bg: #111827; --text: #f9fafb; --text-light: #9ca3af; 
-            --header-bg: linear-gradient(135deg, #020617, #0f172a); --border-color: #1f2937;
-        }
         * { box-sizing: border-box; }
-        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; line-height: 1.6; color: var(--text); background: var(--bg-color); margin: 0; padding: 0; overflow-x: hidden; width: 100%; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; color: var(--text); background: var(--bg-color); margin: 0; padding: 0; width: 100%; }
         .navbar { background: var(--card-bg); border-bottom: 1px solid var(--border-color); padding: 12px 20px; position: sticky; top: 0; z-index: 1000; width: 100%; }
         .nav-container { max-width: 1050px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; width: 100%; }
-        .back-link { color: var(--primary); text-decoration: none; font-weight: 600; font-size: 14px; display: flex; align-items: center; gap: 5px; }
-        .container { max-width: 1050px; margin: 30px auto; padding: 0 20px; width: 100%; box-sizing: border-box; }
-        header { background: var(--header-bg); color: white; padding: 40px; border-radius: 16px; margin-bottom: 30px; width: 100%; box-sizing: border-box; }
-        header h1 { margin: 0 0 10px 0; font-size: 30px; font-weight: 800; word-break: break-word; }
-        header p { margin: 0; opacity: 0.9; font-size: 15px; word-break: break-word; }
-        .timestamp-badge { display: inline-block; background: rgba(56, 189, 248, 0.15); color: #38bdf8; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 700; margin-top: 12px; border: 1px solid rgba(56, 189, 248, 0.3); }
-        .info-box { background: var(--card-bg); border: 1px solid var(--border-color); padding: 25px; border-radius: 14px; margin-bottom: 35px; width: 100%; box-sizing: border-box; }
-        .info-box h3 { margin-top: 0; color: var(--primary); font-size: 18px; }
-        .info-box p { margin: 0 0 10px 0; color: var(--text-light); font-size: 14.5px; word-break: break-word; }
-        .section-title { font-size: 22px; font-weight: 700; margin: 40px 0 20px 0; border-left: 5px solid var(--primary); padding-left: 12px; width: 100%; box-sizing: border-box; }
+        .back-link { color: var(--primary); text-decoration: none; font-weight: 600; font-size: 14px; }
+        .container { max-width: 1050px; margin: 30px auto; padding: 0 20px; width: 100%; }
+        header { background: var(--header-bg); color: white; padding: 40px; border-radius: 16px; margin-bottom: 30px; width: 100%; }
+        header h1 { margin: 0 0 10px 0; font-size: 30px; font-weight: 800; }
+        .section-title { font-size: 22px; font-weight: 700; margin: 40px 0 20px 0; border-left: 5px solid var(--primary); padding-left: 12px; width: 100%; }
         
-        .news-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; width: 100%; margin-top: 15px; box-sizing: border-box; }
-        @media(max-width: 900px) { .news-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-        @media(max-width: 600px) { .news-grid { grid-template-columns: minmax(0, 1fr); } }
+        .news-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; width: 100%; margin-top: 15px; }
+        @media(max-width: 900px) { .news-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media(max-width: 600px) { .news-grid { grid-template-columns: 1fr; } }
         
-        .news-card { background: var(--card-bg); border-radius: 12px; border: 1px solid var(--border-color); display: flex; flex-direction: column; overflow: hidden; width: 100%; min-width: 0; box-sizing: border-box; }
+        .news-card { background: var(--card-bg); border-radius: 12px; border: 1px solid var(--border-color); display: flex; flex-direction: column; overflow: hidden; width: 100%; }
         .news-img { width: 100%; height: 160px; object-fit: cover; background: #e2e8f0; display: block; }
-        .news-content { padding: 20px; display: flex; flex-direction: column; justify-content: space-between; flex-grow: 1; min-width: 0; box-sizing: border-box; }
+        .news-content { padding: 20px; display: flex; flex-direction: column; justify-content: space-between; flex-grow: 1; }
         .badge { display: inline-block; align-self: flex-start; padding: 4px 10px; font-size: 11px; font-weight: 700; border-radius: 20px; text-transform: uppercase; margin-bottom: 12px; color: white; }
-        .news-card h3 { margin: 0 0 10px 0; font-size: 17px; line-height: 1.4; word-break: break-word; overflow-wrap: break-word; }
+        .news-card h3 { margin: 0 0 10px 0; font-size: 17px; line-height: 1.4; word-break: break-word; }
         .news-card h3 a { color: var(--text); text-decoration: none; }
         .news-card h3 a:hover { color: var(--primary); }
-        .news-card p { margin: 0; font-size: 14px; color: var(--text-light); line-height: 1.5; word-break: break-word; overflow-wrap: break-word; }
-        footer { text-align: center; margin-top: 50px; border-top: 1px solid var(--border-color); padding-top: 20px; width: 100%; box-sizing: border-box; }
+        .news-card p { margin: 0; font-size: 14px; color: var(--text-light); line-height: 1.5; word-break: break-word; }
+        footer { text-align: center; margin-top: 50px; border-top: 1px solid var(--border-color); padding-top: 20px; width: 100%; }
     </style>
 </head>
-<body data-theme="light">
+<body>
     <div class="navbar">
         <div class="nav-container">
             <a href="index.html" class="back-link">← Voltar ao Início</a>
-            <button class="theme-btn" onclick="toggleTheme()">🌓 Tema</button>
         </div>
     </div>
     <div class="container">
@@ -84,15 +63,8 @@
 
         <header>
             <h1>Oportunidades em Bahia (BA)</h1>
-            <p>Painel dedicado com editais abertos, vagas de emprego regionais e concursos públicos em destaque no estado.</p>
-            <div class="timestamp-badge">🕒 Atualizado em: 14/11/2026 às 19:06</div>
+            <p>Painel dedicado com editais abertos e vagas de emprego regionais em Bahia (BA).</p>
         </header>
-        
-        <div class="info-box">
-            <h3>📌 Mercado de Trabalho e Concursos em Bahia (BA)</h3>
-            <p>O estado de <strong>Bahia (BA)</strong> registra alta movimentação em processos seletivos públicos e privados. Profissionais que buscam estabilidade ou colocação imediata encontram aqui oportunidades atualizadas diariamente.</p>
-            <p>Acompanhe abaixo as principais vagas, editais publicados e links diretos para inscrição nas seleções vigentes.</p>
-        </div>
         
         
 <div style="text-align:center; margin: 30px auto; width: 100%; max-width: 100%; overflow: hidden; background:var(--card-bg); padding:15px; border-radius:12px; box-shadow: 0 4px 12px rgba(0,0,0,0.06); border: 1px dashed rgba(0,0,0,0.1); box-sizing: border-box;">
@@ -114,68 +86,35 @@
         <div class="news-grid">
             
             <div class="news-card">
-                <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?w=600&auto=format&fit=crop&q=60&v=1794694016" alt="Capa" class="news-img" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60';">
+                <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=600&auto=format&fit=crop&q=60&v=1794694518" alt="Capa" class="news-img" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60';">
                 <div class="news-content">
                     <div>
-                        <span class="badge" style="background-color: #ea580c;">Vagas • Bahia</span>
-                        <h3><a href="#homeoffice" target="_blank" rel="nofollow">Oportunidades Internacionais Buscam Profissionais Brasileiros para Home Office</a></h3>
+                        <span class="badge" style="background-color: #2563eb;">Concursos Públicos</span>
+                        <h3><a href="#concursos" target="_blank" rel="nofollow">Oportunidade Verificada em Concursos Públicos</a></h3>
                     </div>
-                    <p>Vagas exigem habilidades digitais e oferecem remuneração competitiva.</p>
+                    <p>Confira os detalhes desta oportunidade com inscrições abertas.</p>
                 </div>
             </div>
             
             <div class="news-card">
-                <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&auto=format&fit=crop&q=60&v=1794694016" alt="Capa" class="news-img" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60';">
+                <img src="https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60&v=1794694518" alt="Capa" class="news-img" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60';">
                 <div class="news-content">
                     <div>
-                        <span class="badge" style="background-color: #059669;">Vagas • Bahia</span>
-                        <h3><a href="https://www.infomoney.com.br/mundo/eua-sondam-ucrania-sobre-saida-de-donbass-em-troca-de-adesao-a-otan-diz-zelenski/" target="_blank" rel="nofollow">EUA sondam Ucrânia sobre saída de Donbass em troca de adesão à Otan, diz Zelenski</a></h3>
+                        <span class="badge" style="background-color: #ea580c;">Trabalho Home Office</span>
+                        <h3><a href="#homeoffice" target="_blank" rel="nofollow">Oportunidade Verificada em Trabalho Home Office</a></h3>
                     </div>
-                    <p><img width="300" height="196" src="https://www.infomoney.com.br/wp-content/uploads/2026/07/Zelensky-e1783798896628.jpg?fit=300%2C196&amp;qua...</p>
+                    <p>Confira os detalhes desta oportunidade com inscrições abertas.</p>
                 </div>
             </div>
             
             <div class="news-card">
-                <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&auto=format&fit=crop&q=60&v=1794694016" alt="Capa" class="news-img" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60';">
+                <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=600&auto=format&fit=crop&q=60&v=1794694518" alt="Capa" class="news-img" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60';">
                 <div class="news-content">
                     <div>
-                        <span class="badge" style="background-color: #059669;">Vagas • Bahia</span>
-                        <h3><a href="#empregos" target="_blank" rel="nofollow">Mercado Corporativo Registra Alta na Contratação em Todo o País</a></h3>
+                        <span class="badge" style="background-color: #2563eb;">Concursos Públicos</span>
+                        <h3><a href="#concursos" target="_blank" rel="nofollow">Oportunidade Verificada em Concursos Públicos</a></h3>
                     </div>
-                    <p>Confira quais setores estão liderando a geração de postos de trabalho formal.</p>
-                </div>
-            </div>
-            
-            <div class="news-card">
-                <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=600&auto=format&fit=crop&q=60&v=1794694016" alt="Capa" class="news-img" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60';">
-                <div class="news-content">
-                    <div>
-                        <span class="badge" style="background-color: #ea580c;">Vagas • Bahia</span>
-                        <h3><a href="#homeoffice" target="_blank" rel="nofollow">Oportunidades Internacionais Buscam Profissionais Brasileiros para Home Office</a></h3>
-                    </div>
-                    <p>Vagas exigem habilidades digitais e oferecem remuneração competitiva.</p>
-                </div>
-            </div>
-            
-            <div class="news-card">
-                <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=600&auto=format&fit=crop&q=60&v=1794694016" alt="Capa" class="news-img" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60';">
-                <div class="news-content">
-                    <div>
-                        <span class="badge" style="background-color: #2563eb;">Vagas • Bahia</span>
-                        <h3><a href="#concursos" target="_blank" rel="nofollow">Órgãos Estaduais Divulgam Concursos com Salários Atrativos</a></h3>
-                    </div>
-                    <p>Oportunidades contemplam níveis fundamental, médio e superior com lotação imediata.</p>
-                </div>
-            </div>
-            
-            <div class="news-card">
-                <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&auto=format&fit=crop&q=60&v=1794694016" alt="Capa" class="news-img" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60';">
-                <div class="news-content">
-                    <div>
-                        <span class="badge" style="background-color: #2563eb;">Vagas • Bahia</span>
-                        <h3><a href="#concursos" target="_blank" rel="nofollow">Órgãos Estaduais Divulgam Concursos com Salários Atrativos</a></h3>
-                    </div>
-                    <p>Oportunidades contemplam níveis fundamental, médio e superior com lotação imediata.</p>
+                    <p>Confira os detalhes desta oportunidade com inscrições abertas.</p>
                 </div>
             </div>
             
@@ -199,20 +138,11 @@
         <footer>
             
 <div style="font-size: 13px; color: var(--text-light); line-height: 1.6; margin-top: 40px; padding: 25px; background: var(--card-bg); border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.03); border: 1px solid rgba(0,0,0,0.05);">
-    <p style="margin: 0 0 10px 0;"><strong>Aviso Legal:</strong> O <strong>Brasil Oportunidades & Vagas</strong> é um portal independente focado em divulgar editais de concursos públicos, oportunidades de emprego, vagas home office e notícias econômicas para todo o território nacional.</p>
-    <p style="margin: 0;"><a href="anuncie.html" style="color: var(--primary); text-decoration: none; font-weight: 600;">Anuncie Vagas / Publieditoriais</a> | © 2026 Brasil Oportunidades & Vagas. Todos os direitos reservados.</p>
+    <p style="margin: 0 0 10px 0;"><strong>Aviso Legal:</strong> O <strong>Brasil Oportunidades & Vagas</strong> é um portal independente focado em divulgar editais de concursos públicos, oportunidades de emprego e vagas home office para todo o Brasil.</p>
+    <p style="margin: 0;"><a href="anuncie.html" style="color: var(--primary); text-decoration: none; font-weight: 600;">Anuncie Vagas</a> | © 2026 Brasil Oportunidades & Vagas. Todos os direitos reservados.</p>
 </div>
 
         </footer>
     </div>
-    <script>
-        function toggleTheme() {
-            const body = document.body;
-            const nextTheme = body.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
-            body.setAttribute('data-theme', nextTheme);
-            localStorage.setItem('theme', nextTheme);
-        }
-        if (localStorage.getItem('theme') === 'dark') { document.body.setAttribute('data-theme', 'dark'); }
-    </script>
 </body>
 </html>
