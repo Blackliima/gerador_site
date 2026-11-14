@@ -257,21 +257,48 @@ INDEX_TEMPLATE = """
         }
         body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; line-height: 1.6; color: var(--text); background: var(--bg-color); margin: 0; padding: 0; transition: background 0.3s, color 0.3s; }
         .navbar { background: var(--card-bg); border-bottom: 1px solid var(--border-color); padding: 12px 20px; position: sticky; top: 0; z-index: 1000; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
-        .nav-container { max-width: 1000px; margin: 0 auto; display: flex; justify-content: flex-end; align-items: center; gap: 12px; }
+        .nav-container { max-width: 1050px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+        .brand-logo { font-weight: 800; font-size: 18px; color: var(--primary); text-decoration: none; display: flex; align-items: center; gap: 6px; }
+        .nav-right-actions { display: flex; align-items: center; gap: 10px; }
         .lang-select { background: var(--bg-color); color: var(--text); border: 1px solid var(--border-color); padding: 6px 12px; border-radius: 20px; font-weight: 600; font-size: 12px; cursor: pointer; outline: none; transition: border-color 0.2s; }
         .lang-select:hover { border-color: var(--primary); }
         .theme-btn { background: var(--bg-color); color: var(--text); border: 1px solid var(--border-color); padding: 6px 12px; border-radius: 20px; cursor: pointer; font-weight: 600; font-size: 12px; transition: all 0.2s; }
         .theme-btn:hover { border-color: var(--primary); }
-        .container { max-width: 1000px; margin: 30px auto; padding: 0 20px; }
-        header { background: var(--header-bg); color: white; padding: 50px 30px; border-radius: 16px; margin-bottom: 25px; text-align: center; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1); }
-        header h1 { margin: 0 0 12px 0; font-size: 36px; font-weight: 800; letter-spacing: -0.5px; }
-        header p { margin: 0 0 25px 0; opacity: 0.9; font-size: 16px; max-width: 600px; margin-left: auto; margin-right: auto; }
-        .search-box { width: 100%; max-width: 500px; margin: 0 auto; display: block; padding: 14px 22px; font-size: 15px; border-radius: 30px; border: 1px solid var(--border-color); outline: none; background: var(--card-bg); color: var(--text); box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02); transition: border-color 0.2s; }
+        .container { max-width: 1050px; margin: 25px auto; padding: 0 20px; }
+        header { background: var(--header-bg); color: white; padding: 40px 20px; border-radius: 16px; margin-bottom: 25px; text-align: center; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1); }
+        header h1 { margin: 0 0 10px 0; font-size: 34px; font-weight: 800; letter-spacing: -0.5px; }
+        header p { margin: 0 0 20px 0; opacity: 0.9; font-size: 15px; max-width: 600px; margin-left: auto; margin-right: auto; }
+        .search-box { width: 100%; max-width: 500px; margin: 0 auto; display: block; padding: 12px 20px; font-size: 14px; border-radius: 30px; border: 1px solid var(--border-color); outline: none; background: var(--card-bg); color: var(--text); box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02); }
         .search-box:focus { border-color: var(--primary); }
-        .nav-cats { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin: 30px 0; }
-        .nav-cats a { background: var(--card-bg); color: var(--text); padding: 8px 16px; border-radius: 20px; text-decoration: none; font-size: 13px; font-weight: 600; border: 1px solid var(--border-color); box-shadow: 0 2px 4px rgba(0,0,0,0.02); transition: all 0.2s; }
+        .nav-cats { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin: 25px 0; }
+        .nav-cats a { background: var(--card-bg); color: var(--text); padding: 8px 14px; border-radius: 20px; text-decoration: none; font-size: 13px; font-weight: 600; border: 1px solid var(--border-color); box-shadow: 0 2px 4px rgba(0,0,0,0.02); transition: all 0.2s; }
         .nav-cats a:hover { background: var(--primary); color: white; border-color: var(--primary); }
-        .section-title { font-size: 24px; font-weight: 700; margin: 45px 0 20px 0; border-left: 5px solid var(--primary); padding-left: 12px; display: flex; align-items: center; justify-content: space-between; }
+
+        /* HERO GRID ESTILO G1 (IMPACTO & VÍDEOS) */
+        .hero-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 20px; margin-bottom: 40px; }
+        @media(max-width: 768px) { .hero-grid { grid-template-columns: 1fr; } }
+        
+        .hero-main { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 14px; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 6px 15px rgba(0,0,0,0.04); transition: transform 0.2s; }
+        .hero-main:hover { transform: translateY(-3px); }
+        .hero-main img { width: 100%; height: 260px; object-fit: cover; }
+        .hero-main-content { padding: 25px; display: flex; flex-direction: column; justify-content: space-between; flex-grow: 1; }
+        .hero-tag { display: inline-block; background: #dc2626; color: white; padding: 4px 10px; font-size: 11px; font-weight: 800; border-radius: 20px; text-transform: uppercase; margin-bottom: 12px; width: fit-content; }
+        .hero-main h2 { margin: 0 0 12px 0; font-size: 24px; line-height: 1.3; }
+        .hero-main h2 a { color: var(--text); text-decoration: none; transition: color 0.2s; }
+        .hero-main h2 a:hover { color: var(--primary); }
+        .hero-main p { margin: 0; font-size: 14px; color: var(--text-light); }
+
+        .hero-side { display: flex; flex-direction: column; gap: 20px; }
+        .side-card { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 14px; overflow: hidden; display: flex; position: relative; height: 135px; box-shadow: 0 4px 10px rgba(0,0,0,0.03); transition: transform 0.2s; }
+        .side-card:hover { transform: translateY(-2px); }
+        .side-card img { width: 40%; height: 100%; object-fit: cover; }
+        .side-content { padding: 15px; width: 60%; display: flex; flex-direction: column; justify-content: center; }
+        .side-tag { font-size: 10px; font-weight: 800; text-transform: uppercase; color: #dc2626; margin-bottom: 6px; display: flex; align-items: center; gap: 4px; }
+        .side-card h4 { margin: 0; font-size: 14px; line-height: 1.35; }
+        .side-card h4 a { color: var(--text); text-decoration: none; }
+        .side-card h4 a:hover { color: var(--primary); }
+
+        .section-title { font-size: 22px; font-weight: 700; margin: 45px 0 20px 0; border-left: 5px solid var(--primary); padding-left: 12px; display: flex; align-items: center; justify-content: space-between; }
         .blog-section { background: var(--card-bg); border: 1px solid var(--border-color); padding: 25px; border-radius: 14px; margin-bottom: 35px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02); }
         .blog-section h3 { margin-top: 0; color: var(--primary); font-size: 20px; }
         .blog-post { margin-bottom: 20px; border-bottom: 1px solid var(--border-color); padding-bottom: 15px; }
@@ -299,20 +326,23 @@ INDEX_TEMPLATE = """
 <body data-theme="light">
     <div class="navbar">
         <div class="nav-container">
-            {{ tradutor | safe }}
-            <button class="theme-btn" onclick="toggleTheme()">🌓 Tema</button>
+            <a href="index.html" class="brand-logo">🌍 Global News & Data</a>
+            <div class="nav-right-actions">
+                {{ tradutor | safe }}
+                <button class="theme-btn" onclick="toggleTheme()">🌓 Tema</button>
+            </div>
         </div>
     </div>
     <div class="container">
         {{ ad_banner | safe }}
         <header>
             <h1>Global News & Data</h1>
-            <p>O portal mundial definitivo para notícias, economia, vagas de emprego home office, entretenimento, games e dados globais.</p>
-            <input type="text" id="searchInput" class="search-box" placeholder="🔍 Pesquisar país por nome (ex: Brasil, Japão)..." onkeyup="filtrarPaises()">
+            <p>O portal mundial definitivo para notícias em tempo real, conflitos, economia, vagas home office e dados globais.</p>
+            <input type="text" id="searchInput" class="search-box" placeholder="🔍 Pesquisar país por nome (ex: Brasil, Japão, Ucrânia)..." onkeyup="filtrarPaises()">
         </header>
 
         <div class="nav-cats">
-            <a href="#mundo">🌍 Mundo</a>
+            <a href="#mundo">🌍 Mundo & Conflitos</a>
             <a href="#tecnologia">💻 Tecnologia</a>
             <a href="#economia">📈 Economia</a>
             <a href="#esportes">⚽ Esportes</a>
@@ -323,6 +353,41 @@ INDEX_TEMPLATE = """
             <a href="#blog">📝 Blog & Análises</a>
             <a href="#paises">🗺️ Países</a>
         </div>
+
+        <!-- SEÇÃO HERO GRID DE DESTAQUE (ESTILO G1 COM VÍDEOS E CHOQUE) -->
+        {% if categorias.get('Mundo') and categorias['Mundo'].lista|length >= 3 %}
+        <div class="hero-grid">
+            <!-- DESTAQUE PRINCIPAL ESQUERDA -->
+            <div class="hero-main">
+                <img src="{{ categorias['Mundo'].lista[0].image }}" alt="Destaque" onerror="this.src='https://images.unsplash.com/photo-1521295121783-8a321d551ad2?w=600&auto=format&fit=crop&q=60';">
+                <div class="hero-main-content">
+                    <div>
+                        <span class="hero-tag">🔴 PLANTÃO URGENTE</span>
+                        <h2><a href="{{ categorias['Mundo'].lista[0].link }}" target="_blank" rel="nofollow">{{ categorias['Mundo'].lista[0].title }}</a></h2>
+                    </div>
+                    <p>{{ categorias['Mundo'].lista[0].description }}</p>
+                </div>
+            </div>
+
+            <!-- DESTAQUES DIREITA (VÍDEOS E ALTO IMPACTO) -->
+            <div class="hero-side">
+                <div class="side-card">
+                    <img src="{{ categorias['Mundo'].lista[1].image }}" alt="Vídeo 1" onerror="this.src='https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=600&auto=format&fit=crop&q=60';">
+                    <div class="side-content">
+                        <span class="side-tag">▶ VÍDEO: CENAS FORTES</span>
+                        <h4><a href="{{ categorias['Mundo'].lista[1].link }}" target="_blank" rel="nofollow">{{ categorias['Mundo'].lista[1].title }}</a></h4>
+                    </div>
+                </div>
+                <div class="side-card">
+                    <img src="{{ categorias['Mundo'].lista[2].image }}" alt="Vídeo 2" onerror="this.src='https://images.unsplash.com/photo-1508739773434-c26b3d09e071?w=600&auto=format&fit=crop&q=60';">
+                    <div class="side-content">
+                        <span class="side-tag">⚡ ÚLTIMA HORA</span>
+                        <h4><a href="{{ categorias['Mundo'].lista[2].link }}" target="_blank" rel="nofollow">{{ categorias['Mundo'].lista[2].title }}</a></h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
 
         {% for cat_nome, cat_data in categorias.items() %}
         <h2 id="{{ cat_data.id }}" class="section-title" style="border-color: {{ cat_data.color }};"><span>{{ cat_nome }}</span></h2>
@@ -349,8 +414,8 @@ INDEX_TEMPLATE = """
         <div class="blog-section">
             <h3>Artigos em Destaque e Análises de Mercado</h3>
             <div class="blog-post">
-                <h4>O Impacto da Inteligência Artificial na Economia Global em 2026</h4>
-                <p>Como as grandes potências estão regulamentando o avanço de algoritmos preditivos e transformando o mercado de trabalho internacional.</p>
+                <h4>O Impacto dos Conflitos Internacionais na Economia Global</h4>
+                <p>Como as tensões geopolíticas recentes afetam o câmbio, o petróleo e as principais bolsas internacionais em tempo real.</p>
             </div>
             <div class="blog-post">
                 <h4>Geopolítica do Petróleo e Rotas Comerciais Estratégicas</h4>
@@ -541,8 +606,9 @@ def buscar_noticias_por_categoria():
 
     fallbacks_por_categoria = {
         "Mundo": [
-            {"title": "Acordos Diplomáticos Globais Definem Novas Rotas Comerciais", "desc": "Lideres internacionais firmam pactos estratégicos para estabilizar o suprimento global."},
-            {"title": "Cúpula Internacional Debate Transição Energética e Sustentabilidade", "desc": "Representantes de dezenas de nações alinham metas de inovação verde."}
+            {"title": "Escalada de Conflitos Internacionais e Tensões Globais Exigem Alerta", "desc": "Especialistas monitoram de perto os desdobramentos diplomáticos e militares nas principais frentes mundiais."},
+            {"title": "VÍDEO: Momento Chocante de Reviravolta em Zona de Crise", "desc": "Imagens capturadas ao vivo mostram o impacto de eventos drásticos que paralisaram autoridades."},
+            {"title": "Acordos de Última Hora Tentam Evitar Crise Energética Global", "desc": "Líderes mundiais se reúnem em caráter de urgência para negociar medidas de estabilização."}
         ],
         "Tecnologia": [
             {"title": "A Revolução da Inteligência Artificial Generativa nos Mercados", "desc": "Empresas adotam modelos preditivos avançados para otimizar processos."},
@@ -558,9 +624,7 @@ def buscar_noticias_por_categoria():
         ],
         "Vagas & Home Office": [
             {"title": "Grandes Empresas Abrem Centenas de Vagas para Trabalho Remoto (Home Office)", "desc": "Oportunidades internacionais e nacionais oferecem flexibilidade e contratação imediata para diversas áreas."},
-            {"title": "Novas Oportunidades em Concursos Públicos e Processos Seletivos", "desc": "Confira os editais abertos com milhares de vagas e inscrições disponíveis esta semana."},
-            {"title": "Setor de Tecnologia Anuncia Crescimento na Contratação de Desenvolvedores", "desc": "Demanda por profissionais remotos impulsiona o mercado de trabalho digital global."},
-            {"title": "Dicas Essenciais para Se Destacar em Entrevistas de Emprego Online", "desc": "Especialistas em RH revelam o que os recrutadores buscam em candidatos em modelo home office."}
+            {"title": "Novas Oportunidades em Concursos Públicos e Processos Seletivos", "desc": "Confira os editais abertos com milhares de vagas e inscrições disponíveis esta semana."}
         ],
         "Filmes & Séries": [
             {"title": "Grandes Estreias Dominam as Bilheterias e Plataformas de Streaming", "desc": "Produções cinematográficas e séries arrebatam o público internacional."},
@@ -664,13 +728,11 @@ def send_search_engine_pings():
             with urllib.request.urlopen(req, timeout=5) as response:
                 if response.status == 200:
                     print(f"✔ Ping enviado com sucesso para: {url.split('/')[2]}")
-                else:
-                    print(f"[Aviso] Resposta do motor de busca: {response.status}")
         except Exception as e:
             print(f"[Aviso] Modo offline/rede restrita para o ping: {e}")
 
 def gerar_site():
-    print("Gerando portal unificado com Vagas, Home Office, Saúde, Games e AdSense/Monetag...")
+    print("Gerando portal unificado com Layout Estilo G1 e Destaques de Impacto...")
     paises = baixar_paises()
     categorias_dict, todas_noticias = buscar_noticias_por_categoria()
     
@@ -716,7 +778,7 @@ def gerar_site():
 
     gerar_sitemap(lista_paises)
     send_search_engine_pings()
-    print(f"Sucesso absoluto! Portal robusto unificado gerado com sucesso.")
+    print(f"Sucesso absoluto! Portal atualizado com o novo design de impacto.")
 
 if __name__ == "__main__":
     gerar_site()
