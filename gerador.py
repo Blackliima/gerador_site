@@ -16,10 +16,9 @@ MONETAG_SCRIPT = '<script src="https://quge5.com/88/tag.min.js" data-zone="30967
 GOOGLE_META = '<meta name="google-site-verification" content="pbgwZbVwgKMwqqqGYFcHeGGbV7EM7nBdlns1c_DN_Sw" />'
 ADSENSE_SCRIPT = '<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5379027874215422" crossorigin="anonymous"></script>'
 
-# Banner unificado seguro e centralizado
 AD_BANNER = """
 <div style="text-align:center; margin: 40px auto; padding: 20px; background: #ffffff; border-radius: 12px; border: 1px solid #e2e8f0; max-width: 100%; box-sizing: border-box;">
-    <p style="font-size: 10px; color: #64748b; text-transform: uppercase; margin-bottom: 10px; letter-spacing: 1px;">Publicidade</p>
+    <p style="font-size: 10px; color: #64748b; text-transform: uppercase; margin-bottom: 10px; letter-spacing: 1px;">Oportunidade Patrocinada</p>
     <script type="text/javascript">
         atOptions = {
             'key' : '7d8438dbf1b7a796906a9575be2722b3',
@@ -42,7 +41,9 @@ INDEX_TEMPLATE = """
     {{ adsense_script | safe }}
     {{ monetag_script | safe }}
     {{ google_meta | safe }}
-    <title>Brasil Oportunidades & Vagas - Concursos e Empregos</title>
+    <link rel="canonical" href="{{ dominio }}/index.html">
+    <title>Brasil Oportunidades & Vagas - Concursos, Empregos e Editais Abertos</title>
+    <meta name="description" content="Portal oficial de editais de concursos públicos, vagas CLT e oportunidades de trabalho Home Office no Brasil.">
     <style>
         body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f8fafc; color: #0f172a; margin: 0; padding: 0; }
         .header-top { background: linear-gradient(135deg, #0f172a, #1e3a8a); color: white; padding: 40px 20px; text-align: center; }
@@ -51,7 +52,6 @@ INDEX_TEMPLATE = """
         .main-container { max-width: 1000px; margin: 0 auto; padding: 20px; }
         .section-title { font-size: 20px; font-weight: 700; margin: 40px 0 20px 0; border-left: 4px solid #2563eb; padding-left: 10px; color: #0f172a; }
         
-        /* Grid simples em tabela flexível para nunca quebrar */
         .cards-wrapper { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; }
         .card { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px; width: 300px; display: flex; flex-direction: column; overflow: hidden; box-shadow: 0 2px 4px rgba(0,0,0,0.02); }
         .card img { width: 100%; height: 150px; object-fit: cover; }
@@ -120,7 +120,9 @@ ESTADO_TEMPLATE = """
     {{ adsense_script | safe }}
     {{ monetag_script | safe }}
     {{ google_meta | safe }}
-    <title>Vagas em {{ estado.name }} - Brasil Oportunidades</title>
+    <link rel="canonical" href="{{ dominio }}/{{ estado.file }}">
+    <title>Vagas e Concursos em {{ estado.name }} - Brasil Oportunidades</title>
+    <meta name="description" content="Acompanhe editais de concursos e vagas de emprego abertas no estado de {{ estado.name }}.">
     <style>
         body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f8fafc; color: #0f172a; margin: 0; padding: 0; }
         .header-top { background: linear-gradient(135deg, #0f172a, #1e3a8a); color: white; padding: 30px 20px; }
@@ -151,7 +153,7 @@ ESTADO_TEMPLATE = """
     <div class="main-container">
         {{ ad_banner | safe }}
 
-        <div class="section-title">Editais e Vagas Recentes</div>
+        <div class="section-title">Editais e Vagas Recentes em {{ estado.name }}</div>
         <div class="cards-wrapper">
             {% for noticia in noticias %}
             <div class="card">
@@ -192,23 +194,33 @@ def buscar_noticias_brasil():
     }
     
     tstamp = int(datetime.now().timestamp())
+    # Imagens exclusivas por categoria para evitar repetição visual genérica
     imagens_cat = {
-        "Concursos Públicos": f"https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=600&auto=format&fit=crop&q=60&v={tstamp}",
-        "Vagas CLT & Empresas": f"https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60&v={tstamp}",
-        "Trabalho Home Office": f"https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=600&auto=format&fit=crop&q=60&v={tstamp}"
+        "Concursos Públicos": [
+            f"https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=600&auto=format&fit=crop&q=60&v={tstamp}",
+            f"https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&auto=format&fit=crop&q=60&v={tstamp}"
+        ],
+        "Vagas CLT & Empresas": [
+            f"https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60&v={tstamp}",
+            f"https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&auto=format&fit=crop&q=60&v={tstamp}"
+        ],
+        "Trabalho Home Office": [
+            f"https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=600&auto=format&fit=crop&q=60&v={tstamp}",
+            f"https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=600&auto=format&fit=crop&q=60&v={tstamp}"
+        ]
     }
 
     categorias_processadas, todas_noticias = {}, []
     
     for cat_nome, info in fontes.items():
         items_cat = []
-        img_default = imagens_cat[cat_nome]
+        imgs = imagens_cat[cat_nome]
         for url in info["urls"]:
             try:
                 resp = requests.get(url, verify=False, timeout=5)
                 if resp.status_code == 200:
                     root = ET.fromstring(resp.content)
-                    for item in root.findall('.//item')[:3]:
+                    for idx, item in enumerate(root.findall('.//item')[:3]):
                         tit = item.find('title').text if item.find('title') is not None else ""
                         lnk = item.find('link').text if item.find('link') is not None else "https://news.google.com"
                         dsc = item.find('description').text if item.find('description') is not None else ""
@@ -217,7 +229,8 @@ def buscar_noticias_brasil():
                         
                         obj = {
                             "category": cat_nome, "color": info["color"],
-                            "title": tit.strip(), "link": lnk.strip(), "image": img_default,
+                            "title": tit.strip(), "link": lnk.strip(), 
+                            "image": imgs[idx % len(imgs)],
                             "description": dsc.strip()[:120] + "..." if len(dsc.strip()) > 120 else dsc.strip()
                         }
                         items_cat.append(obj)
@@ -228,7 +241,7 @@ def buscar_noticias_brasil():
             obj = {
                 "category": cat_nome, "color": info["color"],
                 "title": f"Oportunidade Verificada em {cat_nome}", "link": f"#{info['id']}",
-                "image": img_default, "description": "Confira os detalhes desta oportunidade com inscrições abertas."
+                "image": imgs[0], "description": "Confira os detalhes desta oportunidade com inscrições abertas."
             }
             items_cat.append(obj)
             todas_noticias.append(obj)
@@ -237,8 +250,17 @@ def buscar_noticias_brasil():
         
     return categorias_processadas, todas_noticias
 
+def gerar_sitemap(lista_estados):
+    data_hoje = datetime.now().strftime("%Y-%m-%d")
+    xml = ['<?xml version="1.0" encoding="UTF-8"?>', '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
+    xml.append(f'  <url><loc>{DOMINIO_SITE}/index.html</loc><lastmod>{data_hoje}</lastmod><changefreq>hourly</changefreq><priority>1.0</priority></url>')
+    for e in lista_estados:
+        xml.append(f'  <url><loc>{DOMINIO_SITE}/{e["file"]}</loc><lastmod>{data_hoje}</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>')
+    xml.append('</urlset>')
+    with open("sitemap.xml", "w", encoding="utf-8") as f: f.write("\n".join(xml))
+
 def gerar_site():
-    print("Gerando site limpo sem falhas estruturais...")
+    print("Gerando portal otimizado contra duplicação e com imagens limpas...")
     estados_brasil = [
         {"name": "São Paulo (SP)", "file": "sao-paulo.html"},
         {"name": "Rio de Janeiro (RJ)", "file": "rio-de-janeiro.html"},
@@ -269,7 +291,8 @@ def gerar_site():
             google_meta=GOOGLE_META, dominio=DOMINIO_SITE
         ))
         
-    print("Sucesso absoluto! Script reescrito de forma simplificada e direta.")
+    gerar_sitemap(lista_estados_gerados)
+    print("Sucesso absoluto! Tags Canonical aplicadas e imagens organizadas por categoria.")
 
 if __name__ == "__main__":
     gerar_site()
