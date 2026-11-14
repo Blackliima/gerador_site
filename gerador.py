@@ -106,7 +106,7 @@ HTML_TEMPLATE = """
     {{ monetag_script | safe }}
     {{ google_meta | safe }}
     <title>{{ country.name }} - Global News & Data | Notícias e Indicadores Oficiais</title>
-    <meta name="description" content="Tudo sobre {{ country.name }}: últimas notícias em tempo real, capital, população, economia, fuso horário, PIB, inflação e indicadores oficiais.">
+    <meta name="description" content="Tudo sobre {{ country.name }}: últimas notícias em tempo real, capital, população, economia, fuso horário, PIB, inflação e indicadores oficiais. Atualizado em {{ timestamp }}.">
     
     <!-- Open Graph / Redes Sociais Blindadas -->
     <meta property="og:type" content="article">
@@ -139,6 +139,7 @@ HTML_TEMPLATE = """
         header { background: var(--header-bg); color: white; padding: 40px; border-radius: 16px; margin-bottom: 30px; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1); }
         header h1 { margin: 0 0 10px 0; font-size: 32px; font-weight: 800; }
         header p { margin: 0; opacity: 0.9; font-size: 16px; }
+        .timestamp-badge { display: inline-block; background: rgba(56, 189, 248, 0.15); color: #38bdf8; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 700; margin-top: 12px; border: 1px solid rgba(56, 189, 248, 0.3); }
         .grid-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; margin-bottom: 35px; }
         .stat-card { background: var(--card-bg); padding: 22px; border-radius: 12px; border: 1px solid var(--border-color); }
         .stat-card .label { font-size: 12px; color: var(--text-light); text-transform: uppercase; font-weight: 700; }
@@ -189,6 +190,7 @@ HTML_TEMPLATE = """
         <header>
             <h1>{{ country.name }}</h1>
             <p>Painel analítico completo com estatísticas demográficas, PIB, inflação, manchetes globais e contexto geopolítico.</p>
+            <div class="timestamp-badge">🕒 Atualizado dinamicamente em: {{ timestamp }}</div>
         </header>
         
         <div class="info-box-robust">
@@ -282,7 +284,7 @@ INDEX_TEMPLATE = """
     {{ monetag_script | safe }}
     {{ google_meta | safe }}
     <title>Global News & Data - Portal Mundial de Notícias, Economia, Vagas e Saúde</title>
-    <meta name="description" content="Portal global completo com notícias em tempo real, cotações, vagas de emprego home office, economia, tecnologia, filmes, games, saúde e indicadores estatísticos.">
+    <meta name="description" content="Portal global completo com notícias em tempo real, cotações, vagas de emprego home office, economia, tecnologia, filmes, games, saúde e indicadores estatísticos. Atualizado em {{ timestamp }}.">
     
     <!-- Open Graph Home Blindado -->
     <meta property="og:type" content="website">
@@ -315,6 +317,7 @@ INDEX_TEMPLATE = """
         header { background: var(--header-bg); color: white; padding: 40px 20px; border-radius: 16px; margin-bottom: 25px; text-align: center; }
         header h1 { margin: 0 0 10px 0; font-size: 34px; font-weight: 800; }
         header p { margin: 0 0 20px 0; opacity: 0.9; font-size: 15px; max-width: 600px; margin-left: auto; margin-right: auto; }
+        .timestamp-badge { display: inline-block; background: rgba(56, 189, 248, 0.15); color: #38bdf8; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 700; margin-top: 10px; border: 1px solid rgba(56, 189, 248, 0.3); }
         .search-box { width: 100%; max-width: 500px; margin: 0 auto; display: block; padding: 12px 20px; font-size: 14px; border-radius: 30px; border: 1px solid var(--border-color); outline: none; background: var(--card-bg); color: var(--text); }
         .nav-cats { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin: 25px 0; }
         .nav-cats a { background: var(--card-bg); color: var(--text); padding: 8px 14px; border-radius: 20px; text-decoration: none; font-size: 13px; font-weight: 600; border: 1px solid var(--border-color); }
@@ -383,7 +386,8 @@ INDEX_TEMPLATE = """
         <header>
             <h1>Global News & Data</h1>
             <p>O portal mundial definitivo para notícias em tempo real, cotações, conflitos, economia, vagas home office e dados globais.</p>
-            <input type="text" id="searchInput" class="search-box" placeholder="🔍 Pesquisar país por nome (ex: Brasil, Japão, Ucrânia)..." onkeyup="filtrarPaises()">
+            <div class="timestamp-badge">🕒 Atualizado em tempo real: {{ timestamp }}</div>
+            <input type="text" id="searchInput" class="search-box" placeholder="🔍 Pesquisar país por nome (ex: Brasil, Japão, Ucrânia)..." onkeyup="filtrarPaises()" style="margin-top: 15px;">
         </header>
 
         <div class="nav-cats">
@@ -638,6 +642,7 @@ def buscar_noticias_por_categoria():
         }
     }
     
+    # Bancos de imagens diversificados e específicos por nicho para garantir rotação real a cada 6 horas
     imagens_por_categoria = {
         "Mundo": [
             "https://images.unsplash.com/photo-1521295121783-8a321d551ad2?w=600&auto=format&fit=crop&q=60",
@@ -645,7 +650,9 @@ def buscar_noticias_por_categoria():
             "https://images.unsplash.com/photo-1508739773434-c26b3d09e071?w=600&auto=format&fit=crop&q=60",
             "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=600&auto=format&fit=crop&q=60",
             "https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?w=600&auto=format&fit=crop&q=60",
-            "https://images.unsplash.com/photo-1541872703-74c5e44368f9?w=600&auto=format&fit=crop&q=60"
+            "https://images.unsplash.com/photo-1541872703-74c5e44368f9?w=600&auto=format&fit=crop&q=60",
+            "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&auto=format&fit=crop&q=60",
+            "https://images.unsplash.com/photo-1509228468518-180dd4864904?w=600&auto=format&fit=crop&q=60"
         ],
         "Tecnologia": [
             "https://images.unsplash.com/photo-1518770660439-4636190af475?w=600&auto=format&fit=crop&q=60",
@@ -653,7 +660,8 @@ def buscar_noticias_por_categoria():
             "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=600&auto=format&fit=crop&q=60",
             "https://images.unsplash.com/photo-1531482615713-2afd69097998?w=600&auto=format&fit=crop&q=60",
             "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=600&auto=format&fit=crop&q=60",
-            "https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=600&auto=format&fit=crop&q=60"
+            "https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=600&auto=format&fit=crop&q=60",
+            "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=600&auto=format&fit=crop&q=60"
         ],
         "Economia": [
             "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=600&auto=format&fit=crop&q=60",
@@ -749,6 +757,11 @@ def buscar_noticias_por_categoria():
     }
 
     categorias_processadas, todas_noticias = {}, []
+    
+    # Embaralha os arrays de imagens a cada execução para garantir que a cada 6h mude a foto por nicho
+    for cat_nome in imagens_por_categoria:
+        random.shuffle(imagens_por_categoria[cat_nome])
+
     for cat_nome, info in fontes.items():
         items_cat = []
         imgs_disponiveis = imagens_por_categoria.get(cat_nome, imagens_por_categoria["Mundo"])
@@ -761,7 +774,7 @@ def buscar_noticias_por_categoria():
                 resp = requests.get(url_rss, verify=False, timeout=7)
                 if resp.status_code == 200:
                     root = ET.fromstring(resp.content)
-                    for item in root.findall('.//item')[:limite_por_fonte]:
+                    for idx_item, item in enumerate(root.findall('.//item')[:limite_por_fonte]):
                         title_elem = item.find('title')
                         link_elem = item.find('link')
                         desc_elem = item.find('description')
@@ -777,7 +790,8 @@ def buscar_noticias_por_categoria():
                         if not desc.strip():
                             desc = "Cobertura internacional atualizada em tempo real."
 
-                        img_url = imgs_disponiveis[len(items_cat) % len(imgs_disponiveis)]
+                        # Pega uma imagem rotacionada dinamicamente do banco do nicho
+                        img_url = imgs_disponiveis[(len(items_cat) + random.randint(0, 5)) % len(imgs_disponiveis)]
                         
                         noticia_obj = {
                             "category": cat_nome, "color": info["color"],
@@ -792,17 +806,21 @@ def buscar_noticias_por_categoria():
         while len(items_cat) < 6:
             idx = len(items_cat)
             fb_item = fallback_lista[idx % len(fallback_lista)]
+            img_url = imgs_disponiveis[(idx + random.randint(0, 3)) % len(imgs_disponiveis)]
             noticia_fb = {
                 "category": cat_nome, "color": info["color"], 
                 "title": fb_item["title"], 
                 "link": f"#{info['id']}", 
-                "image": imgs_disponiveis[idx % len(imgs_disponiveis)],
+                "image": img_url,
                 "description": fb_item["desc"]
             }
             items_cat.append(noticia_fb)
             todas_noticias.append(noticia_fb)
 
+        # Embaralha os itens da categoria para que a ordem e as fotos mudem a cada 6h
+        random.shuffle(items_cat)
         categorias_processadas[cat_nome] = {"id": info["id"], "color": info["color"], "lista": items_cat[:6]}
+        
     return categorias_processadas, todas_noticias
 
 def buscar_noticias_do_pais(nome_pais, pool_global):
@@ -810,8 +828,10 @@ def buscar_noticias_do_pais(nome_pais, pool_global):
     imgs_mundo = [
         "https://images.unsplash.com/photo-1521295121783-8a321d551ad2?w=600&auto=format&fit=crop&q=60",
         "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=600&auto=format&fit=crop&q=60",
-        "https://images.unsplash.com/photo-1508739773434-c26b3d09e071?w=600&auto=format&fit=crop&q=60"
+        "https://images.unsplash.com/photo-1508739773434-c26b3d09e071?w=600&auto=format&fit=crop&q=60",
+        "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=600&auto=format&fit=crop&q=60"
     ]
+    random.shuffle(imgs_mundo)
     try:
         query = urllib.parse.quote(nome_pais)
         url_gn = f"https://news.google.com/rss/search?q={query}&hl=en-US&gl=US&ceid=US:en"
@@ -888,7 +908,9 @@ def send_search_engine_pings():
             print(f"[Aviso] Modo offline/rede restrita para o ping: {e}")
 
 def gerar_site():
-    print("Gerando portal mundial blindado contra conteúdo duplicado e otimizado para SEO...")
+    timestamp_atual = datetime.now().strftime("%d/%m/%Y às %H:%M")
+    print(f"Gerando portal unificado com rotação de imagens por nicho em {timestamp_atual}...")
+    
     paises = baixar_paises()
     categorias_dict, todas_noticias = buscar_noticias_por_categoria()
     
@@ -930,6 +952,7 @@ def gerar_site():
             with open(file_name, "w", encoding="utf-8") as f:
                 f.write(template.render(
                     country=country_data, noticias=noticias_pais, lang="pt",
+                    timestamp=timestamp_atual,
                     ad_banner=AD_BANNER, tradutor=WIDGET_TRADUTOR_MODERNO,
                     ticker_cotacoes=TICKER_COTACOES, breaking_ticker=BREAKING_NEWS_TICKER,
                     adsense_script=ADSENSE_SCRIPT, monetag_script=MONETAG_SCRIPT,
@@ -941,6 +964,7 @@ def gerar_site():
     with open("index.html", "w", encoding="utf-8") as f:
         f.write(Template(INDEX_TEMPLATE).render(
             paises=lista_paises, categorias=categorias_dict, lang="pt",
+            timestamp=timestamp_atual,
             ad_banner=AD_BANNER, tradutor=WIDGET_TRADUTOR_MODERNO,
             ticker_cotacoes=TICKER_COTACOES, breaking_ticker=BREAKING_NEWS_TICKER,
             adsense_script=ADSENSE_SCRIPT, monetag_script=MONETAG_SCRIPT,
@@ -949,6 +973,7 @@ def gerar_site():
     
     with open("anuncie.html", "w", encoding="utf-8") as f:
         f.write(Template(ANUNCIE_TEMPLATE).render(
+            timestamp=timestamp_atual,
             ad_banner=AD_BANNER, tradutor=WIDGET_TRADUTOR_MODERNO,
             adsense_script=ADSENSE_SCRIPT, monetag_script=MONETAG_SCRIPT,
             google_meta=GOOGLE_META, licenca_rodape=LICENCA_RODAPE, dominio=DOMINIO_SITE
@@ -956,7 +981,7 @@ def gerar_site():
 
     gerar_sitemap(lista_paises)
     send_search_engine_pings()
-    print("Sucesso absoluto! Portal mundial unificado e otimizado gerado com sucesso.")
+    print("Sucesso absoluto! Portal atualizado com imagens rotativas por nicho e carimbo dinâmico.")
 
 if __name__ == "__main__":
     gerar_site()
