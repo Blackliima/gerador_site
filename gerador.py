@@ -607,42 +607,68 @@ ANUNCIE_TEMPLATE = """
 """
 
 def buscar_noticias_por_categoria():
+    # Fontes agora altamente diversificadas (BBC, TechCrunch, ESPN, Reuters, CNN Brasil, G1, etc.)
     fontes = {
         "Mundo": {
             "id": "mundo", "color": "#2563eb",
-            "urls": ["https://g1.globo.com/rss/g1/mundo/", "http://feeds.bbci.co.uk/news/world/rss.xml"]
+            "urls": [
+                "http://feeds.bbci.co.uk/news/world/rss.xml",
+                "https://s2.glbimg.com/rss/g1/mundo/",
+                "https://www.cnnbrasil.com.br/internacional/feed/"
+            ]
         },
         "Tecnologia": {
             "id": "tecnologia", "color": "#7c3aed",
-            "urls": ["https://g1.globo.com/rss/g1/tecnologia/", "https://techcrunch.com/feed/"]
+            "urls": [
+                "https://techcrunch.com/feed/",
+                "https://s2.glbimg.com/rss/g1/tecnologia/",
+                "https://www.theverge.com/rss/index.xml"
+            ]
         },
         "Economia": {
             "id": "economia", "color": "#059669",
-            "urls": ["https://g1.globo.com/rss/g1/economia/", "http://feeds.bbci.co.uk/news/business/rss.xml"]
+            "urls": [
+                "http://feeds.bbci.co.uk/news/business/rss.xml",
+                "https://s2.glbimg.com/rss/g1/economia/",
+                "https://www.infomoney.com.br/feed/"
+            ]
         },
         "Esportes": {
             "id": "esportes", "color": "#dc2626",
-            "urls": ["https://ge.globo.com/rss/ge/", "https://www.espn.com/espn/rss/news"]
+            "urls": [
+                "https://www.espn.com/espn/rss/news",
+                "https://ge.globo.com/rss/ge/"
+            ]
         },
         "Vagas & Home Office": {
             "id": "empregos", "color": "#ea580c",
-            "urls": ["https://g1.globo.com/rss/g1/educacao/concursos-e-emprego/"]
+            "urls": [
+                "https://s2.glbimg.com/rss/g1/educacao/concursos-e-emprego/"
+            ]
         },
         "Filmes & Séries": {
             "id": "entretenimento", "color": "#db2777",
-            "urls": ["https://g1.globo.com/rss/g1/pop-arte/", "http://feeds.bbci.co.uk/news/entertainment_and_arts/rss.xml"]
+            "urls": [
+                "http://feeds.bbci.co.uk/news/entertainment_and_arts/rss.xml",
+                "https://s2.glbimg.com/rss/g1/pop-arte/"
+            ]
         },
         "Games & Tech": {
             "id": "games", "color": "#9333ea",
-            "urls": ["https://g1.globo.com/rss/g1/tecnologia/games/"]
+            "urls": [
+                "https://s2.glbimg.com/rss/g1/tecnologia/games/",
+                "https://www.theverge.com/rss/index.xml"
+            ]
         },
         "Qualidade de Vida": {
             "id": "saude", "color": "#16a34a",
-            "urls": ["https://g1.globo.com/rss/g1/ciencia-e-saude/", "http://feeds.bbci.co.uk/news/health/rss.xml"]
+            "urls": [
+                "http://feeds.bbci.co.uk/news/health/rss.xml",
+                "https://s2.glbimg.com/rss/g1/ciencia-e-saude/"
+            ]
         }
     }
     
-    # Bancos de imagens robustos e específicos por nicho com cache-busting dinâmico (tstamp)
     tstamp = int(datetime.now().timestamp())
     imagens_por_categoria = {
         "Mundo": [
@@ -651,9 +677,7 @@ def buscar_noticias_por_categoria():
             f"https://images.unsplash.com/photo-1508739773434-c26b3d09e071?w=600&auto=format&fit=crop&q=60&v={tstamp}",
             f"https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=600&auto=format&fit=crop&q=60&v={tstamp}",
             f"https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?w=600&auto=format&fit=crop&q=60&v={tstamp}",
-            f"https://images.unsplash.com/photo-1541872703-74c5e44368f9?w=600&auto=format&fit=crop&q=60&v={tstamp}",
-            f"https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&auto=format&fit=crop&q=60&v={tstamp}",
-            f"https://images.unsplash.com/photo-1509228468518-180dd4864904?w=600&auto=format&fit=crop&q=60&v={tstamp}"
+            f"https://images.unsplash.com/photo-1541872703-74c5e44368f9?w=600&auto=format&fit=crop&q=60&v={tstamp}"
         ],
         "Tecnologia": [
             f"https://images.unsplash.com/photo-1518770660439-4636190af475?w=600&auto=format&fit=crop&q=60&v={tstamp}",
@@ -661,8 +685,7 @@ def buscar_noticias_por_categoria():
             f"https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=600&auto=format&fit=crop&q=60&v={tstamp}",
             f"https://images.unsplash.com/photo-1531482615713-2afd69097998?w=600&auto=format&fit=crop&q=60&v={tstamp}",
             f"https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=600&auto=format&fit=crop&q=60&v={tstamp}",
-            f"https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=600&auto=format&fit=crop&q=60&v={tstamp}",
-            f"https://images.unsplash.com/photo-1535223289827-42f1e9919769?w=600&auto=format&fit=crop&q=60&v={tstamp}"
+            f"https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=600&auto=format&fit=crop&q=60&v={tstamp}"
         ],
         "Economia": [
             f"https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=600&auto=format&fit=crop&q=60&v={tstamp}",
@@ -670,8 +693,7 @@ def buscar_noticias_por_categoria():
             f"https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?w=600&auto=format&fit=crop&q=60&v={tstamp}",
             f"https://images.unsplash.com/photo-1559526324-4b87b5e36e44?w=600&auto=format&fit=crop&q=60&v={tstamp}",
             f"https://images.unsplash.com/photo-1579532537598-459ecdaf39cc?w=600&auto=format&fit=crop&q=60&v={tstamp}",
-            f"https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&auto=format&fit=crop&q=60&v={tstamp}",
-            f"https://images.unsplash.com/photo-1565372195458-9de0b320ef04?w=600&auto=format&fit=crop&q=60&v={tstamp}"
+            f"https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&auto=format&fit=crop&q=60&v={tstamp}"
         ],
         "Esportes": [
             f"https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=600&auto=format&fit=crop&q=60&v={tstamp}",
@@ -747,7 +769,7 @@ def buscar_noticias_por_categoria():
             {"title": "Bastidores de Produção: Como Efeitos Visuais Criam Mundos Hiper-Realistas", "desc": "Estúdios revelam segredos tecnológicos por trás dos maiores sucessos do cinema atual."}
         ],
         "Games & Tech": [
-            {"title": "Lançamentos de Jogos AAA Agitam o Mercado de Consoles e PC", "desc": "Títulos altamente aguardados trazem gráficos hiper-realistas e novas mecânicas."},
+            {"title": "Lançamentos de Jogos AAA Agitam o Mercado de Consoles e PC", "desc": "Títulos altamente aguardados traz gráficos hiper-realistas e novas mecânicas."},
             {"title": "Campeonatos Mundiais de Esports Batem Recordes de Audiência", "desc": "Competições profissionais de eSports reúnem milhões de espectadores simultâneos."},
             {"title": "Novas Placas Gráficas e Hardware Elevam Desempenho em Jogos Competitivos", "desc": "Fabricantes apresentam componentes otimizados para altas taxas de quadros."}
         ],
@@ -763,17 +785,15 @@ def buscar_noticias_por_categoria():
     for cat_nome, info in fontes.items():
         items_cat = []
         imgs_disponiveis = list(imagens_por_categoria.get(cat_nome, imagens_por_categoria["Mundo"]))
-        random.shuffle(imgs_disponiveis) # Embaralha estritamente por ciclo
+        random.shuffle(imgs_disponiveis)
         fallback_lista = fallbacks_por_categoria.get(cat_nome, fallbacks_por_categoria["Mundo"])
-        
-        limite_por_fonte = 3 if len(info["urls"]) > 1 else 6
         
         for url_rss in info["urls"]:
             try:
                 resp = requests.get(url_rss, verify=False, timeout=7)
                 if resp.status_code == 200:
                     root = ET.fromstring(resp.content)
-                    for item in root.findall('.//item')[:limite_por_fonte]:
+                    for item in root.findall('.//item')[:3]:  # Pega até 3 de cada fonte para misturar bem
                         title_elem = item.find('title')
                         link_elem = item.find('link')
                         desc_elem = item.find('description')
@@ -789,7 +809,6 @@ def buscar_noticias_por_categoria():
                         if not desc.strip():
                             desc = "Cobertura internacional atualizada em tempo real."
 
-                        # Garante exclusividade de imagem pegando da lista embaralhada sem repetir na mesma página
                         img_url = imgs_disponiveis[len(items_cat) % len(imgs_disponiveis)]
                         
                         noticia_obj = {
@@ -908,7 +927,7 @@ def send_search_engine_pings():
 
 def gerar_site():
     timestamp_atual = datetime.now().strftime("%d/%m/%Y às %H:%M")
-    print(f"Gerando portal unificado com anti-cache de imagens e SEO potencializado em {timestamp_atual}...")
+    print(f"Gerando portal unificado com múltiplas fontes globais em {timestamp_atual}...")
     
     paises = baixar_paises()
     categorias_dict, todas_noticias = buscar_noticias_por_categoria()
@@ -975,12 +994,13 @@ def gerar_site():
             timestamp=timestamp_atual,
             ad_banner=AD_BANNER, tradutor=WIDGET_TRADUTOR_MODERNO,
             adsense_script=ADSENSE_SCRIPT, monetag_script=MONETAG_SCRIPT,
-            google_meta=GOOGLE_META, licenca_rodape=LICENCA_RODAPE, dominio=DOMINIO_SITE
+            google_meta=GOOGLE_META, licenca_rodape=LICENCA_RODAPE, dominio=UI = WIDGET_TRADUTOR_MODERNO,
+            dominio=DOMINIO_SITE
         ))
 
     gerar_sitemap(lista_paises)
     send_search_engine_pings()
-    print("Sucesso absoluto! Portal potencializado com exclusividade de imagens por página e anti-cache ativado.")
+    print("Sucesso absoluto! Portal atualizado com fontes de notícias internacionais misturadas.")
 
 if __name__ == "__main__":
     gerar_site()
