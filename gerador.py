@@ -155,11 +155,14 @@ HTML_TEMPLATE = """
         .curiosidade-box h3 { margin-top: 0; color: var(--primary); font-size: 18px; }
         .curiosidade-box p { margin: 0; font-size: 15px; color: var(--text); line-height: 1.6; }
         .section-title { font-size: 22px; font-weight: 700; margin: 40px 0 20px 0; border-left: 5px solid var(--primary); padding-left: 12px; }
-        .news-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        
+        /* Grid corrigido e blindado contra quebras */
+        .news-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; align-items: stretch; }
         @media(max-width: 900px) { .news-grid { grid-template-columns: repeat(2, 1fr); } }
         @media(max-width: 600px) { .news-grid { grid-template-columns: 1fr; } }
-        .news-card { background: var(--card-bg); border-radius: 12px; border: 1px solid var(--border-color); display: flex; flex-direction: column; overflow: hidden; }
-        .news-img { width: 100%; height: 160px; object-fit: cover; background: #e2e8f0; }
+        
+        .news-card { background: var(--card-bg); border-radius: 12px; border: 1px solid var(--border-color); display: flex; flex-direction: column; overflow: hidden; height: 100%; }
+        .news-img { width: 100%; height: 160px; object-fit: cover; background: #e2e8f0; display: block; }
         .news-content { padding: 20px; display: flex; flex-direction: column; justify-content: space-between; flex-grow: 1; }
         .badge { display: inline-block; align-self: flex-start; padding: 4px 10px; font-size: 11px; font-weight: 700; border-radius: 20px; text-transform: uppercase; margin-bottom: 12px; color: white; }
         .news-card h3 { margin: 0 0 10px 0; font-size: 17px; line-height: 1.4; }
@@ -236,7 +239,7 @@ HTML_TEMPLATE = """
         <div class="news-grid">
             {% for noticia in noticias %}
             <div class="news-card">
-                <img src="{{ noticia.image }}" alt="Capa da Notícia" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
+                <img src="{{ noticia.image }}" alt="Capa da Notícia" class="news-img" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
                 <div class="news-content">
                     <div>
                         <span class="badge" style="background-color: {{ noticia.color }};">{{ noticia.category }}</span>
@@ -353,11 +356,13 @@ INDEX_TEMPLATE = """
         .country-card:hover { transform: translateY(-3px); border-color: var(--primary); }
         .country-card h3 { margin: 0 0 6px 0; color: var(--primary); font-size: 18px; font-weight: 700; }
         .country-card p { margin: 0; font-size: 13px; color: var(--text-light); }
-        .news-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        
+        .news-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; align-items: stretch; }
         @media(max-width: 900px) { .news-grid { grid-template-columns: repeat(2, 1fr); } }
         @media(max-width: 600px) { .news-grid { grid-template-columns: 1fr; } }
-        .news-card { background: var(--card-bg); border-radius: 12px; border: 1px solid var(--border-color); display: flex; flex-direction: column; overflow: hidden; }
-        .news-img { width: 100%; height: 165px; object-fit: cover; background: #e2e8f0; }
+        
+        .news-card { background: var(--card-bg); border-radius: 12px; border: 1px solid var(--border-color); display: flex; flex-direction: column; overflow: hidden; height: 100%; }
+        .news-img { width: 100%; height: 165px; object-fit: cover; background: #e2e8f0; display: block; }
         .news-content { padding: 20px; display: flex; flex-direction: column; justify-content: space-between; flex-grow: 1; }
         .badge { display: inline-block; align-self: flex-start; padding: 4px 10px; font-size: 11px; font-weight: 700; border-radius: 20px; text-transform: uppercase; margin-bottom: 12px; color: white; }
         .news-card h3 { margin: 0 0 10px 0; font-size: 17px; line-height: 1.4; }
@@ -404,7 +409,7 @@ INDEX_TEMPLATE = """
         {% if categorias.get('Mundo') and categorias['Mundo'].lista|length >= 3 %}
         <div class="hero-grid">
             <div class="hero-main">
-                <img src="{{ categorias['Mundo'].lista[0].image }}" alt="Destaque" onerror="this.src='https://images.unsplash.com/photo-1521295121783-8a321d551ad2?w=600&auto=format&fit=crop&q=60';">
+                <img src="{{ categorias['Mundo'].lista[0].image }}" alt="Destaque" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1521295121783-8a321d551ad2?w=600&auto=format&fit=crop&q=60';">
                 <div class="hero-main-content">
                     <div>
                         <span class="hero-tag">🔴 PLANTÃO URGENTE</span>
@@ -416,14 +421,14 @@ INDEX_TEMPLATE = """
 
             <div class="hero-side">
                 <div class="side-card">
-                    <img src="{{ categorias['Mundo'].lista[1].image }}" alt="Vídeo 1" onerror="this.src='https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=600&auto=format&fit=crop&q=60';">
+                    <img src="{{ categorias['Mundo'].lista[1].image }}" alt="Vídeo 1" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=600&auto=format&fit=crop&q=60';">
                     <div class="side-content">
                         <span class="side-tag">▶ VÍDEO: CENAS FORTES</span>
                         <h4><a href="{{ categorias['Mundo'].lista[1].link }}" target="_blank" rel="nofollow">{{ categorias['Mundo'].lista[1].title }}</a></h4>
                     </div>
                 </div>
                 <div class="side-card">
-                    <img src="{{ categorias['Mundo'].lista[2].image }}" alt="Vídeo 2" onerror="this.src='https://images.unsplash.com/photo-1508739773434-c26b3d09e071?w=600&auto=format&fit=crop&q=60';">
+                    <img src="{{ categorias['Mundo'].lista[2].image }}" alt="Vídeo 2" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1508739773434-c26b3d09e071?w=600&auto=format&fit=crop&q=60';">
                     <div class="side-content">
                         <span class="side-tag">⚡ ÚLTIMA HORA</span>
                         <h4><a href="{{ categorias['Mundo'].lista[2].link }}" target="_blank" rel="nofollow">{{ categorias['Mundo'].lista[2].title }}</a></h4>
@@ -438,7 +443,7 @@ INDEX_TEMPLATE = """
         <div class="news-grid">
             {% for noticia in cat_data.lista %}
             <div class="news-card">
-                <img src="{{ noticia.image }}" alt="Capa" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
+                <img src="{{ noticia.image }}" alt="Capa" class="news-img" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
                 <div class="news-content">
                     <div>
                         <span class="badge" style="background-color: {{ cat_data.color }};">{{ cat_nome }}</span>
@@ -923,7 +928,7 @@ def send_search_engine_pings():
 
 def gerar_site():
     timestamp_atual = datetime.now().strftime("%d/%m/%Y às %H:%M")
-    print(f"Gerando portal unificado com múltiplas fontes globais em {timestamp_atual}...")
+    print(f"Gerando portal unificado com grid corrigido em {timestamp_atual}...")
     
     paises = baixar_paises()
     categorias_dict, todas_noticias = buscar_noticias_por_categoria()
@@ -995,7 +1000,7 @@ def gerar_site():
 
     gerar_sitemap(lista_paises)
     send_search_engine_pings()
-    print("Sucesso absoluto! Portal atualizado com fontes de notícias internacionais misturadas.")
+    print("Sucesso absoluto! Grid e alinhamento de imagens corrigidos.")
 
 if __name__ == "__main__":
     gerar_site()

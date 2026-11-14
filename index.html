@@ -8,7 +8,7 @@
     <script src="https://quge5.com/88/tag.min.js" data-zone="309679" async data-cfasync="false"></script>
     <meta name="google-site-verification" content="pbgwZbVwgKMwqqqGYFcHeGGbV7EM7nBdlns1c_DN_Sw" />
     <title>Global News & Data - Portal Mundial de Notícias, Economia, Vagas e Saúde</title>
-    <meta name="description" content="Portal global completo com notícias em tempo real, cotações, vagas de emprego home office, economia, tecnologia, filmes, games, saúde e indicadores estatísticos. Atualizado em 14/11/2026 às 17:45.">
+    <meta name="description" content="Portal global completo com notícias em tempo real, cotações, vagas de emprego home office, economia, tecnologia, filmes, games, saúde e indicadores estatísticos. Atualizado em 14/11/2026 às 17:56.">
     
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Global News & Data">
@@ -78,11 +78,13 @@
         .country-card:hover { transform: translateY(-3px); border-color: var(--primary); }
         .country-card h3 { margin: 0 0 6px 0; color: var(--primary); font-size: 18px; font-weight: 700; }
         .country-card p { margin: 0; font-size: 13px; color: var(--text-light); }
-        .news-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        
+        .news-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; align-items: stretch; }
         @media(max-width: 900px) { .news-grid { grid-template-columns: repeat(2, 1fr); } }
         @media(max-width: 600px) { .news-grid { grid-template-columns: 1fr; } }
-        .news-card { background: var(--card-bg); border-radius: 12px; border: 1px solid var(--border-color); display: flex; flex-direction: column; overflow: hidden; }
-        .news-img { width: 100%; height: 165px; object-fit: cover; background: #e2e8f0; }
+        
+        .news-card { background: var(--card-bg); border-radius: 12px; border: 1px solid var(--border-color); display: flex; flex-direction: column; overflow: hidden; height: 100%; }
+        .news-img { width: 100%; height: 165px; object-fit: cover; background: #e2e8f0; display: block; }
         .news-content { padding: 20px; display: flex; flex-direction: column; justify-content: space-between; flex-grow: 1; }
         .badge { display: inline-block; align-self: flex-start; padding: 4px 10px; font-size: 11px; font-weight: 700; border-radius: 20px; text-transform: uppercase; margin-bottom: 12px; color: white; }
         .news-card h3 { margin: 0 0 10px 0; font-size: 17px; line-height: 1.4; }
@@ -174,7 +176,7 @@ function mudarIdiomaUrl(lang) {
         <header>
             <h1>Global News & Data</h1>
             <p>O portal mundial definitivo para notícias em tempo real, cotações, conflitos, economia, vagas home office e dados globais.</p>
-            <div class="timestamp-badge">🕒 Atualizado em tempo real: 14/11/2026 às 17:45</div>
+            <div class="timestamp-badge">🕒 Atualizado em tempo real: 14/11/2026 às 17:56</div>
             <input type="text" id="searchInput" class="search-box" placeholder="🔍 Pesquisar país por nome (ex: Brasil, Japão, Ucrânia)..." onkeyup="filtrarPaises()" style="margin-top: 15px;">
         </header>
 
@@ -194,29 +196,29 @@ function mudarIdiomaUrl(lang) {
         
         <div class="hero-grid">
             <div class="hero-main">
-                <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=600&auto=format&fit=crop&q=60&v=1794689143" alt="Destaque" onerror="this.src='https://images.unsplash.com/photo-1521295121783-8a321d551ad2?w=600&auto=format&fit=crop&q=60';">
+                <img src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=600&auto=format&fit=crop&q=60&v=1794689781" alt="Destaque" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1521295121783-8a321d551ad2?w=600&auto=format&fit=crop&q=60';">
                 <div class="hero-main-content">
                     <div>
                         <span class="hero-tag">🔴 PLANTÃO URGENTE</span>
-                        <h2><a href="https://www.bbc.co.uk/news/articles/cwvg2l312ylqo?at_medium=RSS&at_campaign=rss" target="_blank" rel="nofollow">US has floated Ukraine ceding Donbas for Nato membership, Zelensky says</a></h2>
+                        <h2><a href="#mundo" target="_blank" rel="nofollow">Escalada de Conflitos Internacionais e Tensões Globais Exigem Alerta</a></h2>
                     </div>
-                    <p>The US has not confirmed the Ukrainian president's comments which follow meetings US envoys had with him and Russia's Vladimir Putin.</p>
+                    <p>Especialistas monitoram de perto os desdobramentos diplomáticos e militares nas principais frentes mundiais.</p>
                 </div>
             </div>
 
             <div class="hero-side">
                 <div class="side-card">
-                    <img src="https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?w=600&auto=format&fit=crop&q=60&v=1794689143" alt="Vídeo 1" onerror="this.src='https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=600&auto=format&fit=crop&q=60';">
+                    <img src="https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?w=600&auto=format&fit=crop&q=60&v=1794689781" alt="Vídeo 1" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=600&auto=format&fit=crop&q=60';">
                     <div class="side-content">
                         <span class="side-tag">▶ VÍDEO: CENAS FORTES</span>
-                        <h4><a href="https://www.bbc.co.uk/news/articles/cwn83gxemk35o?at_medium=RSS&at_campaign=rss" target="_blank" rel="nofollow">Italy fines Meta €805m over accessing users' photos</a></h4>
+                        <h4><a href="#mundo" target="_blank" rel="nofollow">Acordos de Última Hora Tentam Evitar Crise Energética Global</a></h4>
                     </div>
                 </div>
                 <div class="side-card">
-                    <img src="https://images.unsplash.com/photo-1541872703-74c5e44368f9?w=600&auto=format&fit=crop&q=60&v=1794689143" alt="Vídeo 2" onerror="this.src='https://images.unsplash.com/photo-1508739773434-c26b3d09e071?w=600&auto=format&fit=crop&q=60';">
+                    <img src="https://images.unsplash.com/photo-1508739773434-c26b3d09e071?w=600&auto=format&fit=crop&q=60&v=1794689781" alt="Vídeo 2" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1508739773434-c26b3d09e071?w=600&auto=format&fit=crop&q=60';">
                     <div class="side-content">
                         <span class="side-tag">⚡ ÚLTIMA HORA</span>
-                        <h4><a href="#mundo" target="_blank" rel="nofollow">Escalada de Conflitos Internacionais e Tensões Globais Exigem Alerta</a></h4>
+                        <h4><a href="https://www.bbc.co.uk/news/articles/c6wy9lynq4qno?at_medium=RSS&at_campaign=rss" target="_blank" rel="nofollow">Copper wire upgrade caused nationwide flight suspension, US transport secretary says</a></h4>
                     </div>
                 </div>
             </div>
@@ -228,29 +230,7 @@ function mudarIdiomaUrl(lang) {
         <div class="news-grid">
             
             <div class="news-card">
-                <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=600&auto=format&fit=crop&q=60&v=1794689143" alt="Capa" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
-                <div class="news-content">
-                    <div>
-                        <span class="badge" style="background-color: #2563eb;">Mundo</span>
-                        <h3><a href="https://www.bbc.co.uk/news/articles/cwvg2l312ylqo?at_medium=RSS&at_campaign=rss" target="_blank" rel="nofollow">US has floated Ukraine ceding Donbas for Nato membership, Zelensky says</a></h3>
-                    </div>
-                    <p>The US has not confirmed the Ukrainian president's comments which follow meetings US envoys had with him and Russia's Vladimir Putin.</p>
-                </div>
-            </div>
-            
-            <div class="news-card">
-                <img src="https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?w=600&auto=format&fit=crop&q=60&v=1794689143" alt="Capa" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
-                <div class="news-content">
-                    <div>
-                        <span class="badge" style="background-color: #2563eb;">Mundo</span>
-                        <h3><a href="https://www.bbc.co.uk/news/articles/cwn83gxemk35o?at_medium=RSS&at_campaign=rss" target="_blank" rel="nofollow">Italy fines Meta €805m over accessing users' photos</a></h3>
-                    </div>
-                    <p>The social media giant is accused of not informing 20 million users it had access to their photos.</p>
-                </div>
-            </div>
-            
-            <div class="news-card">
-                <img src="https://images.unsplash.com/photo-1541872703-74c5e44368f9?w=600&auto=format&fit=crop&q=60&v=1794689143" alt="Capa" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
+                <img src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=600&auto=format&fit=crop&q=60&v=1794689781" alt="Capa" class="news-img" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
                 <div class="news-content">
                     <div>
                         <span class="badge" style="background-color: #2563eb;">Mundo</span>
@@ -261,18 +241,7 @@ function mudarIdiomaUrl(lang) {
             </div>
             
             <div class="news-card">
-                <img src="https://images.unsplash.com/photo-1508739773434-c26b3d09e071?w=600&auto=format&fit=crop&q=60&v=1794689143" alt="Capa" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
-                <div class="news-content">
-                    <div>
-                        <span class="badge" style="background-color: #2563eb;">Mundo</span>
-                        <h3><a href="https://www.bbc.co.uk/news/articles/c6wy9lynq4qno?at_medium=RSS&at_campaign=rss" target="_blank" rel="nofollow">Copper wire upgrade caused nationwide flight suspension, US transport secretary says</a></h3>
-                    </div>
-                    <p>The US government is trying to find out whether the chaos was caused by "incompetence" or faulty equipment.</p>
-                </div>
-            </div>
-            
-            <div class="news-card">
-                <img src="https://images.unsplash.com/photo-1521295121783-8a321d551ad2?w=600&auto=format&fit=crop&q=60&v=1794689143" alt="Capa" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
+                <img src="https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?w=600&auto=format&fit=crop&q=60&v=1794689781" alt="Capa" class="news-img" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
                 <div class="news-content">
                     <div>
                         <span class="badge" style="background-color: #2563eb;">Mundo</span>
@@ -283,13 +252,46 @@ function mudarIdiomaUrl(lang) {
             </div>
             
             <div class="news-card">
-                <img src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=600&auto=format&fit=crop&q=60&v=1794689143" alt="Capa" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
+                <img src="https://images.unsplash.com/photo-1508739773434-c26b3d09e071?w=600&auto=format&fit=crop&q=60&v=1794689781" alt="Capa" class="news-img" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
+                <div class="news-content">
+                    <div>
+                        <span class="badge" style="background-color: #2563eb;">Mundo</span>
+                        <h3><a href="https://www.bbc.co.uk/news/articles/c6wy9lynq4qno?at_medium=RSS&at_campaign=rss" target="_blank" rel="nofollow">Copper wire upgrade caused nationwide flight suspension, US transport secretary says</a></h3>
+                    </div>
+                    <p>The US government is trying to find out whether the chaos was caused by "incompetence" or faulty equipment.</p>
+                </div>
+            </div>
+            
+            <div class="news-card">
+                <img src="https://images.unsplash.com/photo-1541872703-74c5e44368f9?w=600&auto=format&fit=crop&q=60&v=1794689781" alt="Capa" class="news-img" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
                 <div class="news-content">
                     <div>
                         <span class="badge" style="background-color: #2563eb;">Mundo</span>
                         <h3><a href="#mundo" target="_blank" rel="nofollow">VÍDEO: Momento Chocante de Reviravolta em Zona de Crise</a></h3>
                     </div>
                     <p>Imagens capturadas ao vivo mostram o impacto de eventos drásticos que paralisaram autoridades.</p>
+                </div>
+            </div>
+            
+            <div class="news-card">
+                <img src="https://images.unsplash.com/photo-1521295121783-8a321d551ad2?w=600&auto=format&fit=crop&q=60&v=1794689781" alt="Capa" class="news-img" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
+                <div class="news-content">
+                    <div>
+                        <span class="badge" style="background-color: #2563eb;">Mundo</span>
+                        <h3><a href="https://www.bbc.co.uk/news/articles/cwn83gxemk35o?at_medium=RSS&at_campaign=rss" target="_blank" rel="nofollow">Italy fines Meta €805m over accessing users' photos</a></h3>
+                    </div>
+                    <p>The social media giant is accused of not informing 20 million users it had access to their photos.</p>
+                </div>
+            </div>
+            
+            <div class="news-card">
+                <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=600&auto=format&fit=crop&q=60&v=1794689781" alt="Capa" class="news-img" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
+                <div class="news-content">
+                    <div>
+                        <span class="badge" style="background-color: #2563eb;">Mundo</span>
+                        <h3><a href="https://www.bbc.co.uk/news/articles/cwvg2l312ylqo?at_medium=RSS&at_campaign=rss" target="_blank" rel="nofollow">US has floated Ukraine ceding Donbas for Nato membership, Zelensky says</a></h3>
+                    </div>
+                    <p>The US has not confirmed the Ukrainian president's comments which follow meetings US envoys had with him and Russia's Vladimir Putin.</p>
                 </div>
             </div>
             
@@ -300,7 +302,7 @@ function mudarIdiomaUrl(lang) {
         <div class="news-grid">
             
             <div class="news-card">
-                <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?w=600&auto=format&fit=crop&q=60&v=1794689143" alt="Capa" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
+                <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=600&auto=format&fit=crop&q=60&v=1794689781" alt="Capa" class="news-img" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
                 <div class="news-content">
                     <div>
                         <span class="badge" style="background-color: #7c3aed;">Tecnologia</span>
@@ -311,7 +313,7 @@ function mudarIdiomaUrl(lang) {
             </div>
             
             <div class="news-card">
-                <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=600&auto=format&fit=crop&q=60&v=1794689143" alt="Capa" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
+                <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=600&auto=format&fit=crop&q=60&v=1794689781" alt="Capa" class="news-img" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
                 <div class="news-content">
                     <div>
                         <span class="badge" style="background-color: #7c3aed;">Tecnologia</span>
@@ -322,18 +324,7 @@ function mudarIdiomaUrl(lang) {
             </div>
             
             <div class="news-card">
-                <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=600&auto=format&fit=crop&q=60&v=1794689143" alt="Capa" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
-                <div class="news-content">
-                    <div>
-                        <span class="badge" style="background-color: #7c3aed;">Tecnologia</span>
-                        <h3><a href="#tecnologia" target="_blank" rel="nofollow">A Revolução da Inteligência Artificial Generativa nos Mercados</a></h3>
-                    </div>
-                    <p>Empresas adotam modelos preditivos avançados para otimizar processos e reduzir custos.</p>
-                </div>
-            </div>
-            
-            <div class="news-card">
-                <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=600&auto=format&fit=crop&q=60&v=1794689143" alt="Capa" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
+                <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=600&auto=format&fit=crop&q=60&v=1794689781" alt="Capa" class="news-img" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
                 <div class="news-content">
                     <div>
                         <span class="badge" style="background-color: #7c3aed;">Tecnologia</span>
@@ -344,24 +335,35 @@ function mudarIdiomaUrl(lang) {
             </div>
             
             <div class="news-card">
-                <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=600&auto=format&fit=crop&q=60&v=1794689143" alt="Capa" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
-                <div class="news-content">
-                    <div>
-                        <span class="badge" style="background-color: #7c3aed;">Tecnologia</span>
-                        <h3><a href="#tecnologia" target="_blank" rel="nofollow">Expansão da Infraestrutura de Conectividade de Alta Velocidade</a></h3>
-                    </div>
-                    <p>Investimentos bilionários ampliam o acesso digital e redes de fibra em grandes centros.</p>
-                </div>
-            </div>
-            
-            <div class="news-card">
-                <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=600&auto=format&fit=crop&q=60&v=1794689143" alt="Capa" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
+                <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?w=600&auto=format&fit=crop&q=60&v=1794689781" alt="Capa" class="news-img" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
                 <div class="news-content">
                     <div>
                         <span class="badge" style="background-color: #7c3aed;">Tecnologia</span>
                         <h3><a href="#tecnologia" target="_blank" rel="nofollow">Cibersegurança em Alerta: Novos Protocolos Contra Ataques Globais</a></h3>
                     </div>
                     <p>Especialistas revelam ferramentas essenciais para blindar dados corporativos e pessoais.</p>
+                </div>
+            </div>
+            
+            <div class="news-card">
+                <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=600&auto=format&fit=crop&q=60&v=1794689781" alt="Capa" class="news-img" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
+                <div class="news-content">
+                    <div>
+                        <span class="badge" style="background-color: #7c3aed;">Tecnologia</span>
+                        <h3><a href="#tecnologia" target="_blank" rel="nofollow">Expansão da Infraestrutura de Conectividade de Alta Velocidade</a></h3>
+                    </div>
+                    <p>Investimentos bilionários ampliam o acesso digital e redes de fibra em grandes centros.</p>
+                </div>
+            </div>
+            
+            <div class="news-card">
+                <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=600&auto=format&fit=crop&q=60&v=1794689781" alt="Capa" class="news-img" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
+                <div class="news-content">
+                    <div>
+                        <span class="badge" style="background-color: #7c3aed;">Tecnologia</span>
+                        <h3><a href="#tecnologia" target="_blank" rel="nofollow">A Revolução da Inteligência Artificial Generativa nos Mercados</a></h3>
+                    </div>
+                    <p>Empresas adotam modelos preditivos avançados para otimizar processos e reduzir custos.</p>
                 </div>
             </div>
             
@@ -386,40 +388,7 @@ function mudarIdiomaUrl(lang) {
         <div class="news-grid">
             
             <div class="news-card">
-                <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=600&auto=format&fit=crop&q=60&v=1794689143" alt="Capa" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
-                <div class="news-content">
-                    <div>
-                        <span class="badge" style="background-color: #059669;">Economia</span>
-                        <h3><a href="https://www.infomoney.com.br/brasil/fortes-chuvas-atingem-sao-paulo-nos-proximos-dias-veja-quando/" target="_blank" rel="nofollow">Fortes chuvas atingem São Paulo nos próximos dias; veja quando</a></h3>
-                    </div>
-                    <p><img width="300" height="200" src="https://www.infomoney.com.br/wp-content/uploads/2026/07/alex-dukhanov-ZxZQk7777R4-unsplash-1.jpg?fit=300%...</p>
-                </div>
-            </div>
-            
-            <div class="news-card">
-                <img src="https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?w=600&auto=format&fit=crop&q=60&v=1794689143" alt="Capa" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
-                <div class="news-content">
-                    <div>
-                        <span class="badge" style="background-color: #059669;">Economia</span>
-                        <h3><a href="https://www.infomoney.com.br/esportes/romario-pede-saida-de-ancelotti-da-selecao-apos-brasil-japao/" target="_blank" rel="nofollow">Romário pede saída de Ancelotti da seleção: ‘Pega tuas coisas e mete o pé!</a></h3>
-                    </div>
-                    <p>Em uma manifestação contundente pelas redes sociais, o ex-atleta criticou o trabalho do treinador italiano e cobrou uma atitude do president...</p>
-                </div>
-            </div>
-            
-            <div class="news-card">
-                <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&auto=format&fit=crop&q=60&v=1794689143" alt="Capa" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
-                <div class="news-content">
-                    <div>
-                        <span class="badge" style="background-color: #059669;">Economia</span>
-                        <h3><a href="https://www.bbc.co.uk/news/articles/c6rrg51rkz09o?at_medium=RSS&at_campaign=rss" target="_blank" rel="nofollow">Microsoft says services fully restored after day-long global outage</a></h3>
-                    </div>
-                    <p>Efforts to address the underlying problem with Outlook, Teams and Copilot are complete, the tech firm says.</p>
-                </div>
-            </div>
-            
-            <div class="news-card">
-                <img src="https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?w=600&auto=format&fit=crop&q=60&v=1794689143" alt="Capa" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
+                <img src="https://images.unsplash.com/photo-1559526324-4b87b5e36e44?w=600&auto=format&fit=crop&q=60&v=1794689781" alt="Capa" class="news-img" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
                 <div class="news-content">
                     <div>
                         <span class="badge" style="background-color: #059669;">Economia</span>
@@ -430,7 +399,18 @@ function mudarIdiomaUrl(lang) {
             </div>
             
             <div class="news-card">
-                <img src="https://images.unsplash.com/photo-1579532537598-459ecdaf39cc?w=600&auto=format&fit=crop&q=60&v=1794689143" alt="Capa" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
+                <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&auto=format&fit=crop&q=60&v=1794689781" alt="Capa" class="news-img" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
+                <div class="news-content">
+                    <div>
+                        <span class="badge" style="background-color: #059669;">Economia</span>
+                        <h3><a href="https://www.bbc.co.uk/news/articles/c6rrg51rkz09o?at_medium=RSS&at_campaign=rss" target="_blank" rel="nofollow">Microsoft says services fully restored after day-long global outage</a></h3>
+                    </div>
+                    <p>Efforts to address the underlying problem with Outlook, Teams and Copilot are complete, the tech firm says.</p>
+                </div>
+            </div>
+            
+            <div class="news-card">
+                <img src="https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?w=600&auto=format&fit=crop&q=60&v=1794689781" alt="Capa" class="news-img" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
                 <div class="news-content">
                     <div>
                         <span class="badge" style="background-color: #059669;">Economia</span>
@@ -441,7 +421,7 @@ function mudarIdiomaUrl(lang) {
             </div>
             
             <div class="news-card">
-                <img src="https://images.unsplash.com/photo-1559526324-4b87b5e36e44?w=600&auto=format&fit=crop&q=60&v=1794689143" alt="Capa" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
+                <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=600&auto=format&fit=crop&q=60&v=1794689781" alt="Capa" class="news-img" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
                 <div class="news-content">
                     <div>
                         <span class="badge" style="background-color: #059669;">Economia</span>
@@ -452,6 +432,28 @@ The post Fim da 6&#215;1: Fux interrompe julgamento e análise de decis...</p>
                 </div>
             </div>
             
+            <div class="news-card">
+                <img src="https://images.unsplash.com/photo-1579532537598-459ecdaf39cc?w=600&auto=format&fit=crop&q=60&v=1794689781" alt="Capa" class="news-img" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
+                <div class="news-content">
+                    <div>
+                        <span class="badge" style="background-color: #059669;">Economia</span>
+                        <h3><a href="https://www.infomoney.com.br/mercados/passageiros-tem-show-particular-de-simple-plan-e-hoobastank-com-caos-aereo-nos-eua/" target="_blank" rel="nofollow">Passageiros têm ‘show particular’ de Simple Plan e Hoobastank com caos aéreo nos EUA</a></h3>
+                    </div>
+                    <p><img width="300" height="231" src="https://www.infomoney.com.br/wp-content/uploads/2026/11/Simple-Plan-Reproducao-Site-Oficial.jpg?fit=300%2...</p>
+                </div>
+            </div>
+            
+            <div class="news-card">
+                <img src="https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?w=600&auto=format&fit=crop&q=60&v=1794689781" alt="Capa" class="news-img" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
+                <div class="news-content">
+                    <div>
+                        <span class="badge" style="background-color: #059669;">Economia</span>
+                        <h3><a href="https://www.infomoney.com.br/esportes/romario-pede-saida-de-ancelotti-da-selecao-apos-brasil-japao/" target="_blank" rel="nofollow">Romário pede saída de Ancelotti da seleção: ‘Pega tuas coisas e mete o pé!</a></h3>
+                    </div>
+                    <p>Em uma manifestação contundente pelas redes sociais, o ex-atleta criticou o trabalho do treinador italiano e cobrou uma atitude do president...</p>
+                </div>
+            </div>
+            
         </div>
         
         
@@ -459,52 +461,7 @@ The post Fim da 6&#215;1: Fux interrompe julgamento e análise de decis...</p>
         <div class="news-grid">
             
             <div class="news-card">
-                <img src="https://images.unsplash.com/photo-1517649763962-0c623066013b?w=600&auto=format&fit=crop&q=60&v=1794689143" alt="Capa" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
-                <div class="news-content">
-                    <div>
-                        <span class="badge" style="background-color: #dc2626;">Esportes</span>
-                        <h3><a href="https://ge.globo.com/rj/futebol/ao-vivo/eleicao-do-vasco-acompanhe-ao-vivo.ghtml" target="_blank" rel="nofollow">Eleição do Vasco - Acompanhe AO VIVO!</a></h3>
-                    </div>
-                    <p>Eleição do Vasco - Acompanhe AO VIVO! Votação definirá o novo presidente para o triênio 2027-2029</p>
-                </div>
-            </div>
-            
-            <div class="news-card">
-                <img src="https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=600&auto=format&fit=crop&q=60&v=1794689143" alt="Capa" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
-                <div class="news-content">
-                    <div>
-                        <span class="badge" style="background-color: #dc2626;">Esportes</span>
-                        <h3><a href="#esportes" target="_blank" rel="nofollow">Campeonatos Internacionais de Futebol Entram em Fase Decisiva</a></h3>
-                    </div>
-                    <p>Clubes e seleções intensificam preparativos para confrontos mundiais eletrizantes.</p>
-                </div>
-            </div>
-            
-            <div class="news-card">
-                <img src="https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=600&auto=format&fit=crop&q=60&v=1794689143" alt="Capa" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
-                <div class="news-content">
-                    <div>
-                        <span class="badge" style="background-color: #dc2626;">Esportes</span>
-                        <h3><a href="#esportes" target="_blank" rel="nofollow">Grandes Ligas de Basquete e Tênis Movimentam Torcedores pelo Mundo</a></h3>
-                    </div>
-                    <p>Calendário esportivo global traz partidas históricas e recordes individuais.</p>
-                </div>
-            </div>
-            
-            <div class="news-card">
-                <img src="https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?w=600&auto=format&fit=crop&q=60&v=1794689143" alt="Capa" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
-                <div class="news-content">
-                    <div>
-                        <span class="badge" style="background-color: #dc2626;">Esportes</span>
-                        <h3><a href="https://ge.globo.com/pi/futebol/noticia/2026/11/14/fluminense-pi-acerta-a-contratacao-do-zagueiro-douglas-ex-sport-e-ceara-para-2027.ghtml" target="_blank" rel="nofollow">Fluminense-PI acerta a contratação do zagueiro Douglas, ex-Sport e Ceará, para 2027</a></h3>
-                    </div>
-                    <p>Sem Albertão, Lindolfo Monteiro deve receber 23 jogos do Piauiense
-O Fluminense-PI segue a montagem do elenco para a temporada de 2027 e ace...</p>
-                </div>
-            </div>
-            
-            <div class="news-card">
-                <img src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=600&auto=format&fit=crop&q=60&v=1794689143" alt="Capa" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
+                <img src="https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=600&auto=format&fit=crop&q=60&v=1794689781" alt="Capa" class="news-img" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
                 <div class="news-content">
                     <div>
                         <span class="badge" style="background-color: #dc2626;">Esportes</span>
@@ -515,14 +472,57 @@ O Fluminense-PI segue a montagem do elenco para a temporada de 2027 e ace...</p>
             </div>
             
             <div class="news-card">
-                <img src="https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=600&auto=format&fit=crop&q=60&v=1794689143" alt="Capa" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
+                <img src="https://images.unsplash.com/photo-1517649763962-0c623066013b?w=600&auto=format&fit=crop&q=60&v=1794689781" alt="Capa" class="news-img" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
                 <div class="news-content">
                     <div>
                         <span class="badge" style="background-color: #dc2626;">Esportes</span>
-                        <h3><a href="https://ge.globo.com/pr/futsal/noticia/2026/11/14/final-da-libertadores-de-futsal-feminina-onde-assistir-ao-vivo-e-horario.ghtml" target="_blank" rel="nofollow">Final da Libertadores de Futsal Feminina: onde assistir ao vivo e horário</a></h3>
+                        <h3><a href="https://ge.globo.com/sp/tem-esporte/futebol/brasileirao-serie-a/jogo/14-11-2026/mirassol-atletico-mg.ghtml" target="_blank" rel="nofollow">Mirassol x Atlético-MG - Campeonato Brasileiro 2026 - Ao vivo - globoesporte.com</a></h3>
                     </div>
-                    <p>Stein Cascavel 3 x 0 Peñarol | Gols | Semifinal | Libertadores Feminina de Futsal 2026
-Stein Cascavel e La Unión, do Equador, se enfrentam p...</p>
+                    <p>Campeonato Brasileiro 2026 no globoesporte.com - acompanhe tudo sobre Mirassol x Atlético-MG: escalação, informações sobre o jogo, fotos e m...</p>
+                </div>
+            </div>
+            
+            <div class="news-card">
+                <img src="https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?w=600&auto=format&fit=crop&q=60&v=1794689781" alt="Capa" class="news-img" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
+                <div class="news-content">
+                    <div>
+                        <span class="badge" style="background-color: #dc2626;">Esportes</span>
+                        <h3><a href="https://ge.globo.com/al/futebol/brasileirao-serie-b/jogo/14-11-2026/crb-ceara.ghtml" target="_blank" rel="nofollow">CRB x Ceará - Campeonato Brasileiro Série B 2026 - Ao vivo - globoesporte.com</a></h3>
+                    </div>
+                    <p>Campeonato Brasileiro Série B 2026 no globoesporte.com - acompanhe tudo sobre CRB x Ceará: escalação, informações sobre o jogo, fotos e muit...</p>
+                </div>
+            </div>
+            
+            <div class="news-card">
+                <img src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=600&auto=format&fit=crop&q=60&v=1794689781" alt="Capa" class="news-img" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
+                <div class="news-content">
+                    <div>
+                        <span class="badge" style="background-color: #dc2626;">Esportes</span>
+                        <h3><a href="#esportes" target="_blank" rel="nofollow">Grandes Ligas de Basquete e Tênis Movimentam Torcedores pelo Mundo</a></h3>
+                    </div>
+                    <p>Calendário esportivo global traz partidas históricas e recordes individuais.</p>
+                </div>
+            </div>
+            
+            <div class="news-card">
+                <img src="https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=600&auto=format&fit=crop&q=60&v=1794689781" alt="Capa" class="news-img" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
+                <div class="news-content">
+                    <div>
+                        <span class="badge" style="background-color: #dc2626;">Esportes</span>
+                        <h3><a href="https://ge.globo.com/pe/futebol/brasileirao-serie-b/jogo/14-11-2026/sport-goias.ghtml" target="_blank" rel="nofollow">Sport x Goiás - Campeonato Brasileiro Série B 2026 - Ao vivo - globoesporte.com</a></h3>
+                    </div>
+                    <p>Campeonato Brasileiro Série B 2026 no globoesporte.com - acompanhe tudo sobre Sport x Goiás: escalação, informações sobre o jogo, fotos e mu...</p>
+                </div>
+            </div>
+            
+            <div class="news-card">
+                <img src="https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=600&auto=format&fit=crop&q=60&v=1794689781" alt="Capa" class="news-img" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
+                <div class="news-content">
+                    <div>
+                        <span class="badge" style="background-color: #dc2626;">Esportes</span>
+                        <h3><a href="#esportes" target="_blank" rel="nofollow">Campeonatos Internacionais de Futebol Entram em Fase Decisiva</a></h3>
+                    </div>
+                    <p>Clubes e seleções intensificam preparativos para confrontos mundiais eletrizantes.</p>
                 </div>
             </div>
             
@@ -533,29 +533,7 @@ Stein Cascavel e La Unión, do Equador, se enfrentam p...</p>
         <div class="news-grid">
             
             <div class="news-card">
-                <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&auto=format&fit=crop&q=60&v=1794689143" alt="Capa" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
-                <div class="news-content">
-                    <div>
-                        <span class="badge" style="background-color: #ea580c;">Vagas & Home Office</span>
-                        <h3><a href="#empregos" target="_blank" rel="nofollow">Grandes Empresas Abrem Centenas de Vagas para Trabalho Remoto (Home Office)</a></h3>
-                    </div>
-                    <p>Oportunidades internacionais e nacionais oferecem flexibilidade e contratação imediata.</p>
-                </div>
-            </div>
-            
-            <div class="news-card">
-                <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=600&auto=format&fit=crop&q=60&v=1794689143" alt="Capa" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
-                <div class="news-content">
-                    <div>
-                        <span class="badge" style="background-color: #ea580c;">Vagas & Home Office</span>
-                        <h3><a href="#empregos" target="_blank" rel="nofollow">Novas Oportunidades em Concursos Públicos e Processos Seletivos</a></h3>
-                    </div>
-                    <p>Confira os editais abertos com milhares de vagas e inscrições disponíveis esta semana.</p>
-                </div>
-            </div>
-            
-            <div class="news-card">
-                <img src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=600&auto=format&fit=crop&q=60&v=1794689143" alt="Capa" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
+                <img src="https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60&v=1794689781" alt="Capa" class="news-img" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
                 <div class="news-content">
                     <div>
                         <span class="badge" style="background-color: #ea580c;">Vagas & Home Office</span>
@@ -566,7 +544,7 @@ Stein Cascavel e La Unión, do Equador, se enfrentam p...</p>
             </div>
             
             <div class="news-card">
-                <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600&auto=format&fit=crop&q=60&v=1794689143" alt="Capa" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
+                <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=600&auto=format&fit=crop&q=60&v=1794689781" alt="Capa" class="news-img" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
                 <div class="news-content">
                     <div>
                         <span class="badge" style="background-color: #ea580c;">Vagas & Home Office</span>
@@ -577,7 +555,18 @@ Stein Cascavel e La Unión, do Equador, se enfrentam p...</p>
             </div>
             
             <div class="news-card">
-                <img src="https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60&v=1794689143" alt="Capa" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
+                <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&auto=format&fit=crop&q=60&v=1794689781" alt="Capa" class="news-img" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
+                <div class="news-content">
+                    <div>
+                        <span class="badge" style="background-color: #ea580c;">Vagas & Home Office</span>
+                        <h3><a href="#empregos" target="_blank" rel="nofollow">Novas Oportunidades em Concursos Públicos e Processos Seletivos</a></h3>
+                    </div>
+                    <p>Confira os editais abertos com milhares de vagas e inscrições disponíveis esta semana.</p>
+                </div>
+            </div>
+            
+            <div class="news-card">
+                <img src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=600&auto=format&fit=crop&q=60&v=1794689781" alt="Capa" class="news-img" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
                 <div class="news-content">
                     <div>
                         <span class="badge" style="background-color: #ea580c;">Vagas & Home Office</span>
@@ -588,13 +577,24 @@ Stein Cascavel e La Unión, do Equador, se enfrentam p...</p>
             </div>
             
             <div class="news-card">
-                <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=600&auto=format&fit=crop&q=60&v=1794689143" alt="Capa" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
+                <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600&auto=format&fit=crop&q=60&v=1794689781" alt="Capa" class="news-img" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
                 <div class="news-content">
                     <div>
                         <span class="badge" style="background-color: #ea580c;">Vagas & Home Office</span>
                         <h3><a href="#empregos" target="_blank" rel="nofollow">Novas Oportunidades em Concursos Públicos e Processos Seletivos</a></h3>
                     </div>
                     <p>Confira os editais abertos com milhares de vagas e inscrições disponíveis esta semana.</p>
+                </div>
+            </div>
+            
+            <div class="news-card">
+                <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=600&auto=format&fit=crop&q=60&v=1794689781" alt="Capa" class="news-img" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
+                <div class="news-content">
+                    <div>
+                        <span class="badge" style="background-color: #ea580c;">Vagas & Home Office</span>
+                        <h3><a href="#empregos" target="_blank" rel="nofollow">Grandes Empresas Abrem Centenas de Vagas para Trabalho Remoto (Home Office)</a></h3>
+                    </div>
+                    <p>Oportunidades internacionais e nacionais oferecem flexibilidade e contratação imediata.</p>
                 </div>
             </div>
             
@@ -619,29 +619,18 @@ Stein Cascavel e La Unión, do Equador, se enfrentam p...</p>
         <div class="news-grid">
             
             <div class="news-card">
-                <img src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=600&auto=format&fit=crop&q=60&v=1794689143" alt="Capa" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
+                <img src="https://images.unsplash.com/photo-1478720568477-152d9b164e26?w=600&auto=format&fit=crop&q=60&v=1794689781" alt="Capa" class="news-img" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
                 <div class="news-content">
                     <div>
                         <span class="badge" style="background-color: #db2777;">Filmes & Séries</span>
-                        <h3><a href="#entretenimento" target="_blank" rel="nofollow">Grandes Estreias Dominam as Bilheterias e Plataformas de Streaming</a></h3>
+                        <h3><a href="#entretenimento" target="_blank" rel="nofollow">Festival Internacional de Música Anuncia Line-up Histórico</a></h3>
                     </div>
-                    <p>Produções cinematográficas e séries arrebatam o público internacional neste fim de semana.</p>
+                    <p>Artistas consagrados se preparam para turnês globais de grande porte.</p>
                 </div>
             </div>
             
             <div class="news-card">
-                <img src="https://images.unsplash.com/photo-1512070679279-8988d2210cbc?w=600&auto=format&fit=crop&q=60&v=1794689143" alt="Capa" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
-                <div class="news-content">
-                    <div>
-                        <span class="badge" style="background-color: #db2777;">Filmes & Séries</span>
-                        <h3><a href="#entretenimento" target="_blank" rel="nofollow">Bastidores de Produção: Como Efeitos Visuais Criam Mundos Hiper-Realistas</a></h3>
-                    </div>
-                    <p>Estúdios revelam segredos tecnológicos por trás dos maiores sucessos do cinema atual.</p>
-                </div>
-            </div>
-            
-            <div class="news-card">
-                <img src="https://images.unsplash.com/photo-1522869635100-9f4c5e86aa37?w=600&auto=format&fit=crop&q=60&v=1794689143" alt="Capa" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
+                <img src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=600&auto=format&fit=crop&q=60&v=1794689781" alt="Capa" class="news-img" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
                 <div class="news-content">
                     <div>
                         <span class="badge" style="background-color: #db2777;">Filmes & Séries</span>
@@ -652,18 +641,7 @@ Stein Cascavel e La Unión, do Equador, se enfrentam p...</p>
             </div>
             
             <div class="news-card">
-                <img src="https://images.unsplash.com/photo-1478720568477-152d9b164e26?w=600&auto=format&fit=crop&q=60&v=1794689143" alt="Capa" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
-                <div class="news-content">
-                    <div>
-                        <span class="badge" style="background-color: #db2777;">Filmes & Séries</span>
-                        <h3><a href="https://www.bbc.co.uk/news/articles/cqrlgnx9dx6eo?at_medium=RSS&at_campaign=rss" target="_blank" rel="nofollow">Philippines wins first Eurovision Song Contest Asia</a></h3>
-                    </div>
-                    <p>Front-runner Carmelle emerges victorious with her women's empowerment anthem Sobra-Sobra.</p>
-                </div>
-            </div>
-            
-            <div class="news-card">
-                <img src="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=600&auto=format&fit=crop&q=60&v=1794689143" alt="Capa" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
+                <img src="https://images.unsplash.com/photo-1512070679279-8988d2210cbc?w=600&auto=format&fit=crop&q=60&v=1794689781" alt="Capa" class="news-img" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
                 <div class="news-content">
                     <div>
                         <span class="badge" style="background-color: #db2777;">Filmes & Séries</span>
@@ -674,13 +652,35 @@ Stein Cascavel e La Unión, do Equador, se enfrentam p...</p>
             </div>
             
             <div class="news-card">
-                <img src="https://images.unsplash.com/photo-1598899134739-24c46f58b8c0?w=600&auto=format&fit=crop&q=60&v=1794689143" alt="Capa" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
+                <img src="https://images.unsplash.com/photo-1522869635100-9f4c5e86aa37?w=600&auto=format&fit=crop&q=60&v=1794689781" alt="Capa" class="news-img" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
                 <div class="news-content">
                     <div>
                         <span class="badge" style="background-color: #db2777;">Filmes & Séries</span>
-                        <h3><a href="#entretenimento" target="_blank" rel="nofollow">Festival Internacional de Música Anuncia Line-up Histórico</a></h3>
+                        <h3><a href="#entretenimento" target="_blank" rel="nofollow">Bastidores de Produção: Como Efeitos Visuais Criam Mundos Hiper-Realistas</a></h3>
                     </div>
-                    <p>Artistas consagrados se preparam para turnês globais de grande porte.</p>
+                    <p>Estúdios revelam segredos tecnológicos por trás dos maiores sucessos do cinema atual.</p>
+                </div>
+            </div>
+            
+            <div class="news-card">
+                <img src="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=600&auto=format&fit=crop&q=60&v=1794689781" alt="Capa" class="news-img" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
+                <div class="news-content">
+                    <div>
+                        <span class="badge" style="background-color: #db2777;">Filmes & Séries</span>
+                        <h3><a href="#entretenimento" target="_blank" rel="nofollow">Grandes Estreias Dominam as Bilheterias e Plataformas de Streaming</a></h3>
+                    </div>
+                    <p>Produções cinematográficas e séries arrebatam o público internacional neste fim de semana.</p>
+                </div>
+            </div>
+            
+            <div class="news-card">
+                <img src="https://images.unsplash.com/photo-1598899134739-24c46f58b8c0?w=600&auto=format&fit=crop&q=60&v=1794689781" alt="Capa" class="news-img" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
+                <div class="news-content">
+                    <div>
+                        <span class="badge" style="background-color: #db2777;">Filmes & Séries</span>
+                        <h3><a href="https://www.bbc.co.uk/news/articles/cqrlgnx9dx6eo?at_medium=RSS&at_campaign=rss" target="_blank" rel="nofollow">Philippines wins first Eurovision Song Contest Asia</a></h3>
+                    </div>
+                    <p>Front-runner Carmelle emerges victorious with her women's empowerment anthem Sobra-Sobra.</p>
                 </div>
             </div>
             
@@ -691,7 +691,7 @@ Stein Cascavel e La Unión, do Equador, se enfrentam p...</p>
         <div class="news-grid">
             
             <div class="news-card">
-                <img src="https://images.unsplash.com/photo-1612287233002-91d0f5367c33?w=600&auto=format&fit=crop&q=60&v=1794689143" alt="Capa" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
+                <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?w=600&auto=format&fit=crop&q=60&v=1794689781" alt="Capa" class="news-img" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
                 <div class="news-content">
                     <div>
                         <span class="badge" style="background-color: #9333ea;">Games & Tech</span>
@@ -702,7 +702,18 @@ Stein Cascavel e La Unión, do Equador, se enfrentam p...</p>
             </div>
             
             <div class="news-card">
-                <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=600&auto=format&fit=crop&q=60&v=1794689143" alt="Capa" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
+                <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=600&auto=format&fit=crop&q=60&v=1794689781" alt="Capa" class="news-img" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
+                <div class="news-content">
+                    <div>
+                        <span class="badge" style="background-color: #9333ea;">Games & Tech</span>
+                        <h3><a href="#games" target="_blank" rel="nofollow">Novas Placas Gráficas e Hardware Elevam Desempenho em Jogos Competitivos</a></h3>
+                    </div>
+                    <p>Fabricantes apresentam componentes otimizados para altas taxas de quadros.</p>
+                </div>
+            </div>
+            
+            <div class="news-card">
+                <img src="https://images.unsplash.com/photo-1612287233002-91d0f5367c33?w=600&auto=format&fit=crop&q=60&v=1794689781" alt="Capa" class="news-img" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
                 <div class="news-content">
                     <div>
                         <span class="badge" style="background-color: #9333ea;">Games & Tech</span>
@@ -713,7 +724,7 @@ Stein Cascavel e La Unión, do Equador, se enfrentam p...</p>
             </div>
             
             <div class="news-card">
-                <img src="https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=600&auto=format&fit=crop&q=60&v=1794689143" alt="Capa" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
+                <img src="https://images.unsplash.com/photo-1552820728-8b83bb6b773f?w=600&auto=format&fit=crop&q=60&v=1794689781" alt="Capa" class="news-img" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
                 <div class="news-content">
                     <div>
                         <span class="badge" style="background-color: #9333ea;">Games & Tech</span>
@@ -724,7 +735,7 @@ Stein Cascavel e La Unión, do Equador, se enfrentam p...</p>
             </div>
             
             <div class="news-card">
-                <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?w=600&auto=format&fit=crop&q=60&v=1794689143" alt="Capa" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
+                <img src="https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=600&auto=format&fit=crop&q=60&v=1794689781" alt="Capa" class="news-img" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
                 <div class="news-content">
                     <div>
                         <span class="badge" style="background-color: #9333ea;">Games & Tech</span>
@@ -735,24 +746,13 @@ Stein Cascavel e La Unión, do Equador, se enfrentam p...</p>
             </div>
             
             <div class="news-card">
-                <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?w=600&auto=format&fit=crop&q=60&v=1794689143" alt="Capa" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
+                <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?w=600&auto=format&fit=crop&q=60&v=1794689781" alt="Capa" class="news-img" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
                 <div class="news-content">
                     <div>
                         <span class="badge" style="background-color: #9333ea;">Games & Tech</span>
                         <h3><a href="#games" target="_blank" rel="nofollow">Campeonatos Mundiais de Esports Batem Recordes de Audiência</a></h3>
                     </div>
                     <p>Competições profissionais de eSports reúnem milhões de espectadores simultâneos.</p>
-                </div>
-            </div>
-            
-            <div class="news-card">
-                <img src="https://images.unsplash.com/photo-1552820728-8b83bb6b773f?w=600&auto=format&fit=crop&q=60&v=1794689143" alt="Capa" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
-                <div class="news-content">
-                    <div>
-                        <span class="badge" style="background-color: #9333ea;">Games & Tech</span>
-                        <h3><a href="#games" target="_blank" rel="nofollow">Novas Placas Gráficas e Hardware Elevam Desempenho em Jogos Competitivos</a></h3>
-                    </div>
-                    <p>Fabricantes apresentam componentes otimizados para altas taxas de quadros.</p>
                 </div>
             </div>
             
@@ -763,40 +763,18 @@ Stein Cascavel e La Unión, do Equador, se enfrentam p...</p>
         <div class="news-grid">
             
             <div class="news-card">
-                <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&auto=format&fit=crop&q=60&v=1794689143" alt="Capa" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
+                <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&auto=format&fit=crop&q=60&v=1794689781" alt="Capa" class="news-img" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
                 <div class="news-content">
                     <div>
                         <span class="badge" style="background-color: #16a34a;">Qualidade de Vida</span>
-                        <h3><a href="https://www.bbc.co.uk/news/articles/c98r7xyjx8g4o?at_medium=RSS&at_campaign=rss" target="_blank" rel="nofollow">Sunbed firms must not downplay cancer risk, says watchdog</a></h3>
+                        <h3><a href="#saude" target="_blank" rel="nofollow">Alimentação Equilibrada: Alimentos que Aumentam Energia e Disposição</a></h3>
                     </div>
-                    <p>The advertising watchdog says they also must not make misleading claims that sunbeds can treat skin conditions or improve mental health.</p>
+                    <p>Nutricionistas indicam combinações práticas para manter o organismo saudável.</p>
                 </div>
             </div>
             
             <div class="news-card">
-                <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=600&auto=format&fit=crop&q=60&v=1794689143" alt="Capa" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
-                <div class="news-content">
-                    <div>
-                        <span class="badge" style="background-color: #16a34a;">Qualidade de Vida</span>
-                        <h3><a href="https://www.bbc.co.uk/news/articles/c6vg2ljjpj32o?at_medium=RSS&at_campaign=rss" target="_blank" rel="nofollow">NHS, schools and police forces hit by Microsoft outage</a></h3>
-                    </div>
-                    <p>Major airports and intelligence services are unaffected, while the government is still assessing the impact.</p>
-                </div>
-            </div>
-            
-            <div class="news-card">
-                <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=600&auto=format&fit=crop&q=60&v=1794689143" alt="Capa" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
-                <div class="news-content">
-                    <div>
-                        <span class="badge" style="background-color: #16a34a;">Qualidade de Vida</span>
-                        <h3><a href="https://www.bbc.co.uk/news/articles/ckx28le8dv9wo?at_medium=RSS&at_campaign=rss" target="_blank" rel="nofollow">Doctor burnout putting maternity patients at risk, says regulator</a></h3>
-                    </div>
-                    <p>Trainee doctors delivering babies are more likely to suffer from overwork and burnout than other specialties, evidence suggests.</p>
-                </div>
-            </div>
-            
-            <div class="news-card">
-                <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=600&auto=format&fit=crop&q=60&v=1794689143" alt="Capa" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
+                <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=600&auto=format&fit=crop&q=60&v=1794689781" alt="Capa" class="news-img" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
                 <div class="news-content">
                     <div>
                         <span class="badge" style="background-color: #16a34a;">Qualidade de Vida</span>
@@ -807,7 +785,29 @@ Stein Cascavel e La Unión, do Equador, se enfrentam p...</p>
             </div>
             
             <div class="news-card">
-                <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=600&auto=format&fit=crop&q=60&v=1794689143" alt="Capa" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
+                <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=600&auto=format&fit=crop&q=60&v=1794689781" alt="Capa" class="news-img" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
+                <div class="news-content">
+                    <div>
+                        <span class="badge" style="background-color: #16a34a;">Qualidade de Vida</span>
+                        <h3><a href="https://www.bbc.co.uk/news/articles/ckx28le8dv9wo?at_medium=RSS&at_campaign=rss" target="_blank" rel="nofollow">Doctor burnout putting maternity patients at risk, says regulator</a></h3>
+                    </div>
+                    <p>Trainee doctors delivering babies are more likely to suffer from overwork and burnout than other specialties, evidence suggests.</p>
+                </div>
+            </div>
+            
+            <div class="news-card">
+                <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=600&auto=format&fit=crop&q=60&v=1794689781" alt="Capa" class="news-img" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
+                <div class="news-content">
+                    <div>
+                        <span class="badge" style="background-color: #16a34a;">Qualidade de Vida</span>
+                        <h3><a href="https://www.bbc.co.uk/news/articles/c6vg2ljjpj32o?at_medium=RSS&at_campaign=rss" target="_blank" rel="nofollow">NHS, schools and police forces hit by Microsoft outage</a></h3>
+                    </div>
+                    <p>Major airports and intelligence services are unaffected, while the government is still assessing the impact.</p>
+                </div>
+            </div>
+            
+            <div class="news-card">
+                <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=600&auto=format&fit=crop&q=60&v=1794689781" alt="Capa" class="news-img" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
                 <div class="news-content">
                     <div>
                         <span class="badge" style="background-color: #16a34a;">Qualidade de Vida</span>
@@ -818,13 +818,13 @@ Stein Cascavel e La Unión, do Equador, se enfrentam p...</p>
             </div>
             
             <div class="news-card">
-                <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=600&auto=format&fit=crop&q=60&v=1794689143" alt="Capa" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
+                <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=600&auto=format&fit=crop&q=60&v=1794689781" alt="Capa" class="news-img" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
                 <div class="news-content">
                     <div>
                         <span class="badge" style="background-color: #16a34a;">Qualidade de Vida</span>
-                        <h3><a href="#saude" target="_blank" rel="nofollow">Alimentação Equilibrada: Alimentos que Aumentam Energia e Disposição</a></h3>
+                        <h3><a href="https://www.bbc.co.uk/news/articles/c98r7xyjx8g4o?at_medium=RSS&at_campaign=rss" target="_blank" rel="nofollow">Sunbed firms must not downplay cancer risk, says watchdog</a></h3>
                     </div>
-                    <p>Nutricionistas indicam combinações práticas para manter o organismo saudável.</p>
+                    <p>The advertising watchdog says they also must not make misleading claims that sunbeds can treat skin conditions or improve mental health.</p>
                 </div>
             </div>
             
@@ -878,6 +878,31 @@ Stein Cascavel e La Unión, do Equador, se enfrentam p...</p>
         
         <h2 id="paises" class="section-title"><span>🗺️ Explorar Países e Dados Oficiais (Global)</span></h2>
         <div class="countries-grid" id="countriesGrid">
+            
+            <a href="brasil.html" class="country-card">
+                <h3>Brasil</h3>
+                <p>Ver indicadores & notícias locais →</p>
+            </a>
+            
+            <a href="estados-unidos.html" class="country-card">
+                <h3>Estados Unidos</h3>
+                <p>Ver indicadores & notícias locais →</p>
+            </a>
+            
+            <a href="portugal.html" class="country-card">
+                <h3>Portugal</h3>
+                <p>Ver indicadores & notícias locais →</p>
+            </a>
+            
+            <a href="japão.html" class="country-card">
+                <h3>Japão</h3>
+                <p>Ver indicadores & notícias locais →</p>
+            </a>
+            
+            <a href="frança.html" class="country-card">
+                <h3>França</h3>
+                <p>Ver indicadores & notícias locais →</p>
+            </a>
             
         </div>
         
