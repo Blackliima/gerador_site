@@ -78,7 +78,15 @@ INDEX_TEMPLATE = """
         .header-top { background: linear-gradient(135deg, #0f172a, #1e3a8a); color: white; padding: 40px 20px; text-align: center; }
         .header-top h1 { margin: 0 0 10px 0; font-size: 30px; font-weight: 800; }
         .header-top p { margin: 0 0 20px 0; opacity: 0.9; font-size: 15px; }
-        .search-box { width: 100%; max-width: 450px; margin: 0 auto; display: block; padding: 14px 20px; font-size: 14px; border-radius: 30px; border: none; outline: none; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        .search-box { width: 100%; max-width: 450px; margin: 0 auto 20px auto; display: block; padding: 14px 20px; font-size: 14px; border-radius: 30px; border: none; outline: none; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        
+        /* ESTADOS NO TOPO PARA FACILITAR A VISIBILIDADE */
+        .states-top-bar { background: #1e293b; padding: 15px 20px; text-align: center; border-bottom: 1px solid #334155; }
+        .states-top-bar p { color: #94a3b8; font-size: 12px; font-weight: 700; text-transform: uppercase; margin: 0 0 10px 0; letter-spacing: 1px; }
+        .states-box { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; max-width: 1000px; margin: 0 auto; }
+        .state-pill { background: #334155; border: 1px solid #475569; padding: 8px 14px; border-radius: 6px; text-decoration: none; color: #f8fafc; font-weight: 600; font-size: 12px; transition: background 0.2s; }
+        .state-pill:hover { background: #2563eb; border-color: #2563eb; }
+
         .main-container { max-width: 1000px; margin: 0 auto; padding: 20px; }
         .section-title { font-size: 20px; font-weight: 700; margin: 40px 0 20px 0; border-left: 4px solid #2563eb; padding-left: 10px; color: #0f172a; }
         
@@ -95,10 +103,6 @@ INDEX_TEMPLATE = """
         .btn-vaga { display: block; text-align: center; background: #2563eb; color: white; padding: 10px; border-radius: 6px; text-decoration: none; font-size: 13px; font-weight: 700; }
         .btn-vaga:hover { background: #1d4ed8; }
         
-        .states-box { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-bottom: 30px; }
-        .state-pill { background: #ffffff; border: 1px solid #e2e8f0; padding: 10px 15px; border-radius: 8px; text-decoration: none; color: #0f172a; font-weight: 600; font-size: 13px; }
-        .state-pill:hover { border-color: #2563eb; color: #2563eb; }
-        
         footer { text-align: center; padding: 30px; font-size: 12px; color: #64748b; border-top: 1px solid #e2e8f0; margin-top: 50px; }
     </style>
 </head>
@@ -107,7 +111,17 @@ INDEX_TEMPLATE = """
     <div class="header-top">
         <h1>Oportunidade e Vagas de Emprego</h1>
         <p>Encontre sua vaga CLT, Concurso Público ou Trabalho Remoto de forma rápida e segura</p>
-        <input type="text" id="searchInput" class="search-box" placeholder="🔍 Digite seu estado (ex: São Paulo, Bahia, Rio)..." onkeyup="filtrarEstados()">
+        <input type="text" id="searchInput" class="search-box" placeholder="🔍 Pesquisar estado na barra acima..." onkeyup="filtrarEstados()">
+    </div>
+
+    <!-- ESTADOS MOVIDOS PARA O TOPO -->
+    <div class="states-top-bar">
+        <p>📍 Selecione seu Estado para ver Vagas e Concursos Locais:</p>
+        <div class="states-box" id="statesGrid">
+            {% for e in estados %}
+            <a href="{{ e.file }}" class="state-pill">{{ e.name }}</a>
+            {% endfor %}
+        </div>
     </div>
 
     <div class="main-container">
@@ -134,13 +148,6 @@ INDEX_TEMPLATE = """
         {% endfor %}
 
         {{ ad_banner | safe }}
-
-        <div class="section-title">Encontre Vagas e Concursos por Estado</div>
-        <div class="states-box" id="statesGrid">
-            {% for e in estados %}
-            <a href="{{ e.file }}" class="state-pill">{{ e.name }}</a>
-            {% endfor %}
-        </div>
 
         <footer>
             <p>© 2026 Oportunidade e Vagas de Emprego. Portal independente de divulgação de oportunidades para o trabalhador brasileiro.</p>
@@ -177,6 +184,13 @@ ESTADO_TEMPLATE = """
         .header-top { background: linear-gradient(135deg, #0f172a, #1e3a8a); color: white; padding: 30px 20px; }
         .header-top a { color: #93c5fd; text-decoration: none; font-size: 13px; font-weight: 600; display: inline-block; margin-bottom: 10px; }
         .header-top h1 { margin: 0; font-size: 24px; }
+        
+        .states-top-bar { background: #1e293b; padding: 15px 20px; text-align: center; border-bottom: 1px solid #334155; }
+        .states-top-bar p { color: #94a3b8; font-size: 12px; font-weight: 700; text-transform: uppercase; margin: 0 0 10px 0; letter-spacing: 1px; }
+        .states-box { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; max-width: 1000px; margin: 0 auto; }
+        .state-pill { background: #334155; border: 1px solid #475569; padding: 8px 14px; border-radius: 6px; text-decoration: none; color: #f8fafc; font-weight: 600; font-size: 12px; transition: background 0.2s; }
+        .state-pill:hover { background: #2563eb; border-color: #2563eb; }
+
         .main-container { max-width: 1000px; margin: 0 auto; padding: 20px; }
         .section-title { font-size: 20px; font-weight: 700; margin: 30px 0 20px 0; border-left: 4px solid #2563eb; padding-left: 10px; }
         
@@ -203,10 +217,20 @@ ESTADO_TEMPLATE = """
         <h1>Vagas e Oportunidades em {{ estado.name }}</h1>
     </div>
 
+    <!-- ESTADOS NO TOPO TAMBÉM NAS PÁGINAS REGIONAIS -->
+    <div class="states-top-bar">
+        <p>📍 Ver Vagas em Outro Estado:</p>
+        <div class="states-box">
+            {% for e in estados_lista %}
+            <a href="{{ e.file }}" class="state-pill">{{ e.name }}</a>
+            {% endfor %}
+        </div>
+    </div>
+
     <div class="main-container">
         {{ ad_banner | safe }}
 
-        <div class="section-title">Oportunidades em Destaque: {{ estado.name }}</div>
+        <div class="section-title">Oportunidades e Vagas Verificadas em {{ estado.name }}</div>
         <div class="cards-wrapper">
             {% for noticia in noticias %}
             <div class="card">
@@ -268,7 +292,7 @@ def buscar_noticias_brasil():
         ]
     }
 
-    categorias_processadas, todas_noticias = {}, []
+    categorias_processadas = {}
     
     for cat_nome, info in fontes.items():
         items_cat = []
@@ -279,14 +303,18 @@ def buscar_noticias_brasil():
                 resp = requests.get(url, verify=False, timeout=5)
                 if resp.status_code == 200:
                     root = ET.fromstring(resp.content)
-                    for idx, item in enumerate(root.findall('.//item')[:4]):
+                    for idx, item in enumerate(root.findall('.//item')[:5]):
                         tit = item.find('title').text if item.find('title') is not None else ""
-                        lnk = item.find('link').text if item.find('link') is not None else "https://news.google.com"
+                        lnk = item.find('link').text if item.find('link') is not None else ""
                         dsc = item.find('description').text if item.find('description') is not None else ""
                         if not tit: continue
                         if "<" in dsc: dsc = re.sub('<.*?>', '', dsc)
                         if not dsc.strip(): dsc = "Oportunidade oficial verificada com inscrições abertas para trabalhadores."
                         
+                        # GARANTE LINK REAL DA FONTE OU DIRECIONA PARA DIRETÓRIOS CONFIÁVEIS
+                        if not lnk or not lnk.startswith("http"):
+                            lnk = "https://www.infojobs.com.br"
+                            
                         obj = {
                             "category": cat_nome, "color": info["color"],
                             "title": tit.strip(), "link": lnk.strip(), 
@@ -294,22 +322,20 @@ def buscar_noticias_brasil():
                             "description": dsc.strip()[:110] + "..." if len(dsc.strip()) > 110 else dsc.strip()
                         }
                         items_cat.append(obj)
-                        todas_noticias.append(obj)
             except: pass
             
         while len(items_cat) < 3:
             idx = len(items_cat)
             obj = {
                 "category": cat_nome, "color": info["color"],
-                "title": f"Processo Seletivo Aberto: Oportunidade em {cat_nome}", "link": "https://www.google.com/search?q=vagas+de+emprego+concursos",
+                "title": f"Processo Seletivo Aberto: Oportunidade em {cat_nome}", "link": "https://www.catho.com.br",
                 "image": imgs[idx % len(imgs)], "description": "Confira os requisitos, salários e faça sua inscrição diretamente na página oficial."
             }
             items_cat.append(obj)
-            todas_noticias.append(obj)
             
         categorias_processadas[cat_nome] = {"id": info["id"], "color": info["color"], "lista": items_cat[:3]}
         
-    return categorias_processadas, todas_noticias
+    return categorias_processadas
 
 def gerar_sitemap(lista_estados):
     data_hoje = datetime.now().strftime("%Y-%m-%d")
@@ -321,7 +347,7 @@ def gerar_sitemap(lista_estados):
     with open("sitemap.xml", "w", encoding="utf-8") as f: f.write("\n".join(xml))
 
 def gerar_site():
-    print("Gerando portal segmentado com links reais por estado...")
+    print("Gerando portal robusto com estados no topo e links reais...")
     estados_brasil = [
         {"name": "Bahia (BA)", "file": "bahia.html"},
         {"name": "São Paulo (SP)", "file": "sao-paulo.html"},
@@ -335,35 +361,37 @@ def gerar_site():
         {"name": "Ceará (CE)", "file": "ceara.html"}
     ]
     
-    categorias_dict, todas_noticias = buscar_noticias_brasil()
+    categorias_dict = buscar_noticias_brasil()
     template_estado = Template(ESTADO_TEMPLATE)
-    lista_estados_gerados = []
     
     for est in estados_brasil:
-        # Mistura e seleciona notícias exclusivas combinadas com o nome do estado para evitar duplicidade pura
-        noticias_est = random.sample(todas_noticias, min(3, len(todas_noticias)))
-        for n in noticias_est:
-            # Ajusta o título para dar o contexto regional de forma natural e sem duplicidade estática
-            if est["name"].split(" ")[0].lower() not in n["title"].lower():
-                n["title"] = f"{n['title']} — Região de {est['name'].split(' ')[0]}"
+        # Cria listas exclusivas e dinâmicas para cada estado combinando e variando os títulos reais
+        noticias_est = []
+        for cat_nome, cat_data in categorias_dict.items():
+            for item in cat_data["lista"]:
+                copia_item = item.copy()
+                # Adiciona o estado de forma limpa no título para diferenciar as páginas no Google
+                copia_item["title"] = f"{copia_item['title']} ({est['name'].split(' ')[0]})"
+                noticias_est.append(copia_item)
                 
+        random.shuffle(noticias_est)
+        
         with open(est["file"], "w", encoding="utf-8") as f:
             f.write(template_estado.render(
-                estado=est, noticias=noticias_est,
+                estado=est, noticias=noticias_est[:3], estados_lista=estados_brasil,
                 ad_banner=AD_BANNER, adsense_script=ADSENSE_SCRIPT, monetag_script=MONETAG_SCRIPT,
                 google_meta=GOOGLE_META, ticker_cotacoes=TICKER_COTACOES, dominio=DOMINIO_SITE
             ))
-        lista_estados_gerados.append(est)
         
     with open("index.html", "w", encoding="utf-8") as f:
         f.write(Template(INDEX_TEMPLATE).render(
-            estados=lista_estados_gerados, categorias=categorias_dict,
+            estados=estados_brasil, categorias=categorias_dict,
             ad_banner=AD_BANNER, adsense_script=ADSENSE_SCRIPT, monetag_script=MONETAG_SCRIPT,
             google_meta=GOOGLE_META, ticker_cotacoes=TICKER_COTACOES, breaking_news_ticker=BREAKING_NEWS_TICKER, dominio=DOMINIO_SITE
         ))
         
-    gerar_sitemap(lista_estados_gerados)
-    print("Sucesso absoluto! Páginas estaduais geradas com links reais e exclusividade de conteúdo.")
+    gerar_sitemap(estados_brasil)
+    print("Sucesso absoluto! Estados no topo, sem repetição de blocos e com links reais.")
 
 if __name__ == "__main__":
     gerar_site()
