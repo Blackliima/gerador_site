@@ -79,10 +79,10 @@ HTML_TEMPLATE = """
     <title>{{ country.name }} - Global News & Data | Notícias e Indicadores Oficiais</title>
     <meta name="description" content="Tudo sobre {{ country.name }}: últimas notícias em tempo real, capital, população, economia, fuso horário e indicadores oficiais atualizados.">
     
-    <!-- Open Graph / Redes Sociais (WhatsApp, Facebook, Twitter) -->
-    <meta property="property" content="og:type" content="article">
+    <!-- Open Graph / Redes Sociais -->
+    <meta property="og:type" content="article">
     <meta property="og:title" content="{{ country.name }} - Global News & Data">
-    <meta property="og:description" content="Acompanhe dados oficiais, economia e notícias de última hora sobre {{ country.name }}.">
+    <meta property="og:description" content="Acompanhe dados oficiais, economia e notícias de última hora diretamente sobre {{ country.name }}.">
     <meta property="og:image" content="https://images.unsplash.com/photo-1521295121783-8a321d551ad2?w=600&auto=format&fit=crop&q=60">
     <meta property="og:url" content="{{ dominio }}/{{ country.file }}">
 
@@ -134,7 +134,7 @@ HTML_TEMPLATE = """
         .news-card:hover { transform: translateY(-3px); box-shadow: 0 10px 20px -3px rgba(0,0,0,0.05); }
         .news-img { width: 100%; height: 160px; object-fit: cover; background: #e2e8f0; }
         .news-content { padding: 20px; display: flex; flex-direction: column; justify-content: space-between; flex-grow: 1; }
-        .badge { display: inline-block; padding: 4px 10px; font-size: 11px; font-weight: 700; border-radius: 20px; text-transform: uppercase; margin-bottom: 12px; color: white; letter-spacing: 0.5px; }
+        .badge { display: inline-block; align-self: flex-start; padding: 4px 10px; font-size: 11px; font-weight: 700; border-radius: 20px; text-transform: uppercase; margin-bottom: 12px; color: white; letter-spacing: 0.5px; }
         .news-card h3 { margin: 0 0 10px 0; font-size: 17px; line-height: 1.4; }
         .news-card h3 a { color: var(--text); text-decoration: none; transition: color 0.2s; }
         .news-card h3 a:hover { color: var(--primary); }
@@ -160,13 +160,13 @@ HTML_TEMPLATE = """
         {{ ad_banner | safe }}
         <header>
             <h1>{{ country.name }}</h1>
-            <p>Painel analítico completo com estatísticas demográficas, manchetes globais e contexto geopolítico.</p>
+            <p>Painel analítico completo com estatísticas demográficas, manchetes locais/internacionais e contexto geopolítico.</p>
         </header>
         
         <div class="info-box-robust">
             <h3>📖 Panorama Geopolítico e Econômico de {{ country.name }}</h3>
             <p>O território de <strong>{{ country.name }}</strong> destaca-se no cenário internacional pela sua relevância na região de {{ country.region }}. Tendo {{ country.capital }} como sua principal referência administrativa, a nação movimenta fluxos comerciais estratégicos e atrai atenção constante nos mercados globais.</p>
-            <p>Nesta página interativa, você encontra dados oficiais consolidados, estatísticas populacionais, conversões de moeda e o monitoramento contínuo das principais editorias internacionais de notícias.</p>
+            <p>Nesta página interativa, você encontra dados oficiais consolidados, estatísticas populacionais, conversões de moeda e o monitoramento contínuo das principais fontes de notícias deste território e do mundo.</p>
         </div>
 
         <div class="curiosidade-box">
@@ -191,7 +191,7 @@ HTML_TEMPLATE = """
             </div>
             <div class="faq-item">
                 <h4>Onde acompanhar notícias atualizadas de {{ country.name }}?</h4>
-                <p>No Global News & Data, você acompanha em tempo real as principais coberturas internacionais, análises econômicas, tecnológicas e esportivas conectadas às principais fontes do mundo.</p>
+                <p>No Global News & Data, você acompanha em tempo real as principais coberturas locais e internacionais conectadas às maiores fontes do mundo.</p>
             </div>
             <div class="faq-item">
                 <h4>Qual é o idioma e o fuso horário predominante?</h4>
@@ -201,7 +201,7 @@ HTML_TEMPLATE = """
         
         {{ ad_banner | safe }}
         
-        <h2 class="section-title">Manchetes de Impacto e Cobertura Global</h2>
+        <h2 class="section-title">Últimas Notícias e Manchetes: {{ country.name }}</h2>
         <div class="news-grid">
             {% for noticia in noticias %}
             <div class="news-card">
@@ -255,7 +255,7 @@ INDEX_TEMPLATE = """
     <meta name="description" content="Portal global completo com notícias em tempo real, vagas de emprego home office, economia, tecnologia, filmes, games, saúde e indicadores estatísticos.">
     
     <!-- Open Graph / Redes Sociais Home -->
-    <meta property="property" content="og:type" content="website">
+    <meta property="og:type" content="website">
     <meta property="og:title" content="Global News & Data - Portal Mundial de Notícias">
     <meta property="og:description" content="Portal global completo com notícias em tempo real, conflitos, economia e vagas home office.">
     <meta property="og:image" content="https://images.unsplash.com/photo-1521295121783-8a321d551ad2?w=600&auto=format&fit=crop&q=60">
@@ -474,7 +474,7 @@ INDEX_TEMPLATE = """
             {% for p in paises %}
             <a href="{{ p.file }}" class="country-card">
                 <h3>{{ p.name }}</h3>
-                <p>Ver indicadores →</p>
+                <p>Ver indicadores & notícias locais →</p>
             </a>
             {% endfor %}
         </div>
@@ -584,15 +584,40 @@ ANUNCIE_TEMPLATE = """
 """
 
 def buscar_noticias_por_categoria():
+    # OPÇÃO 1: MIX GLOBAL DE FONTES (BRASIL + INTERNACIONAL BBC / NYT / TECHCRUNCH / ESPN)
     fontes = {
-        "Mundo": {"id": "mundo", "color": "#2563eb", "url": "https://g1.globo.com/rss/g1/mundo/"},
-        "Tecnologia": {"id": "tecnologia", "color": "#7c3aed", "url": "https://g1.globo.com/rss/g1/tecnologia/"},
-        "Economia": {"id": "economia", "color": "#059669", "url": "https://g1.globo.com/rss/g1/economia/"},
-        "Esportes": {"id": "esportes", "color": "#dc2626", "url": "https://ge.globo.com/rss/ge/"},
-        "Vagas & Home Office": {"id": "empregos", "color": "#ea580c", "url": "https://g1.globo.com/rss/g1/educacao/concursos-e-emprego/"},
-        "Filmes & Séries": {"id": "entretenimento", "color": "#db2777", "url": "https://g1.globo.com/rss/g1/pop-arte/"},
-        "Games & Tech": {"id": "games", "color": "#9333ea", "url": "https://g1.globo.com/rss/g1/tecnologia/games/"},
-        "Qualidade de Vida": {"id": "saude", "color": "#16a34a", "url": "https://g1.globo.com/rss/g1/ciencia-e-saude/"}
+        "Mundo": {
+            "id": "mundo", "color": "#2563eb",
+            "urls": ["https://g1.globo.com/rss/g1/mundo/", "http://feeds.bbci.co.uk/news/world/rss.xml"]
+        },
+        "Tecnologia": {
+            "id": "tecnologia", "color": "#7c3aed",
+            "urls": ["https://g1.globo.com/rss/g1/tecnologia/", "https://techcrunch.com/feed/"]
+        },
+        "Economia": {
+            "id": "economia", "color": "#059669",
+            "urls": ["https://g1.globo.com/rss/g1/economia/", "http://feeds.bbci.co.uk/news/business/rss.xml"]
+        },
+        "Esportes": {
+            "id": "esportes", "color": "#dc2626",
+            "urls": ["https://ge.globo.com/rss/ge/", "https://www.espn.com/espn/rss/news"]
+        },
+        "Vagas & Home Office": {
+            "id": "empregos", "color": "#ea580c",
+            "urls": ["https://g1.globo.com/rss/g1/educacao/concursos-e-emprego/"]
+        },
+        "Filmes & Séries": {
+            "id": "entretenimento", "color": "#db2777",
+            "urls": ["https://g1.globo.com/rss/g1/pop-arte/", "http://feeds.bbci.co.uk/news/entertainment_and_arts/rss.xml"]
+        },
+        "Games & Tech": {
+            "id": "games", "color": "#9333ea",
+            "urls": ["https://g1.globo.com/rss/g1/tecnologia/games/"]
+        },
+        "Qualidade de Vida": {
+            "id": "saude", "color": "#16a34a",
+            "urls": ["https://g1.globo.com/rss/g1/ciencia-e-saude/", "http://feeds.bbci.co.uk/news/health/rss.xml"]
+        }
     }
     
     imagens_por_categoria = {
@@ -735,32 +760,40 @@ def buscar_noticias_por_categoria():
         imgs_disponiveis = imagens_por_categoria.get(cat_nome, imagens_por_categoria["Mundo"])
         fallback_lista = fallbacks_por_categoria.get(cat_nome, fallbacks_por_categoria["Mundo"])
         
-        try:
-            resp = requests.get(info["url"], verify=False, timeout=8)
-            if resp.status_code == 200:
-                root = ET.fromstring(resp.content)
-                for idx, item in enumerate(root.findall('.//item')[:6]):
-                    title_elem = item.find('title')
-                    link_elem = item.find('link')
-                    desc_elem = item.find('description')
-                    
-                    titulo = title_elem.text if title_elem is not None and title_elem.text else fallback_lista[idx % len(fallback_lista)]["title"]
-                    link = link_elem.text if link_elem is not None and link_elem.text else "https://g1.globo.com"
-                    desc = desc_elem.text if desc_elem is not None and desc_elem.text else fallback_lista[idx % len(fallback_lista)]["desc"]
-                    
-                    if "<" in desc:
-                        desc = re.sub('<.*?>', '', desc)
+        limite_por_fonte = 3 if len(info["urls"]) > 1 else 6
+        
+        for url_rss in info["urls"]:
+            try:
+                resp = requests.get(url_rss, verify=False, timeout=7)
+                if resp.status_code == 200:
+                    root = ET.fromstring(resp.content)
+                    for item in root.findall('.//item')[:limite_por_fonte]:
+                        title_elem = item.find('title')
+                        link_elem = item.find('link')
+                        desc_elem = item.find('description')
+                        
+                        titulo = title_elem.text if title_elem is not None and title_elem.text else ""
+                        link = link_elem.text if link_elem is not None and link_elem.text else "https://news.google.com"
+                        desc = desc_elem.text if desc_elem is not None and desc_elem.text else ""
+                        
+                        if not titulo:
+                            continue
+                        if "<" in desc:
+                            desc = re.sub('<.*?>', '', desc)
+                        if not desc.strip():
+                            desc = "Cobertura internacional atualizada em tempo real."
 
-                    img_url = imgs_disponiveis[idx % len(imgs_disponiveis)]
-                    
-                    noticia_obj = {
-                        "category": cat_nome, "color": info["color"],
-                        "title": titulo, "link": link, "image": img_url,
-                        "description": desc[:140] + "..." if len(desc) > 140 else desc
-                    }
-                    items_cat.append(noticia_obj)
-                    todas_noticias.append(noticia_obj)
-        except: pass
+                        img_url = imgs_disponiveis[len(items_cat) % len(imgs_disponiveis)]
+                        
+                        noticia_obj = {
+                            "category": cat_nome, "color": info["color"],
+                            "title": titulo.strip(), "link": link.strip(), "image": img_url,
+                            "description": desc.strip()[:140] + "..." if len(desc.strip()) > 140 else desc.strip()
+                        }
+                        items_cat.append(noticia_obj)
+                        todas_noticias.append(noticia_obj)
+            except:
+                pass
         
         while len(items_cat) < 6:
             idx = len(items_cat)
@@ -775,8 +808,50 @@ def buscar_noticias_por_categoria():
             items_cat.append(noticia_fb)
             todas_noticias.append(noticia_fb)
 
-        categorias_processadas[cat_nome] = {"id": info["id"], "color": info["color"], "lista": items_cat}
+        categorias_processadas[cat_nome] = {"id": info["id"], "color": info["color"], "lista": items_cat[:6]}
     return categorias_processadas, todas_noticias
+
+# OPÇÃO 2: BUSCAR NOTÍCIAS ESPECÍFICAS DO PRÓPRIO PAÍS VIA GOOGLE NEWS INTERNACIONAL
+def buscar_noticias_do_pais(nome_pais, pool_global):
+    noticias_locais = []
+    imgs_mundo = [
+        "https://images.unsplash.com/photo-1521295121783-8a321d551ad2?w=600&auto=format&fit=crop&q=60",
+        "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=600&auto=format&fit=crop&q=60",
+        "https://images.unsplash.com/photo-1508739773434-c26b3d09e071?w=600&auto=format&fit=crop&q=60",
+        "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=600&auto=format&fit=crop&q=60",
+        "https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?w=600&auto=format&fit=crop&q=60",
+        "https://images.unsplash.com/photo-1541872703-74c5e44368f9?w=600&auto=format&fit=crop&q=60"
+    ]
+    try:
+        query = urllib.parse.quote(nome_pais)
+        url_gn = f"https://news.google.com/rss/search?q={query}&hl=en-US&gl=US&ceid=US:en"
+        resp = requests.get(url_gn, verify=False, timeout=5)
+        if resp.status_code == 200:
+            root = ET.fromstring(resp.content)
+            for idx, item in enumerate(root.findall('.//item')[:6]):
+                title_elem = item.find('title')
+                link_elem = item.find('link')
+                if title_elem is not None and title_elem.text and link_elem is not None and link_elem.text:
+                    noticias_locais.append({
+                        "category": f"Local • {nome_pais}",
+                        "color": "#1d4ed8",
+                        "title": title_elem.text.strip(),
+                        "link": link_elem.text.strip(),
+                        "image": imgs_mundo[idx % len(imgs_mundo)],
+                        "description": f"Cobertura internacional e manchetes diretas sobre {nome_pais} em tempo real."
+                    })
+    except:
+        pass
+
+    # Completa até 9 cards com o pool global para nunca deixar espaço em branco
+    copia_pool = list(pool_global)
+    random.shuffle(copia_pool)
+    for item in copia_pool:
+        if len(noticias_locais) >= 9:
+            break
+        noticias_locais.append(item)
+
+    return noticias_locais[:9]
 
 def baixar_paises():
     try:
@@ -824,7 +899,7 @@ def send_search_engine_pings():
             print(f"[Aviso] Modo offline/rede restrita para o ping: {e}")
 
 def gerar_site():
-    print("Gerando portal unificado com SEO Social Open Graph...")
+    print("Gerando portal global com Mix Internacional + Notícias Locais por País...")
     paises = baixar_paises()
     categorias_dict, todas_noticias = buscar_noticias_por_categoria()
     
@@ -855,10 +930,12 @@ def gerar_site():
                 "file": file_name,
                 "curiosidade": random.choice(lista_curiosidades)
             }
-            noticias_pais = list(todas_noticias)
-            random.shuffle(noticias_pais)
+            
+            # Busca notícias reais específicas deste território + pool global
+            noticias_pais = buscar_noticias_do_pais(name, todas_noticias)
+            
             with open(file_name, "w", encoding="utf-8") as f:
-                f.write(template.render(country=country_data, noticias=noticias_pais[:9], ad_banner=AD_BANNER, tradutor=WIDGET_TRADUTOR_MODERNO, adsense_script=ADSENSE_SCRIPT, monetag_script=MONETAG_SCRIPT, google_meta=GOOGLE_META, licenca_rodape=LICENCA_RODAPE, dominio=DOMINIO_SITE))
+                f.write(template.render(country=country_data, noticias=noticias_pais, ad_banner=AD_BANNER, tradutor=WIDGET_TRADUTOR_MODERNO, adsense_script=ADSENSE_SCRIPT, monetag_script=MONETAG_SCRIPT, google_meta=GOOGLE_META, licenca_rodape=LICENCA_RODAPE, dominio=DOMINIO_SITE))
             lista_paises.append({"name": name, "file": file_name})
         except: continue
 
@@ -870,7 +947,7 @@ def gerar_site():
 
     gerar_sitemap(lista_paises)
     send_search_engine_pings()
-    print("Sucesso absoluto! Portal com compartilhamento viral configurado.")
+    print("Sucesso absoluto! Portal mundial com Mix Global + Notícias Locais por País gerado.")
 
 if __name__ == "__main__":
     gerar_site()
