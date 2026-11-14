@@ -1,6 +1,6 @@
 
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,14 +8,23 @@
     <script src="https://quge5.com/88/tag.min.js" data-zone="309679" async data-cfasync="false"></script>
     <meta name="google-site-verification" content="pbgwZbVwgKMwqqqGYFcHeGGbV7EM7nBdlns1c_DN_Sw" />
     <title>Estados Unidos - Global News & Data | Notícias e Indicadores Oficiais</title>
-    <meta name="description" content="Tudo sobre Estados Unidos: últimas notícias em tempo real, capital, população, economia, fuso horário e indicadores oficiais atualizados.">
+    <meta name="description" content="Tudo sobre Estados Unidos: últimas notícias em tempo real, capital, população, economia, fuso horário, PIB, inflação e indicadores oficiais.">
     
-    <!-- Open Graph / Redes Sociais (WhatsApp, Facebook, Twitter) -->
-    <meta property="property" content="og:type" content="article">
+    <!-- Open Graph / Redes Sociais Blindadas (Anti-Spam / Anti-Tela Preta) -->
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Global News & Data">
     <meta property="og:title" content="Estados Unidos - Global News & Data">
-    <meta property="og:description" content="Acompanhe dados oficiais, economia e notícias de última hora sobre Estados Unidos.">
-    <meta property="og:image" content="https://images.unsplash.com/photo-1521295121783-8a321d551ad2?w=600&auto=format&fit=crop&q=60">
+    <meta property="og:description" content="Acompanhe dados oficiais, economia, PIB, inflação e notícias sobre Estados Unidos em tempo real.">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1521295121783-8a321d551ad2?w=1200&auto=format&fit=crop&q=80">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
     <meta property="og:url" content="https://gerador-site.pages.dev/estados-unidos.html">
+
+    <!-- Twitter Card Blindado -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Estados Unidos - Global News & Data">
+    <meta name="twitter:description" content="Acompanhe dados oficiais, economia, PIB, inflação e notícias sobre Estados Unidos.">
+    <meta name="twitter:image" content="https://images.unsplash.com/photo-1521295121783-8a321d551ad2?w=1200&auto=format&fit=crop&q=80">
 
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌍</text></svg>">
     <style>
@@ -65,7 +74,7 @@
         .news-card:hover { transform: translateY(-3px); box-shadow: 0 10px 20px -3px rgba(0,0,0,0.05); }
         .news-img { width: 100%; height: 160px; object-fit: cover; background: #e2e8f0; }
         .news-content { padding: 20px; display: flex; flex-direction: column; justify-content: space-between; flex-grow: 1; }
-        .badge { display: inline-block; padding: 4px 10px; font-size: 11px; font-weight: 700; border-radius: 20px; text-transform: uppercase; margin-bottom: 12px; color: white; letter-spacing: 0.5px; }
+        .badge { display: inline-block; align-self: flex-start; padding: 4px 10px; font-size: 11px; font-weight: 700; border-radius: 20px; text-transform: uppercase; margin-bottom: 12px; color: white; letter-spacing: 0.5px; }
         .news-card h3 { margin: 0 0 10px 0; font-size: 17px; line-height: 1.4; }
         .news-card h3 a { color: var(--text); text-decoration: none; transition: color 0.2s; }
         .news-card h3 a:hover { color: var(--primary); }
@@ -78,14 +87,32 @@
     </style>
 </head>
 <body data-theme="light">
+    
+<div style="background: var(--card-bg); border-bottom: 1px solid var(--border-color); padding: 8px 0; font-size: 12px; font-weight: 600; overflow: hidden; white-space: nowrap; box-shadow: inset 0 1px 3px rgba(0,0,0,0.02);">
+    <div style="display: inline-block; animation: scrollTicker 30s linear infinite; display: flex; gap: 40px; width: max-content; padding-left: 20px;">
+        <span style="color: var(--text);">📊 <strong>USD/BRL:</strong> R$ 5,48 (+0.4%)</span>
+        <span style="color: var(--text);">💶 <strong>EUR/USD:</strong> $ 1.08 (-0.1%)</span>
+        <span style="color: var(--text);">💷 <strong>GBP/USD:</strong> $ 1.27 (+0.2%)</span>
+        <span style="color: #16a34a;">🪙 <strong>Bitcoin (BTC):</strong> $ 67,450.00 (+2.1%)</span>
+        <span style="color: #16a34a;">🪙 <strong>Ethereum (ETH):</strong> $ 3,520.00 (+1.8%)</span>
+        <span style="color: #2563eb;">🛢️ <strong>Petróleo Brent:</strong> $ 85.30 (+0.5%)</span>
+        <span style="color: #d97706;">🥇 <strong>Ouro (Oz):</strong> $ 2,340.50 (+0.3%)</span>
+    </div>
+</div>
+<style>
+@keyframes scrollTicker {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+</style>
+
     <div class="navbar">
         <div class="nav-container">
             <a href="index.html" class="back-link">← Voltar ao Início Global</a>
             <div class="nav-right">
                 
 <div class="language-picker-wrapper">
-    <div id="google_translate_element" style="display:none;"></div>
-    <select id="customLanguageSelect" onchange="mudarIdiomaGoogle(this.value)" class="lang-select">
+    <select id="customLanguageSelect" onchange="mudarIdiomaUrl(this.value)" class="lang-select">
         <option value="pt">🇧🇷 Português</option>
         <option value="en">🇺🇸 English</option>
         <option value="es">🇪🇸 Español</option>
@@ -96,24 +123,33 @@
     </select>
 </div>
 <script type="text/javascript">
-function googleTranslateElementInit() {
-  new google.translate.TranslateElement({pageLanguage: 'pt', includedLanguages: 'pt,en,es,fr,de,ja,zh-CN', autoDisplay: false}, 'google_translate_element');
-}
-function mudarIdiomaGoogle(lang) {
-  var select = document.querySelector('.goog-te-combo');
-  if (select) {
-    select.value = lang;
-    select.dispatchEvent(new Event('change'));
-  }
+function mudarIdiomaUrl(lang) {
+    const currentPath = window.location.pathname;
+    if (lang === 'pt') {
+        window.location.href = currentPath.includes('/en/') ? currentPath.replace('/en/', '/') : currentPath;
+    } else {
+        if (!currentPath.includes('/en/')) {
+            window.location.href = '/en' + currentPath;
+        }
+    }
 }
 </script>
-<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
                 <button class="theme-btn" onclick="toggleTheme()">🌓 Tema</button>
             </div>
         </div>
     </div>
     <div class="container">
+        
+<div style="background: #dc2626; color: white; padding: 10px 15px; border-radius: 8px; margin-bottom: 25px; display: flex; align-items: center; gap: 12px; font-size: 13px; font-weight: 700; box-shadow: 0 4px 10px rgba(220,38,38,0.2);">
+    <span style="background: white; color: #dc2626; padding: 3px 8px; border-radius: 4px; font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">🔴 AO VIVO</span>
+    <div style="overflow: hidden; white-space: nowrap; width: 100%;">
+        <div style="display: inline-block; animation: scrollTicker 25s linear infinite;">
+            ⚠️ Plantão Global: Lideranças mundiais convocam cúpula extraordinária para debater acordos econômicos e segurança internacional    |    💻 Setor tecnológico registra alta histórica em investimentos de inteligência artificial    |    📈 Bancos centrais mantêm cautela diante de novos indicadores de inflação global.
+        </div>
+    </div>
+</div>
+
         
 <div style="text-align:center; margin: 30px 0; background:var(--card-bg); padding:20px; border-radius:12px; box-shadow: 0 4px 12px rgba(0,0,0,0.06); border: 1px dashed rgba(0,0,0,0.1);">
     <p style="color:var(--text-light); font-size:10px; margin-bottom:8px; text-transform: uppercase; letter-spacing: 1.5px; font-weight:600;">Publicidade Patrocinada</p>
@@ -131,13 +167,13 @@ function mudarIdiomaGoogle(lang) {
 
         <header>
             <h1>Estados Unidos</h1>
-            <p>Painel analítico completo com estatísticas demográficas, manchetes globais e contexto geopolítico.</p>
+            <p>Painel analítico completo com estatísticas demográficas, PIB, inflação, manchetes globais e contexto geopolítico.</p>
         </header>
         
         <div class="info-box-robust">
             <h3>📖 Panorama Geopolítico e Econômico de Estados Unidos</h3>
             <p>O território de <strong>Estados Unidos</strong> destaca-se no cenário internacional pela sua relevância na região de Americas. Tendo Washington, D.C. como sua principal referência administrativa, a nação movimenta fluxos comerciais estratégicos e atrai atenção constante nos mercados globais.</p>
-            <p>Nesta página interativa, você encontra dados oficiais consolidados, estatísticas populacionais, conversões de moeda e o monitoramento contínuo das principais editorias internacionais de notícias.</p>
+            <p>Nesta página interativa, você encontra dados oficiais consolidados, estatísticas populacionais, PIB, inflação, conversões de moeda e o monitoramento contínuo das principais fontes de notícias.</p>
         </div>
 
         <div class="curiosidade-box">
@@ -150,6 +186,8 @@ function mudarIdiomaGoogle(lang) {
             <div class="stat-card"><div class="label">Continente / Região</div><div class="value">Americas</div></div>
             <div class="stat-card"><div class="label">População Estimada</div><div class="value">331.000.000 hab.</div></div>
             <div class="stat-card"><div class="label">Moeda Corrente</div><div class="value">Dólar</div></div>
+            <div class="stat-card"><div class="label">PIB Estimado (Global)</div><div class="value">US$ 580 Bilhões</div></div>
+            <div class="stat-card"><div class="label">Taxa de Inflação Média</div><div class="value">2.1% a.a.</div></div>
             <div class="stat-card"><div class="label">Fuso Horário</div><div class="value">UTC-5</div></div>
             <div class="stat-card"><div class="label">Idioma Principal</div><div class="value">Inglês</div></div>
         </div>
@@ -162,11 +200,11 @@ function mudarIdiomaGoogle(lang) {
             </div>
             <div class="faq-item">
                 <h4>Onde acompanhar notícias atualizadas de Estados Unidos?</h4>
-                <p>No Global News & Data, você acompanha em tempo real as principais coberturas internacionais, análises econômicas, tecnológicas e esportivas conectadas às principais fontes do mundo.</p>
+                <p>No Global News & Data, você acompanha em tempo real as principais coberturas internacionais, análises econômicas e indicadores macroeconômicos.</p>
             </div>
             <div class="faq-item">
-                <h4>Qual é o idioma e o fuso horário predominante?</h4>
-                <p>O idioma oficial registrado é o(a) Inglês e o fuso horário de referência abrange a marcação UTC-5.</p>
+                <h4>Quais são os principais dados econômicos de PIB e Inflação?</h4>
+                <p>A nação registra um PIB estimado em US$ 580 Bilhões e patamar de inflação monitorado em torno de 2.1% a.a..</p>
             </div>
         </div>
         
@@ -186,89 +224,28 @@ function mudarIdiomaGoogle(lang) {
 </div>
 
         
-        <h2 class="section-title">Manchetes de Impacto e Cobertura Global</h2>
+        <h2 class="section-title">Últimas Notícias e Manchetes: Estados Unidos</h2>
         <div class="news-grid">
             
             <div class="news-card">
-                <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=600&auto=format&fit=crop&q=60" alt="Capa da Notícia" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
+                <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=600&auto=format&fit=crop&q=60" alt="Capa da Notícia" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
                 <div class="news-content">
                     <div>
-                        <span class="badge" style="background-color: #16a34a;">Qualidade de Vida</span>
-                        <h3><a href="https://g1.globo.com/bemestar/blog/longevidade-modo-de-usar/post/2023/07/09/cuidado-para-nao-sabotar-o-seu-futuro-eu.ghtml" target="_blank" rel="nofollow">Cuidado para não sabotar o seu futuro eu</a></h3>
+                        <span class="badge" style="background-color: #ea580c;">Vagas & Home Office</span>
+                        <h3><a href="#empregos" target="_blank" rel="nofollow">Setor de Tecnologia Anuncia Crescimento na Contratação de Desenvolvedores</a></h3>
                     </div>
-                    <p>        Hal Hershfield é professor de marketing, decisão comportamental e psicologia da Universidade da Califórnia, Los Angeles. Mês passado...</p>
+                    <p>Demanda por profissionais remotos impulsiona o mercado de trabalho digital global.</p>
                 </div>
             </div>
             
             <div class="news-card">
-                <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=600&auto=format&fit=crop&q=60" alt="Capa da Notícia" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
+                <img src="https://images.unsplash.com/photo-1541872703-74c5e44368f9?w=600&auto=format&fit=crop&q=60" alt="Capa da Notícia" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
                 <div class="news-content">
                     <div>
-                        <span class="badge" style="background-color: #16a34a;">Qualidade de Vida</span>
-                        <h3><a href="https://g1.globo.com/rj/rio-de-janeiro/noticia/2023/07/12/mc-marcinho-usa-terapia-conhecida-como-ecmo-especie-de-pulmao-artificial-entenda-como-funciona.ghtml" target="_blank" rel="nofollow">MC Marcinho usa terapia conhecida como ECMO, espécie de pulmão artificial; entenda como funciona</a></h3>
+                        <span class="badge" style="background-color: #2563eb;">Mundo</span>
+                        <h3><a href="#mundo" target="_blank" rel="nofollow">Novas Sanções Econômicas Redesenham Alianças entre Grandes Potências</a></h3>
                     </div>
-                    <p>        ECMO: entenda como funciona a terapia usada em MC Marcinho
-Um dos maiores nomes da história do funk carioca, Marcio André Nepomuceno...</p>
-                </div>
-            </div>
-            
-            <div class="news-card">
-                <img src="https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=600&auto=format&fit=crop&q=60" alt="Capa da Notícia" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
-                <div class="news-content">
-                    <div>
-                        <span class="badge" style="background-color: #9333ea;">Games & Tech</span>
-                        <h3><a href="https://g1.globo.com/tecnologia/games/brasil-game-show/2017/noticia/quem-e-playerunknown-o-desconhecido-que-criou-battlegrounds-game-fenomeno-de-2017.ghtml" target="_blank" rel="nofollow">Quem é 'PlayerUnknown', o desconhecido que criou 'Battlegrounds', game fenômeno de 2017</a></h3>
-                    </div>
-                    <p>        Brendan Greene, criador do hit 'Battlegrounds', fala com o G1 na BGS
-Brendan Greene leva o anonimato em seu apelido na internet, mas...</p>
-                </div>
-            </div>
-            
-            <div class="news-card">
-                <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=600&auto=format&fit=crop&q=60" alt="Capa da Notícia" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
-                <div class="news-content">
-                    <div>
-                        <span class="badge" style="background-color: #9333ea;">Games & Tech</span>
-                        <h3><a href="https://g1.globo.com/tecnologia/games/brasil-game-show/2017/noticia/assassins-creed-origins-quer-levar-mais-liberdade-e-conhecimento-para-jogadores-diz-produtor.ghtml" target="_blank" rel="nofollow">'Assassin's Creed Origins' quer levar mais liberdade e conhecimento para jogadores, diz produtor</a></h3>
-                    </div>
-                    <p>        Bruno Guerin, produtor de 'Assassin's Creed Origins', comenta novidades do game
-Liberdade e conhecimento. Mais do que nunca, esses s...</p>
-                </div>
-            </div>
-            
-            <div class="news-card">
-                <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&auto=format&fit=crop&q=60" alt="Capa da Notícia" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
-                <div class="news-content">
-                    <div>
-                        <span class="badge" style="background-color: #059669;">Economia</span>
-                        <h3><a href="#economia" target="_blank" rel="nofollow">Agronegócio e Tecnologia de Ponta Elevam Produtividade Recorde</a></h3>
-                    </div>
-                    <p>Inovações genéticas e monitoramento por satélite garantem safras históricas.</p>
-                </div>
-            </div>
-            
-            <div class="news-card">
-                <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=600&auto=format&fit=crop&q=60" alt="Capa da Notícia" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
-                <div class="news-content">
-                    <div>
-                        <span class="badge" style="background-color: #16a34a;">Qualidade de Vida</span>
-                        <h3><a href="https://g1.globo.com/sp/campinas-regiao/noticia/2024/05/12/mayaro-e-o-que-mais-unicamp-aponta-possivel-transmissao-urbana-do-virus-em-roraima-e-ve-indicios-de-novas-ameacas.ghtml" target="_blank" rel="nofollow">Mayaro e o que mais? Unicamp aponta possível transmissão urbana do vírus em Roraima e vê indícios de novas ameaças</a></h3>
-                    </div>
-                    <p>        Imagem de imunofluorescência do vírus mayaro em amostra de paciente de Roraima (RR) analisada por pesquisadores da Unicamp
-Reproduçã...</p>
-                </div>
-            </div>
-            
-            <div class="news-card">
-                <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=600&auto=format&fit=crop&q=60" alt="Capa da Notícia" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
-                <div class="news-content">
-                    <div>
-                        <span class="badge" style="background-color: #7c3aed;">Tecnologia</span>
-                        <h3><a href="https://g1.globo.com/tecnologia/noticia/2026/11/14/italia-multa-meta.ghtml" target="_blank" rel="nofollow">Itália multa Meta em R$ 5 bilhões por acessar fotos e vídeos de usuários sem consentimento</a></h3>
-                    </div>
-                    <p>        Justiça de São Paulo proíbe Meta de usar conteúdo jornalístico sem autorização
-Jornal Nacional/ Reprodução
-A autoridade de proteção ...</p>
+                    <p>Medidas anunciadas hoje impactam diretamente exportações e cadeias de suprimentos.</p>
                 </div>
             </div>
             
@@ -277,22 +254,81 @@ A autoridade de proteção ...</p>
                 <div class="news-content">
                     <div>
                         <span class="badge" style="background-color: #db2777;">Filmes & Séries</span>
-                        <h3><a href="https://g1.globo.com/pop-arte/noticia/2026/11/13/christian-cousins-ex-ator-mirim-de-um-tira-no-jardim-de-infancia-morre-aos-43-anos.ghtml" target="_blank" rel="nofollow">Christian Cousins, ex-ator mirim de 'Um Tira no Jardim de Infância', morre aos 43 anos</a></h3>
+                        <h3><a href="https://www.bbc.co.uk/news/articles/cw808ll7x093o?at_medium=RSS&at_campaign=rss" target="_blank" rel="nofollow">Noel Fielding 'appalled' by jokes he made with Russell Brand</a></h3>
                     </div>
-                    <p>        O ator Christian Cousins; na segunda foto, ele está com seu irmão gemêo, Joey 
-Reprodução/Instagram
-Christian Cousins, ex-ator mirim...</p>
+                    <p>The Great British Bake Off presenter says he has not been in contact with the convicted rapist "for many years".</p>
                 </div>
             </div>
             
             <div class="news-card">
-                <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=600&auto=format&fit=crop&q=60" alt="Capa da Notícia" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
+                <img src="https://images.unsplash.com/photo-1612287233002-91d0f5367c33?w=600&auto=format&fit=crop&q=60" alt="Capa da Notícia" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
                 <div class="news-content">
                     <div>
-                        <span class="badge" style="background-color: #2563eb;">Mundo</span>
-                        <h3><a href="https://g1.globo.com/mundo/noticia/2026/11/14/eua-propoem-que-ucrania-ceda-territorio-a-russia-em-troca-de-entrada-na-otan-diz-zelensky.ghtml" target="_blank" rel="nofollow">EUA propõem que Ucrânia ceda território à Rússia em troca de entrada na Otan, diz Zelensky</a></h3>
+                        <span class="badge" style="background-color: #9333ea;">Games & Tech</span>
+                        <h3><a href="https://g1.globo.com/tecnologia/games/brasil-game-show/2017/noticia/sistema-nemesis-nao-funciona-fora-do-mundo-de-senhor-dos-aneis-diz-produtor-de-shadow-of-war.ghtml" target="_blank" rel="nofollow">Sistema Nêmesis não funciona fora do mundo de 'Senhor dos Anéis', diz produtor de 'Shadow of War'</a></h3>
                     </div>
-                    <p>        O presidente da Ucrânia, Volodymyr Zelensky, durante entrevista coletiva em cúpula de líderes da União Europeia, em Bruxelas, na Bél...</p>
+                    <p>Produtor de 'Shadow of War' comenta microtransações, Sistema Nêmesis e futuro do herói
+O sistema Nêmesis foi o maior responsável pelo sucess...</p>
+                </div>
+            </div>
+            
+            <div class="news-card">
+                <img src="https://images.unsplash.com/photo-1552820728-8b83bb6b773f?w=600&auto=format&fit=crop&q=60" alt="Capa da Notícia" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
+                <div class="news-content">
+                    <div>
+                        <span class="badge" style="background-color: #9333ea;">Games & Tech</span>
+                        <h3><a href="https://g1.globo.com/tecnologia/games/brasil-game-show/2017/noticia/novo-modo-multiplayer-de-call-of-duty-ww2-faz-boa-juncao-de-tiros-com-narrativa-g1-jogou.ghtml" target="_blank" rel="nofollow">Novo modo multiplayer de 'Call of Duty: WWII' faz boa junção de tiros com narrativa; G1 jogou</a></h3>
+                    </div>
+                    <p>G1 testa novo modo 'Guerra' de 'Call of Duty: WWII'
+"Call of Duty: WWII" leva a franquia de games de tiro em primeira pessoa à Segunda Guerr...</p>
+                </div>
+            </div>
+            
+            <div class="news-card">
+                <img src="https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=600&auto=format&fit=crop&q=60" alt="Capa da Notícia" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
+                <div class="news-content">
+                    <div>
+                        <span class="badge" style="background-color: #dc2626;">Esportes</span>
+                        <h3><a href="#esportes" target="_blank" rel="nofollow">Mercado da Bola Agita Bastidores com Contratações Milionárias</a></h3>
+                    </div>
+                    <p>Equipes europeias e sul-americanas disputam reforços de peso para a temporada.</p>
+                </div>
+            </div>
+            
+            <div class="news-card">
+                <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=600&auto=format&fit=crop&q=60" alt="Capa da Notícia" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
+                <div class="news-content">
+                    <div>
+                        <span class="badge" style="background-color: #16a34a;">Qualidade de Vida</span>
+                        <h3><a href="https://g1.globo.com/sp/campinas-regiao/noticia/2024/08/09/ciencia-aberta-centro-que-abriga-o-sirius-recebe-publico-para-apresentar-curiosidades-e-atracoes-da-ciencia.ghtml" target="_blank" rel="nofollow">'Ciência Aberta': centro que abriga o Sirius recebe público para apresentar curiosidades e atrações da ciência</a></h3>
+                    </div>
+                    <p>Sirius, laboratório de luz síncrotron de 4ª geração, instalado no CNPEM, em Campinas (SP)
+Nelson Kon
+O Centro Nacional de Pesquisa em Energi...</p>
+                </div>
+            </div>
+            
+            <div class="news-card">
+                <img src="https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60" alt="Capa da Notícia" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
+                <div class="news-content">
+                    <div>
+                        <span class="badge" style="background-color: #ea580c;">Vagas & Home Office</span>
+                        <h3><a href="#empregos" target="_blank" rel="nofollow">Grandes Empresas Abrem Centenas de Vagas para Trabalho Remoto (Home Office)</a></h3>
+                    </div>
+                    <p>Oportunidades internacionais e nacionais oferecem flexibilidade e contratação imediata.</p>
+                </div>
+            </div>
+            
+            <div class="news-card">
+                <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=600&auto=format&fit=crop&q=60" alt="Capa da Notícia" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
+                <div class="news-content">
+                    <div>
+                        <span class="badge" style="background-color: #7c3aed;">Tecnologia</span>
+                        <h3><a href="https://g1.globo.com/tecnologia/noticia/2026/11/14/italia-multa-meta.ghtml" target="_blank" rel="nofollow">Itália multa Meta em R$ 5 bilhões por acessar fotos e vídeos de usuários sem consentimento</a></h3>
+                    </div>
+                    <p>Justiça de São Paulo proíbe Meta de usar conteúdo jornalístico sem autorização
+Jornal Nacional/ Reprodução
+A autoridade de proteção de dados...</p>
                 </div>
             </div>
             

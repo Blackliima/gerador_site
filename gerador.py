@@ -32,7 +32,6 @@ AD_BANNER = """
 </div>
 """
 
-# 2. BARRA DE COTAÇÕES GLOBAIS E CRIPTO EM TEMPO REAL
 TICKER_COTACOES = """
 <div style="background: var(--card-bg); border-bottom: 1px solid var(--border-color); padding: 8px 0; font-size: 12px; font-weight: 600; overflow: hidden; white-space: nowrap; box-shadow: inset 0 1px 3px rgba(0,0,0,0.02);">
     <div style="display: inline-block; animation: scrollTicker 30s linear infinite; display: flex; gap: 40px; width: max-content; padding-left: 20px;">
@@ -53,10 +52,9 @@ TICKER_COTACOES = """
 </style>
 """
 
-# 4. TICKER ANIMADO DE BREAKING NEWS (ÚLTIMA HORA)
 BREAKING_NEWS_TICKER = """
 <div style="background: #dc2626; color: white; padding: 10px 15px; border-radius: 8px; margin-bottom: 25px; display: flex; align-items: center; gap: 12px; font-size: 13px; font-weight: 700; box-shadow: 0 4px 10px rgba(220,38,38,0.2);">
-    <span style="background: white; color: #dc2626; padding: 3px 8px; border-radius: 4px; font-size: 11k; text-transform: uppercase; letter-spacing: 1px; animation: pulse 1.5s infinite;">🔴 AO VIVO</span>
+    <span style="background: white; color: #dc2626; padding: 3px 8px; border-radius: 4px; font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">🔴 AO VIVO</span>
     <div style="overflow: hidden; white-space: nowrap; width: 100%;">
         <div style="display: inline-block; animation: scrollTicker 25s linear infinite;">
             ⚠️ Plantão Global: Lideranças mundiais convocam cúpula extraordinária para debater acordos econômicos e segurança internacional    |    💻 Setor tecnológico registra alta histórica em investimentos de inteligência artificial    |    📈 Bancos centrais mantêm cautela diante de novos indicadores de inflação global.
@@ -65,7 +63,6 @@ BREAKING_NEWS_TICKER = """
 </div>
 """
 
-# 1. SELETOR DE IDIOMA REAL E NATIVO POR URL (MULTI-IDIOMA)
 WIDGET_TRADUTOR_MODERNO = """
 <div class="language-picker-wrapper">
     <select id="customLanguageSelect" onchange="mudarIdiomaUrl(this.value)" class="lang-select">
@@ -111,12 +108,21 @@ HTML_TEMPLATE = """
     <title>{{ country.name }} - Global News & Data | Notícias e Indicadores Oficiais</title>
     <meta name="description" content="Tudo sobre {{ country.name }}: últimas notícias em tempo real, capital, população, economia, fuso horário, PIB, inflação e indicadores oficiais.">
     
-    <!-- Open Graph / Redes Sociais -->
+    <!-- Open Graph / Redes Sociais Blindadas (Anti-Spam / Anti-Tela Preta) -->
     <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Global News & Data">
     <meta property="og:title" content="{{ country.name }} - Global News & Data">
-    <meta property="og:description" content="Acompanhe dados oficiais, economia, PIB, inflação e notícias sobre {{ country.name }}.">
-    <meta property="og:image" content="https://images.unsplash.com/photo-1521295121783-8a321d551ad2?w=600&auto=format&fit=crop&q=60">
+    <meta property="og:description" content="Acompanhe dados oficiais, economia, PIB, inflação e notícias sobre {{ country.name }} em tempo real.">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1521295121783-8a321d551ad2?w=1200&auto=format&fit=crop&q=80">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
     <meta property="og:url" content="{{ dominio }}/{{ country.file }}">
+
+    <!-- Twitter Card Blindado -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ country.name }} - Global News & Data">
+    <meta name="twitter:description" content="Acompanhe dados oficiais, economia, PIB, inflação e notícias sobre {{ country.name }}.">
+    <meta name="twitter:image" content="https://images.unsplash.com/photo-1521295121783-8a321d551ad2?w=1200&auto=format&fit=crop&q=80">
 
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌍</text></svg>">
     <style>
@@ -208,7 +214,6 @@ HTML_TEMPLATE = """
             <p>{{ country.curiosidade }}</p>
         </div>
 
-        <!-- 3. PAINEL DE INDICADORES MACROECONÔMICOS (PIB E INFLAÇÃO EXPANDIDOS) -->
         <div class="grid-stats">
             <div class="stat-card"><div class="label">Capital Oficial</div><div class="value">{{ country.capital }}</div></div>
             <div class="stat-card"><div class="label">Continente / Região</div><div class="value">{{ country.region }}</div></div>
@@ -291,12 +296,21 @@ INDEX_TEMPLATE = """
     <title>Global News & Data - Portal Mundial de Notícias, Economia, Vagas e Saúde</title>
     <meta name="description" content="Portal global completo com notícias em tempo real, cotações, vagas de emprego home office, economia, tecnologia, filmes, games, saúde e indicadores estatísticos.">
     
-    <!-- Open Graph / Redes Sociais Home -->
+    <!-- Open Graph / Redes Sociais Home Blindadas -->
     <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Global News & Data">
     <meta property="og:title" content="Global News & Data - Portal Mundial de Notícias">
     <meta property="og:description" content="Portal global completo com notícias em tempo real, cotações, conflitos, economia e vagas home office.">
-    <meta property="og:image" content="https://images.unsplash.com/photo-1521295121783-8a321d551ad2?w=600&auto=format&fit=crop&q=60">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1521295121783-8a321d551ad2?w=1200&auto=format&fit=crop&q=80">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
     <meta property="og:url" content="{{ dominio }}/index.html">
+
+    <!-- Twitter Card Home Blindado -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Global News & Data - Portal Mundial de Notícias">
+    <meta name="twitter:description" content="Portal global completo com notícias em tempo real, cotações, conflitos e economia.">
+    <meta name="twitter:image" content="https://images.unsplash.com/photo-1521295121783-8a321d551ad2?w=1200&auto=format&fit=crop&q=80">
 
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌍</text></svg>">
     <style>
@@ -329,7 +343,6 @@ INDEX_TEMPLATE = """
         .nav-cats a { background: var(--card-bg); color: var(--text); padding: 8px 14px; border-radius: 20px; text-decoration: none; font-size: 13px; font-weight: 600; border: 1px solid var(--border-color); box-shadow: 0 2px 4px rgba(0,0,0,0.02); transition: all 0.2s; }
         .nav-cats a:hover { background: var(--primary); color: white; border-color: var(--primary); }
 
-        /* HERO GRID ESTILO G1 (IMPACTO & VÍDEOS) */
         .hero-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 20px; margin-bottom: 40px; }
         @media(max-width: 768px) { .hero-grid { grid-template-columns: 1fr; } }
         
@@ -355,7 +368,6 @@ INDEX_TEMPLATE = """
 
         .section-title { font-size: 22px; font-weight: 700; margin: 45px 0 20px 0; border-left: 5px solid var(--primary); padding-left: 12px; display: flex; align-items: center; justify-content: space-between; }
         
-        /* BLOG ROBUSTO */
         .blog-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 35px; }
         @media(max-width: 900px) { .blog-grid { grid-template-columns: repeat(2, 1fr); } }
         @media(max-width: 600px) { .blog-grid { grid-template-columns: 1fr; } }
@@ -376,7 +388,6 @@ INDEX_TEMPLATE = """
         .country-card h3 { margin: 0 0 6px 0; color: var(--primary); font-size: 18px; font-weight: 700; }
         .country-card p { margin: 0; font-size: 13px; color: var(--text-light); font-weight: 500; }
 
-        /* GRADE DE 3 COLUNAS CHEIAS */
         .news-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
         @media(max-width: 900px) { .news-grid { grid-template-columns: repeat(2, 1fr); } }
         @media(max-width: 600px) { .news-grid { grid-template-columns: 1fr; } }
@@ -426,7 +437,6 @@ INDEX_TEMPLATE = """
             <a href="#paises">🗺️ Países</a>
         </div>
 
-        <!-- SEÇÃO HERO GRID DE DESTAQUE (ESTILO G1 COM VÍDEOS E CHOQUE) -->
         {% if categorias.get('Mundo') and categorias['Mundo'].lista|length >= 3 %}
         <div class="hero-grid">
             <div class="hero-main">
@@ -556,6 +566,14 @@ ANUNCIE_TEMPLATE = """
     {{ google_meta | safe }}
     <title>Anuncie Conosco & Parcerias - Global News & Data</title>
     <meta name="description" content="Divulgue sua marca, produto ou serviço no Global News & Data. Conheça nossas opções de publieditoriais, guest posts e patrocínios comerciais.">
+    
+    <!-- Open Graph Anuncie Blindado -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Anuncie Conosco & Parcerias - Global News & Data">
+    <meta property="og:description" content="Divulgue sua marca no Global News & Data. Conheça nossas opções de publieditoriais e patrocínios.">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1521295121783-8a321d551ad2?w=1200&auto=format&fit=crop&q=80">
+    <meta property="og:url" content="{{ dominio }}/anuncie.html">
+
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌍</text></svg>">
     <style>
         :root { 
@@ -935,7 +953,7 @@ def send_search_engine_pings():
             print(f"[Aviso] Modo offline/rede restrita para o ping: {e}")
 
 def gerar_site():
-    print("Gerando portal mundial completo com Cotações, Ticker e SEO Multi-idioma...")
+    print("Gerando portal mundial blindado contra spam e com tags sociais ativas...")
     paises = baixar_paises()
     categorias_dict, todas_noticias = buscar_noticias_por_categoria()
     
@@ -1003,7 +1021,7 @@ def gerar_site():
 
     gerar_sitemap(lista_paises)
     send_search_engine_pings()
-    print("Sucesso absoluto! Portal mundial com Cotações, Ticker e Indicadores Macro gerado.")
+    print("Sucesso absoluto! Portal mundial blindado para redes sociais e gerado com sucesso.")
 
 if __name__ == "__main__":
     gerar_site()

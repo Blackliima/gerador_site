@@ -1,6 +1,6 @@
 
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,14 +8,23 @@
     <script src="https://quge5.com/88/tag.min.js" data-zone="309679" async data-cfasync="false"></script>
     <meta name="google-site-verification" content="pbgwZbVwgKMwqqqGYFcHeGGbV7EM7nBdlns1c_DN_Sw" />
     <title>França - Global News & Data | Notícias e Indicadores Oficiais</title>
-    <meta name="description" content="Tudo sobre França: últimas notícias em tempo real, capital, população, economia, fuso horário e indicadores oficiais atualizados.">
+    <meta name="description" content="Tudo sobre França: últimas notícias em tempo real, capital, população, economia, fuso horário, PIB, inflação e indicadores oficiais.">
     
-    <!-- Open Graph / Redes Sociais (WhatsApp, Facebook, Twitter) -->
-    <meta property="property" content="og:type" content="article">
+    <!-- Open Graph / Redes Sociais Blindadas (Anti-Spam / Anti-Tela Preta) -->
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Global News & Data">
     <meta property="og:title" content="França - Global News & Data">
-    <meta property="og:description" content="Acompanhe dados oficiais, economia e notícias de última hora sobre França.">
-    <meta property="og:image" content="https://images.unsplash.com/photo-1521295121783-8a321d551ad2?w=600&auto=format&fit=crop&q=60">
+    <meta property="og:description" content="Acompanhe dados oficiais, economia, PIB, inflação e notícias sobre França em tempo real.">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1521295121783-8a321d551ad2?w=1200&auto=format&fit=crop&q=80">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
     <meta property="og:url" content="https://gerador-site.pages.dev/frança.html">
+
+    <!-- Twitter Card Blindado -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="França - Global News & Data">
+    <meta name="twitter:description" content="Acompanhe dados oficiais, economia, PIB, inflação e notícias sobre França.">
+    <meta name="twitter:image" content="https://images.unsplash.com/photo-1521295121783-8a321d551ad2?w=1200&auto=format&fit=crop&q=80">
 
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌍</text></svg>">
     <style>
@@ -65,7 +74,7 @@
         .news-card:hover { transform: translateY(-3px); box-shadow: 0 10px 20px -3px rgba(0,0,0,0.05); }
         .news-img { width: 100%; height: 160px; object-fit: cover; background: #e2e8f0; }
         .news-content { padding: 20px; display: flex; flex-direction: column; justify-content: space-between; flex-grow: 1; }
-        .badge { display: inline-block; padding: 4px 10px; font-size: 11px; font-weight: 700; border-radius: 20px; text-transform: uppercase; margin-bottom: 12px; color: white; letter-spacing: 0.5px; }
+        .badge { display: inline-block; align-self: flex-start; padding: 4px 10px; font-size: 11px; font-weight: 700; border-radius: 20px; text-transform: uppercase; margin-bottom: 12px; color: white; letter-spacing: 0.5px; }
         .news-card h3 { margin: 0 0 10px 0; font-size: 17px; line-height: 1.4; }
         .news-card h3 a { color: var(--text); text-decoration: none; transition: color 0.2s; }
         .news-card h3 a:hover { color: var(--primary); }
@@ -78,14 +87,32 @@
     </style>
 </head>
 <body data-theme="light">
+    
+<div style="background: var(--card-bg); border-bottom: 1px solid var(--border-color); padding: 8px 0; font-size: 12px; font-weight: 600; overflow: hidden; white-space: nowrap; box-shadow: inset 0 1px 3px rgba(0,0,0,0.02);">
+    <div style="display: inline-block; animation: scrollTicker 30s linear infinite; display: flex; gap: 40px; width: max-content; padding-left: 20px;">
+        <span style="color: var(--text);">📊 <strong>USD/BRL:</strong> R$ 5,48 (+0.4%)</span>
+        <span style="color: var(--text);">💶 <strong>EUR/USD:</strong> $ 1.08 (-0.1%)</span>
+        <span style="color: var(--text);">💷 <strong>GBP/USD:</strong> $ 1.27 (+0.2%)</span>
+        <span style="color: #16a34a;">🪙 <strong>Bitcoin (BTC):</strong> $ 67,450.00 (+2.1%)</span>
+        <span style="color: #16a34a;">🪙 <strong>Ethereum (ETH):</strong> $ 3,520.00 (+1.8%)</span>
+        <span style="color: #2563eb;">🛢️ <strong>Petróleo Brent:</strong> $ 85.30 (+0.5%)</span>
+        <span style="color: #d97706;">🥇 <strong>Ouro (Oz):</strong> $ 2,340.50 (+0.3%)</span>
+    </div>
+</div>
+<style>
+@keyframes scrollTicker {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+</style>
+
     <div class="navbar">
         <div class="nav-container">
             <a href="index.html" class="back-link">← Voltar ao Início Global</a>
             <div class="nav-right">
                 
 <div class="language-picker-wrapper">
-    <div id="google_translate_element" style="display:none;"></div>
-    <select id="customLanguageSelect" onchange="mudarIdiomaGoogle(this.value)" class="lang-select">
+    <select id="customLanguageSelect" onchange="mudarIdiomaUrl(this.value)" class="lang-select">
         <option value="pt">🇧🇷 Português</option>
         <option value="en">🇺🇸 English</option>
         <option value="es">🇪🇸 Español</option>
@@ -96,24 +123,33 @@
     </select>
 </div>
 <script type="text/javascript">
-function googleTranslateElementInit() {
-  new google.translate.TranslateElement({pageLanguage: 'pt', includedLanguages: 'pt,en,es,fr,de,ja,zh-CN', autoDisplay: false}, 'google_translate_element');
-}
-function mudarIdiomaGoogle(lang) {
-  var select = document.querySelector('.goog-te-combo');
-  if (select) {
-    select.value = lang;
-    select.dispatchEvent(new Event('change'));
-  }
+function mudarIdiomaUrl(lang) {
+    const currentPath = window.location.pathname;
+    if (lang === 'pt') {
+        window.location.href = currentPath.includes('/en/') ? currentPath.replace('/en/', '/') : currentPath;
+    } else {
+        if (!currentPath.includes('/en/')) {
+            window.location.href = '/en' + currentPath;
+        }
+    }
 }
 </script>
-<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
                 <button class="theme-btn" onclick="toggleTheme()">🌓 Tema</button>
             </div>
         </div>
     </div>
     <div class="container">
+        
+<div style="background: #dc2626; color: white; padding: 10px 15px; border-radius: 8px; margin-bottom: 25px; display: flex; align-items: center; gap: 12px; font-size: 13px; font-weight: 700; box-shadow: 0 4px 10px rgba(220,38,38,0.2);">
+    <span style="background: white; color: #dc2626; padding: 3px 8px; border-radius: 4px; font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">🔴 AO VIVO</span>
+    <div style="overflow: hidden; white-space: nowrap; width: 100%;">
+        <div style="display: inline-block; animation: scrollTicker 25s linear infinite;">
+            ⚠️ Plantão Global: Lideranças mundiais convocam cúpula extraordinária para debater acordos econômicos e segurança internacional    |    💻 Setor tecnológico registra alta histórica em investimentos de inteligência artificial    |    📈 Bancos centrais mantêm cautela diante de novos indicadores de inflação global.
+        </div>
+    </div>
+</div>
+
         
 <div style="text-align:center; margin: 30px 0; background:var(--card-bg); padding:20px; border-radius:12px; box-shadow: 0 4px 12px rgba(0,0,0,0.06); border: 1px dashed rgba(0,0,0,0.1);">
     <p style="color:var(--text-light); font-size:10px; margin-bottom:8px; text-transform: uppercase; letter-spacing: 1.5px; font-weight:600;">Publicidade Patrocinada</p>
@@ -131,18 +167,18 @@ function mudarIdiomaGoogle(lang) {
 
         <header>
             <h1>França</h1>
-            <p>Painel analítico completo com estatísticas demográficas, manchetes globais e contexto geopolítico.</p>
+            <p>Painel analítico completo com estatísticas demográficas, PIB, inflação, manchetes globais e contexto geopolítico.</p>
         </header>
         
         <div class="info-box-robust">
             <h3>📖 Panorama Geopolítico e Econômico de França</h3>
             <p>O território de <strong>França</strong> destaca-se no cenário internacional pela sua relevância na região de Europe. Tendo Paris como sua principal referência administrativa, a nação movimenta fluxos comerciais estratégicos e atrai atenção constante nos mercados globais.</p>
-            <p>Nesta página interativa, você encontra dados oficiais consolidados, estatísticas populacionais, conversões de moeda e o monitoramento contínuo das principais editorias internacionais de notícias.</p>
+            <p>Nesta página interativa, você encontra dados oficiais consolidados, estatísticas populacionais, PIB, inflação, conversões de moeda e o monitoramento contínuo das principais fontes de notícias.</p>
         </div>
 
         <div class="curiosidade-box">
             <h3>💡 Curiosidade Global & Fato Marcante</h3>
-            <p>Conhecido por sua rica herança cultural, este país desempenha um papel geopolítico e econômico fundamental em sua região.</p>
+            <p>A culinária e as tradições locais deste país misturam influências ancestrais e modernas de forma surpreendente.</p>
         </div>
 
         <div class="grid-stats">
@@ -150,6 +186,8 @@ function mudarIdiomaGoogle(lang) {
             <div class="stat-card"><div class="label">Continente / Região</div><div class="value">Europe</div></div>
             <div class="stat-card"><div class="label">População Estimada</div><div class="value">67.000.000 hab.</div></div>
             <div class="stat-card"><div class="label">Moeda Corrente</div><div class="value">Euro</div></div>
+            <div class="stat-card"><div class="label">PIB Estimado (Global)</div><div class="value">US$ 3.1 Trilhões</div></div>
+            <div class="stat-card"><div class="label">Taxa de Inflação Média</div><div class="value">3.9% a.a.</div></div>
             <div class="stat-card"><div class="label">Fuso Horário</div><div class="value">UTC+1</div></div>
             <div class="stat-card"><div class="label">Idioma Principal</div><div class="value">Francês</div></div>
         </div>
@@ -162,11 +200,11 @@ function mudarIdiomaGoogle(lang) {
             </div>
             <div class="faq-item">
                 <h4>Onde acompanhar notícias atualizadas de França?</h4>
-                <p>No Global News & Data, você acompanha em tempo real as principais coberturas internacionais, análises econômicas, tecnológicas e esportivas conectadas às principais fontes do mundo.</p>
+                <p>No Global News & Data, você acompanha em tempo real as principais coberturas internacionais, análises econômicas e indicadores macroeconômicos.</p>
             </div>
             <div class="faq-item">
-                <h4>Qual é o idioma e o fuso horário predominante?</h4>
-                <p>O idioma oficial registrado é o(a) Francês e o fuso horário de referência abrange a marcação UTC+1.</p>
+                <h4>Quais são os principais dados econômicos de PIB e Inflação?</h4>
+                <p>A nação registra um PIB estimado em US$ 3.1 Trilhões e patamar de inflação monitorado em torno de 3.9% a.a..</p>
             </div>
         </div>
         
@@ -186,66 +224,40 @@ function mudarIdiomaGoogle(lang) {
 </div>
 
         
-        <h2 class="section-title">Manchetes de Impacto e Cobertura Global</h2>
+        <h2 class="section-title">Últimas Notícias e Manchetes: França</h2>
         <div class="news-grid">
+            
+            <div class="news-card">
+                <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?w=600&auto=format&fit=crop&q=60" alt="Capa da Notícia" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
+                <div class="news-content">
+                    <div>
+                        <span class="badge" style="background-color: #7c3aed;">Tecnologia</span>
+                        <h3><a href="https://techcrunch.com/2026/11/14/asian-governments-react-to-nvidia-ceo-jensen-huangs-exit/" target="_blank" rel="nofollow">Asian governments react to Nvidia CEO Jensen Huang’s exit</a></h3>
+                    </div>
+                    <p>Some governments moved to confirm chip supply commitments, while others are monitoring the impact on local projects or addressing ongoing in...</p>
+                </div>
+            </div>
             
             <div class="news-card">
                 <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=600&auto=format&fit=crop&q=60" alt="Capa da Notícia" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
                 <div class="news-content">
                     <div>
                         <span class="badge" style="background-color: #7c3aed;">Tecnologia</span>
-                        <h3><a href="https://g1.globo.com/tecnologia/ciberseguranca/serasa/noticia/2026/11/13/biometria-facial-contra-deepfakes-o-que-avaliar-em-liveness-escala-e-privacidade.ghtml" target="_blank" rel="nofollow">Biometria facial contra deepfakes: o que avaliar em liveness, escala e privacidade</a></h3>
+                        <h3><a href="https://techcrunch.com/2026/11/13/amazons-new-kindle-colorsoft-is-a-premium-e-reader-with-a-premium-price/" target="_blank" rel="nofollow">Amazon’s new Kindle Colorsoft is a premium e-reader with a premium price</a></h3>
                     </div>
-                    <p>        A biometria facial com prova de vida é uma das tecnologias utilizadas para verificar identidades e ajudar a prevenir fraudes em jorn...</p>
+                    <p>The latest model is lighter and thinner than its predecessor and features an edge-to-edge display. But if you already own the first-generati...</p>
                 </div>
             </div>
             
             <div class="news-card">
-                <img src="https://images.unsplash.com/photo-1512070679279-8988d2210cbc?w=600&auto=format&fit=crop&q=60" alt="Capa da Notícia" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
+                <img src="https://images.unsplash.com/photo-1552820728-8b83bb6b773f?w=600&auto=format&fit=crop&q=60" alt="Capa da Notícia" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
                 <div class="news-content">
                     <div>
-                        <span class="badge" style="background-color: #db2777;">Filmes & Séries</span>
-                        <h3><a href="https://g1.globo.com/pop-arte/noticia/2026/11/14/morre-aos-92-anos-rogerio-froes.ghtml" target="_blank" rel="nofollow">Morre aos 92 anos Rogério Fróes, ator de 'O Bem-Amado' e 'Selva de Pedra'</a></h3>
+                        <span class="badge" style="background-color: #9333ea;">Games & Tech</span>
+                        <h3><a href="https://g1.globo.com/tecnologia/games/brasil-game-show/2017/noticia/novo-modo-multiplayer-de-call-of-duty-ww2-faz-boa-juncao-de-tiros-com-narrativa-g1-jogou.ghtml" target="_blank" rel="nofollow">Novo modo multiplayer de 'Call of Duty: WWII' faz boa junção de tiros com narrativa; G1 jogou</a></h3>
                     </div>
-                    <p>        Ator Rogério Fróes morre aos 92 anos
-Morreu nesta sexta-feira (13), aos 92 anos, o ator Rogério Fróes. A notícia foi confirmada por ...</p>
-                </div>
-            </div>
-            
-            <div class="news-card">
-                <img src="https://images.unsplash.com/photo-1522869635100-9f4c5e86aa37?w=600&auto=format&fit=crop&q=60" alt="Capa da Notícia" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
-                <div class="news-content">
-                    <div>
-                        <span class="badge" style="background-color: #db2777;">Filmes & Séries</span>
-                        <h3><a href="https://g1.globo.com/pop-arte/noticia/2026/11/13/christian-cousins-ex-ator-mirim-de-um-tira-no-jardim-de-infancia-morre-aos-43-anos.ghtml" target="_blank" rel="nofollow">Christian Cousins, ex-ator mirim de 'Um Tira no Jardim de Infância', morre aos 43 anos</a></h3>
-                    </div>
-                    <p>        O ator Christian Cousins; na segunda foto, ele está com seu irmão gemêo, Joey 
-Reprodução/Instagram
-Christian Cousins, ex-ator mirim...</p>
-                </div>
-            </div>
-            
-            <div class="news-card">
-                <img src="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=600&auto=format&fit=crop&q=60" alt="Capa da Notícia" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
-                <div class="news-content">
-                    <div>
-                        <span class="badge" style="background-color: #db2777;">Filmes & Séries</span>
-                        <h3><a href="https://g1.globo.com/pop-arte/musica/blog/mauro-ferreira/post/2026/11/14/luan-santana-expoe-o-dna-sertanejo-nas-duas-musicas-ineditas-de-ep-que-expande-o-registro-da-turne-do-cantor.ghtml" target="_blank" rel="nofollow">Luan Santana expõe o D.N.A. sertanejo nas duas músicas inéditas de EP que expande o registro da turnê do cantor</a></h3>
-                    </div>
-                    <p>        Luan Santana durante show da turnê 'Registro histórico', captada em apresentação em Porto Alegre (RS) que gerou o EP 'Além do regist...</p>
-                </div>
-            </div>
-            
-            <div class="news-card">
-                <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&auto=format&fit=crop&q=60" alt="Capa da Notícia" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
-                <div class="news-content">
-                    <div>
-                        <span class="badge" style="background-color: #16a34a;">Qualidade de Vida</span>
-                        <h3><a href="https://g1.globo.com/sp/campinas-regiao/noticia/2024/05/09/ciencia-aberta-centro-que-abriga-o-sirius-tera-dia-exclusivo-para-receber-escolas-e-grupos-de-alunos-saiba-como-se-inscrever.ghtml" target="_blank" rel="nofollow">'Ciência Aberta': centro que abriga o Sirius terá dia exclusivo para receber escolas e grupos de alunos; saiba como se inscrever</a></h3>
-                    </div>
-                    <p>        Sirius, laboratório de luz síncrotron de 4ª geração, reforça a ciência no enfrentamento do novo coronavírus
-Nelson Kon
-Um dos maiore...</p>
+                    <p>G1 testa novo modo 'Guerra' de 'Call of Duty: WWII'
+"Call of Duty: WWII" leva a franquia de games de tiro em primeira pessoa à Segunda Guerr...</p>
                 </div>
             </div>
             
@@ -254,46 +266,68 @@ Um dos maiore...</p>
                 <div class="news-content">
                     <div>
                         <span class="badge" style="background-color: #059669;">Economia</span>
-                        <h3><a href="#economia" target="_blank" rel="nofollow">Bolsas Internacionais Reagem a Indicadores de Inflação e Juros</a></h3>
+                        <h3><a href="https://g1.globo.com/tecnologia/noticia/2026/11/14/golpe-microsoft-alerta-outlook.ghtml" target="_blank" rel="nofollow">Microsoft alerta sobre tentativas de golpe após falha no Teams e no Outlook</a></h3>
                     </div>
-                    <p>Analistas monitoram de perto as oscilações das principais moedas e índices globais.</p>
+                    <p>Logo da Microsoft
+REUTERS
+A Microsoft alertou para uma campanha de golpes por e-mail que aproveita a instabilidade registrada no Microsoft 3...</p>
                 </div>
             </div>
             
             <div class="news-card">
-                <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=600&auto=format&fit=crop&q=60" alt="Capa da Notícia" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
+                <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=600&auto=format&fit=crop&q=60" alt="Capa da Notícia" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
                 <div class="news-content">
                     <div>
-                        <span class="badge" style="background-color: #7c3aed;">Tecnologia</span>
-                        <h3><a href="https://g1.globo.com/tecnologia/noticia/2026/11/13/chat-gpt-wallet.ghtml" target="_blank" rel="nofollow">OpenAI lança carteira digital que permite ao ChatGPT fazer compras e pagamentos pelo usuário</a></h3>
+                        <span class="badge" style="background-color: #16a34a;">Qualidade de Vida</span>
+                        <h3><a href="https://www.bbc.co.uk/news/articles/c98r7xyjx8g4o?at_medium=RSS&at_campaign=rss" target="_blank" rel="nofollow">Sunbed firms must not downplay cancer risk, says watchdog</a></h3>
                     </div>
-                    <p>        As preocupações que levaram a OpenAI, do ChatGPT, a abandonar lançamento de novo sistema de IA
-Andrej Ivanov/AFP via Getty Images
-A ...</p>
+                    <p>The advertising watchdog says they also must not make misleading claims that sunbeds can treat skin conditions or improve mental health.</p>
                 </div>
             </div>
             
             <div class="news-card">
-                <img src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=600&auto=format&fit=crop&q=60" alt="Capa da Notícia" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
+                <img src="https://images.unsplash.com/photo-1521295121783-8a321d551ad2?w=600&auto=format&fit=crop&q=60" alt="Capa da Notícia" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
                 <div class="news-content">
                     <div>
                         <span class="badge" style="background-color: #2563eb;">Mundo</span>
-                        <h3><a href="https://g1.globo.com/politica/noticia/2026/11/14/lula-se-encontra-com-presidente-das-filipinas-e-fala-em-integrar-minerais-criticos-do-brasil-com-industria-local-de-semicondutores.ghtml" target="_blank" rel="nofollow">Lula se encontra com presidente das Filipinas e fala em integrar minerais críticos do Brasil com indústria local de semicondutores</a></h3>
+                        <h3><a href="https://www.bbc.co.uk/news/articles/cqx2wyvyr3zzo?at_medium=RSS&at_campaign=rss" target="_blank" rel="nofollow">What we know about the ground stop and what to do if you're affected</a></h3>
                     </div>
-                    <p>        Lula se encontra com o presidente das Filipinas, Ferdinand Marcos Jr, em Manila
-Ricardo Stuckert/Presidência da República
-O presiden...</p>
+                    <p>US officials say the disruption was caused by old equipment overloading and not a cyber-attack.</p>
                 </div>
             </div>
             
             <div class="news-card">
-                <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&auto=format&fit=crop&q=60" alt="Capa da Notícia" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
+                <img src="https://images.unsplash.com/photo-1522869635100-9f4c5e86aa37?w=600&auto=format&fit=crop&q=60" alt="Capa da Notícia" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
+                <div class="news-content">
+                    <div>
+                        <span class="badge" style="background-color: #db2777;">Filmes & Séries</span>
+                        <h3><a href="https://www.bbc.co.uk/news/articles/cw808ll7x093o?at_medium=RSS&at_campaign=rss" target="_blank" rel="nofollow">Noel Fielding 'appalled' by jokes he made with Russell Brand</a></h3>
+                    </div>
+                    <p>The Great British Bake Off presenter says he has not been in contact with the convicted rapist "for many years".</p>
+                </div>
+            </div>
+            
+            <div class="news-card">
+                <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=600&auto=format&fit=crop&q=60" alt="Capa da Notícia" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
+                <div class="news-content">
+                    <div>
+                        <span class="badge" style="background-color: #7c3aed;">Tecnologia</span>
+                        <h3><a href="https://g1.globo.com/tecnologia/noticia/2026/11/14/golpe-microsoft-alerta-outlook.ghtml" target="_blank" rel="nofollow">Microsoft alerta sobre tentativas de golpe após falha no Teams e no Outlook</a></h3>
+                    </div>
+                    <p>Logo da Microsoft
+REUTERS
+A Microsoft alertou para uma campanha de golpes por e-mail que aproveita a instabilidade registrada no Microsoft 3...</p>
+                </div>
+            </div>
+            
+            <div class="news-card">
+                <img src="https://images.unsplash.com/photo-1559526324-4b87b5e36e44?w=600&auto=format&fit=crop&q=60" alt="Capa da Notícia" class="news-img" onerror="this.src='https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&auto=format&fit=crop&q=60';">
                 <div class="news-content">
                     <div>
                         <span class="badge" style="background-color: #059669;">Economia</span>
-                        <h3><a href="#economia" target="_blank" rel="nofollow">Agronegócio e Tecnologia de Ponta Elevam Produtividade Recorde</a></h3>
+                        <h3><a href="https://www.bbc.co.uk/news/articles/c6rrg51rkz09o?at_medium=RSS&at_campaign=rss" target="_blank" rel="nofollow">Microsoft says services fully restored after day-long global outage</a></h3>
                     </div>
-                    <p>Inovações genéticas e monitoramento por satélite garantem safras históricas.</p>
+                    <p>Efforts to address the underlying problem with Outlook, Teams and Copilot are complete, the tech firm says.</p>
                 </div>
             </div>
             
