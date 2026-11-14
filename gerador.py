@@ -17,7 +17,7 @@ GOOGLE_META = '<meta name="google-site-verification" content="pbgwZbVwgKMwqqqGYF
 ADSENSE_SCRIPT = '<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5379027874215422" crossorigin="anonymous"></script>'
 
 AD_BANNER = """
-<div style="text-align:center; margin: 40px auto; padding: 20px; background: #ffffff; border-radius: 12px; border: 1px solid #e2e8f0; max-width: 100%; box-sizing: border-box;">
+<div style="text-align:center; margin: 30px auto; padding: 20px; background: #ffffff; border-radius: 12px; border: 1px solid #e2e8f0; max-width: 100%; box-sizing: border-box;">
     <p style="font-size: 10px; color: #64748b; text-transform: uppercase; margin-bottom: 10px; letter-spacing: 1px;">Oportunidade Patrocinada</p>
     <script type="text/javascript">
         atOptions = {
@@ -32,6 +32,37 @@ AD_BANNER = """
 </div>
 """
 
+TICKER_COTACOES = """
+<div style="background: #0f172a; color: #f8fafc; border-bottom: 1px solid #1e293b; padding: 10px 0; font-size: 12px; font-weight: 600; overflow: hidden; white-space: nowrap; box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);">
+    <div style="display: inline-block; animation: scrollTicker 35s linear infinite; display: flex; gap: 40px; width: max-content; padding-left: 20px;">
+        <span>🇧🇷 <strong>Salário Mínimo:</strong> R$ 1.520,00</span>
+        <span>📈 <strong>Taxa Selic:</strong> 11.25% a.a.</span>
+        <span>💵 <strong>Dólar (USD/BRL):</strong> R$ 5,48 (+0.4%)</span>
+        <span style="color: #4ade80;">🪙 <strong>Bitcoin (BTC):</strong> $ 67,450.00 (+2.1%)</span>
+        <span style="color: #4ade80;">🪙 <strong>Ethereum (ETH):</strong> $ 3,520.00 (+1.8%)</span>
+        <span style="color: #fbbf24;">🥇 <strong>Ouro (Oz):</strong> $ 2,340.50 (+0.3%)</span>
+        <span style="color: #60a5fa;">💼 <strong>Vagas Home Office:</strong> +4.500 abertas</span>
+    </div>
+</div>
+<style>
+@keyframes scrollTicker {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+</style>
+"""
+
+BREAKING_NEWS_TICKER = """
+<div style="background: #ea580c; color: white; padding: 12px 18px; border-radius: 10px; margin-bottom: 25px; display: flex; align-items: center; gap: 12px; font-size: 13px; font-weight: 700; box-shadow: 0 4px 10px rgba(234,88,12,0.15);">
+    <span style="background: white; color: #ea580c; padding: 4px 10px; border-radius: 6px; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; flex-shrink: 0;">🔥 EDITAL QUENTE</span>
+    <div style="overflow: hidden; white-space: nowrap; width: 100%;">
+        <div style="display: inline-block; animation: scrollTicker 25s linear infinite;">
+            ⚠️ Órgãos federais divulgam novos editais com mais de 5.000 vagas e salários iniciais de até R$ 12.000    |    💻 Grandes empresas abrem processo seletivo imediato para trabalho remoto no Brasil    |    📈 Confira o cronograma completo de inscrições e provas desta semana.
+        </div>
+    </div>
+</div>
+"""
+
 INDEX_TEMPLATE = """
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -43,12 +74,13 @@ INDEX_TEMPLATE = """
     {{ google_meta | safe }}
     <link rel="canonical" href="{{ dominio }}/index.html">
     <title>Brasil Oportunidades & Vagas - Concursos, Empregos e Editais Abertos</title>
-    <meta name="description" content="Portal oficial de editais de concursos públicos, vagas CLT e oportunidades de trabalho Home Office no Brasil.">
+    <meta name="description" content="Portal oficial de editais de concursos públicos, vagas CLT, cotações de mercado e oportunidades de trabalho Home Office no Brasil.">
     <style>
         body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f8fafc; color: #0f172a; margin: 0; padding: 0; }
         .header-top { background: linear-gradient(135deg, #0f172a, #1e3a8a); color: white; padding: 40px 20px; text-align: center; }
         .header-top h1 { margin: 0 0 10px 0; font-size: 28px; }
-        .header-top p { margin: 0; opacity: 0.9; font-size: 14px; }
+        .header-top p { margin: 0 0 20px 0; opacity: 0.9; font-size: 14px; }
+        .search-box { width: 100%; max-width: 450px; margin: 0 auto; display: block; padding: 12px 20px; font-size: 14px; border-radius: 30px; border: none; outline: none; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
         .main-container { max-width: 1000px; margin: 0 auto; padding: 20px; }
         .section-title { font-size: 20px; font-weight: 700; margin: 40px 0 20px 0; border-left: 4px solid #2563eb; padding-left: 10px; color: #0f172a; }
         
@@ -70,12 +102,15 @@ INDEX_TEMPLATE = """
     </style>
 </head>
 <body>
+    {{ ticker_cotacoes | safe }}
     <div class="header-top">
         <h1>Brasil Oportunidades & Vagas</h1>
         <p>Editais de Concursos Públicos, Vagas CLT e Trabalho Home Office</p>
+        <input type="text" id="searchInput" class="search-box" placeholder="🔍 Pesquisar estado (ex: São Paulo, Rio de Janeiro)..." onkeyup="filtrarEstados()">
     </div>
 
     <div class="main-container">
+        {{ breaking_news_ticker | safe }}
         {{ ad_banner | safe }}
 
         {% for cat_nome, cat_data in categorias.items() %}
@@ -97,7 +132,7 @@ INDEX_TEMPLATE = """
         {{ ad_banner | safe }}
 
         <div class="section-title">Vagas e Concursos por Estado</div>
-        <div class="states-box">
+        <div class="states-box" id="statesGrid">
             {% for e in estados %}
             <a href="{{ e.file }}" class="state-pill">{{ e.name }}</a>
             {% endfor %}
@@ -107,6 +142,16 @@ INDEX_TEMPLATE = """
             <p>© 2026 Brasil Oportunidades & Vagas. Todos os direitos reservados.</p>
         </footer>
     </div>
+    <script>
+        function filtrarEstados() {
+            let input = document.getElementById('searchInput').value.toLowerCase();
+            let cards = document.getElementById('statesGrid').getElementsByClassName('state-pill');
+            for (let i = 0; i < cards.length; i++) {
+                let text = cards[i].innerText.toLowerCase();
+                cards[i].style.display = text.includes(input) ? "" : "none";
+            }
+        }
+    </script>
 </body>
 </html>
 """
@@ -145,6 +190,7 @@ ESTADO_TEMPLATE = """
     </style>
 </head>
 <body>
+    {{ ticker_cotacoes | safe }}
     <div class="header-top">
         <a href="index.html">← Voltar ao Início</a>
         <h1>Oportunidades em {{ estado.name }}</h1>
@@ -194,7 +240,6 @@ def buscar_noticias_brasil():
     }
     
     tstamp = int(datetime.now().timestamp())
-    # Imagens exclusivas por categoria para evitar repetição visual genérica
     imagens_cat = {
         "Concursos Públicos": [
             f"https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=600&auto=format&fit=crop&q=60&v={tstamp}",
@@ -260,7 +305,7 @@ def gerar_sitemap(lista_estados):
     with open("sitemap.xml", "w", encoding="utf-8") as f: f.write("\n".join(xml))
 
 def gerar_site():
-    print("Gerando portal otimizado contra duplicação e com imagens limpas...")
+    print("Gerando portal completo com ticker de mercado e SEO otimizado...")
     estados_brasil = [
         {"name": "São Paulo (SP)", "file": "sao-paulo.html"},
         {"name": "Rio de Janeiro (RJ)", "file": "rio-de-janeiro.html"},
@@ -280,7 +325,7 @@ def gerar_site():
             f.write(template_estado.render(
                 estado=est, noticias=noticias_est,
                 ad_banner=AD_BANNER, adsense_script=ADSENSE_SCRIPT, monetag_script=MONETAG_SCRIPT,
-                google_meta=GOOGLE_META, dominio=DOMINIO_SITE
+                google_meta=GOOGLE_META, ticker_cotacoes=TICKER_COTACOES, dominio=DOMINIO_SITE
             ))
         lista_estados_gerados.append(est)
         
@@ -288,11 +333,11 @@ def gerar_site():
         f.write(Template(INDEX_TEMPLATE).render(
             estados=lista_estados_gerados, categorias=categorias_dict,
             ad_banner=AD_BANNER, adsense_script=ADSENSE_SCRIPT, monetag_script=MONETAG_SCRIPT,
-            google_meta=GOOGLE_META, dominio=DOMINIO_SITE
+            google_meta=GOOGLE_META, ticker_cotacoes=TICKER_COTACOES, breaking_news_ticker=BREAKING_NEWS_TICKER, dominio=DOMINIO_SITE
         ))
         
     gerar_sitemap(lista_estados_gerados)
-    print("Sucesso absoluto! Tags Canonical aplicadas e imagens organizadas por categoria.")
+    print("Sucesso absoluto! Tickers de mercado, busca de estados e tags Canonical aplicadas.")
 
 if __name__ == "__main__":
     gerar_site()
