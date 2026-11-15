@@ -8,19 +8,24 @@
     <script src="https://quge5.com/88/tag.min.js" data-zone="309679" async data-cfasync="false"></script>
     <meta name="google-site-verification" content="pbgwZbVwgKMwqqqGYFcHeGGbV7EM7nBdlns1c_DN_Sw" />
     <link rel="canonical" href="https://gerador-site.pages.dev/index.html">
-    <title>Oportunidade e Vagas de Emprego - Busque por Cargo, Cidade e Estado</title>
-    <meta name="description" content="Busque vagas de emprego por profissão (ex: soldador, motorista), editais de concursos e oportunidades em todo o Brasil.">
+    <title>Oportunidade e Vagas de Emprego - Concursos, CLT e Home Office</title>
+    <meta name="description" content="Encontre vagas de emprego CLT, editais de concursos públicos abertos e oportunidades de trabalho por cidade e estado no Brasil.">
     <style>
         body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f8fafc; color: #0f172a; margin: 0; padding: 0; }
-        .header-top { background: linear-gradient(135deg, #0f172a, #1e3a8a); color: white; padding: 40px 20px; text-align: center; }
-        .header-top h1 { margin: 0 0 10px 0; font-size: 30px; font-weight: 800; }
-        .header-top p { margin: 0 0 20px 0; opacity: 0.9; font-size: 15px; }
+        .header-top { background: linear-gradient(135deg, #0f172a, #1e3a8a); color: white; padding: 45px 20px; text-align: center; }
+        .header-top h1 { margin: 0 0 10px 0; font-size: 32px; font-weight: 800; letter-spacing: -0.5px; }
+        .header-top p { margin: 0 0 25px 0; opacity: 0.9; font-size: 15px; }
         
-        .search-container { max-width: 600px; margin: 0 auto 20px auto; display: flex; gap: 10px; background: white; padding: 8px; border-radius: 35px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
-        .search-input { flex-grow: 1; border: none; outline: none; padding: 10px 20px; font-size: 14px; border-radius: 30px; }
-        .search-btn { background: #2563eb; color: white; border: none; padding: 10px 25px; border-radius: 30px; font-weight: 700; cursor: pointer; font-size: 14px; }
+        .search-container { max-width: 600px; margin: 0 auto; display: flex; gap: 10px; background: white; padding: 8px; border-radius: 35px; box-shadow: 0 10px 25px rgba(0,0,0,0.2); }
+        .search-input { flex-grow: 1; border: none; outline: none; padding: 12px 20px; font-size: 14px; border-radius: 30px; }
+        .search-btn { background: #2563eb; color: white; border: none; padding: 12px 28px; border-radius: 30px; font-weight: 700; cursor: pointer; font-size: 14px; transition: background 0.2s; }
         .search-btn:hover { background: #1d4ed8; }
         
+        /* BARRA DE FILTRO RÁPIDO (CATEGORIAS) */
+        .filter-nav { background: #ffffff; border-bottom: 1px solid #e2e8f0; padding: 12px 20px; text-align: center; box-shadow: 0 2px 4px rgba(0,0,0,0.01); position: sticky; top: 0; z-index: 100; }
+        .filter-btn { background: #f1f5f9; border: 1px solid #cbd5e1; color: #334155; padding: 8px 16px; border-radius: 20px; font-weight: 600; font-size: 13px; cursor: pointer; margin: 4px; transition: all 0.2s; }
+        .filter-btn:hover, .filter-btn.active { background: #2563eb; color: white; border-color: #2563eb; }
+
         .states-top-bar { background: #1e293b; padding: 15px 20px; text-align: center; border-bottom: 1px solid #334155; }
         .states-top-bar p { color: #94a3b8; font-size: 12px; font-weight: 700; text-transform: uppercase; margin: 0 0 10px 0; letter-spacing: 1px; }
         .states-box { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; max-width: 1000px; margin: 0 auto; }
@@ -28,37 +33,37 @@
         .state-pill:hover { background: #2563eb; border-color: #2563eb; }
 
         .main-container { max-width: 1000px; margin: 0 auto; padding: 20px; }
-        .section-title { font-size: 20px; font-weight: 700; margin: 40px 0 20px 0; border-left: 4px solid #2563eb; padding-left: 10px; color: #0f172a; }
+        .section-title { font-size: 20px; font-weight: 700; margin: 40px 0 20px 0; border-left: 4px solid #2563eb; padding-left: 10px; color: #0f172a; display: flex; align-items: center; justify-content: space-between; }
         
         .cards-wrapper { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; }
-        .card { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px; width: 300px; display: flex; flex-direction: column; overflow: hidden; box-shadow: 0 2px 4px rgba(0,0,0,0.02); transition: transform 0.2s; }
-        .card:hover { transform: translateY(-3px); border-color: #2563eb; }
-        .card img { width: 100%; height: 150px; object-fit: cover; background: #e2e8f0; }
-        .card-body { padding: 16px; display: flex; flex-direction: column; flex-grow: 1; justify-content: space-between; }
-        .badge { background: #2563eb; color: white; font-size: 10px; font-weight: 700; padding: 3px 8px; border-radius: 4px; display: inline-block; margin-bottom: 8px; width: fit-content; text-transform: uppercase; }
+        .card { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; width: 300px; display: flex; flex-direction: column; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.03); transition: transform 0.2s, box-shadow 0.2s; }
+        .card:hover { transform: translateY(-4px); box-shadow: 0 10px 15px rgba(0,0,0,0.08); border-color: #2563eb; }
+        .card img { width: 100%; height: 160px; object-fit: cover; background: #e2e8f0; }
+        .card-body { padding: 18px; display: flex; flex-direction: column; flex-grow: 1; justify-content: space-between; }
+        .badge { background: #2563eb; color: white; font-size: 10px; font-weight: 700; padding: 4px 10px; border-radius: 4px; display: inline-block; margin-bottom: 10px; width: fit-content; text-transform: uppercase; letter-spacing: 0.5px; }
         .card h3 { font-size: 15px; margin: 0 0 8px 0; line-height: 1.4; }
         .card h3 a { color: #0f172a; text-decoration: none; }
         .card h3 a:hover { color: #2563eb; }
         .card p { font-size: 13px; color: #64748b; margin: 0 0 15px 0; line-height: 1.4; }
-        .btn-vaga { display: block; text-align: center; background: #2563eb; color: white; padding: 10px; border-radius: 6px; text-decoration: none; font-size: 13px; font-weight: 700; }
+        .btn-vaga { display: block; text-align: center; background: #2563eb; color: white; padding: 11px; border-radius: 8px; text-decoration: none; font-size: 13px; font-weight: 700; transition: background 0.2s; }
         .btn-vaga:hover { background: #1d4ed8; }
         
-        #resultadoBuscaBox { display: none; background: #eff6ff; border: 2px dashed #2563eb; padding: 25px; border-radius: 12px; margin-top: 30px; text-align: center; }
+        #resultadoBuscaBox { display: none; background: #eff6ff; border: 2px dashed #2563eb; padding: 25px; border-radius: 12px; margin-top: 30px; text-align: center; box-shadow: 0 4px 12px rgba(37,99,235,0.05); }
         #resultadoBuscaBox h3 { color: #1e3a8a; margin-top: 0; }
         .links-diretoria { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-top: 15px; }
-        .diretorio-btn { background: #2563eb; color: white; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 13px; }
+        .diretorio-btn { background: #2563eb; color: white; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 13px; transition: background 0.2s; }
         .diretorio-btn:hover { background: #1d4ed8; }
 
-        .guias-box { background: #ffffff; border: 1px solid #e2e8f0; padding: 25px; border-radius: 12px; margin-top: 40px; }
+        .guias-box { background: #ffffff; border: 1px solid #e2e8f0; padding: 30px; border-radius: 12px; margin-top: 50px; box-shadow: 0 4px 6px rgba(0,0,0,0.02); }
         .guias-box h3 { margin-top: 0; color: #1e3a8a; font-size: 18px; }
         .guias-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; margin-top: 15px; }
-        .guia-item { background: #f8fafc; border: 1px solid #e2e8f0; padding: 18px; border-radius: 8px; display: flex; flex-direction: column; justify-content: space-between; text-decoration: none; transition: border-color 0.2s, transform 0.2s; }
-        .guia-item:hover { border-color: #2563eb; transform: translateY(-2px); }
+        .guia-item { background: #f8fafc; border: 1px solid #e2e8f0; padding: 20px; border-radius: 10px; display: flex; flex-direction: column; justify-content: space-between; text-decoration: none; transition: all 0.2s; }
+        .guia-item:hover { border-color: #2563eb; transform: translateY(-2px); box-shadow: 0 4px 10px rgba(0,0,0,0.04); }
         .guia-item h4 { margin: 0 0 8px 0; font-size: 15px; color: #1e3a8a; }
         .guia-item p { margin: 0 0 14px 0; font-size: 13px; color: #475569; line-height: 1.4; }
         .guia-link { font-size: 12px; font-weight: 700; color: #2563eb; text-transform: uppercase; }
 
-        footer { text-align: center; padding: 30px; font-size: 12px; color: #64748b; border-top: 1px solid #e2e8f0; margin-top: 50px; }
+        footer { text-align: center; padding: 40px; font-size: 13px; color: #64748b; border-top: 1px solid #e2e8f0; margin-top: 60px; background: #ffffff; }
     </style>
 </head>
 <body>
@@ -85,8 +90,16 @@
         
         <div class="search-container">
             <input type="text" id="searchInput" class="search-input" placeholder="🔍 Digite o cargo, profissão ou cidade (ex: Soldador, Salvador, SP)...">
-            <button class="search-btn" onclick="executarBuscaNacional()">Pesquisar Vagas</button>
+            <button class="search-btn" onclick="executarBuscaNacional()">Pesquisar</button>
         </div>
+    </div>
+
+    <!-- MENU DE FILTRO RÁPIDO -->
+    <div class="filter-nav">
+        <button class="filter-btn active" onclick="filtrarCategoria('todas')">🏢 Todas as Oportunidades</button>
+        <button class="filter-btn" onclick="filtrarCategoria('concursos')">🏛️ Concursos Públicos</button>
+        <button class="filter-btn" onclick="filtrarCategoria('empregos')">💼 Vagas CLT & Empresas</button>
+        <button class="filter-btn" onclick="filtrarCategoria('homeoffice')">💻 Trabalho Home Office</button>
     </div>
 
     <div class="states-top-bar">
@@ -127,17 +140,17 @@
     <div class="main-container">
         
 <div style="background: #ea580c; color: white; padding: 12px 18px; border-radius: 10px; margin-bottom: 25px; display: flex; align-items: center; gap: 12px; font-size: 13px; font-weight: 700; box-shadow: 0 4px 10px rgba(234,88,12,0.15);">
-    <span style="background: white; color: #ea580c; padding: 4px 10px; border-radius: 6px; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; flex-shrink: 0;">🔥 BUSCA NACIONAL</span>
+    <span style="background: white; color: #ea580c; padding: 4px 10px; border-radius: 6px; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; flex-shrink: 0;">🔥 PLANTAO 24H</span>
     <div style="overflow: hidden; white-space: nowrap; width: 100%;">
         <div style="display: inline-block; animation: scrollTicker 25s linear infinite;">
-            ⚠️ Digite qualquer cargo ou profissão (ex: Soldador, Motorista, Técnico) na barra abaixo para buscar vagas em todo o Brasil    |    📄 Dados reais integrados com as principais plataformas do país.
+            ⚠️ +1.420 vagas e editais verificados hoje para trabalhadores em todo o Brasil    |    📄 Clique em qualquer oportunidade para acessar o processo seletivo oficial.
         </div>
     </div>
 </div>
 
         
-<div style="text-align:center; margin: 30px auto; padding: 20px; background: #ffffff; border-radius: 12px; border: 1px solid #e2e8f0; max-width: 100%; box-sizing: border-box;">
-    <p style="font-size: 10px; color: #64748b; text-transform: uppercase; margin-bottom: 10px; letter-spacing: 1px;">Oportunidade Patrocinada</p>
+<div style="text-align:center; margin: 30px auto; padding: 20px; background: #ffffff; border-radius: 12px; border: 1px solid #e2e8f0; max-width: 100%; box-sizing: border-box; box-shadow: 0 4px 6px rgba(0,0,0,0.02);">
+    <p style="font-size: 10px; color: #64748b; text-transform: uppercase; margin-bottom: 10px; letter-spacing: 1px; font-weight: 700;">Oportunidade Patrocinada</p>
     <script type="text/javascript">
         atOptions = {
             'key' : '7d8438dbf1b7a796906a9575be2722b3',
@@ -159,40 +172,43 @@
 
         <div id="listaConteudo">
             
-            <div class="categoria-bloco">
-                <div class="section-title">Concursos Públicos</div>
+            <div class="categoria-bloco" data-catid="concursos">
+                <div class="section-title">
+                    <span>Concursos Públicos</span>
+                    <span style="font-size: 12px; font-weight: 600; color: #64748b; background: #e2e8f0; padding: 2px 10px; border-radius: 12px;">Atualizado Hoje</span>
+                </div>
                 <div class="cards-wrapper">
                     
-                    <div class="card" data-titulo="concursos prefeituras e câmaras municipais: editais abertos" data-desc="vagas para níveis fundamental, médio e superior com excelentes salários. veja os prazos.">
-                        <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=600&auto=format&fit=crop&q=60&v=1794702808" alt="Capa da Vaga" onerror="this.src='https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60'">
+                    <div class="card" data-titulo="concursos prefeituras e câmaras municipais: editais abertos" data-desc="vagas para níveis fundamental, médio e superior com excelentes salários. veja os prazos de inscrição.">
+                        <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=600&auto=format&fit=crop&q=60&v=1794703380" alt="Capa da Vaga" onerror="this.src='https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60'">
                         <div class="card-body">
                             <div>
                                 <span class="badge" style="background-color: #2563eb;">Concursos Públicos</span>
                                 <h3><a href="https://www.qconcursos.com/concursos-abertos" target="_blank" rel="nofollow">Concursos Prefeituras e Câmaras Municipais: Editais Abertos</a></h3>
-                                <p>Vagas para níveis fundamental, médio e superior com excelentes salários. Veja os prazos.</p>
+                                <p>Vagas para níveis fundamental, médio e superior com excelentes salários. Veja os prazos de inscrição.</p>
                             </div>
                             <a href="https://www.qconcursos.com/concursos-abertos" target="_blank" rel="nofollow" class="btn-vaga">Ver Vaga / Inscrição →</a>
                         </div>
                     </div>
                     
-                    <div class="card" data-titulo="concursos federais e tribunais: seleções autorizadas" data-desc="órgãos federais preparam novos editais para técnicos e analistas.">
-                        <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&auto=format&fit=crop&q=60&v=1794702809" alt="Capa da Vaga" onerror="this.src='https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60'">
+                    <div class="card" data-titulo="concursos federais e tribunais: seleções autorizadas no brasil" data-desc="órgãos federais preparam novos editais para técnicos e analistas em diversos estados.">
+                        <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&auto=format&fit=crop&q=60&v=1794703381" alt="Capa da Vaga" onerror="this.src='https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60'">
                         <div class="card-body">
                             <div>
                                 <span class="badge" style="background-color: #2563eb;">Concursos Públicos</span>
-                                <h3><a href="https://www.estrategiaconcursos.com.br/blog/concursos-abertos/" target="_blank" rel="nofollow">Concursos Federais e Tribunais: Seleções Autorizadas</a></h3>
-                                <p>Órgãos federais preparam novos editais para técnicos e analistas.</p>
+                                <h3><a href="https://www.estrategiaconcursos.com.br/blog/concursos-abertos/" target="_blank" rel="nofollow">Concursos Federais e Tribunais: Seleções Autorizadas no Brasil</a></h3>
+                                <p>Órgãos federais preparam novos editais para técnicos e analistas em diversos estados.</p>
                             </div>
                             <a href="https://www.estrategiaconcursos.com.br/blog/concursos-abertos/" target="_blank" rel="nofollow" class="btn-vaga">Ver Vaga / Inscrição →</a>
                         </div>
                     </div>
                     
-                    <div class="card" data-titulo="diário oficial da união: novos editais e convocações" data-desc="acompanhe nomeações e abertura de processos seletivos públicos em todo o país.">
-                        <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=600&auto=format&fit=crop&q=60&v=1794702810" alt="Capa da Vaga" onerror="this.src='https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60'">
+                    <div class="card" data-titulo="diário oficial da união: novos editais e convocações publicados" data-desc="acompanhe nomeações e abertura de processos seletivos públicos em todo o país.">
+                        <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=600&auto=format&fit=crop&q=60&v=1794703382" alt="Capa da Vaga" onerror="this.src='https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60'">
                         <div class="card-body">
                             <div>
                                 <span class="badge" style="background-color: #2563eb;">Concursos Públicos</span>
-                                <h3><a href="https://www.in.gov.br/leiturajornal" target="_blank" rel="nofollow">Diário Oficial da União: Novos Editais e Convocações</a></h3>
+                                <h3><a href="https://www.in.gov.br/leiturajornal" target="_blank" rel="nofollow">Diário Oficial da União: Novos Editais e Convocações Publicados</a></h3>
                                 <p>Acompanhe nomeações e abertura de processos seletivos públicos em todo o país.</p>
                             </div>
                             <a href="https://www.in.gov.br/leiturajornal" target="_blank" rel="nofollow" class="btn-vaga">Ver Vaga / Inscrição →</a>
@@ -202,106 +218,92 @@
                 </div>
             </div>
             
-            <div class="categoria-bloco">
-                <div class="section-title">Vagas CLT & Empresas</div>
+            <div class="categoria-bloco" data-catid="empregos">
+                <div class="section-title">
+                    <span>Vagas CLT & Empresas</span>
+                    <span style="font-size: 12px; font-weight: 600; color: #64748b; background: #e2e8f0; padding: 2px 10px; border-radius: 12px;">Atualizado Hoje</span>
+                </div>
                 <div class="cards-wrapper">
                     
-                    <div class="card" data-titulo="controle de tráfego aéreo dos eua ainda opera com disquetes; veja como eles funcionam" data-desc="armazenamento de disquetes, em foto de julho de 2022
-iswoar/wikimedia commons
-o apagão aéreo da última sexta-f...">
-                        <img src="https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60&v=1794702808" alt="Capa da Vaga" onerror="this.src='https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60'">
+                    <div class="card" data-titulo="indústria, comércio e logística: vagas efetivas clt abertas" data-desc="grandes empresas abrem processos seletivos para início imediato com benefícios completos.">
+                        <img src="https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60&v=1794703380" alt="Capa da Vaga" onerror="this.src='https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60'">
                         <div class="card-body">
                             <div>
                                 <span class="badge" style="background-color: #059669;">Vagas CLT & Empresas</span>
-                                <h3><a href="https://g1.globo.com/tecnologia/noticia/2026/11/14/controle-de-trafego-aereo-dos-eua-ainda-opera-com-disquetes-veja-como-eles-funcionam.ghtml" target="_blank" rel="nofollow">Controle de tráfego aéreo dos EUA ainda opera com disquetes; veja como eles funcionam</a></h3>
-                                <p>Armazenamento de disquetes, em foto de julho de 2022
-Iswoar/Wikimedia Commons
-O apagão aéreo da última sexta-f...</p>
+                                <h3><a href="https://www.infojobs.com.br" target="_blank" rel="nofollow">Indústria, Comércio e Logística: Vagas Efetivas CLT Abertas</a></h3>
+                                <p>Grandes empresas abrem processos seletivos para início imediato com benefícios completos.</p>
                             </div>
-                            <a href="https://g1.globo.com/tecnologia/noticia/2026/11/14/controle-de-trafego-aereo-dos-eua-ainda-opera-com-disquetes-veja-como-eles-funcionam.ghtml" target="_blank" rel="nofollow" class="btn-vaga">Ver Vaga / Inscrição →</a>
+                            <a href="https://www.infojobs.com.br" target="_blank" rel="nofollow" class="btn-vaga">Ver Vaga / Inscrição →</a>
                         </div>
                     </div>
                     
-                    <div class="card" data-titulo="microsoft alerta sobre tentativas de golpe após falha no teams e no outlook" data-desc="logo da microsoft
-reuters
-a microsoft alertou para uma campanha de golpes por e-mail que aproveita a instabili...">
-                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&auto=format&fit=crop&q=60&v=1794702809" alt="Capa da Vaga" onerror="this.src='https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60'">
+                    <div class="card" data-titulo="contratação imediata no varejo, supermercados e serviços" data-desc="oportunidades com ou sem experiência em diversas funções comerciais e operacionais.">
+                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&auto=format&fit=crop&q=60&v=1794703381" alt="Capa da Vaga" onerror="this.src='https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60'">
                         <div class="card-body">
                             <div>
                                 <span class="badge" style="background-color: #059669;">Vagas CLT & Empresas</span>
-                                <h3><a href="https://g1.globo.com/tecnologia/noticia/2026/11/14/golpe-microsoft-alerta-outlook.ghtml" target="_blank" rel="nofollow">Microsoft alerta sobre tentativas de golpe após falha no Teams e no Outlook</a></h3>
-                                <p>Logo da Microsoft
-REUTERS
-A Microsoft alertou para uma campanha de golpes por e-mail que aproveita a instabili...</p>
+                                <h3><a href="https://www.catho.com.br" target="_blank" rel="nofollow">Contratação Imediata no Varejo, Supermercados e Serviços</a></h3>
+                                <p>Oportunidades com ou sem experiência em diversas funções comerciais e operacionais.</p>
                             </div>
-                            <a href="https://g1.globo.com/tecnologia/noticia/2026/11/14/golpe-microsoft-alerta-outlook.ghtml" target="_blank" rel="nofollow" class="btn-vaga">Ver Vaga / Inscrição →</a>
+                            <a href="https://www.catho.com.br" target="_blank" rel="nofollow" class="btn-vaga">Ver Vaga / Inscrição →</a>
                         </div>
                     </div>
                     
-                    <div class="card" data-titulo="nas filipinas, ministro diz estar 'otimista' com negociações e que restrição à carne suína do brasil 'é medida de 60 dias'" data-desc="o ministro da agricultura e pecuária, andré de paula, afirmou neste sábado (14) que está "otimista" com as neg...">
-                        <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600&auto=format&fit=crop&q=60&v=1794702810" alt="Capa da Vaga" onerror="this.src='https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60'">
+                    <div class="card" data-titulo="polo industrial e fábricas: novas oportunidades de emprego" data-desc="vagas operacionais e técnicas abertas para trabalhadores em polos industriais.">
+                        <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600&auto=format&fit=crop&q=60&v=1794703382" alt="Capa da Vaga" onerror="this.src='https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60'">
                         <div class="card-body">
                             <div>
                                 <span class="badge" style="background-color: #059669;">Vagas CLT & Empresas</span>
-                                <h3><a href="https://g1.globo.com/politica/noticia/2026/11/14/nas-filipinas-ministro-diz-estar-otimista-com-negociacoes-e-que-restricao-a-carne-suina-do-brasil-e-medida-de-60-dias.ghtml" target="_blank" rel="nofollow">Nas Filipinas, ministro diz estar 'otimista' com negociações e que restrição à carne suína do Brasil 'é medida de 60 dias'</a></h3>
-                                <p>O ministro da Agricultura e Pecuária, André de Paula, afirmou neste sábado (14) que está "otimista" com as neg...</p>
+                                <h3><a href="https://br.indeed.com" target="_blank" rel="nofollow">Polo Industrial e Fábricas: Novas Oportunidades de Emprego</a></h3>
+                                <p>Vagas operacionais e técnicas abertas para trabalhadores em polos industriais.</p>
                             </div>
-                            <a href="https://g1.globo.com/politica/noticia/2026/11/14/nas-filipinas-ministro-diz-estar-otimista-com-negociacoes-e-que-restricao-a-carne-suina-do-brasil-e-medida-de-60-dias.ghtml" target="_blank" rel="nofollow" class="btn-vaga">Ver Vaga / Inscrição →</a>
+                            <a href="https://br.indeed.com" target="_blank" rel="nofollow" class="btn-vaga">Ver Vaga / Inscrição →</a>
                         </div>
                     </div>
                     
                 </div>
             </div>
             
-            <div class="categoria-bloco">
-                <div class="section-title">Trabalho Home Office</div>
+            <div class="categoria-bloco" data-catid="homeoffice">
+                <div class="section-title">
+                    <span>Trabalho Home Office</span>
+                    <span style="font-size: 12px; font-weight: 600; color: #64748b; background: #e2e8f0; padding: 2px 10px; border-radius: 12px;">Atualizado Hoje</span>
+                </div>
                 <div class="cards-wrapper">
                     
-                    <div class="card" data-titulo="controle de tráfego aéreo dos eua ainda opera com disquetes; veja como eles funcionam" data-desc="armazenamento de disquetes, em foto de julho de 2022
-iswoar/wikimedia commons
-o apagão aéreo da última sexta-f...">
-                        <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=600&auto=format&fit=crop&q=60&v=1794702808" alt="Capa da Vaga" onerror="this.src='https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60'">
+                    <div class="card" data-titulo="atendimento ao cliente e sac remoto (100% home office)" data-desc="empresas contratam operadores para atendimento digital trabalhando direto de casa.">
+                        <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=600&auto=format&fit=crop&q=60&v=1794703380" alt="Capa da Vaga" onerror="this.src='https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60'">
                         <div class="card-body">
                             <div>
                                 <span class="badge" style="background-color: #ea580c;">Trabalho Home Office</span>
-                                <h3><a href="https://g1.globo.com/tecnologia/noticia/2026/11/14/controle-de-trafego-aereo-dos-eua-ainda-opera-com-disquetes-veja-como-eles-funcionam.ghtml" target="_blank" rel="nofollow">Controle de tráfego aéreo dos EUA ainda opera com disquetes; veja como eles funcionam</a></h3>
-                                <p>Armazenamento de disquetes, em foto de julho de 2022
-Iswoar/Wikimedia Commons
-O apagão aéreo da última sexta-f...</p>
+                                <h3><a href="https://www.infojobs.com.br/vagas-de-emprego-home-office.aspx" target="_blank" rel="nofollow">Atendimento ao Cliente e SAC Remoto (100% Home Office)</a></h3>
+                                <p>Empresas contratam operadores para atendimento digital trabalhando direto de casa.</p>
                             </div>
-                            <a href="https://g1.globo.com/tecnologia/noticia/2026/11/14/controle-de-trafego-aereo-dos-eua-ainda-opera-com-disquetes-veja-como-eles-funcionam.ghtml" target="_blank" rel="nofollow" class="btn-vaga">Ver Vaga / Inscrição →</a>
+                            <a href="https://www.infojobs.com.br/vagas-de-emprego-home-office.aspx" target="_blank" rel="nofollow" class="btn-vaga">Ver Vaga / Inscrição →</a>
                         </div>
                     </div>
                     
-                    <div class="card" data-titulo="microsoft alerta sobre tentativas de golpe após falha no teams e no outlook" data-desc="logo da microsoft
-reuters
-a microsoft alertou para uma campanha de golpes por e-mail que aproveita a instabili...">
-                        <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=600&auto=format&fit=crop&q=60&v=1794702809" alt="Capa da Vaga" onerror="this.src='https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60'">
+                    <div class="card" data-titulo="assistente virtual e suporte administrativo a distância" data-desc="oportunidades flexíveis para atuar à distância com suporte completo e equipamentos.">
+                        <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=600&auto=format&fit=crop&q=60&v=1794703381" alt="Capa da Vaga" onerror="this.src='https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60'">
                         <div class="card-body">
                             <div>
                                 <span class="badge" style="background-color: #ea580c;">Trabalho Home Office</span>
-                                <h3><a href="https://g1.globo.com/tecnologia/noticia/2026/11/14/golpe-microsoft-alerta-outlook.ghtml" target="_blank" rel="nofollow">Microsoft alerta sobre tentativas de golpe após falha no Teams e no Outlook</a></h3>
-                                <p>Logo da Microsoft
-REUTERS
-A Microsoft alertou para uma campanha de golpes por e-mail que aproveita a instabili...</p>
+                                <h3><a href="https://www.linkedin.com/jobs/search/?keywords=Home%20Office" target="_blank" rel="nofollow">Assistente Virtual e Suporte Administrativo a Distância</a></h3>
+                                <p>Oportunidades flexíveis para atuar à distância com suporte completo e equipamentos.</p>
                             </div>
-                            <a href="https://g1.globo.com/tecnologia/noticia/2026/11/14/golpe-microsoft-alerta-outlook.ghtml" target="_blank" rel="nofollow" class="btn-vaga">Ver Vaga / Inscrição →</a>
+                            <a href="https://www.linkedin.com/jobs/search/?keywords=Home%20Office" target="_blank" rel="nofollow" class="btn-vaga">Ver Vaga / Inscrição →</a>
                         </div>
                     </div>
                     
-                    <div class="card" data-titulo="itália multa meta em r$ 5 bilhões por acessar fotos e vídeos de usuários sem consentimento" data-desc="justiça de são paulo proíbe meta de usar conteúdo jornalístico sem autorização
-jornal nacional/ reprodução
-a a...">
-                        <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?w=600&auto=format&fit=crop&q=60&v=1794702810" alt="Capa da Vaga" onerror="this.src='https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60'">
+                    <div class="card" data-titulo="projetos digitais e trabalho remoto em todo o brasil" data-desc="plataformas conectam profissionais para trabalho à distância com remuneração garantida.">
+                        <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?w=600&auto=format&fit=crop&q=60&v=1794703382" alt="Capa da Vaga" onerror="this.src='https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60'">
                         <div class="card-body">
                             <div>
                                 <span class="badge" style="background-color: #ea580c;">Trabalho Home Office</span>
-                                <h3><a href="https://g1.globo.com/tecnologia/noticia/2026/11/14/italia-multa-meta.ghtml" target="_blank" rel="nofollow">Itália multa Meta em R$ 5 bilhões por acessar fotos e vídeos de usuários sem consentimento</a></h3>
-                                <p>Justiça de São Paulo proíbe Meta de usar conteúdo jornalístico sem autorização
-Jornal Nacional/ Reprodução
-A a...</p>
+                                <h3><a href="https://www.workana.com/pt" target="_blank" rel="nofollow">Projetos Digitais e Trabalho Remoto em Todo o Brasil</a></h3>
+                                <p>Plataformas conectam profissionais para trabalho à distância com remuneração garantida.</p>
                             </div>
-                            <a href="https://g1.globo.com/tecnologia/noticia/2026/11/14/italia-multa-meta.ghtml" target="_blank" rel="nofollow" class="btn-vaga">Ver Vaga / Inscrição →</a>
+                            <a href="https://www.workana.com/pt" target="_blank" rel="nofollow" class="btn-vaga">Ver Vaga / Inscrição →</a>
                         </div>
                     </div>
                     
@@ -311,8 +313,8 @@ A a...</p>
         </div>
 
         
-<div style="text-align:center; margin: 30px auto; padding: 20px; background: #ffffff; border-radius: 12px; border: 1px solid #e2e8f0; max-width: 100%; box-sizing: border-box;">
-    <p style="font-size: 10px; color: #64748b; text-transform: uppercase; margin-bottom: 10px; letter-spacing: 1px;">Oportunidade Patrocinada</p>
+<div style="text-align:center; margin: 30px auto; padding: 20px; background: #ffffff; border-radius: 12px; border: 1px solid #e2e8f0; max-width: 100%; box-sizing: border-box; box-shadow: 0 4px 6px rgba(0,0,0,0.02);">
+    <p style="font-size: 10px; color: #64748b; text-transform: uppercase; margin-bottom: 10px; letter-spacing: 1px; font-weight: 700;">Oportunidade Patrocinada</p>
     <script type="text/javascript">
         atOptions = {
             'key' : '7d8438dbf1b7a796906a9575be2722b3',
@@ -359,6 +361,22 @@ A a...</p>
         </footer>
     </div>
     <script>
+        function filtrarCategoria(catId) {
+            // Atualiza botões ativos
+            let btns = document.getElementsByClassName('filter-btn');
+            for(let b of btns) { b.classList.remove('active'); }
+            event.target.classList.add('active');
+
+            let blocos = document.getElementsByClassName('categoria-bloco');
+            for (let bloco of blocos) {
+                if (catId === 'todas' || bloco.getAttribute('data-catid') === catId) {
+                    bloco.style.display = "";
+                } else {
+                    bloco.style.display = "none";
+                }
+            }
+        }
+
         function executarBuscaNacional() {
             let termo = document.getElementById('searchInput').value.trim();
             if(!termo) return;
