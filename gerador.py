@@ -12,13 +12,17 @@ import re
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
-DOMINIO_SITE = "https://gerador-site.pages.dev"
+DOMINIO_SITE = "https://oportunidades-vagas.pages.dev"
+NOME_MARCA = "Oportunidade e Vagas de Emprego"
 MONETAG_SCRIPT = '<script src="https://quge5.com/88/tag.min.js" data-zone="309679" async data-cfasync="false"></script>'
 GOOGLE_META = '<meta name="google-site-verification" content="pbgwZbVwgKMwqqqGYFcHeGGbV7EM7nBdlns1c_DN_Sw" />'
 ADSENSE_SCRIPT = '<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5379027874215422" crossorigin="anonymous"></script>'
 
 # ARQUIVO ADS.TXT GERADO AUTOMATICAMENTE NA RAIZ (Resolve o erro do AdSense)
 ADS_TXT_CONTENT = "google.com, pub-5379027874215422, DIRECT, f08c47fec0942fa0"
+
+# Favicon profissional gerado via SVG com a letra "O" estilizada (Fundo azul corporativo)
+FAVICON_TAG = '''<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%231e3a8a'/><text x='50%' y='55%' dominant-baseline='middle' text-anchor='middle' fill='%2338bdf8' font-family='Arial, sans-serif' font-size='65' font-weight='bold'>O</text></svg>">'''
 
 AD_BANNER = """
 <div style="text-align:center; margin: 30px auto; padding: 20px; background: #ffffff; border-radius: 12px; border: 1px solid #e2e8f0; max-width: 100%; box-sizing: border-box; box-shadow: 0 4px 6px rgba(0,0,0,0.02);">
@@ -51,7 +55,21 @@ TICKER_COTACOES = """
     0% { transform: translateX(0); }
     100% { transform: translateX(-50%); }
 }
+.nav-link { color: #cbd5e1; text-decoration: none; font-size: 13px; font-weight: 600; transition: color 0.2s; }
+.nav-link:hover { color: #60a5fa; }
 </style>
+"""
+
+NAV_BAR = f"""
+<nav style="background: #0f172a; border-bottom: 1px solid #1e293b; padding: 15px 30px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px;">
+    <a href="index.html" style="color: #ffffff; text-decoration: none; font-size: 18px; font-weight: 800; letter-spacing: -0.5px;">Oportunidade<span style="color: #38bdf8;">Vagas</span></a>
+    <div style="display: flex; gap: 20px; flex-wrap: wrap; align-items: center;">
+        <a href="index.html" class="nav-link">Início</a>
+        <a href="termos.html" class="nav-link">Termos de Uso</a>
+        <a href="privacidade.html" class="nav-link">Privacidade</a>
+        <a href="contato.html" class="nav-link">Contato</a>
+    </div>
+</nav>
 """
 
 BREAKING_NEWS_TICKER = """
@@ -114,7 +132,7 @@ function calcularSeguro() {
 </script>
 """
 
-FOOTER_ROBUSTO = """
+FOOTER_ROBUSTO = f"""
 <footer style="background: #ffffff; border-top: 1px solid #e2e8f0; margin-top: 60px; padding: 40px 20px; box-sizing: border-box;">
     <div style="max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 30px; text-align: left; margin-bottom: 30px; border-bottom: 1px solid #e2e8f0; padding-bottom: 30px;">
         <div>
@@ -139,7 +157,7 @@ FOOTER_ROBUSTO = """
         </div>
     </div>
     <div style="max-width: 1000px; margin: 0 auto; text-align: center; color: #64748b; font-size: 13px;">
-        <p>© 2026 Oportunidade e Vagas de Emprego. Atualização automática diária (24h). Todos os direitos reservados.</p>
+        <p>© 2026 {NOME_MARCA}. Atualização automática diária (24h). Todos os direitos reservados.</p>
     </div>
 </footer>
 """
@@ -161,6 +179,7 @@ INDEX_TEMPLATE = """
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {{ favicon_tag | safe }}
     {{ adsense_script | safe }}
     {{ monetag_script | safe }}
     {{ google_meta | safe }}
@@ -176,12 +195,12 @@ INDEX_TEMPLATE = """
         .header-top { background: linear-gradient(135deg, #0f172a, #1e3a8a); color: white; padding: 45px 20px; text-align: center; box-sizing: border-box; }
         .header-top h1 { margin: 0 0 10px 0; font-size: 32px; font-weight: 800; letter-spacing: -0.5px; }
         .header-top p { margin: 0 0 25px 0; opacity: 0.9; font-size: 15px; max-width: 600px; margin-left: auto; margin-right: auto; line-height: 1.5; }
-        
+
         .search-container { max-width: 600px; margin: 0 auto; display: flex; gap: 10px; background: white; padding: 8px; border-radius: 35px; box-shadow: 0 10px 25px rgba(0,0,0,0.2); box-sizing: border-box; }
         .search-input { flex-grow: 1; border: none; outline: none; padding: 12px 20px; font-size: 14px; border-radius: 30px; width: 100%; box-sizing: border-box; }
         .search-btn { background: #2563eb; color: white; border: none; padding: 12px 28px; border-radius: 30px; font-weight: 700; cursor: pointer; font-size: 14px; transition: background 0.2s; flex-shrink: 0; }
         .search-btn:hover { background: #1d4ed8; }
-        
+
         .filter-nav { background: #ffffff; border-bottom: 1px solid #e2e8f0; padding: 12px 20px; text-align: center; box-shadow: 0 2px 4px rgba(0,0,0,0.01); position: sticky; top: 0; z-index: 100; display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; box-sizing: border-box; }
         .filter-btn { background: #f1f5f9; border: 1px solid #cbd5e1; color: #334155; padding: 8px 16px; border-radius: 20px; font-weight: 600; font-size: 13px; cursor: pointer; transition: all 0.2s; }
         .filter-btn:hover, .filter-btn.active { background: #2563eb; color: white; border-color: #2563eb; }
@@ -194,7 +213,7 @@ INDEX_TEMPLATE = """
 
         .main-container { max-width: 1000px; margin: 0 auto; padding: 20px; box-sizing: border-box; }
         .section-title { font-size: 20px; font-weight: 700; margin: 40px 0 20px 0; border-left: 4px solid #2563eb; padding-left: 10px; color: #0f172a; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
-        
+
         .cards-wrapper { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; box-sizing: border-box; }
         .card { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; width: 300px; max-width: 100%; display: flex; flex-direction: column; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.03); transition: transform 0.2s, box-shadow 0.2s; box-sizing: border-box; }
         .card:hover { transform: translateY(-4px); box-shadow: 0 10px 15px rgba(0,0,0,0.08); border-color: #2563eb; }
@@ -207,7 +226,7 @@ INDEX_TEMPLATE = """
         .card p { font-size: 13px; color: #64748b; margin: 0 0 15px 0; line-height: 1.4; }
         .btn-vaga { display: block; text-align: center; background: #2563eb; color: white; padding: 11px; border-radius: 8px; text-decoration: none; font-size: 13px; font-weight: 700; transition: background 0.2s; box-sizing: border-box; }
         .btn-vaga:hover { background: #1d4ed8; }
-        
+
         #resultadoBuscaBox { display: none; background: #eff6ff; border: 2px dashed #2563eb; padding: 25px; border-radius: 12px; margin-top: 30px; text-align: center; box-shadow: 0 4px 12px rgba(37,99,235,0.05); box-sizing: border-box; }
         #resultadoBuscaBox h3 { color: #1e3a8a; margin-top: 0; }
         .links-diretoria { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-top: 15px; box-sizing: border-box; }
@@ -236,10 +255,11 @@ INDEX_TEMPLATE = """
 </head>
 <body>
     {{ ticker_cotacoes | safe }}
+    {{ nav_bar | safe }}
     <div class="header-top">
         <h1>Oportunidade e Vagas de Emprego</h1>
         <p>Busque por cargo (ex: Soldador, Motorista), cidade ou estado em todo o Brasil</p>
-        
+
         <div class="search-container">
             <input type="text" id="searchInput" class="search-input" placeholder="🔍 Digite o cargo, profissão ou cidade...">
             <button class="search-btn" onclick="executarBuscaNacional()">Pesquisar</button>
@@ -393,6 +413,7 @@ ESTADO_TEMPLATE = """
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {{ favicon_tag | safe }}
     {{ adsense_script | safe }}
     {{ monetag_script | safe }}
     {{ google_meta | safe }}
@@ -408,7 +429,7 @@ ESTADO_TEMPLATE = """
         .header-top a { color: #93c5fd; text-decoration: none; font-size: 13px; font-weight: 600; display: inline-block; margin-bottom: 10px; }
         .header-top h1 { margin: 0 0 5px 0; font-size: 24px; }
         .header-top p { margin: 0; font-size: 14px; opacity: 0.9; }
-        
+
         .states-top-bar { background: #1e293b; padding: 15px 20px; text-align: center; border-bottom: 1px solid #334155; box-sizing: border-box; }
         .states-top-bar p { color: #94a3b8; font-size: 12px; font-weight: 700; text-transform: uppercase; margin: 0 0 10px 0; letter-spacing: 1px; }
         .states-box { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; max-width: 1000px; margin: 0 auto; box-sizing: border-box; }
@@ -424,7 +445,7 @@ ESTADO_TEMPLATE = """
 
         .main-container { max-width: 1000px; margin: 0 auto; padding: 20px; box-sizing: border-box; }
         .section-title { font-size: 20px; font-weight: 700; margin: 30px 0 20px 0; border-left: 4px solid #2563eb; padding-left: 10px; }
-        
+
         .cards-wrapper { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; box-sizing: border-box; }
         .card { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; width: 300px; max-width: 100%; display: flex; flex-direction: column; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.03); transition: transform 0.2s; box-sizing: border-box; }
         .card:hover { transform: translateY(-4px); border-color: #2563eb; }
@@ -447,6 +468,7 @@ ESTADO_TEMPLATE = """
 </head>
 <body>
     {{ ticker_cotacoes | safe }}
+    {{ nav_bar | safe }}
     <div class="header-top">
         <a href="index.html">← Voltar para a Página Inicial</a>
         <h1>Oportunidades e Vagas no Estado de {{ estado.name }}</h1>
@@ -506,6 +528,7 @@ CIDADE_TEMPLATE = """
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {{ favicon_tag | safe }}
     {{ adsense_script | safe }}
     {{ monetag_script | safe }}
     {{ google_meta | safe }}
@@ -515,7 +538,7 @@ CIDADE_TEMPLATE = """
     <meta property="og:type" content="website">
     <title>Vagas de Emprego em {{ cidade.name }} ({{ sigla }}) - Oportunidade e Vagas</title>
     <meta name="description" content="Confira vagas de emprego CLT, concursos e oportunidades abertas em {{ cidade.name }} - {{ sigla }}. Candidate-se já!">
-    
+
     <script type="application/ld+json">
     {
       "@context": "https://schema.org/",
@@ -558,10 +581,10 @@ CIDADE_TEMPLATE = """
         .header-top a { color: #93c5fd; text-decoration: none; font-size: 13px; font-weight: 600; display: inline-block; margin-bottom: 10px; }
         .header-top h1 { margin: 0 0 5px 0; font-size: 24px; }
         .header-top p { margin: 0; font-size: 14px; opacity: 0.9; }
-        
+
         .main-container { max-width: 1000px; margin: 0 auto; padding: 20px; box-sizing: border-box; }
         .section-title { font-size: 20px; font-weight: 700; margin: 30px 0 20px 0; border-left: 4px solid #2563eb; padding-left: 10px; }
-        
+
         .cards-wrapper { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; box-sizing: border-box; }
         .card { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; width: 300px; max-width: 100%; display: flex; flex-direction: column; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.03); transition: transform 0.2s; box-sizing: border-box; }
         .card:hover { transform: translateY(-4px); border-color: #2563eb; }
@@ -584,6 +607,7 @@ CIDADE_TEMPLATE = """
 </head>
 <body>
     {{ ticker_cotacoes | safe }}
+    {{ nav_bar | safe }}
     <div class="header-top">
         <a href="index.html">← Voltar para a Página Inicial</a>
         <h1>Vagas de Emprego e Oportunidades em {{ cidade.name }} ({{ sigla }})</h1>
@@ -624,6 +648,7 @@ PAGINA_LEGAL_TEMPLATE = """
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {{ favicon_tag | safe }}
     {{ adsense_script | safe }}
     {{ monetag_script | safe }}
     {{ google_meta | safe }}
@@ -645,6 +670,7 @@ PAGINA_LEGAL_TEMPLATE = """
 </head>
 <body>
     {{ ticker_cotacoes | safe }}
+    {{ nav_bar | safe }}
     <div class="header-top">
         <a href="index.html">← Voltar para a Página Inicial</a>
         <h1>{{ titulo }}</h1>
@@ -705,7 +731,7 @@ def buscar_noticias_brasil():
             ]
         }
     }
-    
+
     tstamp = int(datetime.now().timestamp())
     imagens_cat = {
         "Concursos Públicos": [
@@ -745,7 +771,7 @@ def buscar_noticias_brasil():
 
     categorias_processadas = {}
     headers_req = {'User-Agent': 'Mozilla/5.0'}
-    
+
     for cat_nome, info in fontes.items():
         items_cat = []
         imgs = imagens_cat[cat_nome]
@@ -760,10 +786,10 @@ def buscar_noticias_brasil():
                         lnk = item.find('link').text if item.find('link') is not None else ""
                         dsc = item.find('description').text if item.find('description') is not None else ""
                         if not tit or not lnk: continue
-                        
+
                         texto_completo = (tit + " " + dsc).lower()
                         if not any(palavra in texto_completo for palavra in info["palavras_chave"]): continue
-                            
+
                         if "<" in dsc: dsc = re.sub('<.*?>', '', dsc)
                         idx = len(items_cat)
                         items_cat.append({
@@ -773,7 +799,7 @@ def buscar_noticias_brasil():
                             "description": dsc.strip()[:110] + "..." if len(dsc.strip()) > 110 else dsc.strip()
                         })
             except: pass
-            
+
         for fb in info["fallbacks"]:
             if len(items_cat) < 9:
                 idx = len(items_cat)
@@ -784,7 +810,7 @@ def buscar_noticias_brasil():
                     "description": fb["desc"]
                 })
         categorias_processadas[cat_nome] = {"id": info["id"], "color": info["color"], "lista": items_cat[:9]}
-        
+
     return categorias_processadas
 
 def gerar_sitemap(lista_estados, lista_cidades):
@@ -803,8 +829,8 @@ def gerar_sitemap(lista_estados, lista_cidades):
         f.write("\n".join(xml))
 
 def gerar_site():
-    print("Gerando portal completo com ads.txt e responsividade total...")
-    
+    print(f"Gerando portal {NOME_MARCA} completo com Favicon 'O' em SVG e ads.txt...")
+
     # GERAR O ARQUIVO ADS.TXT NA RAIZ
     with open("ads.txt", "w", encoding="utf-8") as f:
         f.write(ADS_TXT_CONTENT)
@@ -871,15 +897,15 @@ def gerar_site():
             {"name": "Belém", "file": "belem-pa.html"}
         ]}
     ]
-    
+
     categorias_dict = buscar_noticias_brasil()
     template_estado = Template(ESTADO_TEMPLATE)
     template_cidade = Template(CIDADE_TEMPLATE)
     template_legal = Template(PAGINA_LEGAL_TEMPLATE)
-    
+
     todas_cidades_geradas = []
     data_hoje = datetime.now().strftime("%Y-%m-%d")
-    
+
     for est in estados_brasil:
         sigla_est = est['name'].split('(')[1].replace(')', '')
         noticias_est = []
@@ -889,15 +915,15 @@ def gerar_site():
                 copia["title"] = f"{copia['title'].split('—')[0].strip()} ({sigla_est})"
                 noticias_est.append(copia)
         random.shuffle(noticias_est)
-        
+
         with open(est["file"], "w", encoding="utf-8") as f:
             f.write(template_estado.render(
                 estado=est, noticias=noticias_est[:9], estados_lista=estados_brasil,
                 ad_banner=AD_BANNER, adsense_script=ADSENSE_SCRIPT, monetag_script=MONETAG_SCRIPT,
                 google_meta=GOOGLE_META, ticker_cotacoes=TICKER_COTACOES, dominio=DOMINIO_SITE,
-                footer_robusto=FOOTER_ROBUSTO
+                footer_robusto=FOOTER_ROBUSTO, favicon_tag=FAVICON_TAG
             ))
-            
+
         for cidade in est["cities"]:
             noticias_cidade = []
             for cat_nome, cat_data in categorias_dict.items():
@@ -906,32 +932,32 @@ def gerar_site():
                     copia_c["title"] = f"{copia_c['title'].split('—')[0].strip()} em {cidade['name']} ({sigla_est})"
                     noticias_cidade.append(copia_c)
             random.shuffle(noticias_cidade)
-            
+
             with open(cidade["file"], "w", encoding="utf-8") as fc:
                 fc.write(template_cidade.render(
                     cidade=cidade, sigla=sigla_est, noticias=noticias_cidade[:9],
                     data_atual=data_hoje, ad_banner=AD_BANNER, adsense_script=ADSENSE_SCRIPT,
                     monetag_script=MONETAG_SCRIPT, google_meta=GOOGLE_META, ticker_cotacoes=TICKER_COTACOES,
-                    dominio=DOMINIO_SITE, footer_robusto=FOOTER_ROBUSTO
+                    dominio=DOMINIO_SITE, footer_robusto=FOOTER_ROBUSTO, favicon_tag=FAVICON_TAG
                 ))
             todas_cidades_geradas.append(cidade)
-        
+
     with open("index.html", "w", encoding="utf-8") as f:
         f.write(Template(INDEX_TEMPLATE).render(
             estados=estados_brasil, categorias=categorias_dict,
             ad_banner=AD_BANNER, adsense_script=ADSENSE_SCRIPT, monetag_script=MONETAG_SCRIPT,
             google_meta=GOOGLE_META, ticker_cotacoes=TICKER_COTACOES, breaking_news_ticker=BREAKING_NEWS_TICKER,
             dominio=DOMINIO_SITE, footer_robusto=FOOTER_ROBUSTO, faq_section=FAQ_SECTION,
-            calculadoras_section=CALCULADORAS_SECTION
+            calculadoras_section=CALCULADORAS_SECTION, favicon_tag=FAVICON_TAG
         ))
-        
+
     # Páginas Legais e Contato
     with open("termos.html", "w", encoding="utf-8") as ft:
         ft.write(template_legal.render(
             titulo="Termos de Uso", arquivo="termos.html",
             conteudo="<h2>1. Aceitação</h2><p>Ao acessar o portal, você concorda com nossos termos.</p><h2>2. Isenção</h2><p>Atuamos como agregadores de vagas e links externos.</p>",
             adsense_script=ADSENSE_SCRIPT, monetag_script=MONETAG_SCRIPT, google_meta=GOOGLE_META,
-            ticker_cotacoes=TICKER_COTACOES, dominio=DOMINIO_SITE, footer_robusto=FOOTER_ROBUSTO
+            ticker_cotacoes=TICKER_COTACOES, dominio=DOMINIO_SITE, footer_robusto=FOOTER_ROBUSTO, favicon_tag=FAVICON_TAG
         ))
 
     with open("privacidade.html", "w", encoding="utf-8") as fp:
@@ -939,7 +965,7 @@ def gerar_site():
             titulo="Política de Privacidade", arquivo="privacidade.html",
             conteudo="<h2>1. Privacidade</h2><p>Protegemos seus dados e utilizamos cookies de parceiros de publicidade como Google AdSense.</p>",
             adsense_script=ADSENSE_SCRIPT, monetag_script=MONETAG_SCRIPT, google_meta=GOOGLE_META,
-            ticker_cotacoes=TICKER_COTACOES, dominio=DOMINIO_SITE, footer_robusto=FOOTER_ROBUSTO
+            ticker_cotacoes=TICKER_COTACOES, dominio=DOMINIO_SITE, footer_robusto=FOOTER_ROBUSTO, favicon_tag=FAVICON_TAG
         ))
 
     with open("contato.html", "w", encoding="utf-8") as fc:
@@ -947,11 +973,11 @@ def gerar_site():
             titulo="Contato e Divulgação de Vagas", arquivo="contato.html",
             conteudo="<h2>Fale Conosco</h2><p>É uma empresa, prefeitura ou recrutador e deseja divulgar vagas em nosso portal? Entre em contato conosco através do e-mail oficial: <strong>contato@oportunidadeevagas.com.br</strong></p><p>Respondemos em até 24 horas úteis.</p>",
             adsense_script=ADSENSE_SCRIPT, monetag_script=MONETAG_SCRIPT, google_meta=GOOGLE_META,
-            ticker_cotacoes=TICKER_COTACOES, dominio=DOMINIO_SITE, footer_robusto=FOOTER_ROBUSTO
+            ticker_cotacoes=TICKER_COTACOES, dominio=DOMINIO_SITE, footer_robusto=FOOTER_ROBUSTO, favicon_tag=FAVICON_TAG
         ))
 
     gerar_sitemap(estados_brasil, todas_cidades_geradas)
-    print("Sucesso absoluto! Site unificado, responsivo e com ads.txt pronto.")
+    print("Sucesso absoluto! Site unificado, responsivo, com ads.txt e favicon 'O' em SVG em todas as páginas.")
 
 if __name__ == "__main__":
     gerar_site()
