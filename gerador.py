@@ -62,6 +62,47 @@ BREAKING_NEWS_TICKER = """
 </div>
 """
 
+CALCULADORA_SALARIO = """
+<div style="background: #ffffff; border: 1px solid #e2e8f0; padding: 30px; border-radius: 12px; margin-top: 50px; box-shadow: 0 4px 6px rgba(0,0,0,0.02);">
+    <h3 style="margin-top: 0; color: #1e3a8a; font-size: 18px;">🧮 Calculadora de Salário Líquido CLT (Grátis)</h3>
+    <p style="font-size: 13px; color: #64748b; margin-bottom: 20px;">Descubra quanto vai cair na sua conta após os descontos de INSS e Imposto de Renda:</p>
+    <div style="display: flex; flex-wrap: wrap; gap: 15px; align-items: center;">
+        <input type="number" id="salarioBrutoInput" placeholder="Ex: 2500" style="padding: 12px 20px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 14px; width: 220px; outline: none;">
+        <button onclick="calcularSalario()" style="background: #2563eb; color: white; border: none; padding: 12px 25px; border-radius: 8px; font-weight: 700; cursor: pointer; font-size: 14px;">Calcular Líquido</button>
+    </div>
+    <div id="resultadoSalarioBox" style="margin-top: 20px; display: none; background: #eff6ff; padding: 15px; border-radius: 8px; border: 1px solid #bfdbfe; font-size: 14px; color: #1e3a8a;">
+        <!-- Preenchido via JS -->
+    </div>
+</div>
+<script>
+function calcularSalario() {
+    let bruto = parseFloat(document.getElementById('salarioBrutoInput').value);
+    if(isNaN(bruto) || bruto <= 0) { alert('Digite um valor de salário válido!'); return; }
+    
+    // Cálculo aproximado simplificado de INSS + IRRF para fins práticos
+    let inss = 0;
+    if (bruto <= 1412) { inss = bruto * 0.075; }
+    else if (bruto <= 2666.68) { inss = bruto * 0.09; }
+    else if (bruto <= 4000.03) { inss = bruto * 0.12; }
+    else { inss = bruto * 0.14; }
+    if(inss > 908.85) inss = 908.85; // teto inss
+
+    let baseIr = bruto - inss;
+    let irrf = 0;
+    if (baseIr > 2259.20 && baseIr <= 2826.65) { irrf = (baseIr * 0.075) - 169.44; }
+    else if (baseIr > 2826.65 && baseIr <= 3751.05) { irrf = (baseIr * 0.15) - 381.44; }
+    else if (baseIr > 3751.05 && baseIr <= 4664.68) { irrf = (baseIr * 0.225) - 662.77; }
+    else if (baseIr > 4664.68) { irrf = (baseIr * 0.275) - 896.00; }
+    if(irrf < 0) irrf = 0;
+
+    let liquido = bruto - inss - irrf;
+    let box = document.getElementById('resultadoSalarioBox');
+    box.style.display = 'block';
+    box.innerHTML = `<strong>Resultado da Estimativa CLT:</strong><br>• Salário Bruto: R$ ${bruto.toFixed(2)}<br>• Desconto INSS: R$ ${inss.toFixed(2)}<br>• Desconto IRRF: R$ ${irrf.toFixed(2)}<br>• <strong>Salário Líquido Estimado: R$ ${liquido.toFixed(2)}</strong>`;
+}
+</script>
+"""
+
 FOOTER_ROBUSTO = """
 <footer>
     <div style="max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 30px; text-align: left; margin-bottom: 30px; border-bottom: 1px solid #e2e8f0; padding-bottom: 30px;">
@@ -111,6 +152,10 @@ INDEX_TEMPLATE = """
     {{ monetag_script | safe }}
     {{ google_meta | safe }}
     <link rel="canonical" href="{{ dominio }}/index.html">
+    <meta property="og:title" content="Oportunidade e Vagas de Emprego - Concursos, CLT e Home Office">
+    <meta property="og:description" content="Encontre vagas de emprego CLT, editais de concursos públicos e trabalho remoto em todo o Brasil.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ dominio }}/index.html">
     <title>Oportunidade e Vagas de Emprego - Concursos, CLT e Home Office</title>
     <meta name="description" content="Encontre vagas de emprego CLT, editais de concursos públicos abertos e oportunidades de trabalho por cidade e estado no Brasil.">
     <style>
@@ -232,6 +277,8 @@ INDEX_TEMPLATE = """
 
         {{ ad_banner | safe }}
 
+        {{ calculadora_salario | safe }}
+
         <div class="guias-box">
             <h3>📖 Guia Prático do Trabalhador e Concurseiro (Acesse Grátis)</h3>
             <p>Ferramentas oficiais e cursos gratuitos para acelerar sua contratação ou aprovação:</p>
@@ -327,6 +374,9 @@ ESTADO_TEMPLATE = """
     {{ monetag_script | safe }}
     {{ google_meta | safe }}
     <link rel="canonical" href="{{ dominio }}/{{ estado.file }}">
+    <meta property="og:title" content="Vagas em {{ estado.name }} e Cidades - Oportunidade e Vagas">
+    <meta property="og:description" content="Confira vagas de emprego, concursos e oportunidades abertas em {{ estado.name }}.">
+    <meta property="og:type" content="website">
     <title>Vagas em {{ estado.name }} e Cidades - Oportunidade e Vagas</title>
     <meta name="description" content="Confira vagas de emprego, concursos e oportunidades abertas em {{ estado.name }} e nas principais cidades.">
     <style>
@@ -431,6 +481,9 @@ CIDADE_TEMPLATE = """
     {{ monetag_script | safe }}
     {{ google_meta | safe }}
     <link rel="canonical" href="{{ dominio }}/{{ cidade.file }}">
+    <meta property="og:title" content="Vagas de Emprego em {{ cidade.name }} ({{ sigla }}) - Oportunidade e Vagas">
+    <meta property="og:description" content="Confira vagas de emprego CLT, concursos e oportunidades abertas em {{ cidade.name }} - {{ sigla }}.">
+    <meta property="og:type" content="website">
     <title>Vagas de Emprego em {{ cidade.name }} ({{ sigla }}) - Oportunidade e Vagas</title>
     <meta name="description" content="Confira vagas de emprego CLT, concursos e oportunidades abertas em {{ cidade.name }} - {{ sigla }}. Candidate-se já!">
     
@@ -713,7 +766,7 @@ def gerar_sitemap(lista_estados, lista_cidades):
         f.write("\n".join(xml))
 
 def gerar_site():
-    print("Gerando portal completo com 9 vagas por estado, páginas legais e FAQ...")
+    print("Gerando portal supreme com calculadora salarial e tags Open Graph...")
     estados_brasil = [
         {"name": "São Paulo (SP)", "file": "sao-paulo.html", "cities": [
             {"name": "São Paulo", "file": "sao-paulo-sp.html"},
@@ -784,7 +837,6 @@ def gerar_site():
     todas_cidades_geradas = []
     data_hoje = datetime.now().strftime("%Y-%m-%d")
     
-    # Gera páginas de estados com 9 vagas
     for est in estados_brasil:
         sigla_est = est['name'].split('(')[1].replace(')', '')
         noticias_est = []
@@ -821,16 +873,15 @@ def gerar_site():
                 ))
             todas_cidades_geradas.append(cidade)
         
-    # Gera Index
     with open("index.html", "w", encoding="utf-8") as f:
         f.write(Template(INDEX_TEMPLATE).render(
             estados=estados_brasil, categorias=categorias_dict,
             ad_banner=AD_BANNER, adsense_script=ADSENSE_SCRIPT, monetag_script=MONETAG_SCRIPT,
             google_meta=GOOGLE_META, ticker_cotacoes=TICKER_COTACOES, breaking_news_ticker=BREAKING_NEWS_TICKER,
-            dominio=DOMINIO_SITE, footer_robusto=FOOTER_ROBUSTO, faq_section=FAQ_SECTION
+            dominio=DOMINIO_SITE, footer_robusto=FOOTER_ROBUSTO, faq_section=FAQ_SECTION,
+            calculadora_salario=CALCULADORA_SALARIO
         ))
         
-    # Gera Termos de Uso
     conteudo_termos = """
     <h2>1. Aceitação dos Termos</h2>
     <p>Ao acessar e utilizar o portal Oportunidade e Vagas, você concorda em cumprir e cumprir estes Termos de Uso e todas as leis e regulamentos aplicáveis.</p>
@@ -846,7 +897,6 @@ def gerar_site():
             ticker_cotacoes=TICKER_COTACOES, dominio=DOMINIO_SITE, footer_robusto=FOOTER_ROBUSTO
         ))
 
-    # Gera Política de Privacidade
     conteudo_privacidade = """
     <h2>1. Privacidade dos Usuários</h2>
     <p>A sua privacidade é de extrema importância para nós. Esta política descreve como coletamos e usamos informações quando você navega em nosso portal.</p>
@@ -863,7 +913,7 @@ def gerar_site():
         ))
 
     gerar_sitemap(estados_brasil, todas_cidades_geradas)
-    print("Sucesso absoluto! 9 vagas por estado, páginas institucionais de Termos e Privacidade criadas.")
+    print("Sucesso absoluto! Calculadora salarial e metatags Open Graph integradas.")
 
 if __name__ == "__main__":
     gerar_site()
