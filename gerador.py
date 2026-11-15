@@ -111,6 +111,40 @@ function calcularSeguro() {
 </script>
 """
 
+BLOG_ARTIGOS_SECTION = """
+<div style="background: #ffffff; border: 1px solid #e2e8f0; padding: 30px; border-radius: 12px; margin-top: 40px; box-shadow: 0 4px 6px rgba(0,0,0,0.02);">
+    <h3 style="margin-top: 0; color: #1e3a8a; font-size: 18px;">📰 Blog do Trabalhador: Dicas para Conquistar a Vaga Ideal</h3>
+    <p style="font-size: 13px; color: #64748b; margin-bottom: 20px;">Artigos rápidos e orientações estratégicas atualizadas para acelerar sua contratação:</p>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px;">
+        <div style="background: #f8fafc; border: 1px solid #e2e8f0; padding: 20px; border-radius: 10px;">
+            <h4 style="color: #1e3a8a; margin-top: 0; font-size: 15px;">📝 Como fazer um currículo atraente em 2026</h4>
+            <p style="font-size: 13px; color: #475569; line-height: 1.5;">Descubra os erros que eliminam candidatos e saiba destacar suas principais qualificações para chamar a atenção dos recrutadores.</p>
+        </div>
+        <div style="background: #f8fafc; border: 1px solid #e2e8f0; padding: 20px; border-radius: 10px;">
+            <h4 style="color: #1e3a8a; margin-top: 0; font-size: 15px;">🤝 O que falar na dinâmica de grupo e entrevista</h4>
+            <p style="font-size: 13px; color: #475569; line-height: 1.5;">Dicas práticas de postura, comunicação assertiva e como responder às perguntas mais difíceis feitas pelos gestores.</p>
+        </div>
+        <div style="background: #f8fafc; border: 1px solid #e2e8f0; padding: 20px; border-radius: 10px;">
+            <h4 style="color: #1e3a8a; margin-top: 0; font-size: 15px;">💻 Melhores áreas para trabalhar de Home Office</h4>
+            <p style="font-size: 13px; color: #475569; line-height: 1.5;">Conheça os cargos remotos mais requisitados pelas empresas e o que é necessário para começar a faturar de casa.</p>
+        </div>
+    </div>
+</div>
+"""
+
+CAUDA_LONGA_TAGS = """
+<div style="background: #f1f5f9; border: 1px solid #cbd5e1; padding: 20px; border-radius: 12px; margin-top: 40px; text-align: center;">
+    <p style="font-size: 12px; font-weight: 700; color: #334155; text-transform: uppercase; margin-bottom: 10px; letter-spacing: 0.5px;">🔍 Buscas Frequentes em Todo o Brasil:</p>
+    <div style="display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; font-size: 12px;">
+        <span style="background: white; padding: 6px 12px; border-radius: 6px; border: 1px solid #cbd5e1; color: #1e3a8a; font-weight: 600;">Vagas para Soldador e Caldeireiro</span>
+        <span style="background: white; padding: 6px 12px; border-radius: 6px; border: 1px solid #cbd5e1; color: #1e3a8a; font-weight: 600;">Emprego CLT início imediato</span>
+        <span style="background: white; padding: 6px 12px; border-radius: 6px; border: 1px solid #cbd5e1; color: #1e3a8a; font-weight: 600;">Concursos Públicos Abertos 2026</span>
+        <span style="background: white; padding: 6px 12px; border-radius: 6px; border: 1px solid #cbd5e1; color: #1e3a8a; font-weight: 600;">Trabalho Remoto Home Office</span>
+        <span style="background: white; padding: 6px 12px; border-radius: 6px; border: 1px solid #cbd5e1; color: #1e3a8a; font-weight: 600;">Vagas em Salvador e Camaçari</span>
+    </div>
+</div>
+"""
+
 FOOTER_ROBUSTO = """
 <footer>
     <div style="max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 30px; text-align: left; margin-bottom: 30px; border-bottom: 1px solid #e2e8f0; padding-bottom: 30px;">
@@ -286,6 +320,10 @@ INDEX_TEMPLATE = """
         {{ ad_banner | safe }}
 
         {{ calculadoras_section | safe }}
+
+        {{ blog_artigos_section | safe }}
+
+        {{ cauda_longa_tags | safe }}
 
         <div class="guias-box">
             <h3>📖 Guia Prático do Trabalhador e Concurseiro (Acesse Grátis)</h3>
@@ -775,7 +813,7 @@ def gerar_sitemap(lista_estados, lista_cidades):
         f.write("\n".join(xml))
 
 def gerar_site():
-    print("Gerando portal supreme em vapor máximo...")
+    print("Gerando portal supreme definitivo com SEO avançado e cauda longa...")
     estados_brasil = [
         {"name": "São Paulo (SP)", "file": "sao-paulo.html", "cities": [
             {"name": "São Paulo", "file": "sao-paulo-sp.html"},
@@ -888,10 +926,10 @@ def gerar_site():
             ad_banner=AD_BANNER, adsense_script=ADSENSE_SCRIPT, monetag_script=MONETAG_SCRIPT,
             google_meta=GOOGLE_META, ticker_cotacoes=TICKER_COTACOES, breaking_news_ticker=BREAKING_NEWS_TICKER,
             dominio=DOMINIO_SITE, footer_robusto=FOOTER_ROBUSTO, faq_section=FAQ_SECTION,
-            calculadoras_section=CALCULADORAS_SECTION
+            calculadoras_section=CALCULADORAS_SECTION, blog_artigos_section=BLOG_ARTIGOS_SECTION,
+            cauda_longa_tags=CAUDA_LONGA_TAGS
         ))
         
-    # Páginas Legais e Contato
     with open("termos.html", "w", encoding="utf-8") as ft:
         ft.write(template_legal.render(
             titulo="Termos de Uso", arquivo="termos.html",
@@ -917,7 +955,7 @@ def gerar_site():
         ))
 
     gerar_sitemap(estados_brasil, todas_cidades_geradas)
-    print("Sucesso absoluto! Simulador de Seguro-Desemprego e página de Contato integrados.")
+    print("Sucesso absoluto! Portal supreme atualizado com blog de dicas e cauda longa.")
 
 if __name__ == "__main__":
     gerar_site()
