@@ -52,10 +52,10 @@ TICKER_COTACOES = """
 
 BREAKING_NEWS_TICKER = """
 <div style="background: #ea580c; color: white; padding: 12px 18px; border-radius: 10px; margin-bottom: 25px; display: flex; align-items: center; gap: 12px; font-size: 13px; font-weight: 700; box-shadow: 0 4px 10px rgba(234,88,12,0.15);">
-    <span style="background: white; color: #ea580c; padding: 4px 10px; border-radius: 6px; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; flex-shrink: 0;">🔥 ALERTA DE VAGA</span>
+    <span style="background: white; color: #ea580c; padding: 4px 10px; border-radius: 6px; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; flex-shrink: 0;">🔥 PLANTÃO DE VAGAS</span>
     <div style="overflow: hidden; white-space: nowrap; width: 100%;">
         <div style="display: inline-block; animation: scrollTicker 25s linear infinite;">
-            ⚠️ Órgãos públicos e grandes empresas liberam novos editais com inscrições abertas nesta semana    |    💻 Oportunidades para trabalhar de casa sem experiência exigida    |    📄 Clique na vaga desejada e veja o passo a passo para se candidatar de graça.
+            ⚠️ Atualização diária (24h): Confira os novos editais abertos e vagas CLT nas principais cidades do Brasil    |    📄 Clique em qualquer oportunidade para ver o processo seletivo oficial.
         </div>
     </div>
 </div>
@@ -72,7 +72,7 @@ INDEX_TEMPLATE = """
     {{ google_meta | safe }}
     <link rel="canonical" href="{{ dominio }}/index.html">
     <title>Oportunidade e Vagas de Emprego - Concursos, CLT e Home Office</title>
-    <meta name="description" content="Encontre vagas de emprego CLT, editais de concursos públicos abertos e oportunidades de trabalho em sua cidade e estado. Acesse já!">
+    <meta name="description" content="Encontre vagas de emprego CLT, editais de concursos públicos abertos e oportunidades de trabalho por cidade e estado no Brasil.">
     <style>
         body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f8fafc; color: #0f172a; margin: 0; padding: 0; }
         .header-top { background: linear-gradient(135deg, #0f172a, #1e3a8a); color: white; padding: 40px 20px; text-align: center; }
@@ -102,6 +102,14 @@ INDEX_TEMPLATE = """
         .btn-vaga { display: block; text-align: center; background: #2563eb; color: white; padding: 10px; border-radius: 6px; text-decoration: none; font-size: 13px; font-weight: 700; }
         .btn-vaga:hover { background: #1d4ed8; }
         
+        /* GUIAS DO TRABALHADOR */
+        .guias-box { background: #ffffff; border: 1px solid #e2e8f0; padding: 25px; border-radius: 12px; margin-top: 40px; }
+        .guias-box h3 { margin-top: 0; color: #1e3a8a; font-size: 18px; }
+        .guias-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; margin-top: 15px; }
+        .guia-item { background: #f8fafc; border: 1px solid #e2e8f0; padding: 15px; border-radius: 8px; }
+        .guia-item h4 { margin: 0 0 5px 0; font-size: 14px; color: #2563eb; }
+        .guia-item p { margin: 0; font-size: 12.5px; color: #64748b; }
+
         footer { text-align: center; padding: 30px; font-size: 12px; color: #64748b; border-top: 1px solid #e2e8f0; margin-top: 50px; }
     </style>
 </head>
@@ -109,12 +117,12 @@ INDEX_TEMPLATE = """
     {{ ticker_cotacoes | safe }}
     <div class="header-top">
         <h1>Oportunidade e Vagas de Emprego</h1>
-        <p>Encontre sua vaga CLT, Concurso Público ou Trabalho Remoto por Estado e Cidade</p>
+        <p>Atualizado a cada 24 horas com novas vagas, concursos e trabalho remoto no Brasil</p>
         <input type="text" id="searchInput" class="search-box" placeholder="🔍 Pesquisar estado na barra acima..." onkeyup="filtrarEstados()">
     </div>
 
     <div class="states-top-bar">
-        <p>📍 Selecione seu Estado para ver Vagas nas Principais Cidades:</p>
+        <p>📍 Selecione seu Estado para ver Vagas e Cidades em Destaque:</p>
         <div class="states-box" id="statesGrid">
             {% for e in estados %}
             <a href="{{ e.file }}" class="state-pill">{{ e.name }}</a>
@@ -147,8 +155,28 @@ INDEX_TEMPLATE = """
 
         {{ ad_banner | safe }}
 
+        <!-- GUIA PRÁTICO PARA O TRABALHADOR -->
+        <div class="guias-box">
+            <h3>📖 Guia Prático do Trabalhador e Concurseiro (Atualizado 2026)</h3>
+            <p>Dicas essenciais para acelerar sua contratação e aprovação em concursos públicos:</p>
+            <div class="guias-list">
+                <div class="guia-item">
+                    <h4>📝 Como Fazer um Currículo que Atrai Empresas</h4>
+                    <p>Descubra os erros que eliminam seu currículo no primeiro minuto e o que os recrutadores realmente buscam.</p>
+                </div>
+                <div class="guia-item">
+                    <h4>🏛️ Como se Preparar para Concursos Públicos do Zero</h4>
+                    <p>Cronograma de estudos eficiente, escolha de materiais e técnicas para ser aprovado em vagas federais e estaduais.</p>
+                </div>
+                <div class="guia-item">
+                    <h4>💻 Melhores Dicas para Trabalhar em Home Office</h4>
+                    <p>Equipamentos necessários, organização da rotina e onde encontrar empresas idôneas que contratam remoto.</p>
+                </div>
+            </div>
+        </div>
+
         <footer>
-            <p>© 2026 Oportunidade e Vagas de Emprego. Portal independente de divulgação de oportunidades para o trabalhador brasileiro.</p>
+            <p>© 2026 Oportunidade e Vagas de Emprego. Atualização automática diária (24h). Todos os direitos reservados.</p>
         </footer>
     </div>
     <script>
@@ -175,8 +203,8 @@ ESTADO_TEMPLATE = """
     {{ monetag_script | safe }}
     {{ google_meta | safe }}
     <link rel="canonical" href="{{ dominio }}/{{ estado.file }}">
-    <title>Vagas em {{ estado.name }} e Principais Cidades - Oportunidade e Vagas</title>
-    <meta name="description" content="Confira vagas de emprego, concursos e oportunidades abertas em {{ estado.name }} e nas cidades de destaque.">
+    <title>Vagas em {{ estado.name }} e Cidades - Oportunidade e Vagas</title>
+    <meta name="description" content="Confira vagas de emprego, concursos e oportunidades abertas em {{ estado.name }} e nas principais cidades.">
     <style>
         body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f8fafc; color: #0f172a; margin: 0; padding: 0; }
         .header-top { background: linear-gradient(135deg, #0f172a, #1e3a8a); color: white; padding: 30px 20px; }
@@ -190,7 +218,6 @@ ESTADO_TEMPLATE = """
         .state-pill { background: #334155; border: 1px solid #475569; padding: 8px 14px; border-radius: 6px; text-decoration: none; color: #f8fafc; font-weight: 600; font-size: 12px; transition: background 0.2s; }
         .state-pill:hover { background: #2563eb; border-color: #2563eb; }
 
-        /* SEÇÃO DE CIDADES EM DESTAQUE */
         .cities-section { background: #ffffff; border: 1px solid #e2e8f0; padding: 20px; border-radius: 12px; margin: 30px 0; box-shadow: 0 2px 4px rgba(0,0,0,0.02); }
         .cities-section h3 { margin: 0 0 10px 0; color: #1e3a8a; font-size: 16px; }
         .cities-section p { font-size: 13px; color: #64748b; margin: 0 0 15px 0; }
@@ -222,7 +249,7 @@ ESTADO_TEMPLATE = """
     <div class="header-top">
         <a href="index.html">← Voltar para a Página Inicial</a>
         <h1>Oportunidades e Vagas no Estado de {{ estado.name }}</h1>
-        <p>Acompanhe vagas abertas em destaque na região e municípios parceiros</p>
+        <p>Vagas atualizadas diariamente (24h) para o estado e principais municípios</p>
     </div>
 
     <div class="states-top-bar">
@@ -235,10 +262,9 @@ ESTADO_TEMPLATE = """
     </div>
 
     <div class="main-container">
-        <!-- BLOCO DE CIDADES EM DESTAQUE -->
         <div class="cities-section">
-            <h3>🏙️ Principais Cidades com Vagas em {{ estado.name }}</h3>
-            <p>Clique em uma cidade para filtrar as oportunidades locais e processos seletivos abertos:</p>
+            <h3>🏙️ Principais Cidades em {{ estado.name }}</h3>
+            <p>Selecione seu município para focar nas oportunidades locais:</p>
             <div class="cities-grid">
                 {% for cidade in estado.cities %}
                 <span class="city-badge">📌 {{ cidade }}</span>
@@ -248,7 +274,7 @@ ESTADO_TEMPLATE = """
 
         {{ ad_banner | safe }}
 
-        <div class="section-title">Vagas e Processos Seletivos em Destaque — {{ estado.name }}</div>
+        <div class="section-title">Oportunidades e Vagas Verificadas em {{ estado.name }}</div>
         <div class="cards-wrapper">
             {% for noticia in noticias %}
             <div class="card">
@@ -362,14 +388,14 @@ def buscar_noticias_brasil():
 def gerar_sitemap(lista_estados):
     data_hoje = datetime.now().strftime("%Y-%m-%d")
     xml = ['<?xml version="1.0" encoding="UTF-8"?>', '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
-    xml.append(f'  <url><loc>{DOMINIO_SITE}/index.html</loc><lastmod>{data_hoje}</lastmod><changefreq>hourly</changefreq><priority>1.0</priority></url>')
+    xml.append(f'  <url><loc>{DOMINIO_SITE}/index.html</loc><lastmod>{data_hoje}</lastmod><changefreq>daily</changefreq><priority>1.0</priority></url>')
     for e in lista_estados:
         xml.append(f'  <url><loc>{DOMINIO_SITE}/{e["file"]}</loc><lastmod>{data_hoje}</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>')
     xml.append('</urlset>')
     with open("sitemap.xml", "w", encoding="utf-8") as f: f.write("\n".join(xml))
 
 def gerar_site():
-    print("Gerando portal completo com cidades e links diversificados...")
+    print("Gerando portal completo com cidades, guias e atualização de 24h...")
     estados_brasil = [
         {"name": "Bahia (BA)", "file": "bahia.html", "cities": ["Salvador", "Camaçari", "Feira de Santana", "Vitória da Conquista", "Itabuna", "Lauro de Freitas"]},
         {"name": "São Paulo (SP)", "file": "sao-paulo.html", "cities": ["São Paulo", "Campinas", "Santos", "Ribeirão Preto", "Sorocaba", "São José dos Campos"]},
@@ -413,7 +439,7 @@ def gerar_site():
         ))
         
     gerar_sitemap(estados_brasil)
-    print("Sucesso absoluto! Cidades adicionadas, páginas estaduais segmentadas e links diversificados.")
+    print("Sucesso absoluto! Guia do trabalhador inserido, cidades ativas e ciclo de 24h configurado.")
 
 if __name__ == "__main__":
     gerar_site()
