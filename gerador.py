@@ -7,6 +7,7 @@ import urllib.parse
 import urllib.request
 from datetime import datetime
 import random
+import json
 import re
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
@@ -55,7 +56,7 @@ BREAKING_NEWS_TICKER = """
     <span style="background: white; color: #ea580c; padding: 4px 10px; border-radius: 6px; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; flex-shrink: 0;">🔥 PLANTÃO DE VAGAS</span>
     <div style="overflow: hidden; white-space: nowrap; width: 100%;">
         <div style="display: inline-block; animation: scrollTicker 25s linear infinite;">
-            ⚠️ Atualização diária (24h): Confira os novos editais abertos e vagas CLT nas principais cidades do Brasil    |    📄 Clique em qualquer oportunidade para ver o processo seletivo oficial.
+            ⚠️ Atualização diária (24h): Confira os novos editais abertos e vagas CLT nas principais cidades e estados do Brasil    |    📄 Clique em qualquer oportunidade para ver o processo seletivo oficial.
         </div>
     </div>
 </div>
@@ -102,13 +103,15 @@ INDEX_TEMPLATE = """
         .btn-vaga { display: block; text-align: center; background: #2563eb; color: white; padding: 10px; border-radius: 6px; text-decoration: none; font-size: 13px; font-weight: 700; }
         .btn-vaga:hover { background: #1d4ed8; }
         
-        /* GUIAS DO TRABALHADOR */
+        /* GUIAS DO TRABALHADOR CLICÁVEIS */
         .guias-box { background: #ffffff; border: 1px solid #e2e8f0; padding: 25px; border-radius: 12px; margin-top: 40px; }
         .guias-box h3 { margin-top: 0; color: #1e3a8a; font-size: 18px; }
         .guias-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; margin-top: 15px; }
-        .guia-item { background: #f8fafc; border: 1px solid #e2e8f0; padding: 15px; border-radius: 8px; }
-        .guia-item h4 { margin: 0 0 5px 0; font-size: 14px; color: #2563eb; }
-        .guia-item p { margin: 0; font-size: 12.5px; color: #64748b; }
+        .guia-item { background: #f8fafc; border: 1px solid #e2e8f0; padding: 18px; border-radius: 8px; display: flex; flex-direction: column; justify-content: space-between; text-decoration: none; transition: border-color 0.2s, transform 0.2s; }
+        .guia-item:hover { border-color: #2563eb; transform: translateY(-2px); }
+        .guia-item h4 { margin: 0 0 8px 0; font-size: 15px; color: #1e3a8a; }
+        .guia-item p { margin: 0 0 14px 0; font-size: 13px; color: #475569; line-height: 1.4; }
+        .guia-link { font-size: 12px; font-weight: 700; color: #2563eb; text-transform: uppercase; }
 
         footer { text-align: center; padding: 30px; font-size: 12px; color: #64748b; border-top: 1px solid #e2e8f0; margin-top: 50px; }
     </style>
@@ -118,7 +121,7 @@ INDEX_TEMPLATE = """
     <div class="header-top">
         <h1>Oportunidade e Vagas de Emprego</h1>
         <p>Atualizado a cada 24 horas com novas vagas, concursos e trabalho remoto no Brasil</p>
-        <input type="text" id="searchInput" class="search-box" placeholder="🔍 Pesquisar estado na barra acima..." onkeyup="filtrarEstados()">
+        <input type="text" id="searchInput" class="search-box" placeholder="🔍 Filtrar vagas instantaneamente na tela..." onkeyup="filtrarVagas()">
     </div>
 
     <div class="states-top-bar">
@@ -134,44 +137,56 @@ INDEX_TEMPLATE = """
         {{ breaking_news_ticker | safe }}
         {{ ad_banner | safe }}
 
-        {% for cat_nome, cat_data in categorias.items() %}
-        <div class="section-title">{{ cat_nome }}</div>
-        <div class="cards-wrapper">
-            {% for noticia in cat_data.lista %}
-            <div class="card">
-                <img src="{{ noticia.image }}" alt="Capa da Vaga" onerror="this.src='https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60'">
-                <div class="card-body">
-                    <div>
-                        <span class="badge" style="background-color: {{ cat_data.color }};">{{ cat_nome }}</span>
-                        <h3><a href="{{ noticia.link }}" target="_blank" rel="nofollow">{{ noticia.title }}</a></h3>
-                        <p>{{ noticia.description }}</p>
+        <div id="listaConteudo">
+            {% for cat_nome, cat_data in categorias.items() %}
+            <div class="categoria-bloco">
+                <div class="section-title">{{ cat_nome }}</div>
+                <div class="cards-wrapper">
+                    {% for noticia in cat_data.lista %}
+                    <div class="card" data-titulo="{{ noticia.title | lower }}" data-desc="{{ noticia.description | lower }}">
+                        <img src="{{ noticia.image }}" alt="Capa da Vaga" onerror="this.src='https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60'">
+                        <div class="card-body">
+                            <div>
+                                <span class="badge" style="background-color: {{ cat_data.color }};">{{ cat_nome }}</span>
+                                <h3><a href="{{ noticia.link }}" target="_blank" rel="nofollow">{{ noticia.title }}</a></h3>
+                                <p>{{ noticia.description }}</p>
+                            </div>
+                            <a href="{{ noticia.link }}" target="_blank" rel="nofollow" class="btn-vaga">Ver Vaga / Inscrição →</a>
+                        </div>
                     </div>
-                    <a href="{{ noticia.link }}" target="_blank" rel="nofollow" class="btn-vaga">Ver Vaga / Inscrição →</a>
+                    {% endfor %}
                 </div>
             </div>
             {% endfor %}
         </div>
-        {% endfor %}
 
         {{ ad_banner | safe }}
 
-        <!-- GUIA PRÁTICO PARA O TRABALHADOR -->
         <div class="guias-box">
-            <h3>📖 Guia Prático do Trabalhador e Concurseiro (Atualizado 2026)</h3>
-            <p>Dicas essenciais para acelerar sua contratação e aprovação em concursos públicos:</p>
+            <h3>📖 Guia Prático do Trabalhador e Concurseiro (Acesse Grátis)</h3>
+            <p>Ferramentas oficiais e cursos gratuitos para acelerar sua contratação ou aprovação:</p>
             <div class="guias-list">
-                <div class="guia-item">
-                    <h4>📝 Como Fazer um Currículo que Atrai Empresas</h4>
-                    <p>Descubra os erros que eliminam seu currículo no primeiro minuto e o que os recrutadores realmente buscam.</p>
-                </div>
-                <div class="guia-item">
-                    <h4>🏛️ Como se Preparar para Concursos Públicos do Zero</h4>
-                    <p>Cronograma de estudos eficiente, escolha de materiais e técnicas para ser aprovado em vagas federais e estaduais.</p>
-                </div>
-                <div class="guia-item">
-                    <h4>💻 Melhores Dicas para Trabalhar em Home Office</h4>
-                    <p>Equipamentos necessários, organização da rotina e onde encontrar empresas idôneas que contratam remoto.</p>
-                </div>
+                <a href="https://www.canva.com/pt_br/criar/curriculos/" target="_blank" rel="nofollow" class="guia-item">
+                    <div>
+                        <h4>📝 Gerador de Currículo Profissional Grátis</h4>
+                        <p>Monte um currículo moderno em PDF pronto para enviar às empresas e recrutadores pelo celular ou computador.</p>
+                    </div>
+                    <span class="guia-link">Criar Meu Currículo Agora →</span>
+                </a>
+                <a href="https://www.qconcursos.com/questoes-de-concursos" target="_blank" rel="nofollow" class="guia-item">
+                    <div>
+                        <h4>🏛️ Banco de Questões e Provas Anteriores</h4>
+                        <p>Treine com milhares de questões reais de bancas organizadoras e prepare-se para concursos federais e municipais.</p>
+                    </div>
+                    <span class="guia-link">Estudar para Concursos →</span>
+                </a>
+                <a href="https://www.ev.org.br/" target="_blank" rel="nofollow" class="guia-item">
+                    <div>
+                        <h4>💻 Cursos Gratuitos com Certificado (Home Office e TI)</h4>
+                        <p>Capacite-se gratuitamente pela Fundação Bradesco em Excel, Atendimento, Administração e Tecnologia.</p>
+                    </div>
+                    <span class="guia-link">Acessar Cursos Gratuitos →</span>
+                </a>
             </div>
         </div>
 
@@ -180,12 +195,17 @@ INDEX_TEMPLATE = """
         </footer>
     </div>
     <script>
-        function filtrarEstados() {
+        function filtrarVagas() {
             let input = document.getElementById('searchInput').value.toLowerCase();
-            let cards = document.getElementById('statesGrid').getElementsByClassName('state-pill');
+            let cards = document.getElementsByClassName('card');
             for (let i = 0; i < cards.length; i++) {
-                let text = cards[i].innerText.toLowerCase();
-                cards[i].style.display = text.includes(input) ? "" : "none";
+                let titulo = cards[i].getAttribute('data-titulo');
+                let desc = cards[i].getAttribute('data-desc');
+                if (titulo.includes(input) || desc.includes(input)) {
+                    cards[i].style.display = "";
+                } else {
+                    cards[i].style.display = "none";
+                }
             }
         }
     </script>
@@ -222,7 +242,7 @@ ESTADO_TEMPLATE = """
         .cities-section h3 { margin: 0 0 10px 0; color: #1e3a8a; font-size: 16px; }
         .cities-section p { font-size: 13px; color: #64748b; margin: 0 0 15px 0; }
         .cities-grid { display: flex; flex-wrap: wrap; gap: 10px; }
-        .city-badge { background: #eff6ff; color: #2563eb; border: 1px solid #bfdbfe; padding: 6px 12px; border-radius: 20px; font-size: 12px; font-weight: 600; text-decoration: none; }
+        .city-badge { background: #eff6ff; color: #2563eb; border: 1px solid #bfdbfe; padding: 8px 14px; border-radius: 20px; font-size: 12px; font-weight: 600; text-decoration: none; transition: background 0.2s, color 0.2s; }
         .city-badge:hover { background: #2563eb; color: white; }
 
         .main-container { max-width: 1000px; margin: 0 auto; padding: 20px; }
@@ -263,11 +283,11 @@ ESTADO_TEMPLATE = """
 
     <div class="main-container">
         <div class="cities-section">
-            <h3>🏙️ Principais Cidades em {{ estado.name }}</h3>
-            <p>Selecione seu município para focar nas oportunidades locais:</p>
+            <h3>🏙️ Buscar Vagas Diretas nas Cidades de {{ estado.name }}</h3>
+            <p>Clique na sua cidade para abrir o painel de vagas locais atualizadas:</p>
             <div class="cities-grid">
                 {% for cidade in estado.cities %}
-                <span class="city-badge">📌 {{ cidade }}</span>
+                <a href="https://www.infojobs.com.br/empregos.aspx?palabra={{ cidade | urlencode }}" target="_blank" rel="nofollow" class="city-badge">📌 Vagas em {{ cidade }} →</a>
                 {% endfor %}
             </div>
         </div>
@@ -301,135 +321,277 @@ ESTADO_TEMPLATE = """
 </html>
 """
 
+CIDADE_TEMPLATE = """
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {{ adsense_script | safe }}
+    {{ monetag_script | safe }}
+    {{ google_meta | safe }}
+    <link rel="canonical" href="{{ dominio }}/{{ cidade.file }}">
+    <title>Vagas de Emprego em {{ cidade.name }} ({{ sigla }}) - Oportunidade e Vagas</title>
+    <meta name="description" content="Confira vagas de emprego CLT, concursos e oportunidades abertas em {{ cidade.name }} - {{ sigla }}. Candidate-se já!">
+    
+    <!-- SCHEMA MARKUP (GOOGLE JOBS) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org/",
+      "@type": "ItemList",
+      "itemListElement": [
+        {% for noticia in noticias %}
+        {
+          "@type": "ListItem",
+          "position": {{ loop.index }},
+          "item": {
+            "@type": "JobPosting",
+            "title": "{{ noticia.title }}",
+            "description": "{{ noticia.description }}",
+            "datePosted": "{{ data_atual }}",
+            "employmentType": "FULL_TIME",
+            "hiringOrganization": {
+              "@type": "Organization",
+              "name": "Oportunidade e Vagas Brasil"
+            },
+            "jobLocation": {
+              "@type": "Place",
+              "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "{{ cidade.name }}",
+                "addressRegion": "{{ sigla }}",
+                "addressCountry": "BR"
+              }
+            },
+            "url": "{{ noticia.link }}"
+          }
+        }{% if not loop.last %},{% endif %}
+        {% endfor %}
+      ]
+    }
+    </script>
+
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f8fafc; color: #0f172a; margin: 0; padding: 0; }
+        .header-top { background: linear-gradient(135deg, #0f172a, #1e3a8a); color: white; padding: 30px 20px; }
+        .header-top a { color: #93c5fd; text-decoration: none; font-size: 13px; font-weight: 600; display: inline-block; margin-bottom: 10px; }
+        .header-top h1 { margin: 0 0 5px 0; font-size: 24px; }
+        .header-top p { margin: 0; font-size: 14px; opacity: 0.9; }
+        
+        .main-container { max-width: 1000px; margin: 0 auto; padding: 20px; }
+        .section-title { font-size: 20px; font-weight: 700; margin: 30px 0 20px 0; border-left: 4px solid #2563eb; padding-left: 10px; }
+        
+        .cards-wrapper { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; }
+        .card { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px; width: 300px; display: flex; flex-direction: column; overflow: hidden; box-shadow: 0 2px 4px rgba(0,0,0,0.02); transition: transform 0.2s; }
+        .card:hover { transform: translateY(-3px); border-color: #2563eb; }
+        .card img { width: 100%; height: 150px; object-fit: cover; background: #e2e8f0; }
+        .card-body { padding: 16px; display: flex; flex-direction: column; flex-grow: 1; justify-content: space-between; }
+        .badge { background: #2563eb; color: white; font-size: 10px; font-weight: 700; padding: 3px 8px; border-radius: 4px; display: inline-block; margin-bottom: 8px; width: fit-content; text-transform: uppercase; }
+        .card h3 { font-size: 15px; margin: 0 0 8px 0; line-height: 1.4; }
+        .card h3 a { color: #0f172a; text-decoration: none; }
+        .card h3 a:hover { color: #2563eb; }
+        .card p { font-size: 13px; color: #64748b; margin: 0 0 15px 0; line-height: 1.4; }
+        .btn-vaga { display: block; text-align: center; background: #2563eb; color: white; padding: 10px; border-radius: 6px; text-decoration: none; font-size: 13px; font-weight: 700; }
+        .btn-vaga:hover { background: #1d4ed8; }
+        
+        footer { text-align: center; padding: 30px; font-size: 12px; color: #64748b; border-top: 1px solid #e2e8f0; margin-top: 50px; }
+    </style>
+</head>
+<body>
+    {{ ticker_cotacoes | safe }}
+    <div class="header-top">
+        <a href="index.html">← Voltar para a Página Inicial</a>
+        <h1>Vagas de Emprego e Oportunidades em {{ cidade.name }} ({{ sigla }})</h1>
+        <p>Processos seletivos, concursos e vagas CLT abertas para trabalhadores locais</p>
+    </div>
+
+    <div class="main-container">
+        {{ ad_banner | safe }}
+
+        <div class="section-title">Oportunidades em Destaque — {{ cidade.name }}</div>
+        <div class="cards-wrapper">
+            {% for noticia in noticias %}
+            <div class="card">
+                <img src="{{ noticia.image }}" alt="Capa da Vaga" onerror="this.src='https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60'">
+                <div class="card-body">
+                    <div>
+                        <span class="badge" style="background-color: {{ noticia.color }};">{{ noticia.category }}</span>
+                        <h3><a href="{{ noticia.link }}" target="_blank" rel="nofollow">{{ noticia.title }}</a></h3>
+                        <p>{{ noticia.description }}</p>
+                    </div>
+                    <a href="{{ noticia.link }}" target="_blank" rel="nofollow" class="btn-vaga">Ver Vaga / Inscrição →</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        {{ ad_banner | safe }}
+
+        <footer>
+            <p>© 2026 Oportunidade e Vagas de Emprego. Todos os direitos reservados.</p>
+        </footer>
+    </div>
+</body>
+</html>
+"""
+
 def buscar_noticias_brasil():
     fontes = {
         "Concursos Públicos": {
             "id": "concursos", "color": "#2563eb",
-            "urls": ["https://s2.glbimg.com/rss/g1/educacao/concursos-e-emprego/"],
-            "diretorios": ["https://www.in.gov.br", "https://www.qconcursos.com", "https://www.estrategiaconcursos.com.br"]
+            "urls": ["https://g1.globo.com/rss/g1/educacao/concursos-e-emprego/"],
+            "fallbacks": [
+                {"title": "Concursos Prefeituras e Câmaras Municipais: Editais Abertos", "desc": "Vagas para níveis fundamental, médio e superior com excelentes salários. Veja os prazos.", "link": "https://www.qconcursos.com/concursos-abertos"},
+                {"title": "Concursos Federais e Tribunais: Seleções Autorizadas", "desc": "Órgãos federais preparam novos editais para técnicos e analistas.", "link": "https://www.estrategiaconcursos.com.br/blog/concursos-abertos/"}
+            ]
         },
         "Vagas CLT & Empresas": {
             "id": "empregos", "color": "#059669",
-            "urls": ["https://s2.glbimg.com/rss/g1/economia/"],
-            "diretorios": ["https://www.infojobs.com.br", "https://www.catho.com.br", "https://www.indeed.com.br", "https://www.linkedin.com/jobs"]
+            "urls": ["https://g1.globo.com/rss/g1/economia/"],
+            "fallbacks": [
+                {"title": "Indústria, Comércio e Logística: Vagas Abertas", "desc": "Grandes empresas abrem processos seletivos efetivos CLT com benefícios.", "link": "https://www.infojobs.com.br"},
+                {"title": "Contratação Imediata no Varejo e Serviços", "desc": "Oportunidades com ou sem experiência em diversas funções.", "link": "https://www.catho.com.br"}
+            ]
         },
         "Trabalho Home Office": {
             "id": "homeoffice", "color": "#ea580c",
-            "urls": ["https://s2.glbimg.com/rss/g1/tecnologia/"],
-            "diretorios": ["https://www.infojobs.com.br/vagas-de-emprego-home-office.aspx", "https://www.workana.com/pt", "https://www.getremote.co"]
+            "urls": ["https://g1.globo.com/rss/g1/tecnologia/"],
+            "fallbacks": [
+                {"title": "Atendimento ao Cliente e SAC Remoto (100% Home Office)", "desc": "Empresas contratam operadores para atendimento digital de casa.", "link": "https://www.infojobs.com.br/vagas-de-emprego-home-office.aspx"},
+                {"title": "Assistente Virtual e Suporte Administrativo a Distância", "desc": "Oportunidades flexíveis para atuar à distância.", "link": "https://www.linkedin.com/jobs/search/?keywords=Home%20Office"}
+            ]
         }
     }
     
     tstamp = int(datetime.now().timestamp())
     imagens_cat = {
-        "Concursos Públicos": [
-            f"https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=600&auto=format&fit=crop&q=60&v={tstamp}",
-            f"https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&auto=format&fit=crop&q=60&v={tstamp}",
-            f"https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=600&auto=format&fit=crop&q=60&v={tstamp}"
-        ],
-        "Vagas CLT & Empresas": [
-            f"https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60&v={tstamp}",
-            f"https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&auto=format&fit=crop&q=60&v={tstamp}",
-            f"https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600&auto=format&fit=crop&q=60&v={tstamp}"
-        ],
-        "Trabalho Home Office": [
-            f"https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=600&auto=format&fit=crop&q=60&v={tstamp}",
-            f"https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=600&auto=format&fit=crop&q=60&v={tstamp}",
-            f"https://images.unsplash.com/photo-1531482615713-2afd69097998?w=600&auto=format&fit=crop&q=60&v={tstamp}"
-        ]
+        "Concursos Públicos": [f"https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=600&auto=format&fit=crop&q=60&v={tstamp}"],
+        "Vagas CLT & Empresas": [f"https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60&v={tstamp}"],
+        "Trabalho Home Office": [f"https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=600&auto=format&fit=crop&q=60&v={tstamp}"]
     }
 
     categorias_processadas = {}
+    headers_req = {'User-Agent': 'Mozilla/5.0'}
     
     for cat_nome, info in fontes.items():
         items_cat = []
-        imgs = list(imagens_cat[cat_nome])
-        random.shuffle(imgs)
-        
         for url in info["urls"]:
             try:
-                resp = requests.get(url, verify=False, timeout=5)
+                resp = requests.get(url, headers=headers_req, verify=False, timeout=5)
                 if resp.status_code == 200:
                     root = ET.fromstring(resp.content)
-                    for idx, item in enumerate(root.findall('.//item')[:5]):
+                    for item in root.findall('.//item')[:3]:
                         tit = item.find('title').text if item.find('title') is not None else ""
                         lnk = item.find('link').text if item.find('link') is not None else ""
                         dsc = item.find('description').text if item.find('description') is not None else ""
-                        if not tit: continue
+                        if not tit or not lnk: continue
                         if "<" in dsc: dsc = re.sub('<.*?>', '', dsc)
-                        if not dsc.strip(): dsc = "Oportunidade oficial verificada com inscrições abertas para trabalhadores."
-                        
-                        if not lnk or not lnk.startswith("http") or "g1.globo.com" not in lnk:
-                            lnk = random.choice(info["diretorios"])
-                            
-                        obj = {
+                        items_cat.append({
                             "category": cat_nome, "color": info["color"],
-                            "title": tit.strip(), "link": lnk.strip(), 
-                            "image": imgs[idx % len(imgs)],
+                            "title": tit.strip(), "link": lnk.strip(),
+                            "image": imagens_cat[cat_nome][0],
                             "description": dsc.strip()[:110] + "..." if len(dsc.strip()) > 110 else dsc.strip()
-                        }
-                        items_cat.append(obj)
+                        })
             except: pass
             
-        while len(items_cat) < 3:
-            idx = len(items_cat)
-            alt_link = random.choice(info["diretorios"])
-            obj = {
-                "category": cat_nome, "color": info["color"],
-                "title": f"Processo Seletivo Aberto: {cat_nome}", "link": alt_link,
-                "image": imgs[idx % len(imgs)], "description": "Confira os requisitos, salários e faça sua inscrição diretamente na página oficial parceira."
-            }
-            items_cat.append(obj)
-            
+        for fb in info["fallbacks"]:
+            if len(items_cat) < 3:
+                items_cat.append({
+                    "category": cat_nome, "color": info["color"],
+                    "title": fb["title"], "link": fb["link"],
+                    "image": imagens_cat[cat_nome][0],
+                    "description": fb["desc"]
+                })
         categorias_processadas[cat_nome] = {"id": info["id"], "color": info["color"], "lista": items_cat[:3]}
         
     return categorias_processadas
 
-def gerar_sitemap(lista_estados):
+def gerar_sitemap(lista_estados, lista_cidades):
     data_hoje = datetime.now().strftime("%Y-%m-%d")
     xml = ['<?xml version="1.0" encoding="UTF-8"?>', '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
     xml.append(f'  <url><loc>{DOMINIO_SITE}/index.html</loc><lastmod>{data_hoje}</lastmod><changefreq>daily</changefreq><priority>1.0</priority></url>')
     for e in lista_estados:
         xml.append(f'  <url><loc>{DOMINIO_SITE}/{e["file"]}</loc><lastmod>{data_hoje}</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>')
+    for c in lista_cidades:
+        xml.append(f'  <url><loc>{DOMINIO_SITE}/{c["file"]}</loc><lastmod>{data_hoje}</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>')
     xml.append('</urlset>')
-    with open("sitemap.xml", "w", encoding="utf-8") as f: f.write("\n".join(xml))
+    with open("sitemap.xml", "w", encoding="utf-8") as f:
+        f.write("\n".join(xml))
 
 def gerar_site():
-    print("Gerando portal completo com cidades, guias e atualização de 24h...")
+    print("Gerando portal completo com páginas de cidades, Schema Jobs e Busca Instantânea...")
     estados_brasil = [
-        {"name": "Bahia (BA)", "file": "bahia.html", "cities": ["Salvador", "Camaçari", "Feira de Santana", "Vitória da Conquista", "Itabuna", "Lauro de Freitas"]},
-        {"name": "São Paulo (SP)", "file": "sao-paulo.html", "cities": ["São Paulo", "Campinas", "Santos", "Ribeirão Preto", "Sorocaba", "São José dos Campos"]},
-        {"name": "Rio de Janeiro (RJ)", "file": "rio-de-janeiro.html", "cities": ["Rio de Janeiro", "Niterói", "Duque de Caxias", "Nova Iguaçu", "Petrópolis", "Campos dos Goytacazes"]},
-        {"name": "Minas Gerais (MG)", "file": "minas-gerais.html", "cities": ["Belo Horizonte", "Uberlândia", "Contagem", "Juiz de Fora", "Betim", "Montes Claros"]},
-        {"name": "Paraná (PR)", "file": "parana.html", "cities": ["Curitiba", "Londrina", "Maringá", "Ponta Grossa", "Cascavel", "São José dos Pinhais"]},
-        {"name": "Rio Grande do Sul (RS)", "file": "rio-grande-do-sul.html", "cities": ["Porto Alegre", "Caxias do Sul", "Pelotas", "Canoas", "Santa Maria", "Gravataí"]},
-        {"name": "Santa Catarina (SC)", "file": "santa-catarina.html", "cities": ["Florianópolis", "Joinville", "Blumenau", "São José", "Criciúma", "Chapecó"]},
-        {"name": "Distrito Federal (DF)", "file": "distrito-federal.html", "cities": ["Brasília", "Taguatinga", "Ceilândia", "Samambaia", "Planaltina", "Águas Claras"]},
-        {"name": "Pernambuco (PE)", "file": "pernambuco.html", "cities": ["Recife", "Jaboatão dos Guararapes", "Olinda", "Caruaru", "Petrolina", "Paulista"]},
-        {"name": "Ceará (CE)", "file": "ceara.html", "cities": ["Fortaleza", "Caucaia", "Juazeiro do Norte", "Maracanaú", "Sobral", "Crato"]}
+        {"name": "Bahia (BA)", "file": "bahia.html", "cities": [
+            {"name": "Salvador", "file": "salvador-ba.html"},
+            {"name": "Camaçari", "file": "camacari-ba.html"},
+            {"name": "Feira de Santana", "file": "feira-de-santana-ba.html"},
+            {"name": "Vitória da Conquista", "file": "vitoria-da-conquista-ba.html"}
+        ]},
+        {"name": "São Paulo (SP)", "file": "sao-paulo.html", "cities": [
+            {"name": "São Paulo", "file": "sao-paulo-sp.html"},
+            {"name": "Campinas", "file": "campinas-sp.html"},
+            {"name": "Santos", "file": "santos-sp.html"},
+            {"name": "Ribeirão Preto", "file": "ribeirao-preto-sp.html"}
+        ]},
+        {"name": "Rio de Janeiro (RJ)", "file": "rio-de-janeiro.html", "cities": [
+            {"name": "Rio de Janeiro", "file": "rio-de-janeiro-rj.html"},
+            {"name": "Niterói", "file": "niteroi-rj.html"},
+            {"name": "Duque de Caxias", "file": "duque-de-caxias-rj.html"}
+        ]},
+        {"name": "Minas Gerais (MG)", "file": "minas-gerais.html", "cities": [
+            {"name": "Belo Horizonte", "file": "belo-horizonte-mg.html"},
+            {"name": "Uberlândia", "file": "uberlandia-mg.html"},
+            {"name": "Contagem", "file": "contagem-mg.html"}
+        ]},
+        {"name": "Paraná (PR)", "file": "parana.html", "cities": [
+            {"name": "Curitiba", "file": "curitiba-pr.html"},
+            {"name": "Londrina", "file": "londrina-pr.html"}
+        ]}
     ]
     
     categorias_dict = buscar_noticias_brasil()
     template_estado = Template(ESTADO_TEMPLATE)
+    template_cidade = Template(CIDADE_TEMPLATE)
+    
+    todas_cidades_geradas = []
+    data_hoje = datetime.now().strftime("%Y-%m-%d")
     
     for est in estados_brasil:
+        sigla_est = est['name'].split('(')[1].replace(')', '')
         noticias_est = []
         for cat_nome, cat_data in categorias_dict.items():
             for item in cat_data["lista"]:
-                copia_item = item.copy()
-                cidade_aleatoria = random.choice(est["cities"])
-                sigla_est = est['name'].split('(')[1].replace(')', '')
-                copia_item["title"] = f"{copia_item['title'].split('—')[0].strip()} — {cidade_aleatoria} ({sigla_est})"
-                noticias_est.append(copia_item)
-                
+                copia = item.copy()
+                copia["title"] = f"{copia['title'].split('—')[0].strip()} ({sigla_est})"
+                noticias_est.append(copia)
         random.shuffle(noticias_est)
         
+        # Gera página do estado
         with open(est["file"], "w", encoding="utf-8") as f:
             f.write(template_estado.render(
                 estado=est, noticias=noticias_est[:3], estados_lista=estados_brasil,
                 ad_banner=AD_BANNER, adsense_script=ADSENSE_SCRIPT, monetag_script=MONETAG_SCRIPT,
                 google_meta=GOOGLE_META, ticker_cotacoes=TICKER_COTACOES, dominio=DOMINIO_SITE
             ))
+            
+        # Gera páginas individuais para cada cidade (SEO Local e Google Jobs)
+        for cidade in est["cities"]:
+            noticias_cidade = []
+            for cat_nome, cat_data in categorias_dict.items():
+                for item in cat_data["lista"]:
+                    copia_c = item.copy()
+                    copia_c["title"] = f"{copia_c['title'].split('—')[0].strip()} em {cidade['name']} ({sigla_est})"
+                    noticias_cidade.append(copia_c)
+            random.shuffle(noticias_cidade)
+            
+            with open(cidade["file"], "w", encoding="utf-8") as fc:
+                fc.write(template_cidade.render(
+                    cidade=cidade, sigla=sigla_est, noticias=noticias_cidade[:3],
+                    data_atual=data_hoje, ad_banner=AD_BANNER, adsense_script=ADSENSE_SCRIPT,
+                    monetag_script=MONETAG_SCRIPT, google_meta=GOOGLE_META, ticker_cotacoes=TICKER_COTACOES,
+                    dominio=DOMINIO_SITE
+                ))
+            todas_cidades_geradas.append(cidade)
         
     with open("index.html", "w", encoding="utf-8") as f:
         f.write(Template(INDEX_TEMPLATE).render(
@@ -438,8 +600,8 @@ def gerar_site():
             google_meta=GOOGLE_META, ticker_cotacoes=TICKER_COTACOES, breaking_news_ticker=BREAKING_NEWS_TICKER, dominio=DOMINIO_SITE
         ))
         
-    gerar_sitemap(estados_brasil)
-    print("Sucesso absoluto! Guia do trabalhador inserido, cidades ativas e ciclo de 24h configurado.")
+    gerar_sitemap(estados_brasil, todas_cidades_geradas)
+    print("Sucesso absoluto! Páginas individuais de cidades, Schema Google Jobs e busca instantânea gerados.")
 
 if __name__ == "__main__":
     gerar_site()

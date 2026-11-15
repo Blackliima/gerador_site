@@ -39,13 +39,15 @@
         .btn-vaga { display: block; text-align: center; background: #2563eb; color: white; padding: 10px; border-radius: 6px; text-decoration: none; font-size: 13px; font-weight: 700; }
         .btn-vaga:hover { background: #1d4ed8; }
         
-        /* GUIAS DO TRABALHADOR */
+        /* GUIAS DO TRABALHADOR CLICÁVEIS */
         .guias-box { background: #ffffff; border: 1px solid #e2e8f0; padding: 25px; border-radius: 12px; margin-top: 40px; }
         .guias-box h3 { margin-top: 0; color: #1e3a8a; font-size: 18px; }
         .guias-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; margin-top: 15px; }
-        .guia-item { background: #f8fafc; border: 1px solid #e2e8f0; padding: 15px; border-radius: 8px; }
-        .guia-item h4 { margin: 0 0 5px 0; font-size: 14px; color: #2563eb; }
-        .guia-item p { margin: 0; font-size: 12.5px; color: #64748b; }
+        .guia-item { background: #f8fafc; border: 1px solid #e2e8f0; padding: 18px; border-radius: 8px; display: flex; flex-direction: column; justify-content: space-between; text-decoration: none; transition: border-color 0.2s, transform 0.2s; }
+        .guia-item:hover { border-color: #2563eb; transform: translateY(-2px); }
+        .guia-item h4 { margin: 0 0 8px 0; font-size: 15px; color: #1e3a8a; }
+        .guia-item p { margin: 0 0 14px 0; font-size: 13px; color: #475569; line-height: 1.4; }
+        .guia-link { font-size: 12px; font-weight: 700; color: #2563eb; text-transform: uppercase; }
 
         footer { text-align: center; padding: 30px; font-size: 12px; color: #64748b; border-top: 1px solid #e2e8f0; margin-top: 50px; }
     </style>
@@ -71,7 +73,7 @@
     <div class="header-top">
         <h1>Oportunidade e Vagas de Emprego</h1>
         <p>Atualizado a cada 24 horas com novas vagas, concursos e trabalho remoto no Brasil</p>
-        <input type="text" id="searchInput" class="search-box" placeholder="🔍 Pesquisar estado na barra acima..." onkeyup="filtrarEstados()">
+        <input type="text" id="searchInput" class="search-box" placeholder="🔍 Filtrar vagas instantaneamente na tela..." onkeyup="filtrarVagas()">
     </div>
 
     <div class="states-top-bar">
@@ -88,16 +90,6 @@
             
             <a href="parana.html" class="state-pill">Paraná (PR)</a>
             
-            <a href="rio-grande-do-sul.html" class="state-pill">Rio Grande do Sul (RS)</a>
-            
-            <a href="santa-catarina.html" class="state-pill">Santa Catarina (SC)</a>
-            
-            <a href="distrito-federal.html" class="state-pill">Distrito Federal (DF)</a>
-            
-            <a href="pernambuco.html" class="state-pill">Pernambuco (PE)</a>
-            
-            <a href="ceara.html" class="state-pill">Ceará (CE)</a>
-            
         </div>
     </div>
 
@@ -107,7 +99,7 @@
     <span style="background: white; color: #ea580c; padding: 4px 10px; border-radius: 6px; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; flex-shrink: 0;">🔥 PLANTÃO DE VAGAS</span>
     <div style="overflow: hidden; white-space: nowrap; width: 100%;">
         <div style="display: inline-block; animation: scrollTicker 25s linear infinite;">
-            ⚠️ Atualização diária (24h): Confira os novos editais abertos e vagas CLT nas principais cidades do Brasil    |    📄 Clique em qualquer oportunidade para ver o processo seletivo oficial.
+            ⚠️ Atualização diária (24h): Confira os novos editais abertos e vagas CLT nas principais cidades e estados do Brasil    |    📄 Clique em qualquer oportunidade para ver o processo seletivo oficial.
         </div>
     </div>
 </div>
@@ -128,130 +120,122 @@
 </div>
 
 
-        
-        <div class="section-title">Concursos Públicos</div>
-        <div class="cards-wrapper">
+        <div id="listaConteudo">
             
-            <div class="card">
-                <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&auto=format&fit=crop&q=60&v=1794700972" alt="Capa da Vaga" onerror="this.src='https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60'">
-                <div class="card-body">
-                    <div>
-                        <span class="badge" style="background-color: #2563eb;">Concursos Públicos</span>
-                        <h3><a href="https://www.qconcursos.com" target="_blank" rel="nofollow">Processo Seletivo Aberto: Concursos Públicos</a></h3>
-                        <p>Confira os requisitos, salários e faça sua inscrição diretamente na página oficial parceira.</p>
+            <div class="categoria-bloco">
+                <div class="section-title">Concursos Públicos</div>
+                <div class="cards-wrapper">
+                    
+                    <div class="card" data-titulo="concursos prefeituras e câmaras municipais: editais abertos" data-desc="vagas para níveis fundamental, médio e superior com excelentes salários. veja os prazos.">
+                        <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=600&auto=format&fit=crop&q=60&v=1794702190" alt="Capa da Vaga" onerror="this.src='https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60'">
+                        <div class="card-body">
+                            <div>
+                                <span class="badge" style="background-color: #2563eb;">Concursos Públicos</span>
+                                <h3><a href="https://www.qconcursos.com/concursos-abertos" target="_blank" rel="nofollow">Concursos Prefeituras e Câmaras Municipais: Editais Abertos</a></h3>
+                                <p>Vagas para níveis fundamental, médio e superior com excelentes salários. Veja os prazos.</p>
+                            </div>
+                            <a href="https://www.qconcursos.com/concursos-abertos" target="_blank" rel="nofollow" class="btn-vaga">Ver Vaga / Inscrição →</a>
+                        </div>
                     </div>
-                    <a href="https://www.qconcursos.com" target="_blank" rel="nofollow" class="btn-vaga">Ver Vaga / Inscrição →</a>
+                    
+                    <div class="card" data-titulo="concursos federais e tribunais: seleções autorizadas" data-desc="órgãos federais preparam novos editais para técnicos e analistas.">
+                        <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=600&auto=format&fit=crop&q=60&v=1794702190" alt="Capa da Vaga" onerror="this.src='https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60'">
+                        <div class="card-body">
+                            <div>
+                                <span class="badge" style="background-color: #2563eb;">Concursos Públicos</span>
+                                <h3><a href="https://www.estrategiaconcursos.com.br/blog/concursos-abertos/" target="_blank" rel="nofollow">Concursos Federais e Tribunais: Seleções Autorizadas</a></h3>
+                                <p>Órgãos federais preparam novos editais para técnicos e analistas.</p>
+                            </div>
+                            <a href="https://www.estrategiaconcursos.com.br/blog/concursos-abertos/" target="_blank" rel="nofollow" class="btn-vaga">Ver Vaga / Inscrição →</a>
+                        </div>
+                    </div>
+                    
                 </div>
             </div>
             
-            <div class="card">
-                <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=600&auto=format&fit=crop&q=60&v=1794700972" alt="Capa da Vaga" onerror="this.src='https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60'">
-                <div class="card-body">
-                    <div>
-                        <span class="badge" style="background-color: #2563eb;">Concursos Públicos</span>
-                        <h3><a href="https://www.estrategiaconcursos.com.br" target="_blank" rel="nofollow">Processo Seletivo Aberto: Concursos Públicos</a></h3>
-                        <p>Confira os requisitos, salários e faça sua inscrição diretamente na página oficial parceira.</p>
+            <div class="categoria-bloco">
+                <div class="section-title">Vagas CLT & Empresas</div>
+                <div class="cards-wrapper">
+                    
+                    <div class="card" data-titulo="controle de tráfego aéreo dos eua ainda opera com disquetes; veja como eles funcionam" data-desc="armazenamento de disquetes, em foto de julho de 2022
+iswoar/wikimedia commons
+o apagão aéreo da última sexta-f...">
+                        <img src="https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60&v=1794702190" alt="Capa da Vaga" onerror="this.src='https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60'">
+                        <div class="card-body">
+                            <div>
+                                <span class="badge" style="background-color: #059669;">Vagas CLT & Empresas</span>
+                                <h3><a href="https://g1.globo.com/tecnologia/noticia/2026/11/14/controle-de-trafego-aereo-dos-eua-ainda-opera-com-disquetes-veja-como-eles-funcionam.ghtml" target="_blank" rel="nofollow">Controle de tráfego aéreo dos EUA ainda opera com disquetes; veja como eles funcionam</a></h3>
+                                <p>Armazenamento de disquetes, em foto de julho de 2022
+Iswoar/Wikimedia Commons
+O apagão aéreo da última sexta-f...</p>
+                            </div>
+                            <a href="https://g1.globo.com/tecnologia/noticia/2026/11/14/controle-de-trafego-aereo-dos-eua-ainda-opera-com-disquetes-veja-como-eles-funcionam.ghtml" target="_blank" rel="nofollow" class="btn-vaga">Ver Vaga / Inscrição →</a>
+                        </div>
                     </div>
-                    <a href="https://www.estrategiaconcursos.com.br" target="_blank" rel="nofollow" class="btn-vaga">Ver Vaga / Inscrição →</a>
+                    
+                    <div class="card" data-titulo="microsoft alerta sobre tentativas de golpe após falha no teams e no outlook" data-desc="logo da microsoft
+reuters
+a microsoft alertou para uma campanha de golpes por e-mail que aproveita a instabili...">
+                        <img src="https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60&v=1794702190" alt="Capa da Vaga" onerror="this.src='https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60'">
+                        <div class="card-body">
+                            <div>
+                                <span class="badge" style="background-color: #059669;">Vagas CLT & Empresas</span>
+                                <h3><a href="https://g1.globo.com/tecnologia/noticia/2026/11/14/golpe-microsoft-alerta-outlook.ghtml" target="_blank" rel="nofollow">Microsoft alerta sobre tentativas de golpe após falha no Teams e no Outlook</a></h3>
+                                <p>Logo da Microsoft
+REUTERS
+A Microsoft alertou para uma campanha de golpes por e-mail que aproveita a instabili...</p>
+                            </div>
+                            <a href="https://g1.globo.com/tecnologia/noticia/2026/11/14/golpe-microsoft-alerta-outlook.ghtml" target="_blank" rel="nofollow" class="btn-vaga">Ver Vaga / Inscrição →</a>
+                        </div>
+                    </div>
+                    
+                    <div class="card" data-titulo="nas filipinas, ministro diz estar 'otimista' com negociações e que restrição à carne suína do brasil 'é medida de 60 dias'" data-desc="o ministro da agricultura e pecuária, andré de paula, afirmou neste sábado (14) que está "otimista" com as neg...">
+                        <img src="https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60&v=1794702190" alt="Capa da Vaga" onerror="this.src='https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60'">
+                        <div class="card-body">
+                            <div>
+                                <span class="badge" style="background-color: #059669;">Vagas CLT & Empresas</span>
+                                <h3><a href="https://g1.globo.com/politica/noticia/2026/11/14/nas-filipinas-ministro-diz-estar-otimista-com-negociacoes-e-que-restricao-a-carne-suina-do-brasil-e-medida-de-60-dias.ghtml" target="_blank" rel="nofollow">Nas Filipinas, ministro diz estar 'otimista' com negociações e que restrição à carne suína do Brasil 'é medida de 60 dias'</a></h3>
+                                <p>O ministro da Agricultura e Pecuária, André de Paula, afirmou neste sábado (14) que está "otimista" com as neg...</p>
+                            </div>
+                            <a href="https://g1.globo.com/politica/noticia/2026/11/14/nas-filipinas-ministro-diz-estar-otimista-com-negociacoes-e-que-restricao-a-carne-suina-do-brasil-e-medida-de-60-dias.ghtml" target="_blank" rel="nofollow" class="btn-vaga">Ver Vaga / Inscrição →</a>
+                        </div>
+                    </div>
+                    
                 </div>
             </div>
             
-            <div class="card">
-                <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=600&auto=format&fit=crop&q=60&v=1794700972" alt="Capa da Vaga" onerror="this.src='https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60'">
-                <div class="card-body">
-                    <div>
-                        <span class="badge" style="background-color: #2563eb;">Concursos Públicos</span>
-                        <h3><a href="https://www.estrategiaconcursos.com.br" target="_blank" rel="nofollow">Processo Seletivo Aberto: Concursos Públicos</a></h3>
-                        <p>Confira os requisitos, salários e faça sua inscrição diretamente na página oficial parceira.</p>
+            <div class="categoria-bloco">
+                <div class="section-title">Trabalho Home Office</div>
+                <div class="cards-wrapper">
+                    
+                    <div class="card" data-titulo="atendimento ao cliente e sac remoto (100% home office)" data-desc="empresas contratam operadores para atendimento digital de casa.">
+                        <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=600&auto=format&fit=crop&q=60&v=1794702190" alt="Capa da Vaga" onerror="this.src='https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60'">
+                        <div class="card-body">
+                            <div>
+                                <span class="badge" style="background-color: #ea580c;">Trabalho Home Office</span>
+                                <h3><a href="https://www.infojobs.com.br/vagas-de-emprego-home-office.aspx" target="_blank" rel="nofollow">Atendimento ao Cliente e SAC Remoto (100% Home Office)</a></h3>
+                                <p>Empresas contratam operadores para atendimento digital de casa.</p>
+                            </div>
+                            <a href="https://www.infojobs.com.br/vagas-de-emprego-home-office.aspx" target="_blank" rel="nofollow" class="btn-vaga">Ver Vaga / Inscrição →</a>
+                        </div>
                     </div>
-                    <a href="https://www.estrategiaconcursos.com.br" target="_blank" rel="nofollow" class="btn-vaga">Ver Vaga / Inscrição →</a>
-                </div>
-            </div>
-            
-        </div>
-        
-        <div class="section-title">Vagas CLT & Empresas</div>
-        <div class="cards-wrapper">
-            
-            <div class="card">
-                <img src="https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60&v=1794700972" alt="Capa da Vaga" onerror="this.src='https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60'">
-                <div class="card-body">
-                    <div>
-                        <span class="badge" style="background-color: #059669;">Vagas CLT & Empresas</span>
-                        <h3><a href="https://www.indeed.com.br" target="_blank" rel="nofollow">Processo Seletivo Aberto: Vagas CLT & Empresas</a></h3>
-                        <p>Confira os requisitos, salários e faça sua inscrição diretamente na página oficial parceira.</p>
+                    
+                    <div class="card" data-titulo="assistente virtual e suporte administrativo a distância" data-desc="oportunidades flexíveis para atuar à distância.">
+                        <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=600&auto=format&fit=crop&q=60&v=1794702190" alt="Capa da Vaga" onerror="this.src='https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60'">
+                        <div class="card-body">
+                            <div>
+                                <span class="badge" style="background-color: #ea580c;">Trabalho Home Office</span>
+                                <h3><a href="https://www.linkedin.com/jobs/search/?keywords=Home%20Office" target="_blank" rel="nofollow">Assistente Virtual e Suporte Administrativo a Distância</a></h3>
+                                <p>Oportunidades flexíveis para atuar à distância.</p>
+                            </div>
+                            <a href="https://www.linkedin.com/jobs/search/?keywords=Home%20Office" target="_blank" rel="nofollow" class="btn-vaga">Ver Vaga / Inscrição →</a>
+                        </div>
                     </div>
-                    <a href="https://www.indeed.com.br" target="_blank" rel="nofollow" class="btn-vaga">Ver Vaga / Inscrição →</a>
-                </div>
-            </div>
-            
-            <div class="card">
-                <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600&auto=format&fit=crop&q=60&v=1794700972" alt="Capa da Vaga" onerror="this.src='https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60'">
-                <div class="card-body">
-                    <div>
-                        <span class="badge" style="background-color: #059669;">Vagas CLT & Empresas</span>
-                        <h3><a href="https://www.catho.com.br" target="_blank" rel="nofollow">Processo Seletivo Aberto: Vagas CLT & Empresas</a></h3>
-                        <p>Confira os requisitos, salários e faça sua inscrição diretamente na página oficial parceira.</p>
-                    </div>
-                    <a href="https://www.catho.com.br" target="_blank" rel="nofollow" class="btn-vaga">Ver Vaga / Inscrição →</a>
-                </div>
-            </div>
-            
-            <div class="card">
-                <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&auto=format&fit=crop&q=60&v=1794700972" alt="Capa da Vaga" onerror="this.src='https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60'">
-                <div class="card-body">
-                    <div>
-                        <span class="badge" style="background-color: #059669;">Vagas CLT & Empresas</span>
-                        <h3><a href="https://www.linkedin.com/jobs" target="_blank" rel="nofollow">Processo Seletivo Aberto: Vagas CLT & Empresas</a></h3>
-                        <p>Confira os requisitos, salários e faça sua inscrição diretamente na página oficial parceira.</p>
-                    </div>
-                    <a href="https://www.linkedin.com/jobs" target="_blank" rel="nofollow" class="btn-vaga">Ver Vaga / Inscrição →</a>
-                </div>
-            </div>
-            
-        </div>
-        
-        <div class="section-title">Trabalho Home Office</div>
-        <div class="cards-wrapper">
-            
-            <div class="card">
-                <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?w=600&auto=format&fit=crop&q=60&v=1794700972" alt="Capa da Vaga" onerror="this.src='https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60'">
-                <div class="card-body">
-                    <div>
-                        <span class="badge" style="background-color: #ea580c;">Trabalho Home Office</span>
-                        <h3><a href="https://www.infojobs.com.br/vagas-de-emprego-home-office.aspx" target="_blank" rel="nofollow">Processo Seletivo Aberto: Trabalho Home Office</a></h3>
-                        <p>Confira os requisitos, salários e faça sua inscrição diretamente na página oficial parceira.</p>
-                    </div>
-                    <a href="https://www.infojobs.com.br/vagas-de-emprego-home-office.aspx" target="_blank" rel="nofollow" class="btn-vaga">Ver Vaga / Inscrição →</a>
-                </div>
-            </div>
-            
-            <div class="card">
-                <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=600&auto=format&fit=crop&q=60&v=1794700972" alt="Capa da Vaga" onerror="this.src='https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60'">
-                <div class="card-body">
-                    <div>
-                        <span class="badge" style="background-color: #ea580c;">Trabalho Home Office</span>
-                        <h3><a href="https://www.getremote.co" target="_blank" rel="nofollow">Processo Seletivo Aberto: Trabalho Home Office</a></h3>
-                        <p>Confira os requisitos, salários e faça sua inscrição diretamente na página oficial parceira.</p>
-                    </div>
-                    <a href="https://www.getremote.co" target="_blank" rel="nofollow" class="btn-vaga">Ver Vaga / Inscrição →</a>
-                </div>
-            </div>
-            
-            <div class="card">
-                <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=600&auto=format&fit=crop&q=60&v=1794700972" alt="Capa da Vaga" onerror="this.src='https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60'">
-                <div class="card-body">
-                    <div>
-                        <span class="badge" style="background-color: #ea580c;">Trabalho Home Office</span>
-                        <h3><a href="https://www.getremote.co" target="_blank" rel="nofollow">Processo Seletivo Aberto: Trabalho Home Office</a></h3>
-                        <p>Confira os requisitos, salários e faça sua inscrição diretamente na página oficial parceira.</p>
-                    </div>
-                    <a href="https://www.getremote.co" target="_blank" rel="nofollow" class="btn-vaga">Ver Vaga / Inscrição →</a>
+                    
                 </div>
             </div>
             
         </div>
-        
 
         
 <div style="text-align:center; margin: 30px auto; padding: 20px; background: #ffffff; border-radius: 12px; border: 1px solid #e2e8f0; max-width: 100%; box-sizing: border-box;">
@@ -269,23 +253,31 @@
 </div>
 
 
-        <!-- GUIA PRÁTICO PARA O TRABALHADOR -->
         <div class="guias-box">
-            <h3>📖 Guia Prático do Trabalhador e Concurseiro (Atualizado 2026)</h3>
-            <p>Dicas essenciais para acelerar sua contratação e aprovação em concursos públicos:</p>
+            <h3>📖 Guia Prático do Trabalhador e Concurseiro (Acesse Grátis)</h3>
+            <p>Ferramentas oficiais e cursos gratuitos para acelerar sua contratação ou aprovação:</p>
             <div class="guias-list">
-                <div class="guia-item">
-                    <h4>📝 Como Fazer um Currículo que Atrai Empresas</h4>
-                    <p>Descubra os erros que eliminam seu currículo no primeiro minuto e o que os recrutadores realmente buscam.</p>
-                </div>
-                <div class="guia-item">
-                    <h4>🏛️ Como se Preparar para Concursos Públicos do Zero</h4>
-                    <p>Cronograma de estudos eficiente, escolha de materiais e técnicas para ser aprovado em vagas federais e estaduais.</p>
-                </div>
-                <div class="guia-item">
-                    <h4>💻 Melhores Dicas para Trabalhar em Home Office</h4>
-                    <p>Equipamentos necessários, organização da rotina e onde encontrar empresas idôneas que contratam remoto.</p>
-                </div>
+                <a href="https://www.canva.com/pt_br/criar/curriculos/" target="_blank" rel="nofollow" class="guia-item">
+                    <div>
+                        <h4>📝 Gerador de Currículo Profissional Grátis</h4>
+                        <p>Monte um currículo moderno em PDF pronto para enviar às empresas e recrutadores pelo celular ou computador.</p>
+                    </div>
+                    <span class="guia-link">Criar Meu Currículo Agora →</span>
+                </a>
+                <a href="https://www.qconcursos.com/questoes-de-concursos" target="_blank" rel="nofollow" class="guia-item">
+                    <div>
+                        <h4>🏛️ Banco de Questões e Provas Anteriores</h4>
+                        <p>Treine com milhares de questões reais de bancas organizadoras e prepare-se para concursos federais e municipais.</p>
+                    </div>
+                    <span class="guia-link">Estudar para Concursos →</span>
+                </a>
+                <a href="https://www.ev.org.br/" target="_blank" rel="nofollow" class="guia-item">
+                    <div>
+                        <h4>💻 Cursos Gratuitos com Certificado (Home Office e TI)</h4>
+                        <p>Capacite-se gratuitamente pela Fundação Bradesco em Excel, Atendimento, Administração e Tecnologia.</p>
+                    </div>
+                    <span class="guia-link">Acessar Cursos Gratuitos →</span>
+                </a>
             </div>
         </div>
 
@@ -294,12 +286,17 @@
         </footer>
     </div>
     <script>
-        function filtrarEstados() {
+        function filtrarVagas() {
             let input = document.getElementById('searchInput').value.toLowerCase();
-            let cards = document.getElementById('statesGrid').getElementsByClassName('state-pill');
+            let cards = document.getElementsByClassName('card');
             for (let i = 0; i < cards.length; i++) {
-                let text = cards[i].innerText.toLowerCase();
-                cards[i].style.display = text.includes(input) ? "" : "none";
+                let titulo = cards[i].getAttribute('data-titulo');
+                let desc = cards[i].getAttribute('data-desc');
+                if (titulo.includes(input) || desc.includes(input)) {
+                    cards[i].style.display = "";
+                } else {
+                    cards[i].style.display = "none";
+                }
             }
         }
     </script>
