@@ -18,10 +18,8 @@ MONETAG_SCRIPT = '<script src="https://quge5.com/88/tag.min.js" data-zone="30967
 GOOGLE_META = '<meta name="google-site-verification" content="pbgwZbVwgKMwqqqGYFcHeGGbV7EM7nBdlns1c_DN_Sw" />'
 ADSENSE_SCRIPT = '<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5379027874215422" crossorigin="anonymous"></script>'
 
-# ARQUIVO ADS.TXT GERADO AUTOMATICAMENTE NA RAIZ (Resolve o erro do AdSense)
 ADS_TXT_CONTENT = "google.com, pub-5379027874215422, DIRECT, f08c47fec0942fa0"
 
-# Favicon profissional gerado via SVG com a letra "O" estilizada (Fundo azul corporativo)
 FAVICON_TAG = '''<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%231e3a8a'/><text x='50%' y='55%' dominant-baseline='middle' text-anchor='middle' fill='%2338bdf8' font-family='Arial, sans-serif' font-size='65' font-weight='bold'>O</text></svg>">'''
 
 AD_BANNER = """
@@ -85,7 +83,6 @@ BREAKING_NEWS_TICKER = """
 
 CALCULADORAS_SECTION = """
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 40px;">
-    <!-- Calculadora Salarial -->
     <div style="background: #ffffff; border: 1px solid #e2e8f0; padding: 25px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.02); box-sizing: border-box;">
         <h3 style="margin-top: 0; color: #1e3a8a; font-size: 16px;">🧮 Calculadora de Salário Líquido</h3>
         <p style="font-size: 13px; color: #64748b; margin-bottom: 15px;">Simule descontos de INSS e IRRF:</p>
@@ -94,7 +91,6 @@ CALCULADORAS_SECTION = """
         <div id="resultadoSalarioBox" style="margin-top: 15px; display: none; background: #eff6ff; padding: 12px; border-radius: 6px; border: 1px solid #bfdbfe; font-size: 12px; color: #1e3a8a; box-sizing: border-box;"></div>
     </div>
 
-    <!-- Simulador Seguro Desemprego -->
     <div style="background: #ffffff; border: 1px solid #e2e8f0; padding: 25px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.02); box-sizing: border-box;">
         <h3 style="margin-top: 0; color: #1e3a8a; font-size: 16px;">🛡️ Simulador Seguro-Desemprego</h3>
         <p style="font-size: 13px; color: #64748b; margin-bottom: 15px;">Informe o nº de solicitações:</p>
@@ -124,7 +120,7 @@ function calcularSalario() {
 
 function calcularSeguro() {
     let tipo = document.getElementById('vezesSeguro').value;
-    let texto = tipo === "1" ? "Você tem direito a 4 ou 5 parcelas (conforme tempo trabalhado)." : (tipo === "2" ? "Você tem direito de 3 a 5 parcelas." : "Você tem direito de 3 a 5 parcelas.");
+    let texto = tipo === "1" ? "Você tem direito a 4 ou 5 parcelas (conforme tempo trabalhado)." : "Você tem direito de 3 a 5 parcelas.";
     let box = document.getElementById('resultadoSeguroBox');
     box.style.display = 'block';
     box.innerHTML = `<strong>Resultado:</strong><br>${texto}`;
@@ -688,7 +684,7 @@ def buscar_noticias_brasil():
         "Concursos Públicos": {
             "id": "concursos", "color": "#2563eb",
             "urls": ["https://g1.globo.com/rss/g1/educacao/concursos-e-emprego/"],
-            "palavras_chave": ["concurso", "edital", "inscrição", "vagas", "processo seletivo", "prefeitura", "tribunal", "cargo", "servidor", "seleção"],
+            "palavras_chave": ["concurso", "edital", "inscrição", "vagas", "processo seletivo", "prefeitura", "tribunal", "cargo", "servidor", "seleção", "inss", "ibge"],
             "fallbacks": [
                 {"title": "Concursos Prefeituras e Câmaras Municipais: Editais Abertos", "desc": "Vagas para níveis fundamental, médio e superior com excelentes salários. Veja os prazos de inscrição.", "link": "https://www.qconcursos.com/concursos-abertos"},
                 {"title": "Concursos Federais e Tribunais: Seleções Autorizadas no Brasil", "desc": "Órgãos federais preparam novos editais para técnicos e analistas em diversos estados.", "link": "https://www.estrategiaconcursos.com.br/blog/concursos-abertos/"},
@@ -703,8 +699,8 @@ def buscar_noticias_brasil():
         },
         "Vagas CLT & Empresas": {
             "id": "empregos", "color": "#059669",
-            "urls": ["https://g1.globo.com/rss/g1/economia/"],
-            "palavras_chave": ["vaga", "emprego", "trabalho", "contratação", "clt", "empresa", "salário", "fábrica", "comércio", "indústria", "logística"],
+            "urls": ["https://g1.globo.com/rss/g1/emprego-e-carreira/"],
+            "palavras_chave": ["vaga", "emprego", "trabalho", "contratação", "clt", "empresa", "salário", "fábrica", "comércio", "indústria", "logística", "banco", "vendedor"],
             "fallbacks": [
                 {"title": "Indústria, Comércio e Logística: Vagas Efetivas CLT Abertas", "desc": "Grandes empresas abrem processos seletivos para início imediato com benefícios completos.", "link": "https://www.infojobs.com.br"},
                 {"title": "Contratação Imediata no Varejo, Supermercados e Serviços", "desc": "Oportunidades com ou sem experiência em diversas funções comerciais e operacionais.", "link": "https://www.catho.com.br"},
@@ -720,7 +716,7 @@ def buscar_noticias_brasil():
         "Trabalho Home Office": {
             "id": "homeoffice", "color": "#ea580c",
             "urls": ["https://g1.globo.com/rss/g1/tecnologia/"],
-            "palavras_chave": ["home office", "remoto", "distância", "digital", "suporte", "atendimento", "tecnologia", "internet", "trabalhar de casa"],
+            "palavras_chave": ["home office", "remoto", "distância", "digital", "suporte", "atendimento", "tecnologia", "internet", "trabalhar de casa", "desenvolvedor", "programador"],
             "fallbacks": [
                 {"title": "Atendimento ao Cliente e SAC Remoto (100% Home Office)", "desc": "Empresas contratam operadores para atendimento digital trabalhando direto de casa.", "link": "https://www.infojobs.com.br/vagas-de-emprego-home-office.aspx"},
                 {"title": "Assistente Virtual e Suporte Administrativo a Distância", "desc": "Oportunidades flexíveis para atuar à distância com suporte completo e equipamentos.", "link": "https://www.linkedin.com/jobs/search/?keywords=Home%20Office"},
@@ -732,40 +728,43 @@ def buscar_noticias_brasil():
         }
     }
 
-    tstamp = int(datetime.now().timestamp())
+    # Gerador de semente de data diária para garantir que as imagens mudem todos os dias de forma automática
+    dia_ano = datetime.now().strftime("%Y%j")
+    base_seed = int(dia_ano) + random.randint(1, 100)
+
     imagens_cat = {
         "Concursos Públicos": [
-            f"https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=600&auto=format&fit=crop&q=60&v={tstamp}",
-            f"https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&auto=format&fit=crop&q=60&v={tstamp+1}",
-            f"https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=600&auto=format&fit=crop&q=60&v={tstamp+2}",
-            f"https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=600&auto=format&fit=crop&q=60&v={tstamp+3}",
-            f"https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=600&auto=format&fit=crop&q=60&v={tstamp+4}",
-            f"https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=600&auto=format&fit=crop&q=60&v={tstamp+5}",
-            f"https://images.unsplash.com/photo-1450133064473-71024230f91b?w=600&auto=format&fit=crop&q=60&v={tstamp+6}",
-            f"https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=600&auto=format&fit=crop&q=60&v={tstamp+7}",
-            f"https://images.unsplash.com/photo-1521791136064-7986c2920216?w=600&auto=format&fit=crop&q=60&v={tstamp+8}"
+            f"https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=600&auto=format&fit=crop&q=60&sig={base_seed+1}",
+            f"https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&auto=format&fit=crop&q=60&sig={base_seed+2}",
+            f"https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=600&auto=format&fit=crop&q=60&sig={base_seed+3}",
+            f"https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=600&auto=format&fit=crop&q=60&sig={base_seed+4}",
+            f"https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=600&auto=format&fit=crop&q=60&sig={base_seed+5}",
+            f"https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=600&auto=format&fit=crop&q=60&sig={base_seed+6}",
+            f"https://images.unsplash.com/photo-1450133064473-71024230f91b?w=600&auto=format&fit=crop&q=60&sig={base_seed+7}",
+            f"https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=600&auto=format&fit=crop&q=60&sig={base_seed+8}",
+            f"https://images.unsplash.com/photo-1521791136064-7986c2920216?w=600&auto=format&fit=crop&q=60&sig={base_seed+9}"
         ],
         "Vagas CLT & Empresas": [
-            f"https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60&v={tstamp}",
-            f"https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&auto=format&fit=crop&q=60&v={tstamp+1}",
-            f"https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600&auto=format&fit=crop&q=60&v={tstamp+2}",
-            f"https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=600&auto=format&fit=crop&q=60&v={tstamp+3}",
-            f"https://images.unsplash.com/photo-1565514020170-026ed9a84d28?w=600&auto=format&fit=crop&q=60&v={tstamp+4}",
-            f"https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=600&auto=format&fit=crop&q=60&v={tstamp+5}",
-            f"https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=600&auto=format&fit=crop&q=60&v={tstamp+6}",
-            f"https://images.unsplash.com/photo-1531497865144-0464ef8fb9a9?w=600&auto=format&fit=crop&q=60&v={tstamp+7}",
-            f"https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=600&auto=format&fit=crop&q=60&v={tstamp+8}"
+            f"https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60&sig={base_seed+10}",
+            f"https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&auto=format&fit=crop&q=60&sig={base_seed+11}",
+            f"https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600&auto=format&fit=crop&q=60&sig={base_seed+12}",
+            f"https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=600&auto=format&fit=crop&q=60&sig={base_seed+13}",
+            f"https://images.unsplash.com/photo-1565514020170-026ed9a84d28?w=600&auto=format&fit=crop&q=60&sig={base_seed+14}",
+            f"https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=600&auto=format&fit=crop&q=60&sig={base_seed+15}",
+            f"https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=600&auto=format&fit=crop&q=60&sig={base_seed+16}",
+            f"https://images.unsplash.com/photo-1531497865144-0464ef8fb9a9?w=600&auto=format&fit=crop&q=60&sig={base_seed+17}",
+            f"https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=600&auto=format&fit=crop&q=60&sig={base_seed+18}"
         ],
         "Trabalho Home Office": [
-            f"https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=600&auto=format&fit=crop&q=60&v={tstamp}",
-            f"https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=600&auto=format&fit=crop&q=60&v={tstamp+1}",
-            f"https://images.unsplash.com/photo-1531482615713-2afd69097998?w=600&auto=format&fit=crop&q=60&v={tstamp+2}",
-            f"https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&auto=format&fit=crop&q=60&v={tstamp+3}",
-            f"https://images.unsplash.com/photo-1517841905240-472988babdf9?w=600&auto=format&fit=crop&q=60&v={tstamp+4}",
-            f"https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=600&auto=format&fit=crop&q=60&v={tstamp+5}",
-            f"https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=600&auto=format&fit=crop&q=60&v={tstamp+6}",
-            f"https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&auto=format&fit=crop&q=60&v={tstamp+7}",
-            f"https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=600&auto=format&fit=crop&q=60&v={tstamp+8}"
+            f"https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=600&auto=format&fit=crop&q=60&sig={base_seed+19}",
+            f"https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=600&auto=format&fit=crop&q=60&sig={base_seed+20}",
+            f"https://images.unsplash.com/photo-1531482615713-2afd69097998?w=600&auto=format&fit=crop&q=60&sig={base_seed+21}",
+            f"https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&auto=format&fit=crop&q=60&sig={base_seed+22}",
+            f"https://images.unsplash.com/photo-1517841905240-472988babdf9?w=600&auto=format&fit=crop&q=60&sig={base_seed+23}",
+            f"https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=600&auto=format&fit=crop&q=60&sig={base_seed+24}",
+            f"https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=600&auto=format&fit=crop&q=60&sig={base_seed+25}",
+            f"https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&auto=format&fit=crop&q=60&sig={base_seed+26}",
+            f"https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=600&auto=format&fit=crop&q=60&sig={base_seed+27}"
         ]
     }
 
@@ -775,6 +774,8 @@ def buscar_noticias_brasil():
     for cat_nome, info in fontes.items():
         items_cat = []
         imgs = imagens_cat[cat_nome]
+        random.shuffle(imgs) # Embaralha as imagens diariamente
+        
         for url in info["urls"]:
             try:
                 resp = requests.get(url, headers=headers_req, verify=False, timeout=5)
@@ -788,6 +789,7 @@ def buscar_noticias_brasil():
                         if not tit or not lnk: continue
 
                         texto_completo = (tit + " " + dsc).lower()
+                        # Validação restrita: exige que a notícia tenha a ver com trabalho/concurso
                         if not any(palavra in texto_completo for palavra in info["palavras_chave"]): continue
 
                         if "<" in dsc: dsc = re.sub('<.*?>', '', dsc)
@@ -800,6 +802,7 @@ def buscar_noticias_brasil():
                         })
             except: pass
 
+        # Preenche com fallbacks se faltarem vagas do RSS
         for fb in info["fallbacks"]:
             if len(items_cat) < 9:
                 idx = len(items_cat)
@@ -829,12 +832,10 @@ def gerar_sitemap(lista_estados, lista_cidades):
         f.write("\n".join(xml))
 
 def gerar_site():
-    print(f"Gerando portal {NOME_MARCA} completo com Favicon 'O' em SVG e ads.txt...")
+    print(f"Gerando portal {NOME_MARCA} com filtro restrito de vagas e imagens rotativas...")
 
-    # GERAR O ARQUIVO ADS.TXT NA RAIZ
     with open("ads.txt", "w", encoding="utf-8") as f:
         f.write(ADS_TXT_CONTENT)
-    print("Arquivo 'ads.txt' gerado com sucesso!")
 
     estados_brasil = [
         {"name": "São Paulo (SP)", "file": "sao-paulo.html", "cities": [
@@ -951,7 +952,6 @@ def gerar_site():
             calculadoras_section=CALCULADORAS_SECTION, favicon_tag=FAVICON_TAG
         ))
 
-    # Páginas Legais e Contato
     with open("termos.html", "w", encoding="utf-8") as ft:
         ft.write(template_legal.render(
             titulo="Termos de Uso", arquivo="termos.html",
@@ -977,7 +977,7 @@ def gerar_site():
         ))
 
     gerar_sitemap(estados_brasil, todas_cidades_geradas)
-    print("Sucesso absoluto! Site unificado, responsivo, com ads.txt e favicon 'O' em SVG em todas as páginas.")
+    print("Sucesso! O site agora está filtrado estritamente para vagas e com imagens rotativas diárias.")
 
 if __name__ == "__main__":
     gerar_site()
