@@ -62,6 +62,45 @@ BREAKING_NEWS_TICKER = """
 </div>
 """
 
+FOOTER_ROBUSTO = """
+<footer>
+    <div style="max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 30px; text-align: left; margin-bottom: 30px; border-bottom: 1px solid #e2e8f0; padding-bottom: 30px;">
+        <div>
+            <h4 style="color: #1e3a8a; font-size: 15px; margin-top: 0;">Oportunidade e Vagas</h4>
+            <p style="font-size: 13px; color: #64748b; line-height: 1.5;">O maior agregador de oportunidades de emprego, concursos públicos e trabalho remoto do Brasil. Conectando trabalhadores a novas chances diariamente.</p>
+        </div>
+        <div>
+            <h4 style="color: #1e3a8a; font-size: 15px; margin-top: 0;">Links Rápidos</h4>
+            <ul style="list-style: none; padding: 0; margin: 0; font-size: 13px; line-height: 2;">
+                <li><a href="index.html" style="color: #2563eb; text-decoration: none;">Página Inicial</a></li>
+                <li><a href="https://www.infojobs.com.br" target="_blank" rel="nofollow" style="color: #64748b; text-decoration: none;">Busca no InfoJobs</a></li>
+                <li><a href="https://www.catho.com.br" target="_blank" rel="nofollow" style="color: #64748b; text-decoration: none;">Busca na Catho</a></li>
+            </ul>
+        </div>
+        <div>
+            <h4 style="color: #1e3a8a; font-size: 15px; margin-top: 0;">Institucional & FAQ</h4>
+            <ul style="list-style: none; padding: 0; margin: 0; font-size: 13px; line-height: 2;">
+                <li><a href="#faqSection" style="color: #64748b; text-decoration: none;">❓ Perguntas Frequentes (FAQ)</a></li>
+                <li><a href="termos.html" style="color: #64748b; text-decoration: none;">📄 Termos de Uso</a></li>
+                <li><a href="privacidade.html" style="color: #64748b; text-decoration: none;">🔒 Política de Privacidade</a></li>
+            </ul>
+        </div>
+    </div>
+    <p>© 2026 Oportunidade e Vagas de Emprego. Atualização automática diária (24h). Todos os direitos reservados.</p>
+</footer>
+"""
+
+FAQ_SECTION = """
+<div id="faqSection" style="background: #ffffff; border: 1px solid #e2e8f0; padding: 30px; border-radius: 12px; margin-top: 50px; box-shadow: 0 4px 6px rgba(0,0,0,0.02);">
+    <h3 style="margin-top: 0; color: #1e3a8a; font-size: 18px;">❓ Perguntas Frequentes (FAQ do Trabalhador)</h3>
+    <div style="margin-top: 20px; font-size: 13px; color: #334155; line-height: 1.6;">
+        <p><strong>1. Como faço para me candidatar a uma vaga?</strong><br>Basta clicar no botão "Ver Vaga / Inscrição →" em qualquer cartão de oportunidade. Você será redirecionado para a página oficial da empresa ou plataforma recrutadora.</p>
+        <p><strong>2. O site cobra alguma taxa para enviar currículo?</strong><br>Não! Nosso portal é 100% gratuito para trabalhadores. Nunca cobramos taxas para envio de currículos ou inscrições em processos seletivos.</p>
+        <p><strong>3. Posso buscar por profissões específicas como Soldador ou Caldeireiro?</strong><br>Sim! Utilize a barra de pesquisa no topo da página e digite qualquer cargo (ex: Soldador, Motorista, Técnico) para ver ofertas em todo o Brasil.</p>
+    </div>
+</div>
+"""
+
 INDEX_TEMPLATE = """
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -85,7 +124,6 @@ INDEX_TEMPLATE = """
         .search-btn { background: #2563eb; color: white; border: none; padding: 12px 28px; border-radius: 30px; font-weight: 700; cursor: pointer; font-size: 14px; transition: background 0.2s; }
         .search-btn:hover { background: #1d4ed8; }
         
-        /* BARRA DE FILTRO RÁPIDO (CATEGORIAS) */
         .filter-nav { background: #ffffff; border-bottom: 1px solid #e2e8f0; padding: 12px 20px; text-align: center; box-shadow: 0 2px 4px rgba(0,0,0,0.01); position: sticky; top: 0; z-index: 100; }
         .filter-btn { background: #f1f5f9; border: 1px solid #cbd5e1; color: #334155; padding: 8px 16px; border-radius: 20px; font-weight: 600; font-size: 13px; cursor: pointer; margin: 4px; transition: all 0.2s; }
         .filter-btn:hover, .filter-btn.active { background: #2563eb; color: white; border-color: #2563eb; }
@@ -126,8 +164,6 @@ INDEX_TEMPLATE = """
         .guia-item h4 { margin: 0 0 8px 0; font-size: 15px; color: #1e3a8a; }
         .guia-item p { margin: 0 0 14px 0; font-size: 13px; color: #475569; line-height: 1.4; }
         .guia-link { font-size: 12px; font-weight: 700; color: #2563eb; text-transform: uppercase; }
-
-        footer { text-align: center; padding: 40px; font-size: 13px; color: #64748b; border-top: 1px solid #e2e8f0; margin-top: 60px; background: #ffffff; }
     </style>
 </head>
 <body>
@@ -142,7 +178,6 @@ INDEX_TEMPLATE = """
         </div>
     </div>
 
-    <!-- MENU DE FILTRO RÁPIDO -->
     <div class="filter-nav">
         <button class="filter-btn active" onclick="filtrarCategoria('todas')">🏢 Todas as Oportunidades</button>
         <button class="filter-btn" onclick="filtrarCategoria('concursos')">🏛️ Concursos Públicos</button>
@@ -174,7 +209,7 @@ INDEX_TEMPLATE = """
             <div class="categoria-bloco" data-catid="{{ cat_data.id }}">
                 <div class="section-title">
                     <span>{{ cat_nome }}</span>
-                    <span style="font-size: 12px; font-weight: 600; color: #64748b; background: #e2e8f0; padding: 2px 10px; border-radius: 12px;">Atualizado Hoje</span>
+                    <span style="font-size: 12px; font-weight: 600; color: #64748b; background: #e2e8f0; padding: 2px 10px; border-radius: 12px;">9 Vagas Abertas Hoje</span>
                 </div>
                 <div class="cards-wrapper">
                     {% for noticia in cat_data.lista %}
@@ -225,13 +260,13 @@ INDEX_TEMPLATE = """
             </div>
         </div>
 
-        <footer>
-            <p>© 2026 Oportunidade e Vagas de Emprego. Atualização automática diária (24h). Todos os direitos reservados.</p>
-        </footer>
+        {{ faq_section | safe }}
     </div>
+
+    {{ footer_robusto | safe }}
+
     <script>
         function filtrarCategoria(catId) {
-            // Atualiza botões ativos
             let btns = document.getElementsByClassName('filter-btn');
             for(let b of btns) { b.classList.remove('active'); }
             event.target.classList.add('active');
@@ -329,8 +364,6 @@ ESTADO_TEMPLATE = """
         .card p { font-size: 13px; color: #64748b; margin: 0 0 15px 0; line-height: 1.4; }
         .btn-vaga { display: block; text-align: center; background: #2563eb; color: white; padding: 11px; border-radius: 8px; text-decoration: none; font-size: 13px; font-weight: 700; transition: background 0.2s; }
         .btn-vaga:hover { background: #1d4ed8; }
-        
-        footer { text-align: center; padding: 40px; font-size: 13px; color: #64748b; border-top: 1px solid #e2e8f0; margin-top: 60px; background: #ffffff; }
     </style>
 </head>
 <body>
@@ -381,11 +414,9 @@ ESTADO_TEMPLATE = """
         </div>
 
         {{ ad_banner | safe }}
-
-        <footer>
-            <p>© 2026 Oportunidade e Vagas de Emprego. Todos os direitos reservados.</p>
-        </footer>
     </div>
+
+    {{ footer_robusto | safe }}
 </body>
 </html>
 """
@@ -461,8 +492,6 @@ CIDADE_TEMPLATE = """
         .card p { font-size: 13px; color: #64748b; margin: 0 0 15px 0; line-height: 1.4; }
         .btn-vaga { display: block; text-align: center; background: #2563eb; color: white; padding: 11px; border-radius: 8px; text-decoration: none; font-size: 13px; font-weight: 700; transition: background 0.2s; }
         .btn-vaga:hover { background: #1d4ed8; }
-        
-        footer { text-align: center; padding: 40px; font-size: 13px; color: #64748b; border-top: 1px solid #e2e8f0; margin-top: 60px; background: #ffffff; }
     </style>
 </head>
 <body>
@@ -494,11 +523,44 @@ CIDADE_TEMPLATE = """
         </div>
 
         {{ ad_banner | safe }}
-
-        <footer>
-            <p>© 2026 Oportunidade e Vagas de Emprego. Todos os direitos reservados.</p>
-        </footer>
     </div>
+
+    {{ footer_robusto | safe }}
+</body>
+</html>
+"""
+
+PAGINA_LEGAL_TEMPLATE = """
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {{ adsense_script | safe }}
+    {{ monetag_script | safe }}
+    {{ google_meta | safe }}
+    <link rel="canonical" href="{{ dominio }}/{{ arquivo }}">
+    <title>{{ titulo }} - Oportunidade e Vagas</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f8fafc; color: #0f172a; margin: 0; padding: 0; line-height: 1.6; }
+        .header-top { background: linear-gradient(135deg, #0f172a, #1e3a8a); color: white; padding: 35px 20px; }
+        .header-top a { color: #93c5fd; text-decoration: none; font-size: 13px; font-weight: 600; display: inline-block; margin-bottom: 10px; }
+        .header-top h1 { margin: 0; font-size: 24px; }
+        .main-container { max-width: 800px; margin: 40px auto; background: white; padding: 40px; border-radius: 12px; border: 1px solid #e2e8f0; box-shadow: 0 4px 6px rgba(0,0,0,0.02); }
+        h2 { color: #1e3a8a; font-size: 20px; margin-top: 30px; }
+        p { color: #475569; font-size: 14px; margin-bottom: 15px; }
+    </style>
+</head>
+<body>
+    {{ ticker_cotacoes | safe }}
+    <div class="header-top">
+        <a href="index.html">← Voltar para a Página Inicial</a>
+        <h1>{{ titulo }}</h1>
+    </div>
+    <div class="main-container">
+        {{ conteudo | safe }}
+    </div>
+    {{ footer_robusto | safe }}
 </body>
 </html>
 """
@@ -512,7 +574,13 @@ def buscar_noticias_brasil():
             "fallbacks": [
                 {"title": "Concursos Prefeituras e Câmaras Municipais: Editais Abertos", "desc": "Vagas para níveis fundamental, médio e superior com excelentes salários. Veja os prazos de inscrição.", "link": "https://www.qconcursos.com/concursos-abertos"},
                 {"title": "Concursos Federais e Tribunais: Seleções Autorizadas no Brasil", "desc": "Órgãos federais preparam novos editais para técnicos e analistas em diversos estados.", "link": "https://www.estrategiaconcursos.com.br/blog/concursos-abertos/"},
-                {"title": "Diário Oficial da União: Novos Editais e Convocações Publicados", "desc": "Acompanhe nomeações e abertura de processos seletivos públicos em todo o país.", "link": "https://www.in.gov.br/leiturajornal"}
+                {"title": "Diário Oficial da União: Novos Editais e Convocações Publicados", "desc": "Acompanhe nomeações e abertura de processos seletivos públicos em todo o país.", "link": "https://www.in.gov.br/leiturajornal"},
+                {"title": "Editais de Universidades Federais: Vagas para Técnicos e Professores", "desc": "Instituições de ensino superior abrem concursos públicos com inscrições abertas.", "link": "https://www.estrategiaconcursos.com.br/blog/concursos-abertos/"},
+                {"title": "Concursos na Área da Saúde: Editais para Médicos, Enfermeiros e Técnicos", "desc": "Prefeituras e governos estaduais lançam seleções para reforçar o atendimento público.", "link": "https://www.qconcursos.com/concursos-abertos"},
+                {"title": "Editais de Guardas Municipais e Segurança Pública", "desc": "Novos concursos públicos oferecem milhares de vagas com plano de carreira atrativo.", "link": "https://www.estrategiaconcursos.com.br/blog/concursos-abertos/"},
+                {"title": "Concursos Tribunais de Justiça e Ministério Público", "desc": "Vagas abertas para cargos de analista e técnico judiciário com alta remuneração.", "link": "https://www.qconcursos.com/concursos-abertos"},
+                {"title": "Seleções Temporárias e Editais Regionais com Inscrições Abertas", "desc": "Oportunidades para diversos níveis de escolaridade com contratação rápida.", "link": "https://www.in.gov.br/leiturajornal"},
+                {"title": "Concursos Conselhos Regionais e Autarquias Federais", "desc": "Conselhos profissionais publicam editais com vagas efetivas em todo o território nacional.", "link": "https://www.estrategiaconcursos.com.br/blog/concursos-abertos/"}
             ]
         },
         "Vagas CLT & Empresas": {
@@ -522,7 +590,13 @@ def buscar_noticias_brasil():
             "fallbacks": [
                 {"title": "Indústria, Comércio e Logística: Vagas Efetivas CLT Abertas", "desc": "Grandes empresas abrem processos seletivos para início imediato com benefícios completos.", "link": "https://www.infojobs.com.br"},
                 {"title": "Contratação Imediata no Varejo, Supermercados e Serviços", "desc": "Oportunidades com ou sem experiência em diversas funções comerciais e operacionais.", "link": "https://www.catho.com.br"},
-                {"title": "Polo Industrial e Fábricas: Novas Oportunidades de Emprego", "desc": "Vagas operacionais e técnicas abertas para trabalhadores em polos industriais.", "link": "https://br.indeed.com"}
+                {"title": "Polo Industrial e Fábricas: Novas Oportunidades de Emprego", "desc": "Vagas operacionais e técnicas abertas para trabalhadores em polos industriais.", "link": "https://br.indeed.com"},
+                {"title": "Setor de Transportes e Motoristas: Vagas Efetivas CLT", "desc": "Empresas de transporte rodoviário e urbano contratam motoristas e ajudantes.", "link": "https://www.infojobs.com.br"},
+                {"title": "Redes de Fast Food e Atendimento ao Cliente: Vagas Abertas", "desc": "Oportunidades de primeiro emprego e meio período com carteira assinada.", "link": "https://www.catho.com.br"},
+                {"title": "Construção Civil e Montagem Industrial: Oportunidades CLT", "desc": "Grandes construtoras contratam profissionais qualificados para obras e projetos.", "link": "https://br.indeed.com"},
+                {"title": "Supermercados e Centros de Distribuição: Vagas de Operador", "desc": "Contratação em massa para repositores, operadores de caixa e logística.", "link": "https://www.infojobs.com.br"},
+                {"title": "Setor de Manutenção e Serviços Técnicos Especializados", "desc": "Empresas buscam profissionais técnicos com experiência comprovada em carteira.", "link": "https://www.catho.com.br"},
+                {"title": "Grandes Redes de Lojas e Varejo: Vagas de Vendedor e Gerente", "desc": "Oportunidades de crescimento profissional em comércio varejista de todo o país.", "link": "https://br.indeed.com"}
             ]
         },
         "Trabalho Home Office": {
@@ -532,7 +606,13 @@ def buscar_noticias_brasil():
             "fallbacks": [
                 {"title": "Atendimento ao Cliente e SAC Remoto (100% Home Office)", "desc": "Empresas contratam operadores para atendimento digital trabalhando direto de casa.", "link": "https://www.infojobs.com.br/vagas-de-emprego-home-office.aspx"},
                 {"title": "Assistente Virtual e Suporte Administrativo a Distância", "desc": "Oportunidades flexíveis para atuar à distância com suporte completo e equipamentos.", "link": "https://www.linkedin.com/jobs/search/?keywords=Home%20Office"},
-                {"title": "Projetos Digitais e Trabalho Remoto em Todo o Brasil", "desc": "Plataformas conectam profissionais para trabalho à distância com remuneração garantida.", "link": "https://www.workana.com/pt"}
+                {"title": "Projetos Digitais e Trabalho Remoto em Todo o Brasil", "desc": "Plataformas conectam profissionais para trabalho à distância com remuneração garantida.", "link": "https://www.workana.com/pt"},
+                {"title": "Desenvolvimento de Software e Programação (Home Office)", "desc": "Empresas de tecnologia buscam desenvolvedores pleno e sênior para atuação remota.", "link": "https://www.linkedin.com/jobs/search/?keywords=Home%20Office"},
+                {"title": "Moderação de Conteúdo e Suporte de Redes Sociais Remoto", "desc": "Oportunidades para trabalhar à distância avaliando conteúdos e prestando suporte digital.", "link": "https://www.infojobs.com.br/vagas-de-emprego-home-office.aspx"},
+                {"title": "Redação, Tradução e Produção de Conteúdo Online", "desc": "Trabalhe escrevendo artigos e traduzindo documentos diretamente da sua casa.", "link": "https://www.workana.com/pt"},
+                {"title": "Suporte Técnico de TI e Infraestrutura a Distância", "desc": "Analistas de sistemas e suporte técnico com vagas abertas para modelo remoto.", "link": "https://www.linkedin.com/jobs/search/?keywords=Home%20Office"},
+                {"title": "Consultoria de Vendas Digitais e Marketing de Conteúdo", "desc": "Empresas contratam consultores para prospecção e atendimento digital remoto.", "link": "https://www.infojobs.com.br/vagas-de-emprego-home-office.aspx"},
+                {"title": "Designer Gráfico e Edição de Vídeo Freelancer Home Office", "desc": "Profissionais criativos encontram demandas constantes para atuação totalmente à distância.", "link": "https://www.workana.com/pt"}
             ]
         }
     }
@@ -542,17 +622,35 @@ def buscar_noticias_brasil():
         "Concursos Públicos": [
             f"https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=600&auto=format&fit=crop&q=60&v={tstamp}",
             f"https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&auto=format&fit=crop&q=60&v={tstamp+1}",
-            f"https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=600&auto=format&fit=crop&q=60&v={tstamp+2}"
+            f"https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=600&auto=format&fit=crop&q=60&v={tstamp+2}",
+            f"https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=600&auto=format&fit=crop&q=60&v={tstamp+3}",
+            f"https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=600&auto=format&fit=crop&q=60&v={tstamp+4}",
+            f"https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=600&auto=format&fit=crop&q=60&v={tstamp+5}",
+            f"https://images.unsplash.com/photo-1450133064473-71024230f91b?w=600&auto=format&fit=crop&q=60&v={tstamp+6}",
+            f"https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=600&auto=format&fit=crop&q=60&v={tstamp+7}",
+            f"https://images.unsplash.com/photo-1521791136064-7986c2920216?w=600&auto=format&fit=crop&q=60&v={tstamp+8}"
         ],
         "Vagas CLT & Empresas": [
             f"https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60&v={tstamp}",
             f"https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&auto=format&fit=crop&q=60&v={tstamp+1}",
-            f"https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600&auto=format&fit=crop&q=60&v={tstamp+2}"
+            f"https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600&auto=format&fit=crop&q=60&v={tstamp+2}",
+            f"https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=600&auto=format&fit=crop&q=60&v={tstamp+3}",
+            f"https://images.unsplash.com/photo-1565514020170-026ed9a84d28?w=600&auto=format&fit=crop&q=60&v={tstamp+4}",
+            f"https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=600&auto=format&fit=crop&q=60&v={tstamp+5}",
+            f"https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=600&auto=format&fit=crop&q=60&v={tstamp+6}",
+            f"https://images.unsplash.com/photo-1531497865144-0464ef8fb9a9?w=600&auto=format&fit=crop&q=60&v={tstamp+7}",
+            f"https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=600&auto=format&fit=crop&q=60&v={tstamp+8}"
         ],
         "Trabalho Home Office": [
             f"https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=600&auto=format&fit=crop&q=60&v={tstamp}",
             f"https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=600&auto=format&fit=crop&q=60&v={tstamp+1}",
-            f"https://images.unsplash.com/photo-1531482615713-2afd69097998?w=600&auto=format&fit=crop&q=60&v={tstamp+2}"
+            f"https://images.unsplash.com/photo-1531482615713-2afd69097998?w=600&auto=format&fit=crop&q=60&v={tstamp+2}",
+            f"https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&auto=format&fit=crop&q=60&v={tstamp+3}",
+            f"https://images.unsplash.com/photo-1517841905240-472988babdf9?w=600&auto=format&fit=crop&q=60&v={tstamp+4}",
+            f"https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=600&auto=format&fit=crop&q=60&v={tstamp+5}",
+            f"https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=600&auto=format&fit=crop&q=60&v={tstamp+6}",
+            f"https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&auto=format&fit=crop&q=60&v={tstamp+7}",
+            f"https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=600&auto=format&fit=crop&q=60&v={tstamp+8}"
         ]
     }
 
@@ -568,7 +666,7 @@ def buscar_noticias_brasil():
                 if resp.status_code == 200:
                     root = ET.fromstring(resp.content)
                     for item in root.findall('.//item'):
-                        if len(items_cat) >= 3: break
+                        if len(items_cat) >= 9: break
                         tit = item.find('title').text if item.find('title') is not None else ""
                         lnk = item.find('link').text if item.find('link') is not None else ""
                         dsc = item.find('description').text if item.find('description') is not None else ""
@@ -588,7 +686,7 @@ def buscar_noticias_brasil():
             except: pass
             
         for fb in info["fallbacks"]:
-            if len(items_cat) < 3:
+            if len(items_cat) < 9:
                 idx = len(items_cat)
                 items_cat.append({
                     "category": cat_nome, "color": info["color"],
@@ -596,7 +694,7 @@ def buscar_noticias_brasil():
                     "image": imgs[idx % len(imgs)],
                     "description": fb["desc"]
                 })
-        categorias_processadas[cat_nome] = {"id": info["id"], "color": info["color"], "lista": items_cat[:3]}
+        categorias_processadas[cat_nome] = {"id": info["id"], "color": info["color"], "lista": items_cat[:9]}
         
     return categorias_processadas
 
@@ -604,6 +702,8 @@ def gerar_sitemap(lista_estados, lista_cidades):
     data_hoje = datetime.now().strftime("%Y-%m-%d")
     xml = ['<?xml version="1.0" encoding="UTF-8"?>', '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
     xml.append(f'  <url><loc>{DOMINIO_SITE}/index.html</loc><lastmod>{data_hoje}</lastmod><changefreq>daily</changefreq><priority>1.0</priority></url>')
+    xml.append(f'  <url><loc>{DOMINIO_SITE}/termos.html</loc><lastmod>{data_hoje}</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>')
+    xml.append(f'  <url><loc>{DOMINIO_SITE}/privacidade.html</loc><lastmod>{data_hoje}</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>')
     for e in lista_estados:
         xml.append(f'  <url><loc>{DOMINIO_SITE}/{e["file"]}</loc><lastmod>{data_hoje}</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>')
     for c in lista_cidades:
@@ -613,7 +713,7 @@ def gerar_sitemap(lista_estados, lista_cidades):
         f.write("\n".join(xml))
 
 def gerar_site():
-    print("Gerando portal com visual profissional, menu de filtro rápido e acabamento corporativo...")
+    print("Gerando portal completo com 9 vagas por estado, páginas legais e FAQ...")
     estados_brasil = [
         {"name": "São Paulo (SP)", "file": "sao-paulo.html", "cities": [
             {"name": "São Paulo", "file": "sao-paulo-sp.html"},
@@ -679,10 +779,12 @@ def gerar_site():
     categorias_dict = buscar_noticias_brasil()
     template_estado = Template(ESTADO_TEMPLATE)
     template_cidade = Template(CIDADE_TEMPLATE)
+    template_legal = Template(PAGINA_LEGAL_TEMPLATE)
     
     todas_cidades_geradas = []
     data_hoje = datetime.now().strftime("%Y-%m-%d")
     
+    # Gera páginas de estados com 9 vagas
     for est in estados_brasil:
         sigla_est = est['name'].split('(')[1].replace(')', '')
         noticias_est = []
@@ -695,9 +797,10 @@ def gerar_site():
         
         with open(est["file"], "w", encoding="utf-8") as f:
             f.write(template_estado.render(
-                estado=est, noticias=noticias_est[:3], estados_lista=estados_brasil,
+                estado=est, noticias=noticias_est[:9], estados_lista=estados_brasil,
                 ad_banner=AD_BANNER, adsense_script=ADSENSE_SCRIPT, monetag_script=MONETAG_SCRIPT,
-                google_meta=GOOGLE_META, ticker_cotacoes=TICKER_COTACOES, dominio=DOMINIO_SITE
+                google_meta=GOOGLE_META, ticker_cotacoes=TICKER_COTACOES, dominio=DOMINIO_SITE,
+                footer_robusto=FOOTER_ROBUSTO
             ))
             
         for cidade in est["cities"]:
@@ -711,22 +814,56 @@ def gerar_site():
             
             with open(cidade["file"], "w", encoding="utf-8") as fc:
                 fc.write(template_cidade.render(
-                    cidade=cidade, sigla=sigla_est, noticias=noticias_cidade[:3],
+                    cidade=cidade, sigla=sigla_est, noticias=noticias_cidade[:9],
                     data_atual=data_hoje, ad_banner=AD_BANNER, adsense_script=ADSENSE_SCRIPT,
                     monetag_script=MONETAG_SCRIPT, google_meta=GOOGLE_META, ticker_cotacoes=TICKER_COTACOES,
-                    dominio=DOMINIO_SITE
+                    dominio=DOMINIO_SITE, footer_robusto=FOOTER_ROBUSTO
                 ))
             todas_cidades_geradas.append(cidade)
         
+    # Gera Index
     with open("index.html", "w", encoding="utf-8") as f:
         f.write(Template(INDEX_TEMPLATE).render(
             estados=estados_brasil, categorias=categorias_dict,
             ad_banner=AD_BANNER, adsense_script=ADSENSE_SCRIPT, monetag_script=MONETAG_SCRIPT,
-            google_meta=GOOGLE_META, ticker_cotacoes=TICKER_COTACOES, breaking_news_ticker=BREAKING_NEWS_TICKER, dominio=DOMINIO_SITE
+            google_meta=GOOGLE_META, ticker_cotacoes=TICKER_COTACOES, breaking_news_ticker=BREAKING_NEWS_TICKER,
+            dominio=DOMINIO_SITE, footer_robusto=FOOTER_ROBUSTO, faq_section=FAQ_SECTION
         ))
         
+    # Gera Termos de Uso
+    conteudo_termos = """
+    <h2>1. Aceitação dos Termos</h2>
+    <p>Ao acessar e utilizar o portal Oportunidade e Vagas, você concorda em cumprir e cumprir estes Termos de Uso e todas as leis e regulamentos aplicáveis.</p>
+    <h2>2. Isenção de Responsabilidade</h2>
+    <p>Nosso site atua exclusivamente como um agregador e facilitador de links para vagas de emprego, concursos públicos e oportunidades. Não somos uma agência de empregos direta e não cobramos nenhuma taxa de candidatos. Os processos seletivos são de inteira responsabilidade das empresas ou órgãos contratantes.</p>
+    <h2>3. Uso Adequado</h2>
+    <p>O usuário compromete-se a utilizar a plataforma de forma ética, sem tentar fraudar sistemas ou utilizar robôs maliciosos para sobrecarregar o site.</p>
+    """
+    with open("termos.html", "w", encoding="utf-8") as ft:
+        ft.write(template_legal.render(
+            titulo="Termos de Uso", arquivo="termos.html", conteudo=conteudo_termos,
+            adsense_script=ADSENSE_SCRIPT, monetag_script=MONETAG_SCRIPT, google_meta=GOOGLE_META,
+            ticker_cotacoes=TICKER_COTACOES, dominio=DOMINIO_SITE, footer_robusto=FOOTER_ROBUSTO
+        ))
+
+    # Gera Política de Privacidade
+    conteudo_privacidade = """
+    <h2>1. Privacidade dos Usuários</h2>
+    <p>A sua privacidade é de extrema importância para nós. Esta política descreve como coletamos e usamos informações quando você navega em nosso portal.</p>
+    <h2>2. Cookies e Anúncios</h2>
+    <p>Utilizamos serviços de parceiros de publicidade de terceiros (como Google AdSense e Monetag) para exibir anúncios relevantes. Esses parceiros podem utilizar cookies para exibir anúncios com base em suas visitas anteriores ao nosso site ou a outros sites na internet.</p>
+    <h2>3. Consentimento</h2>
+    <p>Ao utilizar nosso site, você concorda com a nossa Política de Privacidade.</p>
+    """
+    with open("privacidade.html", "w", encoding="utf-8") as fp:
+        fp.write(template_legal.render(
+            titulo="Política de Privacidade", arquivo="privacidade.html", conteudo=conteudo_privacidade,
+            adsense_script=ADSENSE_SCRIPT, monetag_script=MONETAG_SCRIPT, google_meta=GOOGLE_META,
+            ticker_cotacoes=TICKER_COTACOES, dominio=DOMINIO_SITE, footer_robusto=FOOTER_ROBUSTO
+        ))
+
     gerar_sitemap(estados_brasil, todas_cidades_geradas)
-    print("Sucesso absoluto! Portal finalizado com acabamento corporativo e menu de filtros rápidos.")
+    print("Sucesso absoluto! 9 vagas por estado, páginas institucionais de Termos e Privacidade criadas.")
 
 if __name__ == "__main__":
     gerar_site()

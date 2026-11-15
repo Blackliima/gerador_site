@@ -21,7 +21,6 @@
         .search-btn { background: #2563eb; color: white; border: none; padding: 12px 28px; border-radius: 30px; font-weight: 700; cursor: pointer; font-size: 14px; transition: background 0.2s; }
         .search-btn:hover { background: #1d4ed8; }
         
-        /* BARRA DE FILTRO RÁPIDO (CATEGORIAS) */
         .filter-nav { background: #ffffff; border-bottom: 1px solid #e2e8f0; padding: 12px 20px; text-align: center; box-shadow: 0 2px 4px rgba(0,0,0,0.01); position: sticky; top: 0; z-index: 100; }
         .filter-btn { background: #f1f5f9; border: 1px solid #cbd5e1; color: #334155; padding: 8px 16px; border-radius: 20px; font-weight: 600; font-size: 13px; cursor: pointer; margin: 4px; transition: all 0.2s; }
         .filter-btn:hover, .filter-btn.active { background: #2563eb; color: white; border-color: #2563eb; }
@@ -62,8 +61,6 @@
         .guia-item h4 { margin: 0 0 8px 0; font-size: 15px; color: #1e3a8a; }
         .guia-item p { margin: 0 0 14px 0; font-size: 13px; color: #475569; line-height: 1.4; }
         .guia-link { font-size: 12px; font-weight: 700; color: #2563eb; text-transform: uppercase; }
-
-        footer { text-align: center; padding: 40px; font-size: 13px; color: #64748b; border-top: 1px solid #e2e8f0; margin-top: 60px; background: #ffffff; }
     </style>
 </head>
 <body>
@@ -94,7 +91,6 @@
         </div>
     </div>
 
-    <!-- MENU DE FILTRO RÁPIDO -->
     <div class="filter-nav">
         <button class="filter-btn active" onclick="filtrarCategoria('todas')">🏢 Todas as Oportunidades</button>
         <button class="filter-btn" onclick="filtrarCategoria('concursos')">🏛️ Concursos Públicos</button>
@@ -175,12 +171,12 @@
             <div class="categoria-bloco" data-catid="concursos">
                 <div class="section-title">
                     <span>Concursos Públicos</span>
-                    <span style="font-size: 12px; font-weight: 600; color: #64748b; background: #e2e8f0; padding: 2px 10px; border-radius: 12px;">Atualizado Hoje</span>
+                    <span style="font-size: 12px; font-weight: 600; color: #64748b; background: #e2e8f0; padding: 2px 10px; border-radius: 12px;">9 Vagas Abertas Hoje</span>
                 </div>
                 <div class="cards-wrapper">
                     
                     <div class="card" data-titulo="concursos prefeituras e câmaras municipais: editais abertos" data-desc="vagas para níveis fundamental, médio e superior com excelentes salários. veja os prazos de inscrição.">
-                        <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=600&auto=format&fit=crop&q=60&v=1794703380" alt="Capa da Vaga" onerror="this.src='https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60'">
+                        <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=600&auto=format&fit=crop&q=60&v=1794704086" alt="Capa da Vaga" onerror="this.src='https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60'">
                         <div class="card-body">
                             <div>
                                 <span class="badge" style="background-color: #2563eb;">Concursos Públicos</span>
@@ -192,7 +188,7 @@
                     </div>
                     
                     <div class="card" data-titulo="concursos federais e tribunais: seleções autorizadas no brasil" data-desc="órgãos federais preparam novos editais para técnicos e analistas em diversos estados.">
-                        <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&auto=format&fit=crop&q=60&v=1794703381" alt="Capa da Vaga" onerror="this.src='https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60'">
+                        <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&auto=format&fit=crop&q=60&v=1794704087" alt="Capa da Vaga" onerror="this.src='https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60'">
                         <div class="card-body">
                             <div>
                                 <span class="badge" style="background-color: #2563eb;">Concursos Públicos</span>
@@ -204,7 +200,7 @@
                     </div>
                     
                     <div class="card" data-titulo="diário oficial da união: novos editais e convocações publicados" data-desc="acompanhe nomeações e abertura de processos seletivos públicos em todo o país.">
-                        <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=600&auto=format&fit=crop&q=60&v=1794703382" alt="Capa da Vaga" onerror="this.src='https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60'">
+                        <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=600&auto=format&fit=crop&q=60&v=1794704088" alt="Capa da Vaga" onerror="this.src='https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60'">
                         <div class="card-body">
                             <div>
                                 <span class="badge" style="background-color: #2563eb;">Concursos Públicos</span>
@@ -215,18 +211,90 @@
                         </div>
                     </div>
                     
+                    <div class="card" data-titulo="editais de universidades federais: vagas para técnicos e professores" data-desc="instituições de ensino superior abrem concursos públicos com inscrições abertas.">
+                        <img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=600&auto=format&fit=crop&q=60&v=1794704089" alt="Capa da Vaga" onerror="this.src='https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60'">
+                        <div class="card-body">
+                            <div>
+                                <span class="badge" style="background-color: #2563eb;">Concursos Públicos</span>
+                                <h3><a href="https://www.estrategiaconcursos.com.br/blog/concursos-abertos/" target="_blank" rel="nofollow">Editais de Universidades Federais: Vagas para Técnicos e Professores</a></h3>
+                                <p>Instituições de ensino superior abrem concursos públicos com inscrições abertas.</p>
+                            </div>
+                            <a href="https://www.estrategiaconcursos.com.br/blog/concursos-abertos/" target="_blank" rel="nofollow" class="btn-vaga">Ver Vaga / Inscrição →</a>
+                        </div>
+                    </div>
+                    
+                    <div class="card" data-titulo="concursos na área da saúde: editais para médicos, enfermeiros e técnicos" data-desc="prefeituras e governos estaduais lançam seleções para reforçar o atendimento público.">
+                        <img src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=600&auto=format&fit=crop&q=60&v=1794704090" alt="Capa da Vaga" onerror="this.src='https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60'">
+                        <div class="card-body">
+                            <div>
+                                <span class="badge" style="background-color: #2563eb;">Concursos Públicos</span>
+                                <h3><a href="https://www.qconcursos.com/concursos-abertos" target="_blank" rel="nofollow">Concursos na Área da Saúde: Editais para Médicos, Enfermeiros e Técnicos</a></h3>
+                                <p>Prefeituras e governos estaduais lançam seleções para reforçar o atendimento público.</p>
+                            </div>
+                            <a href="https://www.qconcursos.com/concursos-abertos" target="_blank" rel="nofollow" class="btn-vaga">Ver Vaga / Inscrição →</a>
+                        </div>
+                    </div>
+                    
+                    <div class="card" data-titulo="editais de guardas municipais e segurança pública" data-desc="novos concursos públicos oferecem milhares de vagas com plano de carreira atrativo.">
+                        <img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=600&auto=format&fit=crop&q=60&v=1794704091" alt="Capa da Vaga" onerror="this.src='https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60'">
+                        <div class="card-body">
+                            <div>
+                                <span class="badge" style="background-color: #2563eb;">Concursos Públicos</span>
+                                <h3><a href="https://www.estrategiaconcursos.com.br/blog/concursos-abertos/" target="_blank" rel="nofollow">Editais de Guardas Municipais e Segurança Pública</a></h3>
+                                <p>Novos concursos públicos oferecem milhares de vagas com plano de carreira atrativo.</p>
+                            </div>
+                            <a href="https://www.estrategiaconcursos.com.br/blog/concursos-abertos/" target="_blank" rel="nofollow" class="btn-vaga">Ver Vaga / Inscrição →</a>
+                        </div>
+                    </div>
+                    
+                    <div class="card" data-titulo="concursos tribunais de justiça e ministério público" data-desc="vagas abertas para cargos de analista e técnico judiciário com alta remuneração.">
+                        <img src="https://images.unsplash.com/photo-1450133064473-71024230f91b?w=600&auto=format&fit=crop&q=60&v=1794704092" alt="Capa da Vaga" onerror="this.src='https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60'">
+                        <div class="card-body">
+                            <div>
+                                <span class="badge" style="background-color: #2563eb;">Concursos Públicos</span>
+                                <h3><a href="https://www.qconcursos.com/concursos-abertos" target="_blank" rel="nofollow">Concursos Tribunais de Justiça e Ministério Público</a></h3>
+                                <p>Vagas abertas para cargos de analista e técnico judiciário com alta remuneração.</p>
+                            </div>
+                            <a href="https://www.qconcursos.com/concursos-abertos" target="_blank" rel="nofollow" class="btn-vaga">Ver Vaga / Inscrição →</a>
+                        </div>
+                    </div>
+                    
+                    <div class="card" data-titulo="seleções temporárias e editais regionais com inscrições abertas" data-desc="oportunidades para diversos níveis de escolaridade com contratação rápida.">
+                        <img src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=600&auto=format&fit=crop&q=60&v=1794704093" alt="Capa da Vaga" onerror="this.src='https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60'">
+                        <div class="card-body">
+                            <div>
+                                <span class="badge" style="background-color: #2563eb;">Concursos Públicos</span>
+                                <h3><a href="https://www.in.gov.br/leiturajornal" target="_blank" rel="nofollow">Seleções Temporárias e Editais Regionais com Inscrições Abertas</a></h3>
+                                <p>Oportunidades para diversos níveis de escolaridade com contratação rápida.</p>
+                            </div>
+                            <a href="https://www.in.gov.br/leiturajornal" target="_blank" rel="nofollow" class="btn-vaga">Ver Vaga / Inscrição →</a>
+                        </div>
+                    </div>
+                    
+                    <div class="card" data-titulo="concursos conselhos regionais e autarquias federais" data-desc="conselhos profissionais publicam editais com vagas efetivas em todo o território nacional.">
+                        <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?w=600&auto=format&fit=crop&q=60&v=1794704094" alt="Capa da Vaga" onerror="this.src='https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60'">
+                        <div class="card-body">
+                            <div>
+                                <span class="badge" style="background-color: #2563eb;">Concursos Públicos</span>
+                                <h3><a href="https://www.estrategiaconcursos.com.br/blog/concursos-abertos/" target="_blank" rel="nofollow">Concursos Conselhos Regionais e Autarquias Federais</a></h3>
+                                <p>Conselhos profissionais publicam editais com vagas efetivas em todo o território nacional.</p>
+                            </div>
+                            <a href="https://www.estrategiaconcursos.com.br/blog/concursos-abertos/" target="_blank" rel="nofollow" class="btn-vaga">Ver Vaga / Inscrição →</a>
+                        </div>
+                    </div>
+                    
                 </div>
             </div>
             
             <div class="categoria-bloco" data-catid="empregos">
                 <div class="section-title">
                     <span>Vagas CLT & Empresas</span>
-                    <span style="font-size: 12px; font-weight: 600; color: #64748b; background: #e2e8f0; padding: 2px 10px; border-radius: 12px;">Atualizado Hoje</span>
+                    <span style="font-size: 12px; font-weight: 600; color: #64748b; background: #e2e8f0; padding: 2px 10px; border-radius: 12px;">9 Vagas Abertas Hoje</span>
                 </div>
                 <div class="cards-wrapper">
                     
                     <div class="card" data-titulo="indústria, comércio e logística: vagas efetivas clt abertas" data-desc="grandes empresas abrem processos seletivos para início imediato com benefícios completos.">
-                        <img src="https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60&v=1794703380" alt="Capa da Vaga" onerror="this.src='https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60'">
+                        <img src="https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60&v=1794704086" alt="Capa da Vaga" onerror="this.src='https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60'">
                         <div class="card-body">
                             <div>
                                 <span class="badge" style="background-color: #059669;">Vagas CLT & Empresas</span>
@@ -238,7 +306,7 @@
                     </div>
                     
                     <div class="card" data-titulo="contratação imediata no varejo, supermercados e serviços" data-desc="oportunidades com ou sem experiência em diversas funções comerciais e operacionais.">
-                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&auto=format&fit=crop&q=60&v=1794703381" alt="Capa da Vaga" onerror="this.src='https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60'">
+                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&auto=format&fit=crop&q=60&v=1794704087" alt="Capa da Vaga" onerror="this.src='https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60'">
                         <div class="card-body">
                             <div>
                                 <span class="badge" style="background-color: #059669;">Vagas CLT & Empresas</span>
@@ -250,12 +318,84 @@
                     </div>
                     
                     <div class="card" data-titulo="polo industrial e fábricas: novas oportunidades de emprego" data-desc="vagas operacionais e técnicas abertas para trabalhadores em polos industriais.">
-                        <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600&auto=format&fit=crop&q=60&v=1794703382" alt="Capa da Vaga" onerror="this.src='https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60'">
+                        <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600&auto=format&fit=crop&q=60&v=1794704088" alt="Capa da Vaga" onerror="this.src='https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60'">
                         <div class="card-body">
                             <div>
                                 <span class="badge" style="background-color: #059669;">Vagas CLT & Empresas</span>
                                 <h3><a href="https://br.indeed.com" target="_blank" rel="nofollow">Polo Industrial e Fábricas: Novas Oportunidades de Emprego</a></h3>
                                 <p>Vagas operacionais e técnicas abertas para trabalhadores em polos industriais.</p>
+                            </div>
+                            <a href="https://br.indeed.com" target="_blank" rel="nofollow" class="btn-vaga">Ver Vaga / Inscrição →</a>
+                        </div>
+                    </div>
+                    
+                    <div class="card" data-titulo="setor de transportes e motoristas: vagas efetivas clt" data-desc="empresas de transporte rodoviário e urbano contratam motoristas e ajudantes.">
+                        <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=600&auto=format&fit=crop&q=60&v=1794704089" alt="Capa da Vaga" onerror="this.src='https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60'">
+                        <div class="card-body">
+                            <div>
+                                <span class="badge" style="background-color: #059669;">Vagas CLT & Empresas</span>
+                                <h3><a href="https://www.infojobs.com.br" target="_blank" rel="nofollow">Setor de Transportes e Motoristas: Vagas Efetivas CLT</a></h3>
+                                <p>Empresas de transporte rodoviário e urbano contratam motoristas e ajudantes.</p>
+                            </div>
+                            <a href="https://www.infojobs.com.br" target="_blank" rel="nofollow" class="btn-vaga">Ver Vaga / Inscrição →</a>
+                        </div>
+                    </div>
+                    
+                    <div class="card" data-titulo="redes de fast food e atendimento ao cliente: vagas abertas" data-desc="oportunidades de primeiro emprego e meio período com carteira assinada.">
+                        <img src="https://images.unsplash.com/photo-1565514020170-026ed9a84d28?w=600&auto=format&fit=crop&q=60&v=1794704090" alt="Capa da Vaga" onerror="this.src='https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60'">
+                        <div class="card-body">
+                            <div>
+                                <span class="badge" style="background-color: #059669;">Vagas CLT & Empresas</span>
+                                <h3><a href="https://www.catho.com.br" target="_blank" rel="nofollow">Redes de Fast Food e Atendimento ao Cliente: Vagas Abertas</a></h3>
+                                <p>Oportunidades de primeiro emprego e meio período com carteira assinada.</p>
+                            </div>
+                            <a href="https://www.catho.com.br" target="_blank" rel="nofollow" class="btn-vaga">Ver Vaga / Inscrição →</a>
+                        </div>
+                    </div>
+                    
+                    <div class="card" data-titulo="construção civil e montagem industrial: oportunidades clt" data-desc="grandes construtoras contratam profissionais qualificados para obras e projetos.">
+                        <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=600&auto=format&fit=crop&q=60&v=1794704091" alt="Capa da Vaga" onerror="this.src='https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60'">
+                        <div class="card-body">
+                            <div>
+                                <span class="badge" style="background-color: #059669;">Vagas CLT & Empresas</span>
+                                <h3><a href="https://br.indeed.com" target="_blank" rel="nofollow">Construção Civil e Montagem Industrial: Oportunidades CLT</a></h3>
+                                <p>Grandes construtoras contratam profissionais qualificados para obras e projetos.</p>
+                            </div>
+                            <a href="https://br.indeed.com" target="_blank" rel="nofollow" class="btn-vaga">Ver Vaga / Inscrição →</a>
+                        </div>
+                    </div>
+                    
+                    <div class="card" data-titulo="supermercados e centros de distribuição: vagas de operador" data-desc="contratação em massa para repositores, operadores de caixa e logística.">
+                        <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=600&auto=format&fit=crop&q=60&v=1794704092" alt="Capa da Vaga" onerror="this.src='https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60'">
+                        <div class="card-body">
+                            <div>
+                                <span class="badge" style="background-color: #059669;">Vagas CLT & Empresas</span>
+                                <h3><a href="https://www.infojobs.com.br" target="_blank" rel="nofollow">Supermercados e Centros de Distribuição: Vagas de Operador</a></h3>
+                                <p>Contratação em massa para repositores, operadores de caixa e logística.</p>
+                            </div>
+                            <a href="https://www.infojobs.com.br" target="_blank" rel="nofollow" class="btn-vaga">Ver Vaga / Inscrição →</a>
+                        </div>
+                    </div>
+                    
+                    <div class="card" data-titulo="setor de manutenção e serviços técnicos especializados" data-desc="empresas buscam profissionais técnicos com experiência comprovada em carteira.">
+                        <img src="https://images.unsplash.com/photo-1531497865144-0464ef8fb9a9?w=600&auto=format&fit=crop&q=60&v=1794704093" alt="Capa da Vaga" onerror="this.src='https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60'">
+                        <div class="card-body">
+                            <div>
+                                <span class="badge" style="background-color: #059669;">Vagas CLT & Empresas</span>
+                                <h3><a href="https://www.catho.com.br" target="_blank" rel="nofollow">Setor de Manutenção e Serviços Técnicos Especializados</a></h3>
+                                <p>Empresas buscam profissionais técnicos com experiência comprovada em carteira.</p>
+                            </div>
+                            <a href="https://www.catho.com.br" target="_blank" rel="nofollow" class="btn-vaga">Ver Vaga / Inscrição →</a>
+                        </div>
+                    </div>
+                    
+                    <div class="card" data-titulo="grandes redes de lojas e varejo: vagas de vendedor e gerente" data-desc="oportunidades de crescimento profissional em comércio varejista de todo o país.">
+                        <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=600&auto=format&fit=crop&q=60&v=1794704094" alt="Capa da Vaga" onerror="this.src='https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60'">
+                        <div class="card-body">
+                            <div>
+                                <span class="badge" style="background-color: #059669;">Vagas CLT & Empresas</span>
+                                <h3><a href="https://br.indeed.com" target="_blank" rel="nofollow">Grandes Redes de Lojas e Varejo: Vagas de Vendedor e Gerente</a></h3>
+                                <p>Oportunidades de crescimento profissional em comércio varejista de todo o país.</p>
                             </div>
                             <a href="https://br.indeed.com" target="_blank" rel="nofollow" class="btn-vaga">Ver Vaga / Inscrição →</a>
                         </div>
@@ -267,12 +407,12 @@
             <div class="categoria-bloco" data-catid="homeoffice">
                 <div class="section-title">
                     <span>Trabalho Home Office</span>
-                    <span style="font-size: 12px; font-weight: 600; color: #64748b; background: #e2e8f0; padding: 2px 10px; border-radius: 12px;">Atualizado Hoje</span>
+                    <span style="font-size: 12px; font-weight: 600; color: #64748b; background: #e2e8f0; padding: 2px 10px; border-radius: 12px;">9 Vagas Abertas Hoje</span>
                 </div>
                 <div class="cards-wrapper">
                     
                     <div class="card" data-titulo="atendimento ao cliente e sac remoto (100% home office)" data-desc="empresas contratam operadores para atendimento digital trabalhando direto de casa.">
-                        <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=600&auto=format&fit=crop&q=60&v=1794703380" alt="Capa da Vaga" onerror="this.src='https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60'">
+                        <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=600&auto=format&fit=crop&q=60&v=1794704086" alt="Capa da Vaga" onerror="this.src='https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60'">
                         <div class="card-body">
                             <div>
                                 <span class="badge" style="background-color: #ea580c;">Trabalho Home Office</span>
@@ -284,7 +424,7 @@
                     </div>
                     
                     <div class="card" data-titulo="assistente virtual e suporte administrativo a distância" data-desc="oportunidades flexíveis para atuar à distância com suporte completo e equipamentos.">
-                        <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=600&auto=format&fit=crop&q=60&v=1794703381" alt="Capa da Vaga" onerror="this.src='https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60'">
+                        <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=600&auto=format&fit=crop&q=60&v=1794704087" alt="Capa da Vaga" onerror="this.src='https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60'">
                         <div class="card-body">
                             <div>
                                 <span class="badge" style="background-color: #ea580c;">Trabalho Home Office</span>
@@ -296,12 +436,84 @@
                     </div>
                     
                     <div class="card" data-titulo="projetos digitais e trabalho remoto em todo o brasil" data-desc="plataformas conectam profissionais para trabalho à distância com remuneração garantida.">
-                        <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?w=600&auto=format&fit=crop&q=60&v=1794703382" alt="Capa da Vaga" onerror="this.src='https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60'">
+                        <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?w=600&auto=format&fit=crop&q=60&v=1794704088" alt="Capa da Vaga" onerror="this.src='https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60'">
                         <div class="card-body">
                             <div>
                                 <span class="badge" style="background-color: #ea580c;">Trabalho Home Office</span>
                                 <h3><a href="https://www.workana.com/pt" target="_blank" rel="nofollow">Projetos Digitais e Trabalho Remoto em Todo o Brasil</a></h3>
                                 <p>Plataformas conectam profissionais para trabalho à distância com remuneração garantida.</p>
+                            </div>
+                            <a href="https://www.workana.com/pt" target="_blank" rel="nofollow" class="btn-vaga">Ver Vaga / Inscrição →</a>
+                        </div>
+                    </div>
+                    
+                    <div class="card" data-titulo="desenvolvimento de software e programação (home office)" data-desc="empresas de tecnologia buscam desenvolvedores pleno e sênior para atuação remota.">
+                        <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&auto=format&fit=crop&q=60&v=1794704089" alt="Capa da Vaga" onerror="this.src='https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60'">
+                        <div class="card-body">
+                            <div>
+                                <span class="badge" style="background-color: #ea580c;">Trabalho Home Office</span>
+                                <h3><a href="https://www.linkedin.com/jobs/search/?keywords=Home%20Office" target="_blank" rel="nofollow">Desenvolvimento de Software e Programação (Home Office)</a></h3>
+                                <p>Empresas de tecnologia buscam desenvolvedores pleno e sênior para atuação remota.</p>
+                            </div>
+                            <a href="https://www.linkedin.com/jobs/search/?keywords=Home%20Office" target="_blank" rel="nofollow" class="btn-vaga">Ver Vaga / Inscrição →</a>
+                        </div>
+                    </div>
+                    
+                    <div class="card" data-titulo="moderação de conteúdo e suporte de redes sociais remoto" data-desc="oportunidades para trabalhar à distância avaliando conteúdos e prestando suporte digital.">
+                        <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=600&auto=format&fit=crop&q=60&v=1794704090" alt="Capa da Vaga" onerror="this.src='https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60'">
+                        <div class="card-body">
+                            <div>
+                                <span class="badge" style="background-color: #ea580c;">Trabalho Home Office</span>
+                                <h3><a href="https://www.infojobs.com.br/vagas-de-emprego-home-office.aspx" target="_blank" rel="nofollow">Moderação de Conteúdo e Suporte de Redes Sociais Remoto</a></h3>
+                                <p>Oportunidades para trabalhar à distância avaliando conteúdos e prestando suporte digital.</p>
+                            </div>
+                            <a href="https://www.infojobs.com.br/vagas-de-emprego-home-office.aspx" target="_blank" rel="nofollow" class="btn-vaga">Ver Vaga / Inscrição →</a>
+                        </div>
+                    </div>
+                    
+                    <div class="card" data-titulo="redação, tradução e produção de conteúdo online" data-desc="trabalhe escrevendo artigos e traduzindo documentos diretamente da sua casa.">
+                        <img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=600&auto=format&fit=crop&q=60&v=1794704091" alt="Capa da Vaga" onerror="this.src='https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60'">
+                        <div class="card-body">
+                            <div>
+                                <span class="badge" style="background-color: #ea580c;">Trabalho Home Office</span>
+                                <h3><a href="https://www.workana.com/pt" target="_blank" rel="nofollow">Redação, Tradução e Produção de Conteúdo Online</a></h3>
+                                <p>Trabalhe escrevendo artigos e traduzindo documentos diretamente da sua casa.</p>
+                            </div>
+                            <a href="https://www.workana.com/pt" target="_blank" rel="nofollow" class="btn-vaga">Ver Vaga / Inscrição →</a>
+                        </div>
+                    </div>
+                    
+                    <div class="card" data-titulo="suporte técnico de ti e infraestrutura a distância" data-desc="analistas de sistemas e suporte técnico com vagas abertas para modelo remoto.">
+                        <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=600&auto=format&fit=crop&q=60&v=1794704092" alt="Capa da Vaga" onerror="this.src='https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60'">
+                        <div class="card-body">
+                            <div>
+                                <span class="badge" style="background-color: #ea580c;">Trabalho Home Office</span>
+                                <h3><a href="https://www.linkedin.com/jobs/search/?keywords=Home%20Office" target="_blank" rel="nofollow">Suporte Técnico de TI e Infraestrutura a Distância</a></h3>
+                                <p>Analistas de sistemas e suporte técnico com vagas abertas para modelo remoto.</p>
+                            </div>
+                            <a href="https://www.linkedin.com/jobs/search/?keywords=Home%20Office" target="_blank" rel="nofollow" class="btn-vaga">Ver Vaga / Inscrição →</a>
+                        </div>
+                    </div>
+                    
+                    <div class="card" data-titulo="consultoria de vendas digitais e marketing de conteúdo" data-desc="empresas contratam consultores para prospecção e atendimento digital remoto.">
+                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&auto=format&fit=crop&q=60&v=1794704093" alt="Capa da Vaga" onerror="this.src='https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60'">
+                        <div class="card-body">
+                            <div>
+                                <span class="badge" style="background-color: #ea580c;">Trabalho Home Office</span>
+                                <h3><a href="https://www.infojobs.com.br/vagas-de-emprego-home-office.aspx" target="_blank" rel="nofollow">Consultoria de Vendas Digitais e Marketing de Conteúdo</a></h3>
+                                <p>Empresas contratam consultores para prospecção e atendimento digital remoto.</p>
+                            </div>
+                            <a href="https://www.infojobs.com.br/vagas-de-emprego-home-office.aspx" target="_blank" rel="nofollow" class="btn-vaga">Ver Vaga / Inscrição →</a>
+                        </div>
+                    </div>
+                    
+                    <div class="card" data-titulo="designer gráfico e edição de vídeo freelancer home office" data-desc="profissionais criativos encontram demandas constantes para atuação totalmente à distância.">
+                        <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=600&auto=format&fit=crop&q=60&v=1794704094" alt="Capa da Vaga" onerror="this.src='https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60'">
+                        <div class="card-body">
+                            <div>
+                                <span class="badge" style="background-color: #ea580c;">Trabalho Home Office</span>
+                                <h3><a href="https://www.workana.com/pt" target="_blank" rel="nofollow">Designer Gráfico e Edição de Vídeo Freelancer Home Office</a></h3>
+                                <p>Profissionais criativos encontram demandas constantes para atuação totalmente à distância.</p>
                             </div>
                             <a href="https://www.workana.com/pt" target="_blank" rel="nofollow" class="btn-vaga">Ver Vaga / Inscrição →</a>
                         </div>
@@ -356,13 +568,48 @@
             </div>
         </div>
 
-        <footer>
-            <p>© 2026 Oportunidade e Vagas de Emprego. Atualização automática diária (24h). Todos os direitos reservados.</p>
-        </footer>
+        
+<div id="faqSection" style="background: #ffffff; border: 1px solid #e2e8f0; padding: 30px; border-radius: 12px; margin-top: 50px; box-shadow: 0 4px 6px rgba(0,0,0,0.02);">
+    <h3 style="margin-top: 0; color: #1e3a8a; font-size: 18px;">❓ Perguntas Frequentes (FAQ do Trabalhador)</h3>
+    <div style="margin-top: 20px; font-size: 13px; color: #334155; line-height: 1.6;">
+        <p><strong>1. Como faço para me candidatar a uma vaga?</strong><br>Basta clicar no botão "Ver Vaga / Inscrição →" em qualquer cartão de oportunidade. Você será redirecionado para a página oficial da empresa ou plataforma recrutadora.</p>
+        <p><strong>2. O site cobra alguma taxa para enviar currículo?</strong><br>Não! Nosso portal é 100% gratuito para trabalhadores. Nunca cobramos taxas para envio de currículos ou inscrições em processos seletivos.</p>
+        <p><strong>3. Posso buscar por profissões específicas como Soldador ou Caldeireiro?</strong><br>Sim! Utilize a barra de pesquisa no topo da página e digite qualquer cargo (ex: Soldador, Motorista, Técnico) para ver ofertas em todo o Brasil.</p>
     </div>
+</div>
+
+    </div>
+
+    
+<footer>
+    <div style="max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 30px; text-align: left; margin-bottom: 30px; border-bottom: 1px solid #e2e8f0; padding-bottom: 30px;">
+        <div>
+            <h4 style="color: #1e3a8a; font-size: 15px; margin-top: 0;">Oportunidade e Vagas</h4>
+            <p style="font-size: 13px; color: #64748b; line-height: 1.5;">O maior agregador de oportunidades de emprego, concursos públicos e trabalho remoto do Brasil. Conectando trabalhadores a novas chances diariamente.</p>
+        </div>
+        <div>
+            <h4 style="color: #1e3a8a; font-size: 15px; margin-top: 0;">Links Rápidos</h4>
+            <ul style="list-style: none; padding: 0; margin: 0; font-size: 13px; line-height: 2;">
+                <li><a href="index.html" style="color: #2563eb; text-decoration: none;">Página Inicial</a></li>
+                <li><a href="https://www.infojobs.com.br" target="_blank" rel="nofollow" style="color: #64748b; text-decoration: none;">Busca no InfoJobs</a></li>
+                <li><a href="https://www.catho.com.br" target="_blank" rel="nofollow" style="color: #64748b; text-decoration: none;">Busca na Catho</a></li>
+            </ul>
+        </div>
+        <div>
+            <h4 style="color: #1e3a8a; font-size: 15px; margin-top: 0;">Institucional & FAQ</h4>
+            <ul style="list-style: none; padding: 0; margin: 0; font-size: 13px; line-height: 2;">
+                <li><a href="#faqSection" style="color: #64748b; text-decoration: none;">❓ Perguntas Frequentes (FAQ)</a></li>
+                <li><a href="termos.html" style="color: #64748b; text-decoration: none;">📄 Termos de Uso</a></li>
+                <li><a href="privacidade.html" style="color: #64748b; text-decoration: none;">🔒 Política de Privacidade</a></li>
+            </ul>
+        </div>
+    </div>
+    <p>© 2026 Oportunidade e Vagas de Emprego. Atualização automática diária (24h). Todos os direitos reservados.</p>
+</footer>
+
+
     <script>
         function filtrarCategoria(catId) {
-            // Atualiza botões ativos
             let btns = document.getElementsByClassName('filter-btn');
             for(let b of btns) { b.classList.remove('active'); }
             event.target.classList.add('active');
