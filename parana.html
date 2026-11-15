@@ -14,40 +14,46 @@
     <title>Vagas em Paraná (PR) e Cidades - Oportunidade e Vagas</title>
     <meta name="description" content="Confira vagas de emprego, concursos e oportunidades abertas em Paraná (PR) e nas principais cidades.">
     <style>
-        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f8fafc; color: #0f172a; margin: 0; padding: 0; }
-        .header-top { background: linear-gradient(135deg, #0f172a, #1e3a8a); color: white; padding: 35px 20px; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f8fafc; color: #0f172a; margin: 0; padding: 0; box-sizing: border-box; }
+        .header-top { background: linear-gradient(135deg, #0f172a, #1e3a8a); color: white; padding: 35px 20px; box-sizing: border-box; }
         .header-top a { color: #93c5fd; text-decoration: none; font-size: 13px; font-weight: 600; display: inline-block; margin-bottom: 10px; }
         .header-top h1 { margin: 0 0 5px 0; font-size: 24px; }
         .header-top p { margin: 0; font-size: 14px; opacity: 0.9; }
         
-        .states-top-bar { background: #1e293b; padding: 15px 20px; text-align: center; border-bottom: 1px solid #334155; }
+        .states-top-bar { background: #1e293b; padding: 15px 20px; text-align: center; border-bottom: 1px solid #334155; box-sizing: border-box; }
         .states-top-bar p { color: #94a3b8; font-size: 12px; font-weight: 700; text-transform: uppercase; margin: 0 0 10px 0; letter-spacing: 1px; }
-        .states-box { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; max-width: 1000px; margin: 0 auto; }
-        .state-pill { background: #334155; border: 1px solid #475569; padding: 8px 14px; border-radius: 6px; text-decoration: none; color: #f8fafc; font-weight: 600; font-size: 12px; transition: background 0.2s; }
+        .states-box { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; max-width: 1000px; margin: 0 auto; box-sizing: border-box; }
+        .state-pill { background: #334155; border: 1px solid #475569; padding: 8px 14px; border-radius: 6px; text-decoration: none; color: #f8fafc; font-weight: 600; font-size: 12px; transition: background 0.2s; box-sizing: border-box; }
         .state-pill:hover { background: #2563eb; border-color: #2563eb; }
 
-        .cities-section { background: #ffffff; border: 1px solid #e2e8f0; padding: 25px; border-radius: 12px; margin: 30px 0; box-shadow: 0 4px 6px rgba(0,0,0,0.02); }
+        .cities-section { background: #ffffff; border: 1px solid #e2e8f0; padding: 25px; border-radius: 12px; margin: 30px 0; box-shadow: 0 4px 6px rgba(0,0,0,0.02); box-sizing: border-box; }
         .cities-section h3 { margin: 0 0 10px 0; color: #1e3a8a; font-size: 16px; }
         .cities-section p { font-size: 13px; color: #64748b; margin: 0 0 15px 0; }
-        .cities-grid { display: flex; flex-wrap: wrap; gap: 10px; }
-        .city-badge { background: #eff6ff; color: #2563eb; border: 1px solid #bfdbfe; padding: 8px 14px; border-radius: 20px; font-size: 12px; font-weight: 600; text-decoration: none; transition: all 0.2s; }
+        .cities-grid { display: flex; flex-wrap: wrap; gap: 10px; box-sizing: border-box; }
+        .city-badge { background: #eff6ff; color: #2563eb; border: 1px solid #bfdbfe; padding: 8px 14px; border-radius: 20px; font-size: 12px; font-weight: 600; text-decoration: none; transition: all 0.2s; box-sizing: border-box; }
         .city-badge:hover { background: #2563eb; color: white; }
 
-        .main-container { max-width: 1000px; margin: 0 auto; padding: 20px; }
+        .main-container { max-width: 1000px; margin: 0 auto; padding: 20px; box-sizing: border-box; }
         .section-title { font-size: 20px; font-weight: 700; margin: 30px 0 20px 0; border-left: 4px solid #2563eb; padding-left: 10px; }
         
-        .cards-wrapper { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; }
-        .card { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; width: 300px; display: flex; flex-direction: column; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.03); transition: transform 0.2s; }
+        .cards-wrapper { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; box-sizing: border-box; }
+        .card { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; width: 300px; max-width: 100%; display: flex; flex-direction: column; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.03); transition: transform 0.2s; box-sizing: border-box; }
         .card:hover { transform: translateY(-4px); border-color: #2563eb; }
         .card img { width: 100%; height: 160px; object-fit: cover; background: #e2e8f0; }
-        .card-body { padding: 18px; display: flex; flex-direction: column; flex-grow: 1; justify-content: space-between; }
+        .card-body { padding: 18px; display: flex; flex-direction: column; flex-grow: 1; justify-content: space-between; box-sizing: border-box; }
         .badge { background: #2563eb; color: white; font-size: 10px; font-weight: 700; padding: 4px 10px; border-radius: 4px; display: inline-block; margin-bottom: 10px; width: fit-content; text-transform: uppercase; }
         .card h3 { font-size: 15px; margin: 0 0 8px 0; line-height: 1.4; }
         .card h3 a { color: #0f172a; text-decoration: none; }
         .card h3 a:hover { color: #2563eb; }
         .card p { font-size: 13px; color: #64748b; margin: 0 0 15px 0; line-height: 1.4; }
-        .btn-vaga { display: block; text-align: center; background: #2563eb; color: white; padding: 11px; border-radius: 8px; text-decoration: none; font-size: 13px; font-weight: 700; transition: background 0.2s; }
+        .btn-vaga { display: block; text-align: center; background: #2563eb; color: white; padding: 11px; border-radius: 8px; text-decoration: none; font-size: 13px; font-weight: 700; transition: background 0.2s; box-sizing: border-box; }
         .btn-vaga:hover { background: #1d4ed8; }
+
+        @media (max-width: 768px) {
+            .header-top { padding: 25px 15px; }
+            .main-container { padding: 15px; }
+            .card { width: 100%; }
+        }
     </style>
 </head>
 <body>
@@ -142,72 +148,37 @@
         <div class="cards-wrapper">
             
             <div class="card">
-                <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=600&auto=format&fit=crop&q=60&v=1794708007" alt="Capa da Vaga" onerror="this.src='https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60'">
-                <div class="card-body">
-                    <div>
-                        <span class="badge" style="background-color: #ea580c;">Trabalho Home Office</span>
-                        <h3><a href="https://www.linkedin.com/jobs/search/?keywords=Home%20Office" target="_blank" rel="nofollow">Suporte Técnico de TI e Infraestrutura a Distância (PR)</a></h3>
-                        <p>Analistas de sistemas e suporte técnico com vagas abertas para modelo remoto.</p>
-                    </div>
-                    <a href="https://www.linkedin.com/jobs/search/?keywords=Home%20Office" target="_blank" rel="nofollow" class="btn-vaga">Ver Vaga / Inscrição →</a>
-                </div>
-            </div>
-            
-            <div class="card">
-                <img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=600&auto=format&fit=crop&q=60&v=1794708006" alt="Capa da Vaga" onerror="this.src='https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60'">
-                <div class="card-body">
-                    <div>
-                        <span class="badge" style="background-color: #ea580c;">Trabalho Home Office</span>
-                        <h3><a href="https://www.workana.com/pt" target="_blank" rel="nofollow">Redação, Tradução e Produção de Conteúdo Online (PR)</a></h3>
-                        <p>Trabalhe escrevendo artigos e traduzindo documentos diretamente da sua casa.</p>
-                    </div>
-                    <a href="https://www.workana.com/pt" target="_blank" rel="nofollow" class="btn-vaga">Ver Vaga / Inscrição →</a>
-                </div>
-            </div>
-            
-            <div class="card">
-                <img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=600&auto=format&fit=crop&q=60&v=1794708004" alt="Capa da Vaga" onerror="this.src='https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60'">
-                <div class="card-body">
-                    <div>
-                        <span class="badge" style="background-color: #2563eb;">Concursos Públicos</span>
-                        <h3><a href="https://www.estrategiaconcursos.com.br/blog/concursos-abertos/" target="_blank" rel="nofollow">Editais de Universidades Federais: Vagas para Técnicos e Professores (PR)</a></h3>
-                        <p>Instituições de ensino superior abrem concursos públicos com inscrições abertas.</p>
-                    </div>
-                    <a href="https://www.estrategiaconcursos.com.br/blog/concursos-abertos/" target="_blank" rel="nofollow" class="btn-vaga">Ver Vaga / Inscrição →</a>
-                </div>
-            </div>
-            
-            <div class="card">
-                <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600&auto=format&fit=crop&q=60&v=1794708003" alt="Capa da Vaga" onerror="this.src='https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60'">
+                <img src="https://images.unsplash.com/photo-1531497865144-0464ef8fb9a9?w=600&auto=format&fit=crop&q=60&v=1794758674" alt="Capa da Vaga" onerror="this.src='https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60'">
                 <div class="card-body">
                     <div>
                         <span class="badge" style="background-color: #059669;">Vagas CLT & Empresas</span>
-                        <h3><a href="https://g1.globo.com/tecnologia/noticia/2026/11/14/italia-multa-meta.ghtml" target="_blank" rel="nofollow">Itália multa Meta em R$ 5 bilhões por acessar fotos e vídeos de usuários sem consentimento (PR)</a></h3>
-                        <p>Justiça de São Paulo proíbe Meta de usar conteúdo jornalístico sem autorização
-Jornal Nacional/ Reprodução
-A a...</p>
+                        <h3><a href="https://g1.globo.com/carros/noticia/2026/11/15/free-flow-prazo-acaba.ghtml" target="_blank" rel="nofollow">Free flow: prazo para pagar pedágio atrasado acaba hoje; veja como quitar e evitar multa (PR)</a></h3>
+                        <p>Motoristas têm até 16 de novembro para pagar pedágio Free Flow atrasado
+Termina nesta segunda-feira (16) o pra...</p>
                     </div>
-                    <a href="https://g1.globo.com/tecnologia/noticia/2026/11/14/italia-multa-meta.ghtml" target="_blank" rel="nofollow" class="btn-vaga">Ver Vaga / Inscrição →</a>
+                    <a href="https://g1.globo.com/carros/noticia/2026/11/15/free-flow-prazo-acaba.ghtml" target="_blank" rel="nofollow" class="btn-vaga">Ver Vaga / Inscrição →</a>
                 </div>
             </div>
             
             <div class="card">
-                <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?w=600&auto=format&fit=crop&q=60&v=1794708003" alt="Capa da Vaga" onerror="this.src='https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60'">
-                <div class="card-body">
-                    <div>
-                        <span class="badge" style="background-color: #ea580c;">Trabalho Home Office</span>
-                        <h3><a href="https://www.workana.com/pt" target="_blank" rel="nofollow">Projetos Digitais e Trabalho Remoto em Todo o Brasil (PR)</a></h3>
-                        <p>Plataformas conectam profissionais para trabalho à distância com remuneração garantida.</p>
-                    </div>
-                    <a href="https://www.workana.com/pt" target="_blank" rel="nofollow" class="btn-vaga">Ver Vaga / Inscrição →</a>
-                </div>
-            </div>
-            
-            <div class="card">
-                <img src="https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60&v=1794708001" alt="Capa da Vaga" onerror="this.src='https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60'">
+                <img src="https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60&v=1794758667" alt="Capa da Vaga" onerror="this.src='https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60'">
                 <div class="card-body">
                     <div>
                         <span class="badge" style="background-color: #059669;">Vagas CLT & Empresas</span>
+                        <h3><a href="https://g1.globo.com/tecnologia/ciberseguranca/noticia/2026/11/15/hackers-invadem-subsidiaria-dos-correios-da-franca-e-expoem-dados-de-22-milhoes.ghtml" target="_blank" rel="nofollow">Hackers invadem subsidiária dos Correios da França e expõem dados de 22 milhões (PR)</a></h3>
+                        <p>A cibersegurança continua sendo uma preocupação crescente.
+Freepik
+A La Poste, equivalente aos Correios no Bra...</p>
+                    </div>
+                    <a href="https://g1.globo.com/tecnologia/ciberseguranca/noticia/2026/11/15/hackers-invadem-subsidiaria-dos-correios-da-franca-e-expoem-dados-de-22-milhoes.ghtml" target="_blank" rel="nofollow" class="btn-vaga">Ver Vaga / Inscrição →</a>
+                </div>
+            </div>
+            
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=600&auto=format&fit=crop&q=60&v=1794758672" alt="Capa da Vaga" onerror="this.src='https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60'">
+                <div class="card-body">
+                    <div>
+                        <span class="badge" style="background-color: #ea580c;">Trabalho Home Office</span>
                         <h3><a href="https://g1.globo.com/tecnologia/noticia/2026/11/14/controle-de-trafego-aereo-dos-eua-ainda-opera-com-disquetes-veja-como-eles-funcionam.ghtml" target="_blank" rel="nofollow">Controle de tráfego aéreo dos EUA ainda opera com disquetes; veja como eles funcionam (PR)</a></h3>
                         <p>Armazenamento de disquetes, em foto de julho de 2022
 Iswoar/Wikimedia Commons
@@ -218,38 +189,77 @@ O apagão aéreo da última sexta-f...</p>
             </div>
             
             <div class="card">
-                <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&auto=format&fit=crop&q=60&v=1794708004" alt="Capa da Vaga" onerror="this.src='https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60'">
+                <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=600&auto=format&fit=crop&q=60&v=1794758675" alt="Capa da Vaga" onerror="this.src='https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60'">
                 <div class="card-body">
                     <div>
-                        <span class="badge" style="background-color: #ea580c;">Trabalho Home Office</span>
-                        <h3><a href="https://www.linkedin.com/jobs/search/?keywords=Home%20Office" target="_blank" rel="nofollow">Desenvolvimento de Software e Programação (Home Office) (PR)</a></h3>
-                        <p>Empresas de tecnologia buscam desenvolvedores pleno e sênior para atuação remota.</p>
+                        <span class="badge" style="background-color: #059669;">Vagas CLT & Empresas</span>
+                        <h3><a href="https://g1.globo.com/g1-explica/noticia/2026/11/15/13o-salario-o-que-considerar-antes-de-gastar-este-dinheiro.ghtml" target="_blank" rel="nofollow">13º salário: o que considerar antes de gastar este dinheiro (PR)</a></h3>
+                        <p>Décimo terceiro: gastar, pagar dívidas ou guardar dinheiro?
+O 13º salário está chegando, e muita gente já come...</p>
                     </div>
-                    <a href="https://www.linkedin.com/jobs/search/?keywords=Home%20Office" target="_blank" rel="nofollow" class="btn-vaga">Ver Vaga / Inscrição →</a>
+                    <a href="https://g1.globo.com/g1-explica/noticia/2026/11/15/13o-salario-o-que-considerar-antes-de-gastar-este-dinheiro.ghtml" target="_blank" rel="nofollow" class="btn-vaga">Ver Vaga / Inscrição →</a>
                 </div>
             </div>
             
             <div class="card">
-                <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=600&auto=format&fit=crop&q=60&v=1794708002" alt="Capa da Vaga" onerror="this.src='https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60'">
+                <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=600&auto=format&fit=crop&q=60&v=1794758667" alt="Capa da Vaga" onerror="this.src='https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60'">
                 <div class="card-body">
                     <div>
                         <span class="badge" style="background-color: #ea580c;">Trabalho Home Office</span>
-                        <h3><a href="https://www.linkedin.com/jobs/search/?keywords=Home%20Office" target="_blank" rel="nofollow">Assistente Virtual e Suporte Administrativo a Distância (PR)</a></h3>
-                        <p>Oportunidades flexíveis para atuar à distância com suporte completo e equipamentos.</p>
+                        <h3><a href="https://g1.globo.com/tecnologia/noticia/2026/11/15/eua-bessent-nvidia-novo-ceo-jensen-huang.ghtml" target="_blank" rel="nofollow">Secretário do Tesouro dos EUA defende que Nvidia busque novo CEO fora da empresa após saída de Jensen Huang (PR)</a></h3>
+                        <p>O secretário do Tesouro dos EUA, Scott Bessent, participa da 56ª reunião anual do Fórum Econômico Mundial (WEF...</p>
                     </div>
-                    <a href="https://www.linkedin.com/jobs/search/?keywords=Home%20Office" target="_blank" rel="nofollow" class="btn-vaga">Ver Vaga / Inscrição →</a>
+                    <a href="https://g1.globo.com/tecnologia/noticia/2026/11/15/eua-bessent-nvidia-novo-ceo-jensen-huang.ghtml" target="_blank" rel="nofollow" class="btn-vaga">Ver Vaga / Inscrição →</a>
                 </div>
             </div>
             
             <div class="card">
-                <img src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=600&auto=format&fit=crop&q=60&v=1794708008" alt="Capa da Vaga" onerror="this.src='https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60'">
+                <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600&auto=format&fit=crop&q=60&v=1794758669" alt="Capa da Vaga" onerror="this.src='https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60'">
+                <div class="card-body">
+                    <div>
+                        <span class="badge" style="background-color: #059669;">Vagas CLT & Empresas</span>
+                        <h3><a href="https://g1.globo.com/economia/noticia/2026/11/15/ele-gastou-r-275-mil-em-labubus-e-fez-ate-dentes-inspirados-nos-bonecos-mas-e-agora-que-a-febre-passou.ghtml" target="_blank" rel="nofollow">Ele gastou R$ 275 mil em Labubus e fez até dentes inspirados nos bonecos, mas e agora que a febre passou? (PR)</a></h3>
+                        <p>Labubu: o que é boneco que virou febre mundial
+Durante anos, os bonecos Labubu pareceram imparáveis. Coleciona...</p>
+                    </div>
+                    <a href="https://g1.globo.com/economia/noticia/2026/11/15/ele-gastou-r-275-mil-em-labubus-e-fez-ate-dentes-inspirados-nos-bonecos-mas-e-agora-que-a-febre-passou.ghtml" target="_blank" rel="nofollow" class="btn-vaga">Ver Vaga / Inscrição →</a>
+                </div>
+            </div>
+            
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1450133064473-71024230f91b?w=600&auto=format&fit=crop&q=60&v=1794758673" alt="Capa da Vaga" onerror="this.src='https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60'">
                 <div class="card-body">
                     <div>
                         <span class="badge" style="background-color: #2563eb;">Concursos Públicos</span>
-                        <h3><a href="https://www.in.gov.br/leiturajornal" target="_blank" rel="nofollow">Seleções Temporárias e Editais Regionais com Inscrições Abertas (PR)</a></h3>
-                        <p>Oportunidades para diversos níveis de escolaridade com contratação rápida.</p>
+                        <h3><a href="https://www.qconcursos.com/concursos-abertos" target="_blank" rel="nofollow">Concursos Tribunais de Justiça e Ministério Público (PR)</a></h3>
+                        <p>Vagas abertas para cargos de analista e técnico judiciário com alta remuneração.</p>
                     </div>
-                    <a href="https://www.in.gov.br/leiturajornal" target="_blank" rel="nofollow" class="btn-vaga">Ver Vaga / Inscrição →</a>
+                    <a href="https://www.qconcursos.com/concursos-abertos" target="_blank" rel="nofollow" class="btn-vaga">Ver Vaga / Inscrição →</a>
+                </div>
+            </div>
+            
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1565514020170-026ed9a84d28?w=600&auto=format&fit=crop&q=60&v=1794758671" alt="Capa da Vaga" onerror="this.src='https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60'">
+                <div class="card-body">
+                    <div>
+                        <span class="badge" style="background-color: #059669;">Vagas CLT & Empresas</span>
+                        <h3><a href="https://g1.globo.com/trabalho-e-carreira/noticia/2026/11/15/o-executivo-que-foi-grosseiro-com-motorista-e-perdeu-vaga-em-multinacional-o-teste-de-gentileza-que-o-duolingo-aplica-para-altos-cargos.ghtml" target="_blank" rel="nofollow">O executivo que foi grosseiro com motorista e perdeu vaga em multinacional: o 'teste de gentileza' que o Duolingo aplica para altos cargos (PR)</a></h3>
+                        <p>Consultora de RH dá dicas para montar currículo e se destacar em entrevistas
+Foi durante um trajeto do aeropor...</p>
+                    </div>
+                    <a href="https://g1.globo.com/trabalho-e-carreira/noticia/2026/11/15/o-executivo-que-foi-grosseiro-com-motorista-e-perdeu-vaga-em-multinacional-o-teste-de-gentileza-que-o-duolingo-aplica-para-altos-cargos.ghtml" target="_blank" rel="nofollow" class="btn-vaga">Ver Vaga / Inscrição →</a>
+                </div>
+            </div>
+            
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=600&auto=format&fit=crop&q=60&v=1794758667" alt="Capa da Vaga" onerror="this.src='https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60'">
+                <div class="card-body">
+                    <div>
+                        <span class="badge" style="background-color: #2563eb;">Concursos Públicos</span>
+                        <h3><a href="https://www.qconcursos.com/concursos-abertos" target="_blank" rel="nofollow">Concursos Prefeituras e Câmaras Municipais: Editais Abertos (PR)</a></h3>
+                        <p>Vagas para níveis fundamental, médio e superior com excelentes salários. Veja os prazos de inscrição.</p>
+                    </div>
+                    <a href="https://www.qconcursos.com/concursos-abertos" target="_blank" rel="nofollow" class="btn-vaga">Ver Vaga / Inscrição →</a>
                 </div>
             </div>
             
@@ -273,7 +283,7 @@ O apagão aéreo da última sexta-f...</p>
     </div>
 
     
-<footer>
+<footer style="background: #ffffff; border-top: 1px solid #e2e8f0; margin-top: 60px; padding: 40px 20px; box-sizing: border-box;">
     <div style="max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 30px; text-align: left; margin-bottom: 30px; border-bottom: 1px solid #e2e8f0; padding-bottom: 30px;">
         <div>
             <h4 style="color: #1e3a8a; font-size: 15px; margin-top: 0;">Oportunidade e Vagas</h4>
@@ -296,7 +306,9 @@ O apagão aéreo da última sexta-f...</p>
             </ul>
         </div>
     </div>
-    <p>© 2026 Oportunidade e Vagas de Emprego. Atualização automática diária (24h). Todos os direitos reservados.</p>
+    <div style="max-width: 1000px; margin: 0 auto; text-align: center; color: #64748b; font-size: 13px;">
+        <p>© 2026 Oportunidade e Vagas de Emprego. Atualização automática diária (24h). Todos os direitos reservados.</p>
+    </div>
 </footer>
 
 </body>

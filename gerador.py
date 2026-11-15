@@ -17,6 +17,9 @@ MONETAG_SCRIPT = '<script src="https://quge5.com/88/tag.min.js" data-zone="30967
 GOOGLE_META = '<meta name="google-site-verification" content="pbgwZbVwgKMwqqqGYFcHeGGbV7EM7nBdlns1c_DN_Sw" />'
 ADSENSE_SCRIPT = '<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5379027874215422" crossorigin="anonymous"></script>'
 
+# ARQUIVO ADS.TXT GERADO AUTOMATICAMENTE NA RAIZ (Resolve o erro do AdSense)
+ADS_TXT_CONTENT = "google.com, pub-5379027874215422, DIRECT, f08c47fec0942fa0"
+
 AD_BANNER = """
 <div style="text-align:center; margin: 30px auto; padding: 20px; background: #ffffff; border-radius: 12px; border: 1px solid #e2e8f0; max-width: 100%; box-sizing: border-box; box-shadow: 0 4px 6px rgba(0,0,0,0.02);">
     <p style="font-size: 10px; color: #64748b; text-transform: uppercase; margin-bottom: 10px; letter-spacing: 1px; font-weight: 700;">Oportunidade Patrocinada</p>
@@ -52,11 +55,11 @@ TICKER_COTACOES = """
 """
 
 BREAKING_NEWS_TICKER = """
-<div style="background: #ea580c; color: white; padding: 12px 18px; border-radius: 10px; margin-bottom: 25px; display: flex; align-items: center; gap: 12px; font-size: 13px; font-weight: 700; box-shadow: 0 4px 10px rgba(234,88,12,0.15);">
+<div style="background: #ea580c; color: white; padding: 12px 18px; border-radius: 10px; margin-bottom: 25px; display: flex; align-items: center; gap: 12px; font-size: 13px; font-weight: 700; box-shadow: 0 4px 10px rgba(234,88,12,0.15); box-sizing: border-box; flex-wrap: wrap;">
     <span style="background: white; color: #ea580c; padding: 4px 10px; border-radius: 6px; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; flex-shrink: 0;">🔥 PLANTAO 24H</span>
     <div style="overflow: hidden; white-space: nowrap; width: 100%;">
         <div style="display: inline-block; animation: scrollTicker 25s linear infinite;">
-            ⚠️ +1.420 vagas e editais verificados hoje para trabalhadores em todo o Brasil    |    📄 Clique em qualquer oportunidade para acessar o processo seletivo oficial.
+            ⚠️ +1.420 vagas e editais verificados hoje para trabalhadores em todo o Brasil    |    📄 Clique em qualquer oportunidade para acessar o processo seletivo oficial.
         </div>
     </div>
 </div>
@@ -65,25 +68,25 @@ BREAKING_NEWS_TICKER = """
 CALCULADORAS_SECTION = """
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 40px;">
     <!-- Calculadora Salarial -->
-    <div style="background: #ffffff; border: 1px solid #e2e8f0; padding: 25px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.02);">
+    <div style="background: #ffffff; border: 1px solid #e2e8f0; padding: 25px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.02); box-sizing: border-box;">
         <h3 style="margin-top: 0; color: #1e3a8a; font-size: 16px;">🧮 Calculadora de Salário Líquido</h3>
         <p style="font-size: 13px; color: #64748b; margin-bottom: 15px;">Simule descontos de INSS e IRRF:</p>
-        <input type="number" id="salarioBrutoInput" placeholder="Ex: 2500" style="padding: 10px 15px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 13px; width: 100%; box-sizing: border-box; outline: none; margin-bottom: 10px;">
-        <button onclick="calcularSalario()" style="background: #2563eb; color: white; border: none; padding: 10px; border-radius: 6px; font-weight: 700; cursor: pointer; font-size: 13px; width: 100%;">Calcular Líquido</button>
-        <div id="resultadoSalarioBox" style="margin-top: 15px; display: none; background: #eff6ff; padding: 12px; border-radius: 6px; border: 1px solid #bfdbfe; font-size: 12px; color: #1e3a8a;"></div>
+        <input type="number" id="salarioBrutoInput" placeholder="Ex: 2500" style="padding: 12px 15px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 14px; width: 100%; box-sizing: border-box; outline: none; margin-bottom: 12px; background: #f8fafc; color: #0f172a; font-weight: 600;">
+        <button onclick="calcularSalario()" style="background: #2563eb; color: white; border: none; padding: 12px; border-radius: 8px; font-weight: 700; cursor: pointer; font-size: 13px; width: 100%; box-sizing: border-box;">Calcular Líquido</button>
+        <div id="resultadoSalarioBox" style="margin-top: 15px; display: none; background: #eff6ff; padding: 12px; border-radius: 6px; border: 1px solid #bfdbfe; font-size: 12px; color: #1e3a8a; box-sizing: border-box;"></div>
     </div>
 
     <!-- Simulador Seguro Desemprego -->
-    <div style="background: #ffffff; border: 1px solid #e2e8f0; padding: 25px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.02);">
+    <div style="background: #ffffff; border: 1px solid #e2e8f0; padding: 25px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.02); box-sizing: border-box;">
         <h3 style="margin-top: 0; color: #1e3a8a; font-size: 16px;">🛡️ Simulador Seguro-Desemprego</h3>
         <p style="font-size: 13px; color: #64748b; margin-bottom: 15px;">Informe o nº de solicitações:</p>
-        <select id="vezesSeguro" style="padding: 10px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 13px; width: 100%; box-sizing: border-box; outline: none; margin-bottom: 10px; background: white;">
+        <select id="vezesSeguro" style="padding: 12px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 14px; width: 100%; box-sizing: border-box; outline: none; margin-bottom: 12px; background: white; color: #0f172a; font-weight: 600;">
             <option value="1">1ª Solicitação (últimos 24 meses)</option>
             <option value="2">2ª Solicitação (últimos 12 meses)</option>
             <option value="3">3ª Solicitação ou mais</option>
         </select>
-        <button onclick="calcularSeguro()" style="background: #059669; color: white; border: none; padding: 10px; border-radius: 6px; font-weight: 700; cursor: pointer; font-size: 13px; width: 100%;">Verificar Parcelas</button>
-        <div id="resultadoSeguroBox" style="margin-top: 15px; display: none; background: #ecfdf5; padding: 12px; border-radius: 6px; border: 1px solid #a7f3d0; font-size: 12px; color: #065f46;"></div>
+        <button onclick="calcularSeguro()" style="background: #059669; color: white; border: none; padding: 12px; border-radius: 8px; font-weight: 700; cursor: pointer; font-size: 13px; width: 100%; box-sizing: border-box;">Verificar Parcelas</button>
+        <div id="resultadoSeguroBox" style="margin-top: 15px; display: none; background: #ecfdf5; padding: 12px; border-radius: 6px; border: 1px solid #a7f3d0; font-size: 12px; color: #065f46; box-sizing: border-box;"></div>
     </div>
 </div>
 <script>
@@ -111,42 +114,8 @@ function calcularSeguro() {
 </script>
 """
 
-BLOG_ARTIGOS_SECTION = """
-<div style="background: #ffffff; border: 1px solid #e2e8f0; padding: 30px; border-radius: 12px; margin-top: 40px; box-shadow: 0 4px 6px rgba(0,0,0,0.02);">
-    <h3 style="margin-top: 0; color: #1e3a8a; font-size: 18px;">📰 Blog do Trabalhador: Dicas para Conquistar a Vaga Ideal</h3>
-    <p style="font-size: 13px; color: #64748b; margin-bottom: 20px;">Artigos rápidos e orientações estratégicas atualizadas para acelerar sua contratação:</p>
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px;">
-        <div style="background: #f8fafc; border: 1px solid #e2e8f0; padding: 20px; border-radius: 10px;">
-            <h4 style="color: #1e3a8a; margin-top: 0; font-size: 15px;">📝 Como fazer um currículo atraente em 2026</h4>
-            <p style="font-size: 13px; color: #475569; line-height: 1.5;">Descubra os erros que eliminam candidatos e saiba destacar suas principais qualificações para chamar a atenção dos recrutadores.</p>
-        </div>
-        <div style="background: #f8fafc; border: 1px solid #e2e8f0; padding: 20px; border-radius: 10px;">
-            <h4 style="color: #1e3a8a; margin-top: 0; font-size: 15px;">🤝 O que falar na dinâmica de grupo e entrevista</h4>
-            <p style="font-size: 13px; color: #475569; line-height: 1.5;">Dicas práticas de postura, comunicação assertiva e como responder às perguntas mais difíceis feitas pelos gestores.</p>
-        </div>
-        <div style="background: #f8fafc; border: 1px solid #e2e8f0; padding: 20px; border-radius: 10px;">
-            <h4 style="color: #1e3a8a; margin-top: 0; font-size: 15px;">💻 Melhores áreas para trabalhar de Home Office</h4>
-            <p style="font-size: 13px; color: #475569; line-height: 1.5;">Conheça os cargos remotos mais requisitados pelas empresas e o que é necessário para começar a faturar de casa.</p>
-        </div>
-    </div>
-</div>
-"""
-
-CAUDA_LONGA_TAGS = """
-<div style="background: #f1f5f9; border: 1px solid #cbd5e1; padding: 20px; border-radius: 12px; margin-top: 40px; text-align: center;">
-    <p style="font-size: 12px; font-weight: 700; color: #334155; text-transform: uppercase; margin-bottom: 10px; letter-spacing: 0.5px;">🔍 Buscas Frequentes em Todo o Brasil:</p>
-    <div style="display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; font-size: 12px;">
-        <span style="background: white; padding: 6px 12px; border-radius: 6px; border: 1px solid #cbd5e1; color: #1e3a8a; font-weight: 600;">Vagas para Soldador e Caldeireiro</span>
-        <span style="background: white; padding: 6px 12px; border-radius: 6px; border: 1px solid #cbd5e1; color: #1e3a8a; font-weight: 600;">Emprego CLT início imediato</span>
-        <span style="background: white; padding: 6px 12px; border-radius: 6px; border: 1px solid #cbd5e1; color: #1e3a8a; font-weight: 600;">Concursos Públicos Abertos 2026</span>
-        <span style="background: white; padding: 6px 12px; border-radius: 6px; border: 1px solid #cbd5e1; color: #1e3a8a; font-weight: 600;">Trabalho Remoto Home Office</span>
-        <span style="background: white; padding: 6px 12px; border-radius: 6px; border: 1px solid #cbd5e1; color: #1e3a8a; font-weight: 600;">Vagas em Salvador e Camaçari</span>
-    </div>
-</div>
-"""
-
 FOOTER_ROBUSTO = """
-<footer>
+<footer style="background: #ffffff; border-top: 1px solid #e2e8f0; margin-top: 60px; padding: 40px 20px; box-sizing: border-box;">
     <div style="max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 30px; text-align: left; margin-bottom: 30px; border-bottom: 1px solid #e2e8f0; padding-bottom: 30px;">
         <div>
             <h4 style="color: #1e3a8a; font-size: 15px; margin-top: 0;">Oportunidade e Vagas</h4>
@@ -169,12 +138,14 @@ FOOTER_ROBUSTO = """
             </ul>
         </div>
     </div>
-    <p>© 2026 Oportunidade e Vagas de Emprego. Atualização automática diária (24h). Todos os direitos reservados.</p>
+    <div style="max-width: 1000px; margin: 0 auto; text-align: center; color: #64748b; font-size: 13px;">
+        <p>© 2026 Oportunidade e Vagas de Emprego. Atualização automática diária (24h). Todos os direitos reservados.</p>
+    </div>
 </footer>
 """
 
 FAQ_SECTION = """
-<div id="faqSection" style="background: #ffffff; border: 1px solid #e2e8f0; padding: 30px; border-radius: 12px; margin-top: 40px; box-shadow: 0 4px 6px rgba(0,0,0,0.02);">
+<div id="faqSection" style="background: #ffffff; border: 1px solid #e2e8f0; padding: 30px; border-radius: 12px; margin-top: 40px; box-shadow: 0 4px 6px rgba(0,0,0,0.02); box-sizing: border-box;">
     <h3 style="margin-top: 0; color: #1e3a8a; font-size: 18px;">❓ Perguntas Frequentes (FAQ do Trabalhador)</h3>
     <div style="margin-top: 20px; font-size: 13px; color: #334155; line-height: 1.6;">
         <p><strong>1. Como faço para me candidatar a uma vaga?</strong><br>Basta clicar no botão "Ver Vaga / Inscrição →" em qualquer cartão de oportunidade. Você será redirecionado para a página oficial da empresa ou plataforma recrutadora.</p>
@@ -201,56 +172,66 @@ INDEX_TEMPLATE = """
     <title>Oportunidade e Vagas de Emprego - Concursos, CLT e Home Office</title>
     <meta name="description" content="Encontre vagas de emprego CLT, editais de concursos públicos abertos e oportunidades de trabalho por cidade e estado no Brasil.">
     <style>
-        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f8fafc; color: #0f172a; margin: 0; padding: 0; }
-        .header-top { background: linear-gradient(135deg, #0f172a, #1e3a8a); color: white; padding: 45px 20px; text-align: center; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f8fafc; color: #0f172a; margin: 0; padding: 0; box-sizing: border-box; }
+        .header-top { background: linear-gradient(135deg, #0f172a, #1e3a8a); color: white; padding: 45px 20px; text-align: center; box-sizing: border-box; }
         .header-top h1 { margin: 0 0 10px 0; font-size: 32px; font-weight: 800; letter-spacing: -0.5px; }
-        .header-top p { margin: 0 0 25px 0; opacity: 0.9; font-size: 15px; }
+        .header-top p { margin: 0 0 25px 0; opacity: 0.9; font-size: 15px; max-width: 600px; margin-left: auto; margin-right: auto; line-height: 1.5; }
         
-        .search-container { max-width: 600px; margin: 0 auto; display: flex; gap: 10px; background: white; padding: 8px; border-radius: 35px; box-shadow: 0 10px 25px rgba(0,0,0,0.2); }
-        .search-input { flex-grow: 1; border: none; outline: none; padding: 12px 20px; font-size: 14px; border-radius: 30px; }
-        .search-btn { background: #2563eb; color: white; border: none; padding: 12px 28px; border-radius: 30px; font-weight: 700; cursor: pointer; font-size: 14px; transition: background 0.2s; }
+        .search-container { max-width: 600px; margin: 0 auto; display: flex; gap: 10px; background: white; padding: 8px; border-radius: 35px; box-shadow: 0 10px 25px rgba(0,0,0,0.2); box-sizing: border-box; }
+        .search-input { flex-grow: 1; border: none; outline: none; padding: 12px 20px; font-size: 14px; border-radius: 30px; width: 100%; box-sizing: border-box; }
+        .search-btn { background: #2563eb; color: white; border: none; padding: 12px 28px; border-radius: 30px; font-weight: 700; cursor: pointer; font-size: 14px; transition: background 0.2s; flex-shrink: 0; }
         .search-btn:hover { background: #1d4ed8; }
         
-        .filter-nav { background: #ffffff; border-bottom: 1px solid #e2e8f0; padding: 12px 20px; text-align: center; box-shadow: 0 2px 4px rgba(0,0,0,0.01); position: sticky; top: 0; z-index: 100; }
-        .filter-btn { background: #f1f5f9; border: 1px solid #cbd5e1; color: #334155; padding: 8px 16px; border-radius: 20px; font-weight: 600; font-size: 13px; cursor: pointer; margin: 4px; transition: all 0.2s; }
+        .filter-nav { background: #ffffff; border-bottom: 1px solid #e2e8f0; padding: 12px 20px; text-align: center; box-shadow: 0 2px 4px rgba(0,0,0,0.01); position: sticky; top: 0; z-index: 100; display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; box-sizing: border-box; }
+        .filter-btn { background: #f1f5f9; border: 1px solid #cbd5e1; color: #334155; padding: 8px 16px; border-radius: 20px; font-weight: 600; font-size: 13px; cursor: pointer; transition: all 0.2s; }
         .filter-btn:hover, .filter-btn.active { background: #2563eb; color: white; border-color: #2563eb; }
 
-        .states-top-bar { background: #1e293b; padding: 15px 20px; text-align: center; border-bottom: 1px solid #334155; }
+        .states-top-bar { background: #1e293b; padding: 15px 20px; text-align: center; border-bottom: 1px solid #334155; box-sizing: border-box; }
         .states-top-bar p { color: #94a3b8; font-size: 12px; font-weight: 700; text-transform: uppercase; margin: 0 0 10px 0; letter-spacing: 1px; }
-        .states-box { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; max-width: 1000px; margin: 0 auto; }
-        .state-pill { background: #334155; border: 1px solid #475569; padding: 8px 14px; border-radius: 6px; text-decoration: none; color: #f8fafc; font-weight: 600; font-size: 12px; transition: background 0.2s; }
+        .states-box { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; max-width: 1000px; margin: 0 auto; box-sizing: border-box; }
+        .state-pill { background: #334155; border: 1px solid #475569; padding: 8px 14px; border-radius: 6px; text-decoration: none; color: #f8fafc; font-weight: 600; font-size: 12px; transition: background 0.2s; box-sizing: border-box; }
         .state-pill:hover { background: #2563eb; border-color: #2563eb; }
 
-        .main-container { max-width: 1000px; margin: 0 auto; padding: 20px; }
-        .section-title { font-size: 20px; font-weight: 700; margin: 40px 0 20px 0; border-left: 4px solid #2563eb; padding-left: 10px; color: #0f172a; display: flex; align-items: center; justify-content: space-between; }
+        .main-container { max-width: 1000px; margin: 0 auto; padding: 20px; box-sizing: border-box; }
+        .section-title { font-size: 20px; font-weight: 700; margin: 40px 0 20px 0; border-left: 4px solid #2563eb; padding-left: 10px; color: #0f172a; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
         
-        .cards-wrapper { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; }
-        .card { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; width: 300px; display: flex; flex-direction: column; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.03); transition: transform 0.2s, box-shadow 0.2s; }
+        .cards-wrapper { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; box-sizing: border-box; }
+        .card { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; width: 300px; max-width: 100%; display: flex; flex-direction: column; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.03); transition: transform 0.2s, box-shadow 0.2s; box-sizing: border-box; }
         .card:hover { transform: translateY(-4px); box-shadow: 0 10px 15px rgba(0,0,0,0.08); border-color: #2563eb; }
         .card img { width: 100%; height: 160px; object-fit: cover; background: #e2e8f0; }
-        .card-body { padding: 18px; display: flex; flex-direction: column; flex-grow: 1; justify-content: space-between; }
+        .card-body { padding: 18px; display: flex; flex-direction: column; flex-grow: 1; justify-content: space-between; box-sizing: border-box; }
         .badge { background: #2563eb; color: white; font-size: 10px; font-weight: 700; padding: 4px 10px; border-radius: 4px; display: inline-block; margin-bottom: 10px; width: fit-content; text-transform: uppercase; letter-spacing: 0.5px; }
         .card h3 { font-size: 15px; margin: 0 0 8px 0; line-height: 1.4; }
         .card h3 a { color: #0f172a; text-decoration: none; }
         .card h3 a:hover { color: #2563eb; }
         .card p { font-size: 13px; color: #64748b; margin: 0 0 15px 0; line-height: 1.4; }
-        .btn-vaga { display: block; text-align: center; background: #2563eb; color: white; padding: 11px; border-radius: 8px; text-decoration: none; font-size: 13px; font-weight: 700; transition: background 0.2s; }
+        .btn-vaga { display: block; text-align: center; background: #2563eb; color: white; padding: 11px; border-radius: 8px; text-decoration: none; font-size: 13px; font-weight: 700; transition: background 0.2s; box-sizing: border-box; }
         .btn-vaga:hover { background: #1d4ed8; }
         
-        #resultadoBuscaBox { display: none; background: #eff6ff; border: 2px dashed #2563eb; padding: 25px; border-radius: 12px; margin-top: 30px; text-align: center; box-shadow: 0 4px 12px rgba(37,99,235,0.05); }
+        #resultadoBuscaBox { display: none; background: #eff6ff; border: 2px dashed #2563eb; padding: 25px; border-radius: 12px; margin-top: 30px; text-align: center; box-shadow: 0 4px 12px rgba(37,99,235,0.05); box-sizing: border-box; }
         #resultadoBuscaBox h3 { color: #1e3a8a; margin-top: 0; }
-        .links-diretoria { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-top: 15px; }
-        .diretorio-btn { background: #2563eb; color: white; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 13px; transition: background 0.2s; }
+        .links-diretoria { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-top: 15px; box-sizing: border-box; }
+        .diretorio-btn { background: #2563eb; color: white; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 13px; transition: background 0.2s; box-sizing: border-box; }
         .diretorio-btn:hover { background: #1d4ed8; }
 
-        .guias-box { background: #ffffff; border: 1px solid #e2e8f0; padding: 30px; border-radius: 12px; margin-top: 40px; box-shadow: 0 4px 6px rgba(0,0,0,0.02); }
+        .guias-box { background: #ffffff; border: 1px solid #e2e8f0; padding: 30px; border-radius: 12px; margin-top: 40px; box-shadow: 0 4px 6px rgba(0,0,0,0.02); box-sizing: border-box; }
         .guias-box h3 { margin-top: 0; color: #1e3a8a; font-size: 18px; }
-        .guias-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; margin-top: 15px; }
-        .guia-item { background: #f8fafc; border: 1px solid #e2e8f0; padding: 20px; border-radius: 10px; display: flex; flex-direction: column; justify-content: space-between; text-decoration: none; transition: all 0.2s; }
+        .guias-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; margin-top: 15px; box-sizing: border-box; }
+        .guia-item { background: #f8fafc; border: 1px solid #e2e8f0; padding: 20px; border-radius: 10px; display: flex; flex-direction: column; justify-content: space-between; text-decoration: none; transition: all 0.2s; box-sizing: border-box; }
         .guia-item:hover { border-color: #2563eb; transform: translateY(-2px); box-shadow: 0 4px 10px rgba(0,0,0,0.04); }
         .guia-item h4 { margin: 0 0 8px 0; font-size: 15px; color: #1e3a8a; }
         .guia-item p { margin: 0 0 14px 0; font-size: 13px; color: #475569; line-height: 1.4; }
         .guia-link { font-size: 12px; font-weight: 700; color: #2563eb; text-transform: uppercase; }
+
+        @media (max-width: 768px) {
+            .header-top { padding: 30px 15px; }
+            .header-top h1 { font-size: 24px; }
+            .search-container { flex-direction: column; background: transparent; box-shadow: none; padding: 0; gap: 10px; }
+            .search-input { border-radius: 30px; padding: 14px 20px; border: 1px solid #cbd5e1; }
+            .search-btn { width: 100%; border-radius: 30px; padding: 14px; }
+            .main-container { padding: 15px; }
+            .card { width: 100%; }
+        }
     </style>
 </head>
 <body>
@@ -260,7 +241,7 @@ INDEX_TEMPLATE = """
         <p>Busque por cargo (ex: Soldador, Motorista), cidade ou estado em todo o Brasil</p>
         
         <div class="search-container">
-            <input type="text" id="searchInput" class="search-input" placeholder="🔍 Digite o cargo, profissão ou cidade (ex: Soldador, Salvador, SP)...">
+            <input type="text" id="searchInput" class="search-input" placeholder="🔍 Digite o cargo, profissão ou cidade...">
             <button class="search-btn" onclick="executarBuscaNacional()">Pesquisar</button>
         </div>
     </div>
@@ -287,7 +268,7 @@ INDEX_TEMPLATE = """
 
         <div id="resultadoBuscaBox">
             <h3 id="tituloBuscaResultado">Resultados da Pesquisa</h3>
-            <p style="font-size: 13px; color: #475569;">Encontramos oportunidades abertas para este termo em Salvador, Camaçari, São Paulo e em todo o território nacional através de nossos parceiros oficiais:</p>
+            <p style="font-size: 13px; color: #475569;">Encontramos oportunidades abertas para este termo em todo o território nacional através de nossos parceiros oficiais:</p>
             <div class="links-diretoria" id="linksDiretoriaContainer"></div>
         </div>
 
@@ -320,10 +301,6 @@ INDEX_TEMPLATE = """
         {{ ad_banner | safe }}
 
         {{ calculadoras_section | safe }}
-
-        {{ blog_artigos_section | safe }}
-
-        {{ cauda_longa_tags | safe }}
 
         <div class="guias-box">
             <h3>📖 Guia Prático do Trabalhador e Concurseiro (Acesse Grátis)</h3>
@@ -426,40 +403,46 @@ ESTADO_TEMPLATE = """
     <title>Vagas em {{ estado.name }} e Cidades - Oportunidade e Vagas</title>
     <meta name="description" content="Confira vagas de emprego, concursos e oportunidades abertas em {{ estado.name }} e nas principais cidades.">
     <style>
-        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f8fafc; color: #0f172a; margin: 0; padding: 0; }
-        .header-top { background: linear-gradient(135deg, #0f172a, #1e3a8a); color: white; padding: 35px 20px; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f8fafc; color: #0f172a; margin: 0; padding: 0; box-sizing: border-box; }
+        .header-top { background: linear-gradient(135deg, #0f172a, #1e3a8a); color: white; padding: 35px 20px; box-sizing: border-box; }
         .header-top a { color: #93c5fd; text-decoration: none; font-size: 13px; font-weight: 600; display: inline-block; margin-bottom: 10px; }
         .header-top h1 { margin: 0 0 5px 0; font-size: 24px; }
         .header-top p { margin: 0; font-size: 14px; opacity: 0.9; }
         
-        .states-top-bar { background: #1e293b; padding: 15px 20px; text-align: center; border-bottom: 1px solid #334155; }
+        .states-top-bar { background: #1e293b; padding: 15px 20px; text-align: center; border-bottom: 1px solid #334155; box-sizing: border-box; }
         .states-top-bar p { color: #94a3b8; font-size: 12px; font-weight: 700; text-transform: uppercase; margin: 0 0 10px 0; letter-spacing: 1px; }
-        .states-box { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; max-width: 1000px; margin: 0 auto; }
-        .state-pill { background: #334155; border: 1px solid #475569; padding: 8px 14px; border-radius: 6px; text-decoration: none; color: #f8fafc; font-weight: 600; font-size: 12px; transition: background 0.2s; }
+        .states-box { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; max-width: 1000px; margin: 0 auto; box-sizing: border-box; }
+        .state-pill { background: #334155; border: 1px solid #475569; padding: 8px 14px; border-radius: 6px; text-decoration: none; color: #f8fafc; font-weight: 600; font-size: 12px; transition: background 0.2s; box-sizing: border-box; }
         .state-pill:hover { background: #2563eb; border-color: #2563eb; }
 
-        .cities-section { background: #ffffff; border: 1px solid #e2e8f0; padding: 25px; border-radius: 12px; margin: 30px 0; box-shadow: 0 4px 6px rgba(0,0,0,0.02); }
+        .cities-section { background: #ffffff; border: 1px solid #e2e8f0; padding: 25px; border-radius: 12px; margin: 30px 0; box-shadow: 0 4px 6px rgba(0,0,0,0.02); box-sizing: border-box; }
         .cities-section h3 { margin: 0 0 10px 0; color: #1e3a8a; font-size: 16px; }
         .cities-section p { font-size: 13px; color: #64748b; margin: 0 0 15px 0; }
-        .cities-grid { display: flex; flex-wrap: wrap; gap: 10px; }
-        .city-badge { background: #eff6ff; color: #2563eb; border: 1px solid #bfdbfe; padding: 8px 14px; border-radius: 20px; font-size: 12px; font-weight: 600; text-decoration: none; transition: all 0.2s; }
+        .cities-grid { display: flex; flex-wrap: wrap; gap: 10px; box-sizing: border-box; }
+        .city-badge { background: #eff6ff; color: #2563eb; border: 1px solid #bfdbfe; padding: 8px 14px; border-radius: 20px; font-size: 12px; font-weight: 600; text-decoration: none; transition: all 0.2s; box-sizing: border-box; }
         .city-badge:hover { background: #2563eb; color: white; }
 
-        .main-container { max-width: 1000px; margin: 0 auto; padding: 20px; }
+        .main-container { max-width: 1000px; margin: 0 auto; padding: 20px; box-sizing: border-box; }
         .section-title { font-size: 20px; font-weight: 700; margin: 30px 0 20px 0; border-left: 4px solid #2563eb; padding-left: 10px; }
         
-        .cards-wrapper { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; }
-        .card { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; width: 300px; display: flex; flex-direction: column; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.03); transition: transform 0.2s; }
+        .cards-wrapper { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; box-sizing: border-box; }
+        .card { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; width: 300px; max-width: 100%; display: flex; flex-direction: column; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.03); transition: transform 0.2s; box-sizing: border-box; }
         .card:hover { transform: translateY(-4px); border-color: #2563eb; }
         .card img { width: 100%; height: 160px; object-fit: cover; background: #e2e8f0; }
-        .card-body { padding: 18px; display: flex; flex-direction: column; flex-grow: 1; justify-content: space-between; }
+        .card-body { padding: 18px; display: flex; flex-direction: column; flex-grow: 1; justify-content: space-between; box-sizing: border-box; }
         .badge { background: #2563eb; color: white; font-size: 10px; font-weight: 700; padding: 4px 10px; border-radius: 4px; display: inline-block; margin-bottom: 10px; width: fit-content; text-transform: uppercase; }
         .card h3 { font-size: 15px; margin: 0 0 8px 0; line-height: 1.4; }
         .card h3 a { color: #0f172a; text-decoration: none; }
         .card h3 a:hover { color: #2563eb; }
         .card p { font-size: 13px; color: #64748b; margin: 0 0 15px 0; line-height: 1.4; }
-        .btn-vaga { display: block; text-align: center; background: #2563eb; color: white; padding: 11px; border-radius: 8px; text-decoration: none; font-size: 13px; font-weight: 700; transition: background 0.2s; }
+        .btn-vaga { display: block; text-align: center; background: #2563eb; color: white; padding: 11px; border-radius: 8px; text-decoration: none; font-size: 13px; font-weight: 700; transition: background 0.2s; box-sizing: border-box; }
         .btn-vaga:hover { background: #1d4ed8; }
+
+        @media (max-width: 768px) {
+            .header-top { padding: 25px 15px; }
+            .main-container { padding: 15px; }
+            .card { width: 100%; }
+        }
     </style>
 </head>
 <body>
@@ -570,27 +553,33 @@ CIDADE_TEMPLATE = """
     </script>
 
     <style>
-        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f8fafc; color: #0f172a; margin: 0; padding: 0; }
-        .header-top { background: linear-gradient(135deg, #0f172a, #1e3a8a); color: white; padding: 35px 20px; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f8fafc; color: #0f172a; margin: 0; padding: 0; box-sizing: border-box; }
+        .header-top { background: linear-gradient(135deg, #0f172a, #1e3a8a); color: white; padding: 35px 20px; box-sizing: border-box; }
         .header-top a { color: #93c5fd; text-decoration: none; font-size: 13px; font-weight: 600; display: inline-block; margin-bottom: 10px; }
         .header-top h1 { margin: 0 0 5px 0; font-size: 24px; }
         .header-top p { margin: 0; font-size: 14px; opacity: 0.9; }
         
-        .main-container { max-width: 1000px; margin: 0 auto; padding: 20px; }
+        .main-container { max-width: 1000px; margin: 0 auto; padding: 20px; box-sizing: border-box; }
         .section-title { font-size: 20px; font-weight: 700; margin: 30px 0 20px 0; border-left: 4px solid #2563eb; padding-left: 10px; }
         
-        .cards-wrapper { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; }
-        .card { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; width: 300px; display: flex; flex-direction: column; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.03); transition: transform 0.2s; }
+        .cards-wrapper { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; box-sizing: border-box; }
+        .card { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; width: 300px; max-width: 100%; display: flex; flex-direction: column; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.03); transition: transform 0.2s; box-sizing: border-box; }
         .card:hover { transform: translateY(-4px); border-color: #2563eb; }
         .card img { width: 100%; height: 160px; object-fit: cover; background: #e2e8f0; }
-        .card-body { padding: 18px; display: flex; flex-direction: column; flex-grow: 1; justify-content: space-between; }
+        .card-body { padding: 18px; display: flex; flex-direction: column; flex-grow: 1; justify-content: space-between; box-sizing: border-box; }
         .badge { background: #2563eb; color: white; font-size: 10px; font-weight: 700; padding: 4px 10px; border-radius: 4px; display: inline-block; margin-bottom: 10px; width: fit-content; text-transform: uppercase; }
         .card h3 { font-size: 15px; margin: 0 0 8px 0; line-height: 1.4; }
         .card h3 a { color: #0f172a; text-decoration: none; }
         .card h3 a:hover { color: #2563eb; }
         .card p { font-size: 13px; color: #64748b; margin: 0 0 15px 0; line-height: 1.4; }
-        .btn-vaga { display: block; text-align: center; background: #2563eb; color: white; padding: 11px; border-radius: 8px; text-decoration: none; font-size: 13px; font-weight: 700; transition: background 0.2s; }
+        .btn-vaga { display: block; text-align: center; background: #2563eb; color: white; padding: 11px; border-radius: 8px; text-decoration: none; font-size: 13px; font-weight: 700; transition: background 0.2s; box-sizing: border-box; }
         .btn-vaga:hover { background: #1d4ed8; }
+
+        @media (max-width: 768px) {
+            .header-top { padding: 25px 15px; }
+            .main-container { padding: 15px; }
+            .card { width: 100%; }
+        }
     </style>
 </head>
 <body>
@@ -641,13 +630,17 @@ PAGINA_LEGAL_TEMPLATE = """
     <link rel="canonical" href="{{ dominio }}/{{ arquivo }}">
     <title>{{ titulo }} - Oportunidade e Vagas</title>
     <style>
-        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f8fafc; color: #0f172a; margin: 0; padding: 0; line-height: 1.6; }
-        .header-top { background: linear-gradient(135deg, #0f172a, #1e3a8a); color: white; padding: 35px 20px; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f8fafc; color: #0f172a; margin: 0; padding: 0; line-height: 1.6; box-sizing: border-box; }
+        .header-top { background: linear-gradient(135deg, #0f172a, #1e3a8a); color: white; padding: 35px 20px; box-sizing: border-box; }
         .header-top a { color: #93c5fd; text-decoration: none; font-size: 13px; font-weight: 600; display: inline-block; margin-bottom: 10px; }
         .header-top h1 { margin: 0; font-size: 24px; }
-        .main-container { max-width: 800px; margin: 40px auto; background: white; padding: 40px; border-radius: 12px; border: 1px solid #e2e8f0; box-shadow: 0 4px 6px rgba(0,0,0,0.02); }
+        .main-container { max-width: 800px; margin: 40px auto; background: white; padding: 40px; border-radius: 12px; border: 1px solid #e2e8f0; box-shadow: 0 4px 6px rgba(0,0,0,0.02); box-sizing: border-box; }
         h2 { color: #1e3a8a; font-size: 20px; margin-top: 30px; }
         p, li { color: #475569; font-size: 14px; margin-bottom: 15px; }
+
+        @media (max-width: 768px) {
+            .main-container { padding: 20px; margin: 15px; }
+        }
     </style>
 </head>
 <body>
@@ -708,10 +701,7 @@ def buscar_noticias_brasil():
                 {"title": "Projetos Digitais e Trabalho Remoto em Todo o Brasil", "desc": "Plataformas conectam profissionais para trabalho à distância com remuneração garantida.", "link": "https://www.workana.com/pt"},
                 {"title": "Desenvolvimento de Software e Programação (Home Office)", "desc": "Empresas de tecnologia buscam desenvolvedores pleno e sênior para atuação remota.", "link": "https://www.linkedin.com/jobs/search/?keywords=Home%20Office"},
                 {"title": "Moderação de Conteúdo e Suporte de Redes Sociais Remoto", "desc": "Oportunidades para trabalhar à distância avaliando conteúdos e prestando suporte digital.", "link": "https://www.infojobs.com.br/vagas-de-emprego-home-office.aspx"},
-                {"title": "Redação, Tradução e Produção de Conteúdo Online", "desc": "Trabalhe escrevendo artigos e traduzindo documentos diretamente da sua casa.", "link": "https://www.workana.com/pt"},
-                {"title": "Suporte Técnico de TI e Infraestrutura a Distância", "desc": "Analistas de sistemas e suporte técnico com vagas abertas para modelo remoto.", "link": "https://www.linkedin.com/jobs/search/?keywords=Home%20Office"},
-                {"title": "Consultoria de Vendas Digitais e Marketing de Conteúdo", "desc": "Empresas contratam consultores para prospecção e atendimento digital remoto.", "link": "https://www.infojobs.com.br/vagas-de-emprego-home-office.aspx"},
-                {"title": "Designer Gráfico e Edição de Vídeo Freelancer Home Office", "desc": "Profissionais criativos encontram demandas constantes para atuação totalmente à distância.", "link": "https://www.workana.com/pt"}
+                {"title": "Redação, Tradução e Produção de Conteúdo Online", "desc": "Trabalhe escrevendo artigos e traduzindo documentos diretamente da sua casa.", "link": "https://www.workana.com/pt"}
             ]
         }
     }
@@ -813,7 +803,13 @@ def gerar_sitemap(lista_estados, lista_cidades):
         f.write("\n".join(xml))
 
 def gerar_site():
-    print("Gerando portal supreme definitivo com SEO avançado e cauda longa...")
+    print("Gerando portal completo com ads.txt e responsividade total...")
+    
+    # GERAR O ARQUIVO ADS.TXT NA RAIZ
+    with open("ads.txt", "w", encoding="utf-8") as f:
+        f.write(ADS_TXT_CONTENT)
+    print("Arquivo 'ads.txt' gerado com sucesso!")
+
     estados_brasil = [
         {"name": "São Paulo (SP)", "file": "sao-paulo.html", "cities": [
             {"name": "São Paulo", "file": "sao-paulo-sp.html"},
@@ -926,10 +922,10 @@ def gerar_site():
             ad_banner=AD_BANNER, adsense_script=ADSENSE_SCRIPT, monetag_script=MONETAG_SCRIPT,
             google_meta=GOOGLE_META, ticker_cotacoes=TICKER_COTACOES, breaking_news_ticker=BREAKING_NEWS_TICKER,
             dominio=DOMINIO_SITE, footer_robusto=FOOTER_ROBUSTO, faq_section=FAQ_SECTION,
-            calculadoras_section=CALCULADORAS_SECTION, blog_artigos_section=BLOG_ARTIGOS_SECTION,
-            cauda_longa_tags=CAUDA_LONGA_TAGS
+            calculadoras_section=CALCULADORAS_SECTION
         ))
         
+    # Páginas Legais e Contato
     with open("termos.html", "w", encoding="utf-8") as ft:
         ft.write(template_legal.render(
             titulo="Termos de Uso", arquivo="termos.html",
@@ -955,7 +951,7 @@ def gerar_site():
         ))
 
     gerar_sitemap(estados_brasil, todas_cidades_geradas)
-    print("Sucesso absoluto! Portal supreme atualizado com blog de dicas e cauda longa.")
+    print("Sucesso absoluto! Site unificado, responsivo e com ads.txt pronto.")
 
 if __name__ == "__main__":
     gerar_site()
