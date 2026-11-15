@@ -18,8 +18,10 @@ MONETAG_SCRIPT = '<script src="https://quge5.com/88/tag.min.js" data-zone="30967
 GOOGLE_META = '<meta name="google-site-verification" content="pbgwZbVwgKMwqqqGYFcHeGGbV7EM7nBdlns1c_DN_Sw" />'
 ADSENSE_SCRIPT = '<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5379027874215422" crossorigin="anonymous"></script>'
 
+# ARQUIVO ADS.TXT GERADO AUTOMATICAMENTE NA RAIZ
 ADS_TXT_CONTENT = "google.com, pub-5379027874215422, DIRECT, f08c47fec0942fa0"
 
+# Favicon profissional gerado via SVG com a letra "O" estilizada (Fundo azul corporativo)
 FAVICON_TAG = '''<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%231e3a8a'/><text x='50%' y='55%' dominant-baseline='middle' text-anchor='middle' fill='%2338bdf8' font-family='Arial, sans-serif' font-size='65' font-weight='bold'>O</text></svg>">'''
 
 AD_BANNER = """
@@ -715,22 +717,24 @@ def buscar_noticias_brasil():
         },
         "Trabalho Home Office": {
             "id": "homeoffice", "color": "#ea580c",
-            "urls": ["https://g1.globo.com/rss/g1/tecnologia/"],
-            "palavras_chave": ["home office", "remoto", "distância", "digital", "suporte", "atendimento", "tecnologia", "internet", "trabalhar de casa", "desenvolvedor", "programador"],
+            "urls": [], # Sem URLs externas barulhentas para focar exclusivamente em vagas legítimas de home office
+            "palavras_chave": ["home office", "remoto", "distância", "digital", "suporte"],
             "fallbacks": [
-                {"title": "Atendimento ao Cliente e SAC Remoto (100% Home Office)", "desc": "Empresas contratam operadores para atendimento digital trabalhando direto de casa.", "link": "https://www.infojobs.com.br/vagas-de-emprego-home-office.aspx"},
-                {"title": "Assistente Virtual e Suporte Administrativo a Distância", "desc": "Oportunidades flexíveis para atuar à distância com suporte completo e equipamentos.", "link": "https://www.linkedin.com/jobs/search/?keywords=Home%20Office"},
+                {"title": "Atendimento ao Cliente e SAC Remoto (100% Home Office)", "desc": "Grandes empresas contratam operadores para atendimento digital trabalhando direto de casa com ajuda de custo.", "link": "https://www.infojobs.com.br/vagas-de-emprego-home-office.aspx"},
+                {"title": "Assistente Virtual e Suporte Administrativo a Distância", "desc": "Oportunidades flexíveis para atuar à distância com suporte completo e equipamentos fornecidos.", "link": "https://www.linkedin.com/jobs/search/?keywords=Home%20Office"},
                 {"title": "Projetos Digitais e Trabalho Remoto em Todo o Brasil", "desc": "Plataformas conectam profissionais para trabalho à distância com remuneração garantida.", "link": "https://www.workana.com/pt"},
-                {"title": "Desenvolvimento de Software e Programação (Home Office)", "desc": "Empresas de tecnologia buscam desenvolvedores pleno e sênior para atuação remota.", "link": "https://www.linkedin.com/jobs/search/?keywords=Home%20Office"},
-                {"title": "Moderação de Conteúdo e Suporte de Redes Sociais Remoto", "desc": "Oportunidades para trabalhar à distância avaliando conteúdos e prestando suporte digital.", "link": "https://www.infojobs.com.br/vagas-de-emprego-home-office.aspx"},
-                {"title": "Redação, Tradução e Produção de Conteúdo Online", "desc": "Trabalhe escrevendo artigos e traduzindo documentos diretamente da sua casa.", "link": "https://www.workana.com/pt"}
+                {"title": "Desenvolvimento de Software e Programação (Home Office)", "desc": "Empresas de tecnologia buscam desenvolvedores pleno e sênior para atuação remota efetiva.", "link": "https://www.linkedin.com/jobs/search/?keywords=Home%20Office"},
+                {"title": "Moderação de Conteúdo e Suporte de Redes Sociais Remoto", "desc": "Oportunidades para trabalhar à distância avaliando conteúdos e prestando suporte digital a marcas.", "link": "https://www.infojobs.com.br/vagas-de-emprego-home-office.aspx"},
+                {"title": "Redação, Tradução e Produção de Conteúdo Online", "desc": "Trabalhe escrevendo artigos, fazendo traduções e gerindo redes sociais diretamente da sua casa.", "link": "https://www.workana.com/pt"},
+                {"title": "Teleatendimento e Suporte Técnico Home Office", "desc": "Vagas abertas para suporte técnico de informática e atendimento via chat e telefone remotamente.", "link": "https://www.catho.com.br"},
+                {"title": "Analista de Dados e Marketing Digital Remoto", "desc": "Empresas de marketing contratam profissionais para gerenciar campanhas e tráfego à distância.", "link": "https://br.indeed.com"},
+                {"title": "Professor Particular e Tutor Online (Ensino a Distância)", "desc": "Ministre aulas particulares e dê suporte educacional de forma totalmente remota pela internet.", "link": "https://www.infojobs.com.br"}
             ]
         }
     }
 
-    # Gerador de semente de data diária para garantir que as imagens mudem todos os dias de forma automática
     dia_ano = datetime.now().strftime("%Y%j")
-    base_seed = int(dia_ano) + random.randint(1, 100)
+    base_seed = int(dia_ano) + random.randint(1, 500)
 
     imagens_cat = {
         "Concursos Públicos": [
@@ -774,7 +778,7 @@ def buscar_noticias_brasil():
     for cat_nome, info in fontes.items():
         items_cat = []
         imgs = imagens_cat[cat_nome]
-        random.shuffle(imgs) # Embaralha as imagens diariamente
+        random.shuffle(imgs)
         
         for url in info["urls"]:
             try:
@@ -789,7 +793,6 @@ def buscar_noticias_brasil():
                         if not tit or not lnk: continue
 
                         texto_completo = (tit + " " + dsc).lower()
-                        # Validação restrita: exige que a notícia tenha a ver com trabalho/concurso
                         if not any(palavra in texto_completo for palavra in info["palavras_chave"]): continue
 
                         if "<" in dsc: dsc = re.sub('<.*?>', '', dsc)
@@ -802,7 +805,6 @@ def buscar_noticias_brasil():
                         })
             except: pass
 
-        # Preenche com fallbacks se faltarem vagas do RSS
         for fb in info["fallbacks"]:
             if len(items_cat) < 9:
                 idx = len(items_cat)
@@ -832,7 +834,7 @@ def gerar_sitemap(lista_estados, lista_cidades):
         f.write("\n".join(xml))
 
 def gerar_site():
-    print(f"Gerando portal {NOME_MARCA} com filtro restrito de vagas e imagens rotativas...")
+    print(f"Gerando portal {NOME_MARCA} limpo, com vagas focadas e imagens rotativas...")
 
     with open("ads.txt", "w", encoding="utf-8") as f:
         f.write(ADS_TXT_CONTENT)
@@ -977,7 +979,7 @@ def gerar_site():
         ))
 
     gerar_sitemap(estados_brasil, todas_cidades_geradas)
-    print("Sucesso! O site agora está filtrado estritamente para vagas e com imagens rotativas diárias.")
+    print("Sucesso absoluto! Portal atualizado sem notícias genéricas e com imagens rotativas.")
 
 if __name__ == "__main__":
     gerar_site()
