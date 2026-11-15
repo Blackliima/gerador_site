@@ -62,43 +62,51 @@ BREAKING_NEWS_TICKER = """
 </div>
 """
 
-CALCULADORA_SALARIO = """
-<div style="background: #ffffff; border: 1px solid #e2e8f0; padding: 30px; border-radius: 12px; margin-top: 50px; box-shadow: 0 4px 6px rgba(0,0,0,0.02);">
-    <h3 style="margin-top: 0; color: #1e3a8a; font-size: 18px;">🧮 Calculadora de Salário Líquido CLT (Grátis)</h3>
-    <p style="font-size: 13px; color: #64748b; margin-bottom: 20px;">Descubra quanto vai cair na sua conta após os descontos de INSS e Imposto de Renda:</p>
-    <div style="display: flex; flex-wrap: wrap; gap: 15px; align-items: center;">
-        <input type="number" id="salarioBrutoInput" placeholder="Ex: 2500" style="padding: 12px 20px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 14px; width: 220px; outline: none;">
-        <button onclick="calcularSalario()" style="background: #2563eb; color: white; border: none; padding: 12px 25px; border-radius: 8px; font-weight: 700; cursor: pointer; font-size: 14px;">Calcular Líquido</button>
+CALCULADORAS_SECTION = """
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 40px;">
+    <!-- Calculadora Salarial -->
+    <div style="background: #ffffff; border: 1px solid #e2e8f0; padding: 25px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.02);">
+        <h3 style="margin-top: 0; color: #1e3a8a; font-size: 16px;">🧮 Calculadora de Salário Líquido</h3>
+        <p style="font-size: 13px; color: #64748b; margin-bottom: 15px;">Simule descontos de INSS e IRRF:</p>
+        <input type="number" id="salarioBrutoInput" placeholder="Ex: 2500" style="padding: 10px 15px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 13px; width: 100%; box-sizing: border-box; outline: none; margin-bottom: 10px;">
+        <button onclick="calcularSalario()" style="background: #2563eb; color: white; border: none; padding: 10px; border-radius: 6px; font-weight: 700; cursor: pointer; font-size: 13px; width: 100%;">Calcular Líquido</button>
+        <div id="resultadoSalarioBox" style="margin-top: 15px; display: none; background: #eff6ff; padding: 12px; border-radius: 6px; border: 1px solid #bfdbfe; font-size: 12px; color: #1e3a8a;"></div>
     </div>
-    <div id="resultadoSalarioBox" style="margin-top: 20px; display: none; background: #eff6ff; padding: 15px; border-radius: 8px; border: 1px solid #bfdbfe; font-size: 14px; color: #1e3a8a;">
-        <!-- Preenchido via JS -->
+
+    <!-- Simulador Seguro Desemprego -->
+    <div style="background: #ffffff; border: 1px solid #e2e8f0; padding: 25px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.02);">
+        <h3 style="margin-top: 0; color: #1e3a8a; font-size: 16px;">🛡️ Simulador Seguro-Desemprego</h3>
+        <p style="font-size: 13px; color: #64748b; margin-bottom: 15px;">Informe o nº de solicitações:</p>
+        <select id="vezesSeguro" style="padding: 10px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 13px; width: 100%; box-sizing: border-box; outline: none; margin-bottom: 10px; background: white;">
+            <option value="1">1ª Solicitação (últimos 24 meses)</option>
+            <option value="2">2ª Solicitação (últimos 12 meses)</option>
+            <option value="3">3ª Solicitação ou mais</option>
+        </select>
+        <button onclick="calcularSeguro()" style="background: #059669; color: white; border: none; padding: 10px; border-radius: 6px; font-weight: 700; cursor: pointer; font-size: 13px; width: 100%;">Verificar Parcelas</button>
+        <div id="resultadoSeguroBox" style="margin-top: 15px; display: none; background: #ecfdf5; padding: 12px; border-radius: 6px; border: 1px solid #a7f3d0; font-size: 12px; color: #065f46;"></div>
     </div>
 </div>
 <script>
 function calcularSalario() {
     let bruto = parseFloat(document.getElementById('salarioBrutoInput').value);
-    if(isNaN(bruto) || bruto <= 0) { alert('Digite um valor de salário válido!'); return; }
-    
-    // Cálculo aproximado simplificado de INSS + IRRF para fins práticos
-    let inss = 0;
-    if (bruto <= 1412) { inss = bruto * 0.075; }
-    else if (bruto <= 2666.68) { inss = bruto * 0.09; }
-    else if (bruto <= 4000.03) { inss = bruto * 0.12; }
-    else { inss = bruto * 0.14; }
-    if(inss > 908.85) inss = 908.85; // teto inss
-
+    if(isNaN(bruto) || bruto <= 0) { alert('Digite um valor válido!'); return; }
+    let inss = bruto <= 1412 ? bruto * 0.075 : (bruto <= 2666.68 ? bruto * 0.09 : (bruto <= 4000.03 ? bruto * 0.12 : bruto * 0.14));
+    if(inss > 908.85) inss = 908.85;
     let baseIr = bruto - inss;
-    let irrf = 0;
-    if (baseIr > 2259.20 && baseIr <= 2826.65) { irrf = (baseIr * 0.075) - 169.44; }
-    else if (baseIr > 2826.65 && baseIr <= 3751.05) { irrf = (baseIr * 0.15) - 381.44; }
-    else if (baseIr > 3751.05 && baseIr <= 4664.68) { irrf = (baseIr * 0.225) - 662.77; }
-    else if (baseIr > 4664.68) { irrf = (baseIr * 0.275) - 896.00; }
+    let irrf = baseIr > 2259.20 ? (baseIr * 0.075 - 169.44) : 0;
     if(irrf < 0) irrf = 0;
-
     let liquido = bruto - inss - irrf;
     let box = document.getElementById('resultadoSalarioBox');
     box.style.display = 'block';
-    box.innerHTML = `<strong>Resultado da Estimativa CLT:</strong><br>• Salário Bruto: R$ ${bruto.toFixed(2)}<br>• Desconto INSS: R$ ${inss.toFixed(2)}<br>• Desconto IRRF: R$ ${irrf.toFixed(2)}<br>• <strong>Salário Líquido Estimado: R$ ${liquido.toFixed(2)}</strong>`;
+    box.innerHTML = `<strong>Líquido Estimado:</strong> R$ ${liquido.toFixed(2)}<br>(Descontos: INSS R$ ${inss.toFixed(2)} | IRRF R$ ${irrf.toFixed(2)})`;
+}
+
+function calcularSeguro() {
+    let tipo = document.getElementById('vezesSeguro').value;
+    let texto = tipo === "1" ? "Você tem direito a 4 ou 5 parcelas (conforme tempo trabalhado)." : (tipo === "2" ? "Você tem direito de 3 a 5 parcelas." : "Você tem direito de 3 a 5 parcelas.");
+    let box = document.getElementById('resultadoSeguroBox');
+    box.style.display = 'block';
+    box.innerHTML = `<strong>Resultado:</strong><br>${texto}`;
 }
 </script>
 """
@@ -114,8 +122,8 @@ FOOTER_ROBUSTO = """
             <h4 style="color: #1e3a8a; font-size: 15px; margin-top: 0;">Links Rápidos</h4>
             <ul style="list-style: none; padding: 0; margin: 0; font-size: 13px; line-height: 2;">
                 <li><a href="index.html" style="color: #2563eb; text-decoration: none;">Página Inicial</a></li>
+                <li><a href="contato.html" style="color: #2563eb; text-decoration: none;">✉️ Contato / Anuncie Vagas</a></li>
                 <li><a href="https://www.infojobs.com.br" target="_blank" rel="nofollow" style="color: #64748b; text-decoration: none;">Busca no InfoJobs</a></li>
-                <li><a href="https://www.catho.com.br" target="_blank" rel="nofollow" style="color: #64748b; text-decoration: none;">Busca na Catho</a></li>
             </ul>
         </div>
         <div>
@@ -132,7 +140,7 @@ FOOTER_ROBUSTO = """
 """
 
 FAQ_SECTION = """
-<div id="faqSection" style="background: #ffffff; border: 1px solid #e2e8f0; padding: 30px; border-radius: 12px; margin-top: 50px; box-shadow: 0 4px 6px rgba(0,0,0,0.02);">
+<div id="faqSection" style="background: #ffffff; border: 1px solid #e2e8f0; padding: 30px; border-radius: 12px; margin-top: 40px; box-shadow: 0 4px 6px rgba(0,0,0,0.02);">
     <h3 style="margin-top: 0; color: #1e3a8a; font-size: 18px;">❓ Perguntas Frequentes (FAQ do Trabalhador)</h3>
     <div style="margin-top: 20px; font-size: 13px; color: #334155; line-height: 1.6;">
         <p><strong>1. Como faço para me candidatar a uma vaga?</strong><br>Basta clicar no botão "Ver Vaga / Inscrição →" em qualquer cartão de oportunidade. Você será redirecionado para a página oficial da empresa ou plataforma recrutadora.</p>
@@ -201,7 +209,7 @@ INDEX_TEMPLATE = """
         .diretorio-btn { background: #2563eb; color: white; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 13px; transition: background 0.2s; }
         .diretorio-btn:hover { background: #1d4ed8; }
 
-        .guias-box { background: #ffffff; border: 1px solid #e2e8f0; padding: 30px; border-radius: 12px; margin-top: 50px; box-shadow: 0 4px 6px rgba(0,0,0,0.02); }
+        .guias-box { background: #ffffff; border: 1px solid #e2e8f0; padding: 30px; border-radius: 12px; margin-top: 40px; box-shadow: 0 4px 6px rgba(0,0,0,0.02); }
         .guias-box h3 { margin-top: 0; color: #1e3a8a; font-size: 18px; }
         .guias-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; margin-top: 15px; }
         .guia-item { background: #f8fafc; border: 1px solid #e2e8f0; padding: 20px; border-radius: 10px; display: flex; flex-direction: column; justify-content: space-between; text-decoration: none; transition: all 0.2s; }
@@ -277,7 +285,7 @@ INDEX_TEMPLATE = """
 
         {{ ad_banner | safe }}
 
-        {{ calculadora_salario | safe }}
+        {{ calculadoras_section | safe }}
 
         <div class="guias-box">
             <h3>📖 Guia Prático do Trabalhador e Concurseiro (Acesse Grátis)</h3>
@@ -601,7 +609,7 @@ PAGINA_LEGAL_TEMPLATE = """
         .header-top h1 { margin: 0; font-size: 24px; }
         .main-container { max-width: 800px; margin: 40px auto; background: white; padding: 40px; border-radius: 12px; border: 1px solid #e2e8f0; box-shadow: 0 4px 6px rgba(0,0,0,0.02); }
         h2 { color: #1e3a8a; font-size: 20px; margin-top: 30px; }
-        p { color: #475569; font-size: 14px; margin-bottom: 15px; }
+        p, li { color: #475569; font-size: 14px; margin-bottom: 15px; }
     </style>
 </head>
 <body>
@@ -757,6 +765,7 @@ def gerar_sitemap(lista_estados, lista_cidades):
     xml.append(f'  <url><loc>{DOMINIO_SITE}/index.html</loc><lastmod>{data_hoje}</lastmod><changefreq>daily</changefreq><priority>1.0</priority></url>')
     xml.append(f'  <url><loc>{DOMINIO_SITE}/termos.html</loc><lastmod>{data_hoje}</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>')
     xml.append(f'  <url><loc>{DOMINIO_SITE}/privacidade.html</loc><lastmod>{data_hoje}</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>')
+    xml.append(f'  <url><loc>{DOMINIO_SITE}/contato.html</loc><lastmod>{data_hoje}</lastmod><changefreq>monthly</changefreq><priority>0.4</priority></url>')
     for e in lista_estados:
         xml.append(f'  <url><loc>{DOMINIO_SITE}/{e["file"]}</loc><lastmod>{data_hoje}</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>')
     for c in lista_cidades:
@@ -766,7 +775,7 @@ def gerar_sitemap(lista_estados, lista_cidades):
         f.write("\n".join(xml))
 
 def gerar_site():
-    print("Gerando portal supreme com calculadora salarial e tags Open Graph...")
+    print("Gerando portal supreme em vapor máximo...")
     estados_brasil = [
         {"name": "São Paulo (SP)", "file": "sao-paulo.html", "cities": [
             {"name": "São Paulo", "file": "sao-paulo-sp.html"},
@@ -879,41 +888,36 @@ def gerar_site():
             ad_banner=AD_BANNER, adsense_script=ADSENSE_SCRIPT, monetag_script=MONETAG_SCRIPT,
             google_meta=GOOGLE_META, ticker_cotacoes=TICKER_COTACOES, breaking_news_ticker=BREAKING_NEWS_TICKER,
             dominio=DOMINIO_SITE, footer_robusto=FOOTER_ROBUSTO, faq_section=FAQ_SECTION,
-            calculadora_salario=CALCULADORA_SALARIO
+            calculadoras_section=CALCULADORAS_SECTION
         ))
         
-    conteudo_termos = """
-    <h2>1. Aceitação dos Termos</h2>
-    <p>Ao acessar e utilizar o portal Oportunidade e Vagas, você concorda em cumprir e cumprir estes Termos de Uso e todas as leis e regulamentos aplicáveis.</p>
-    <h2>2. Isenção de Responsabilidade</h2>
-    <p>Nosso site atua exclusivamente como um agregador e facilitador de links para vagas de emprego, concursos públicos e oportunidades. Não somos uma agência de empregos direta e não cobramos nenhuma taxa de candidatos. Os processos seletivos são de inteira responsabilidade das empresas ou órgãos contratantes.</p>
-    <h2>3. Uso Adequado</h2>
-    <p>O usuário compromete-se a utilizar a plataforma de forma ética, sem tentar fraudar sistemas ou utilizar robôs maliciosos para sobrecarregar o site.</p>
-    """
+    # Páginas Legais e Contato
     with open("termos.html", "w", encoding="utf-8") as ft:
         ft.write(template_legal.render(
-            titulo="Termos de Uso", arquivo="termos.html", conteudo=conteudo_termos,
+            titulo="Termos de Uso", arquivo="termos.html",
+            conteudo="<h2>1. Aceitação</h2><p>Ao acessar o portal, você concorda com nossos termos.</p><h2>2. Isenção</h2><p>Atuamos como agregadores de vagas e links externos.</p>",
             adsense_script=ADSENSE_SCRIPT, monetag_script=MONETAG_SCRIPT, google_meta=GOOGLE_META,
             ticker_cotacoes=TICKER_COTACOES, dominio=DOMINIO_SITE, footer_robusto=FOOTER_ROBUSTO
         ))
 
-    conteudo_privacidade = """
-    <h2>1. Privacidade dos Usuários</h2>
-    <p>A sua privacidade é de extrema importância para nós. Esta política descreve como coletamos e usamos informações quando você navega em nosso portal.</p>
-    <h2>2. Cookies e Anúncios</h2>
-    <p>Utilizamos serviços de parceiros de publicidade de terceiros (como Google AdSense e Monetag) para exibir anúncios relevantes. Esses parceiros podem utilizar cookies para exibir anúncios com base em suas visitas anteriores ao nosso site ou a outros sites na internet.</p>
-    <h2>3. Consentimento</h2>
-    <p>Ao utilizar nosso site, você concorda com a nossa Política de Privacidade.</p>
-    """
     with open("privacidade.html", "w", encoding="utf-8") as fp:
         fp.write(template_legal.render(
-            titulo="Política de Privacidade", arquivo="privacidade.html", conteudo=conteudo_privacidade,
+            titulo="Política de Privacidade", arquivo="privacidade.html",
+            conteudo="<h2>1. Privacidade</h2><p>Protegemos seus dados e utilizamos cookies de parceiros de publicidade como Google AdSense.</p>",
+            adsense_script=ADSENSE_SCRIPT, monetag_script=MONETAG_SCRIPT, google_meta=GOOGLE_META,
+            ticker_cotacoes=TICKER_COTACOES, dominio=DOMINIO_SITE, footer_robusto=FOOTER_ROBUSTO
+        ))
+
+    with open("contato.html", "w", encoding="utf-8") as fc:
+        fc.write(template_legal.render(
+            titulo="Contato e Divulgação de Vagas", arquivo="contato.html",
+            conteudo="<h2>Fale Conosco</h2><p>É uma empresa, prefeitura ou recrutador e deseja divulgar vagas em nosso portal? Entre em contato conosco através do e-mail oficial: <strong>contato@oportunidadeevagas.com.br</strong></p><p>Respondemos em até 24 horas úteis.</p>",
             adsense_script=ADSENSE_SCRIPT, monetag_script=MONETAG_SCRIPT, google_meta=GOOGLE_META,
             ticker_cotacoes=TICKER_COTACOES, dominio=DOMINIO_SITE, footer_robusto=FOOTER_ROBUSTO
         ))
 
     gerar_sitemap(estados_brasil, todas_cidades_geradas)
-    print("Sucesso absoluto! Calculadora salarial e metatags Open Graph integradas.")
+    print("Sucesso absoluto! Simulador de Seguro-Desemprego e página de Contato integrados.")
 
 if __name__ == "__main__":
     gerar_site()
