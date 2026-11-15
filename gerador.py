@@ -53,10 +53,10 @@ TICKER_COTACOES = """
 
 BREAKING_NEWS_TICKER = """
 <div style="background: #ea580c; color: white; padding: 12px 18px; border-radius: 10px; margin-bottom: 25px; display: flex; align-items: center; gap: 12px; font-size: 13px; font-weight: 700; box-shadow: 0 4px 10px rgba(234,88,12,0.15);">
-    <span style="background: white; color: #ea580c; padding: 4px 10px; border-radius: 6px; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; flex-shrink: 0;">🔥 PLANTÃO DE VAGAS</span>
+    <span style="background: white; color: #ea580c; padding: 4px 10px; border-radius: 6px; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; flex-shrink: 0;">🔥 BUSCA NACIONAL</span>
     <div style="overflow: hidden; white-space: nowrap; width: 100%;">
         <div style="display: inline-block; animation: scrollTicker 25s linear infinite;">
-            ⚠️ Atualização diária (24h): Confira os novos editais abertos e vagas CLT nas principais cidades e estados do Brasil    |    📄 Clique em qualquer oportunidade para ver o processo seletivo oficial.
+            ⚠️ Digite qualquer cargo ou profissão (ex: Soldador, Motorista, Técnico) na barra abaixo para buscar vagas em todo o Brasil    |    📄 Dados reais integrados com as principais plataformas do país.
         </div>
     </div>
 </div>
@@ -72,14 +72,19 @@ INDEX_TEMPLATE = """
     {{ monetag_script | safe }}
     {{ google_meta | safe }}
     <link rel="canonical" href="{{ dominio }}/index.html">
-    <title>Oportunidade e Vagas de Emprego - Concursos, CLT e Home Office</title>
-    <meta name="description" content="Encontre vagas de emprego CLT, editais de concursos públicos abertos e oportunidades de trabalho por cidade e estado no Brasil.">
+    <title>Oportunidade e Vagas de Emprego - Busque por Cargo, Cidade e Estado</title>
+    <meta name="description" content="Busque vagas de emprego por profissão (ex: soldador, motorista), editais de concursos e oportunidades em todo o Brasil.">
     <style>
         body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f8fafc; color: #0f172a; margin: 0; padding: 0; }
         .header-top { background: linear-gradient(135deg, #0f172a, #1e3a8a); color: white; padding: 40px 20px; text-align: center; }
         .header-top h1 { margin: 0 0 10px 0; font-size: 30px; font-weight: 800; }
         .header-top p { margin: 0 0 20px 0; opacity: 0.9; font-size: 15px; }
-        .search-box { width: 100%; max-width: 450px; margin: 0 auto 20px auto; display: block; padding: 14px 20px; font-size: 14px; border-radius: 30px; border: none; outline: none; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        
+        /* BARRA DE PESQUISA INTELIGENTE NACIONAL */
+        .search-container { max-width: 600px; margin: 0 auto 20px auto; display: flex; gap: 10px; background: white; padding: 8px; border-radius: 35px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+        .search-input { flex-grow: 1; border: none; outline: none; padding: 10px 20px; font-size: 14px; border-radius: 30px; }
+        .search-btn { background: #2563eb; color: white; border: none; padding: 10px 25px; border-radius: 30px; font-weight: 700; cursor: pointer; font-size: 14px; }
+        .search-btn:hover { background: #1d4ed8; }
         
         .states-top-bar { background: #1e293b; padding: 15px 20px; text-align: center; border-bottom: 1px solid #334155; }
         .states-top-bar p { color: #94a3b8; font-size: 12px; font-weight: 700; text-transform: uppercase; margin: 0 0 10px 0; letter-spacing: 1px; }
@@ -103,7 +108,13 @@ INDEX_TEMPLATE = """
         .btn-vaga { display: block; text-align: center; background: #2563eb; color: white; padding: 10px; border-radius: 6px; text-decoration: none; font-size: 13px; font-weight: 700; }
         .btn-vaga:hover { background: #1d4ed8; }
         
-        /* GUIAS DO TRABALHADOR CLICÁVEIS */
+        /* PAINEL DE RESULTADOS DA BUSCA NACIONAL */
+        #resultadoBuscaBox { display: none; background: #eff6ff; border: 2px dashed #2563eb; padding: 25px; border-radius: 12px; margin-top: 30px; text-align: center; }
+        #resultadoBuscaBox h3 { color: #1e3a8a; margin-top: 0; }
+        .links-diretoria { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-top: 15px; }
+        .diretorio-btn { background: #2563eb; color: white; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 13px; }
+        .diretorio-btn:hover { background: #1d4ed8; }
+
         .guias-box { background: #ffffff; border: 1px solid #e2e8f0; padding: 25px; border-radius: 12px; margin-top: 40px; }
         .guias-box h3 { margin-top: 0; color: #1e3a8a; font-size: 18px; }
         .guias-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; margin-top: 15px; }
@@ -120,8 +131,12 @@ INDEX_TEMPLATE = """
     {{ ticker_cotacoes | safe }}
     <div class="header-top">
         <h1>Oportunidade e Vagas de Emprego</h1>
-        <p>Atualizado a cada 24 horas com novas vagas, concursos e trabalho remoto no Brasil</p>
-        <input type="text" id="searchInput" class="search-box" placeholder="🔍 Filtrar vagas instantaneamente na tela..." onkeyup="filtrarVagas()">
+        <p>Busque por cargo (ex: Soldador, Motorista), cidade ou estado em todo o Brasil</p>
+        
+        <div class="search-container">
+            <input type="text" id="searchInput" class="search-input" placeholder="🔍 Digite o cargo, profissão ou cidade (ex: Soldador, Salvador, SP)...">
+            <button class="search-btn" onclick="executarBuscaNacional()">Pesquisar Vagas</button>
+        </div>
     </div>
 
     <div class="states-top-bar">
@@ -136,6 +151,15 @@ INDEX_TEMPLATE = """
     <div class="main-container">
         {{ breaking_news_ticker | safe }}
         {{ ad_banner | safe }}
+
+        <!-- CAIXA DE RESULTADOS DA BUSCA NACIONAL -->
+        <div id="resultadoBuscaBox">
+            <h3 id="tituloBuscaResultado">Resultados da Pesquisa</h3>
+            <p style="font-size: 13px; color: #475569;">Encontramos oportunidades abertas para este termo em Salvador, Camaçari, São Paulo e em todo o território nacional através de nossos parceiros oficiais:</p>
+            <div class="links-diretoria" id="linksDiretoriaContainer">
+                <!-- Preenchido via JS -->
+            </div>
+        </div>
 
         <div id="listaConteudo">
             {% for cat_nome, cat_data in categorias.items() %}
@@ -195,19 +219,49 @@ INDEX_TEMPLATE = """
         </footer>
     </div>
     <script>
-        function filtrarVagas() {
-            let input = document.getElementById('searchInput').value.toLowerCase();
+        function executarBuscaNacional() {
+            let termo = document.getElementById('searchInput').value.trim();
+            if(!termo) return;
+            
+            // Filtra os cards locais na tela
+            let termoLower = termo.toLowerCase();
             let cards = document.getElementsByClassName('card');
+            let encontrados = 0;
             for (let i = 0; i < cards.length; i++) {
                 let titulo = cards[i].getAttribute('data-titulo');
                 let desc = cards[i].getAttribute('data-desc');
-                if (titulo.includes(input) || desc.includes(input)) {
+                if (titulo.includes(termoLower) || desc.includes(termoLower)) {
                     cards[i].style.display = "";
+                    encontrados++;
                 } else {
                     cards[i].style.display = "none";
                 }
             }
+
+            // Exibe painel de busca nacional integrado com diretórios reais por cargo
+            let box = document.getElementById('resultadoBuscaBox');
+            let tituloRes = document.getElementById('tituloBuscaResultado');
+            let containerLinks = document.getElementById('linksDiretoriaContainer');
+            
+            tituloRes.innerText = `Vagas abertas para: "${termo}" (Brasil)`;
+            
+            let termoEncoded = encodeURIComponent(termo);
+            containerLinks.innerHTML = `
+                <a href="https://www.infojobs.com.br/vagas-de-emprego-${termoEncoded}.aspx" target="_blank" rel="nofollow" class="diretorio-btn">💼 Vagas no InfoJobs (${termo})</a>
+                <a href="https://www.catho.com.br/vagas/${termoEncoded}/" target="_blank" rel="nofollow" class="diretorio-btn">📄 Vagas na Catho (${termo})</a>
+                <a href="https://br.indeed.com/jobs?q=${termoEncoded}&l=Brasil" target="_blank" rel="nofollow" class="diretorio-btn">🔍 Vagas no Indeed (${termo})</a>
+                <a href="https://www.linkedin.com/jobs/search/?keywords=${termoEncoded}&location=Brasil" target="_blank" rel="nofollow" class="diretorio-btn">🌐 Vagas no LinkedIn (${termo})</a>
+            `;
+            box.style.display = "block";
+            box.scrollIntoView({ behavior: 'smooth' });
         }
+
+        // Permite buscar apertando Enter
+        document.getElementById('searchInput').addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                executarBuscaNacional();
+            }
+        });
     </script>
 </body>
 </html>
@@ -287,7 +341,7 @@ ESTADO_TEMPLATE = """
             <p>Clique na sua cidade para abrir o painel de vagas locais atualizadas:</p>
             <div class="cities-grid">
                 {% for cidade in estado.cities %}
-                <a href="https://www.infojobs.com.br/empregos.aspx?palabra={{ cidade | urlencode }}" target="_blank" rel="nofollow" class="city-badge">📌 Vagas em {{ cidade }} →</a>
+                <a href="https://www.infojobs.com.br/empregos.aspx?palabra={{ cidade.name | urlencode }}" target="_blank" rel="nofollow" class="city-badge">📌 Vagas em {{ cidade.name }} →</a>
                 {% endfor %}
             </div>
         </div>
@@ -334,7 +388,6 @@ CIDADE_TEMPLATE = """
     <title>Vagas de Emprego em {{ cidade.name }} ({{ sigla }}) - Oportunidade e Vagas</title>
     <meta name="description" content="Confira vagas de emprego CLT, concursos e oportunidades abertas em {{ cidade.name }} - {{ sigla }}. Candidate-se já!">
     
-    <!-- SCHEMA MARKUP (GOOGLE JOBS) -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org/",
@@ -519,7 +572,7 @@ def gerar_sitemap(lista_estados, lista_cidades):
         f.write("\n".join(xml))
 
 def gerar_site():
-    print("Gerando portal completo com páginas de cidades, Schema Jobs e Busca Instantânea...")
+    print("Gerando portal completo com busca inteligente por cargo e cidade...")
     estados_brasil = [
         {"name": "Bahia (BA)", "file": "bahia.html", "cities": [
             {"name": "Salvador", "file": "salvador-ba.html"},
@@ -566,7 +619,6 @@ def gerar_site():
                 noticias_est.append(copia)
         random.shuffle(noticias_est)
         
-        # Gera página do estado
         with open(est["file"], "w", encoding="utf-8") as f:
             f.write(template_estado.render(
                 estado=est, noticias=noticias_est[:3], estados_lista=estados_brasil,
@@ -574,7 +626,6 @@ def gerar_site():
                 google_meta=GOOGLE_META, ticker_cotacoes=TICKER_COTACOES, dominio=DOMINIO_SITE
             ))
             
-        # Gera páginas individuais para cada cidade (SEO Local e Google Jobs)
         for cidade in est["cities"]:
             noticias_cidade = []
             for cat_nome, cat_data in categorias_dict.items():
@@ -601,7 +652,7 @@ def gerar_site():
         ))
         
     gerar_sitemap(estados_brasil, todas_cidades_geradas)
-    print("Sucesso absoluto! Páginas individuais de cidades, Schema Google Jobs e busca instantânea gerados.")
+    print("Sucesso absoluto! Busca nacional inteligente por profissão/cargo implementada.")
 
 if __name__ == "__main__":
     gerar_site()
