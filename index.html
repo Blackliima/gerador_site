@@ -16,7 +16,6 @@
         .header-top h1 { margin: 0 0 10px 0; font-size: 30px; font-weight: 800; }
         .header-top p { margin: 0 0 20px 0; opacity: 0.9; font-size: 15px; }
         
-        /* BARRA DE PESQUISA INTELIGENTE NACIONAL */
         .search-container { max-width: 600px; margin: 0 auto 20px auto; display: flex; gap: 10px; background: white; padding: 8px; border-radius: 35px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
         .search-input { flex-grow: 1; border: none; outline: none; padding: 10px 20px; font-size: 14px; border-radius: 30px; }
         .search-btn { background: #2563eb; color: white; border: none; padding: 10px 25px; border-radius: 30px; font-weight: 700; cursor: pointer; font-size: 14px; }
@@ -44,7 +43,6 @@
         .btn-vaga { display: block; text-align: center; background: #2563eb; color: white; padding: 10px; border-radius: 6px; text-decoration: none; font-size: 13px; font-weight: 700; }
         .btn-vaga:hover { background: #1d4ed8; }
         
-        /* PAINEL DE RESULTADOS DA BUSCA NACIONAL */
         #resultadoBuscaBox { display: none; background: #eff6ff; border: 2px dashed #2563eb; padding: 25px; border-radius: 12px; margin-top: 30px; text-align: center; }
         #resultadoBuscaBox h3 { color: #1e3a8a; margin-top: 0; }
         .links-diretoria { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-top: 15px; }
@@ -95,15 +93,33 @@
         <p>📍 Selecione seu Estado para ver Vagas e Cidades em Destaque:</p>
         <div class="states-box" id="statesGrid">
             
-            <a href="bahia.html" class="state-pill">Bahia (BA)</a>
-            
             <a href="sao-paulo.html" class="state-pill">São Paulo (SP)</a>
             
             <a href="rio-de-janeiro.html" class="state-pill">Rio de Janeiro (RJ)</a>
             
             <a href="minas-gerais.html" class="state-pill">Minas Gerais (MG)</a>
             
+            <a href="bahia.html" class="state-pill">Bahia (BA)</a>
+            
             <a href="parana.html" class="state-pill">Paraná (PR)</a>
+            
+            <a href="rio-grande-do-sul.html" class="state-pill">Rio Grande do Sul (RS)</a>
+            
+            <a href="santa-catarina.html" class="state-pill">Santa Catarina (SC)</a>
+            
+            <a href="distrito-federal.html" class="state-pill">Distrito Federal (DF)</a>
+            
+            <a href="pernambuco.html" class="state-pill">Pernambuco (PE)</a>
+            
+            <a href="ceara.html" class="state-pill">Ceará (CE)</a>
+            
+            <a href="goias.html" class="state-pill">Goiás (GO)</a>
+            
+            <a href="amazonas.html" class="state-pill">Amazonas (AM)</a>
+            
+            <a href="espirito-santo.html" class="state-pill">Espírito Santo (ES)</a>
+            
+            <a href="para.html" class="state-pill">Pará (PA)</a>
             
         </div>
     </div>
@@ -135,13 +151,10 @@
 </div>
 
 
-        <!-- CAIXA DE RESULTADOS DA BUSCA NACIONAL -->
         <div id="resultadoBuscaBox">
             <h3 id="tituloBuscaResultado">Resultados da Pesquisa</h3>
             <p style="font-size: 13px; color: #475569;">Encontramos oportunidades abertas para este termo em Salvador, Camaçari, São Paulo e em todo o território nacional através de nossos parceiros oficiais:</p>
-            <div class="links-diretoria" id="linksDiretoriaContainer">
-                <!-- Preenchido via JS -->
-            </div>
+            <div class="links-diretoria" id="linksDiretoriaContainer"></div>
         </div>
 
         <div id="listaConteudo">
@@ -151,7 +164,7 @@
                 <div class="cards-wrapper">
                     
                     <div class="card" data-titulo="concursos prefeituras e câmaras municipais: editais abertos" data-desc="vagas para níveis fundamental, médio e superior com excelentes salários. veja os prazos.">
-                        <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=600&auto=format&fit=crop&q=60&v=1794702351" alt="Capa da Vaga" onerror="this.src='https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60'">
+                        <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=600&auto=format&fit=crop&q=60&v=1794702808" alt="Capa da Vaga" onerror="this.src='https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60'">
                         <div class="card-body">
                             <div>
                                 <span class="badge" style="background-color: #2563eb;">Concursos Públicos</span>
@@ -163,7 +176,7 @@
                     </div>
                     
                     <div class="card" data-titulo="concursos federais e tribunais: seleções autorizadas" data-desc="órgãos federais preparam novos editais para técnicos e analistas.">
-                        <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=600&auto=format&fit=crop&q=60&v=1794702351" alt="Capa da Vaga" onerror="this.src='https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60'">
+                        <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&auto=format&fit=crop&q=60&v=1794702809" alt="Capa da Vaga" onerror="this.src='https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60'">
                         <div class="card-body">
                             <div>
                                 <span class="badge" style="background-color: #2563eb;">Concursos Públicos</span>
@@ -174,6 +187,18 @@
                         </div>
                     </div>
                     
+                    <div class="card" data-titulo="diário oficial da união: novos editais e convocações" data-desc="acompanhe nomeações e abertura de processos seletivos públicos em todo o país.">
+                        <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=600&auto=format&fit=crop&q=60&v=1794702810" alt="Capa da Vaga" onerror="this.src='https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60'">
+                        <div class="card-body">
+                            <div>
+                                <span class="badge" style="background-color: #2563eb;">Concursos Públicos</span>
+                                <h3><a href="https://www.in.gov.br/leiturajornal" target="_blank" rel="nofollow">Diário Oficial da União: Novos Editais e Convocações</a></h3>
+                                <p>Acompanhe nomeações e abertura de processos seletivos públicos em todo o país.</p>
+                            </div>
+                            <a href="https://www.in.gov.br/leiturajornal" target="_blank" rel="nofollow" class="btn-vaga">Ver Vaga / Inscrição →</a>
+                        </div>
+                    </div>
+                    
                 </div>
             </div>
             
@@ -181,27 +206,47 @@
                 <div class="section-title">Vagas CLT & Empresas</div>
                 <div class="cards-wrapper">
                     
-                    <div class="card" data-titulo="indústria, comércio e logística: vagas abertas" data-desc="grandes empresas abrem processos seletivos efetivos clt com benefícios.">
-                        <img src="https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60&v=1794702351" alt="Capa da Vaga" onerror="this.src='https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60'">
+                    <div class="card" data-titulo="controle de tráfego aéreo dos eua ainda opera com disquetes; veja como eles funcionam" data-desc="armazenamento de disquetes, em foto de julho de 2022
+iswoar/wikimedia commons
+o apagão aéreo da última sexta-f...">
+                        <img src="https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60&v=1794702808" alt="Capa da Vaga" onerror="this.src='https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60'">
                         <div class="card-body">
                             <div>
                                 <span class="badge" style="background-color: #059669;">Vagas CLT & Empresas</span>
-                                <h3><a href="https://www.infojobs.com.br" target="_blank" rel="nofollow">Indústria, Comércio e Logística: Vagas Abertas</a></h3>
-                                <p>Grandes empresas abrem processos seletivos efetivos CLT com benefícios.</p>
+                                <h3><a href="https://g1.globo.com/tecnologia/noticia/2026/11/14/controle-de-trafego-aereo-dos-eua-ainda-opera-com-disquetes-veja-como-eles-funcionam.ghtml" target="_blank" rel="nofollow">Controle de tráfego aéreo dos EUA ainda opera com disquetes; veja como eles funcionam</a></h3>
+                                <p>Armazenamento de disquetes, em foto de julho de 2022
+Iswoar/Wikimedia Commons
+O apagão aéreo da última sexta-f...</p>
                             </div>
-                            <a href="https://www.infojobs.com.br" target="_blank" rel="nofollow" class="btn-vaga">Ver Vaga / Inscrição →</a>
+                            <a href="https://g1.globo.com/tecnologia/noticia/2026/11/14/controle-de-trafego-aereo-dos-eua-ainda-opera-com-disquetes-veja-como-eles-funcionam.ghtml" target="_blank" rel="nofollow" class="btn-vaga">Ver Vaga / Inscrição →</a>
                         </div>
                     </div>
                     
-                    <div class="card" data-titulo="contratação imediata no varejo e serviços" data-desc="oportunidades com ou sem experiência em diversas funções.">
-                        <img src="https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60&v=1794702351" alt="Capa da Vaga" onerror="this.src='https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60'">
+                    <div class="card" data-titulo="microsoft alerta sobre tentativas de golpe após falha no teams e no outlook" data-desc="logo da microsoft
+reuters
+a microsoft alertou para uma campanha de golpes por e-mail que aproveita a instabili...">
+                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&auto=format&fit=crop&q=60&v=1794702809" alt="Capa da Vaga" onerror="this.src='https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60'">
                         <div class="card-body">
                             <div>
                                 <span class="badge" style="background-color: #059669;">Vagas CLT & Empresas</span>
-                                <h3><a href="https://www.catho.com.br" target="_blank" rel="nofollow">Contratação Imediata no Varejo e Serviços</a></h3>
-                                <p>Oportunidades com ou sem experiência em diversas funções.</p>
+                                <h3><a href="https://g1.globo.com/tecnologia/noticia/2026/11/14/golpe-microsoft-alerta-outlook.ghtml" target="_blank" rel="nofollow">Microsoft alerta sobre tentativas de golpe após falha no Teams e no Outlook</a></h3>
+                                <p>Logo da Microsoft
+REUTERS
+A Microsoft alertou para uma campanha de golpes por e-mail que aproveita a instabili...</p>
                             </div>
-                            <a href="https://www.catho.com.br" target="_blank" rel="nofollow" class="btn-vaga">Ver Vaga / Inscrição →</a>
+                            <a href="https://g1.globo.com/tecnologia/noticia/2026/11/14/golpe-microsoft-alerta-outlook.ghtml" target="_blank" rel="nofollow" class="btn-vaga">Ver Vaga / Inscrição →</a>
+                        </div>
+                    </div>
+                    
+                    <div class="card" data-titulo="nas filipinas, ministro diz estar 'otimista' com negociações e que restrição à carne suína do brasil 'é medida de 60 dias'" data-desc="o ministro da agricultura e pecuária, andré de paula, afirmou neste sábado (14) que está "otimista" com as neg...">
+                        <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600&auto=format&fit=crop&q=60&v=1794702810" alt="Capa da Vaga" onerror="this.src='https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60'">
+                        <div class="card-body">
+                            <div>
+                                <span class="badge" style="background-color: #059669;">Vagas CLT & Empresas</span>
+                                <h3><a href="https://g1.globo.com/politica/noticia/2026/11/14/nas-filipinas-ministro-diz-estar-otimista-com-negociacoes-e-que-restricao-a-carne-suina-do-brasil-e-medida-de-60-dias.ghtml" target="_blank" rel="nofollow">Nas Filipinas, ministro diz estar 'otimista' com negociações e que restrição à carne suína do Brasil 'é medida de 60 dias'</a></h3>
+                                <p>O ministro da Agricultura e Pecuária, André de Paula, afirmou neste sábado (14) que está "otimista" com as neg...</p>
+                            </div>
+                            <a href="https://g1.globo.com/politica/noticia/2026/11/14/nas-filipinas-ministro-diz-estar-otimista-com-negociacoes-e-que-restricao-a-carne-suina-do-brasil-e-medida-de-60-dias.ghtml" target="_blank" rel="nofollow" class="btn-vaga">Ver Vaga / Inscrição →</a>
                         </div>
                     </div>
                     
@@ -212,27 +257,51 @@
                 <div class="section-title">Trabalho Home Office</div>
                 <div class="cards-wrapper">
                     
-                    <div class="card" data-titulo="atendimento ao cliente e sac remoto (100% home office)" data-desc="empresas contratam operadores para atendimento digital de casa.">
-                        <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=600&auto=format&fit=crop&q=60&v=1794702351" alt="Capa da Vaga" onerror="this.src='https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60'">
+                    <div class="card" data-titulo="controle de tráfego aéreo dos eua ainda opera com disquetes; veja como eles funcionam" data-desc="armazenamento de disquetes, em foto de julho de 2022
+iswoar/wikimedia commons
+o apagão aéreo da última sexta-f...">
+                        <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=600&auto=format&fit=crop&q=60&v=1794702808" alt="Capa da Vaga" onerror="this.src='https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60'">
                         <div class="card-body">
                             <div>
                                 <span class="badge" style="background-color: #ea580c;">Trabalho Home Office</span>
-                                <h3><a href="https://www.infojobs.com.br/vagas-de-emprego-home-office.aspx" target="_blank" rel="nofollow">Atendimento ao Cliente e SAC Remoto (100% Home Office)</a></h3>
-                                <p>Empresas contratam operadores para atendimento digital de casa.</p>
+                                <h3><a href="https://g1.globo.com/tecnologia/noticia/2026/11/14/controle-de-trafego-aereo-dos-eua-ainda-opera-com-disquetes-veja-como-eles-funcionam.ghtml" target="_blank" rel="nofollow">Controle de tráfego aéreo dos EUA ainda opera com disquetes; veja como eles funcionam</a></h3>
+                                <p>Armazenamento de disquetes, em foto de julho de 2022
+Iswoar/Wikimedia Commons
+O apagão aéreo da última sexta-f...</p>
                             </div>
-                            <a href="https://www.infojobs.com.br/vagas-de-emprego-home-office.aspx" target="_blank" rel="nofollow" class="btn-vaga">Ver Vaga / Inscrição →</a>
+                            <a href="https://g1.globo.com/tecnologia/noticia/2026/11/14/controle-de-trafego-aereo-dos-eua-ainda-opera-com-disquetes-veja-como-eles-funcionam.ghtml" target="_blank" rel="nofollow" class="btn-vaga">Ver Vaga / Inscrição →</a>
                         </div>
                     </div>
                     
-                    <div class="card" data-titulo="assistente virtual e suporte administrativo a distância" data-desc="oportunidades flexíveis para atuar à distância.">
-                        <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=600&auto=format&fit=crop&q=60&v=1794702351" alt="Capa da Vaga" onerror="this.src='https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60'">
+                    <div class="card" data-titulo="microsoft alerta sobre tentativas de golpe após falha no teams e no outlook" data-desc="logo da microsoft
+reuters
+a microsoft alertou para uma campanha de golpes por e-mail que aproveita a instabili...">
+                        <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=600&auto=format&fit=crop&q=60&v=1794702809" alt="Capa da Vaga" onerror="this.src='https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60'">
                         <div class="card-body">
                             <div>
                                 <span class="badge" style="background-color: #ea580c;">Trabalho Home Office</span>
-                                <h3><a href="https://www.linkedin.com/jobs/search/?keywords=Home%20Office" target="_blank" rel="nofollow">Assistente Virtual e Suporte Administrativo a Distância</a></h3>
-                                <p>Oportunidades flexíveis para atuar à distância.</p>
+                                <h3><a href="https://g1.globo.com/tecnologia/noticia/2026/11/14/golpe-microsoft-alerta-outlook.ghtml" target="_blank" rel="nofollow">Microsoft alerta sobre tentativas de golpe após falha no Teams e no Outlook</a></h3>
+                                <p>Logo da Microsoft
+REUTERS
+A Microsoft alertou para uma campanha de golpes por e-mail que aproveita a instabili...</p>
                             </div>
-                            <a href="https://www.linkedin.com/jobs/search/?keywords=Home%20Office" target="_blank" rel="nofollow" class="btn-vaga">Ver Vaga / Inscrição →</a>
+                            <a href="https://g1.globo.com/tecnologia/noticia/2026/11/14/golpe-microsoft-alerta-outlook.ghtml" target="_blank" rel="nofollow" class="btn-vaga">Ver Vaga / Inscrição →</a>
+                        </div>
+                    </div>
+                    
+                    <div class="card" data-titulo="itália multa meta em r$ 5 bilhões por acessar fotos e vídeos de usuários sem consentimento" data-desc="justiça de são paulo proíbe meta de usar conteúdo jornalístico sem autorização
+jornal nacional/ reprodução
+a a...">
+                        <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?w=600&auto=format&fit=crop&q=60&v=1794702810" alt="Capa da Vaga" onerror="this.src='https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60'">
+                        <div class="card-body">
+                            <div>
+                                <span class="badge" style="background-color: #ea580c;">Trabalho Home Office</span>
+                                <h3><a href="https://g1.globo.com/tecnologia/noticia/2026/11/14/italia-multa-meta.ghtml" target="_blank" rel="nofollow">Itália multa Meta em R$ 5 bilhões por acessar fotos e vídeos de usuários sem consentimento</a></h3>
+                                <p>Justiça de São Paulo proíbe Meta de usar conteúdo jornalístico sem autorização
+Jornal Nacional/ Reprodução
+A a...</p>
+                            </div>
+                            <a href="https://g1.globo.com/tecnologia/noticia/2026/11/14/italia-multa-meta.ghtml" target="_blank" rel="nofollow" class="btn-vaga">Ver Vaga / Inscrição →</a>
                         </div>
                     </div>
                     
@@ -293,29 +362,21 @@
         function executarBuscaNacional() {
             let termo = document.getElementById('searchInput').value.trim();
             if(!termo) return;
-            
-            // Filtra os cards locais na tela
             let termoLower = termo.toLowerCase();
             let cards = document.getElementsByClassName('card');
-            let encontrados = 0;
             for (let i = 0; i < cards.length; i++) {
                 let titulo = cards[i].getAttribute('data-titulo');
                 let desc = cards[i].getAttribute('data-desc');
                 if (titulo.includes(termoLower) || desc.includes(termoLower)) {
                     cards[i].style.display = "";
-                    encontrados++;
                 } else {
                     cards[i].style.display = "none";
                 }
             }
-
-            // Exibe painel de busca nacional integrado com diretórios reais por cargo
             let box = document.getElementById('resultadoBuscaBox');
             let tituloRes = document.getElementById('tituloBuscaResultado');
             let containerLinks = document.getElementById('linksDiretoriaContainer');
-            
             tituloRes.innerText = `Vagas abertas para: "${termo}" (Brasil)`;
-            
             let termoEncoded = encodeURIComponent(termo);
             containerLinks.innerHTML = `
                 <a href="https://www.infojobs.com.br/vagas-de-emprego-${termoEncoded}.aspx" target="_blank" rel="nofollow" class="diretorio-btn">💼 Vagas no InfoJobs (${termo})</a>
@@ -326,12 +387,8 @@
             box.style.display = "block";
             box.scrollIntoView({ behavior: 'smooth' });
         }
-
-        // Permite buscar apertando Enter
         document.getElementById('searchInput').addEventListener('keypress', function (e) {
-            if (e.key === 'Enter') {
-                executarBuscaNacional();
-            }
+            if (e.key === 'Enter') { executarBuscaNacional(); }
         });
     </script>
 </body>

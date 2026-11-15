@@ -80,7 +80,6 @@ INDEX_TEMPLATE = """
         .header-top h1 { margin: 0 0 10px 0; font-size: 30px; font-weight: 800; }
         .header-top p { margin: 0 0 20px 0; opacity: 0.9; font-size: 15px; }
         
-        /* BARRA DE PESQUISA INTELIGENTE NACIONAL */
         .search-container { max-width: 600px; margin: 0 auto 20px auto; display: flex; gap: 10px; background: white; padding: 8px; border-radius: 35px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
         .search-input { flex-grow: 1; border: none; outline: none; padding: 10px 20px; font-size: 14px; border-radius: 30px; }
         .search-btn { background: #2563eb; color: white; border: none; padding: 10px 25px; border-radius: 30px; font-weight: 700; cursor: pointer; font-size: 14px; }
@@ -108,7 +107,6 @@ INDEX_TEMPLATE = """
         .btn-vaga { display: block; text-align: center; background: #2563eb; color: white; padding: 10px; border-radius: 6px; text-decoration: none; font-size: 13px; font-weight: 700; }
         .btn-vaga:hover { background: #1d4ed8; }
         
-        /* PAINEL DE RESULTADOS DA BUSCA NACIONAL */
         #resultadoBuscaBox { display: none; background: #eff6ff; border: 2px dashed #2563eb; padding: 25px; border-radius: 12px; margin-top: 30px; text-align: center; }
         #resultadoBuscaBox h3 { color: #1e3a8a; margin-top: 0; }
         .links-diretoria { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-top: 15px; }
@@ -152,13 +150,10 @@ INDEX_TEMPLATE = """
         {{ breaking_news_ticker | safe }}
         {{ ad_banner | safe }}
 
-        <!-- CAIXA DE RESULTADOS DA BUSCA NACIONAL -->
         <div id="resultadoBuscaBox">
             <h3 id="tituloBuscaResultado">Resultados da Pesquisa</h3>
             <p style="font-size: 13px; color: #475569;">Encontramos oportunidades abertas para este termo em Salvador, Camaçari, São Paulo e em todo o território nacional através de nossos parceiros oficiais:</p>
-            <div class="links-diretoria" id="linksDiretoriaContainer">
-                <!-- Preenchido via JS -->
-            </div>
+            <div class="links-diretoria" id="linksDiretoriaContainer"></div>
         </div>
 
         <div id="listaConteudo">
@@ -222,29 +217,21 @@ INDEX_TEMPLATE = """
         function executarBuscaNacional() {
             let termo = document.getElementById('searchInput').value.trim();
             if(!termo) return;
-            
-            // Filtra os cards locais na tela
             let termoLower = termo.toLowerCase();
             let cards = document.getElementsByClassName('card');
-            let encontrados = 0;
             for (let i = 0; i < cards.length; i++) {
                 let titulo = cards[i].getAttribute('data-titulo');
                 let desc = cards[i].getAttribute('data-desc');
                 if (titulo.includes(termoLower) || desc.includes(termoLower)) {
                     cards[i].style.display = "";
-                    encontrados++;
                 } else {
                     cards[i].style.display = "none";
                 }
             }
-
-            // Exibe painel de busca nacional integrado com diretórios reais por cargo
             let box = document.getElementById('resultadoBuscaBox');
             let tituloRes = document.getElementById('tituloBuscaResultado');
             let containerLinks = document.getElementById('linksDiretoriaContainer');
-            
             tituloRes.innerText = `Vagas abertas para: "${termo}" (Brasil)`;
-            
             let termoEncoded = encodeURIComponent(termo);
             containerLinks.innerHTML = `
                 <a href="https://www.infojobs.com.br/vagas-de-emprego-${termoEncoded}.aspx" target="_blank" rel="nofollow" class="diretorio-btn">💼 Vagas no InfoJobs (${termo})</a>
@@ -255,12 +242,8 @@ INDEX_TEMPLATE = """
             box.style.display = "block";
             box.scrollIntoView({ behavior: 'smooth' });
         }
-
-        // Permite buscar apertando Enter
         document.getElementById('searchInput').addEventListener('keypress', function (e) {
-            if (e.key === 'Enter') {
-                executarBuscaNacional();
-            }
+            if (e.key === 'Enter') { executarBuscaNacional(); }
         });
     </script>
 </body>
@@ -495,7 +478,8 @@ def buscar_noticias_brasil():
             "urls": ["https://g1.globo.com/rss/g1/educacao/concursos-e-emprego/"],
             "fallbacks": [
                 {"title": "Concursos Prefeituras e Câmaras Municipais: Editais Abertos", "desc": "Vagas para níveis fundamental, médio e superior com excelentes salários. Veja os prazos.", "link": "https://www.qconcursos.com/concursos-abertos"},
-                {"title": "Concursos Federais e Tribunais: Seleções Autorizadas", "desc": "Órgãos federais preparam novos editais para técnicos e analistas.", "link": "https://www.estrategiaconcursos.com.br/blog/concursos-abertos/"}
+                {"title": "Concursos Federais e Tribunais: Seleções Autorizadas", "desc": "Órgãos federais preparam novos editais para técnicos e analistas.", "link": "https://www.estrategiaconcursos.com.br/blog/concursos-abertos/"},
+                {"title": "Diário Oficial da União: Novos Editais e Convocações", "desc": "Acompanhe nomeações e abertura de processos seletivos públicos em todo o país.", "link": "https://www.in.gov.br/leiturajornal"}
             ]
         },
         "Vagas CLT & Empresas": {
@@ -503,7 +487,8 @@ def buscar_noticias_brasil():
             "urls": ["https://g1.globo.com/rss/g1/economia/"],
             "fallbacks": [
                 {"title": "Indústria, Comércio e Logística: Vagas Abertas", "desc": "Grandes empresas abrem processos seletivos efetivos CLT com benefícios.", "link": "https://www.infojobs.com.br"},
-                {"title": "Contratação Imediata no Varejo e Serviços", "desc": "Oportunidades com ou sem experiência em diversas funções.", "link": "https://www.catho.com.br"}
+                {"title": "Contratação Imediata no Varejo e Serviços", "desc": "Oportunidades com ou sem experiência em diversas funções comerciais.", "link": "https://www.catho.com.br"},
+                {"title": "Polo Industrial e Fábricas: Novas Oportunidades Efetivas", "desc": "Vagas operacionais e técnicas abertas para início imediato.", "link": "https://br.indeed.com"}
             ]
         },
         "Trabalho Home Office": {
@@ -511,16 +496,30 @@ def buscar_noticias_brasil():
             "urls": ["https://g1.globo.com/rss/g1/tecnologia/"],
             "fallbacks": [
                 {"title": "Atendimento ao Cliente e SAC Remoto (100% Home Office)", "desc": "Empresas contratam operadores para atendimento digital de casa.", "link": "https://www.infojobs.com.br/vagas-de-emprego-home-office.aspx"},
-                {"title": "Assistente Virtual e Suporte Administrativo a Distância", "desc": "Oportunidades flexíveis para atuar à distância.", "link": "https://www.linkedin.com/jobs/search/?keywords=Home%20Office"}
+                {"title": "Assistente Virtual e Suporte Administrativo a Distância", "desc": "Oportunidades flexíveis para atuar à distância com suporte completo.", "link": "https://www.linkedin.com/jobs/search/?keywords=Home%20Office"},
+                {"title": "Projetos Digitais e Freelancer Remoto em Todo o Brasil", "desc": "Plataformas conectam profissionais para trabalho à distância.", "link": "https://www.workana.com/pt"}
             ]
         }
     }
     
     tstamp = int(datetime.now().timestamp())
+    # Banco de imagens variadas e exclusivas para cada card (3 imagens totalmente diferentes por categoria)
     imagens_cat = {
-        "Concursos Públicos": [f"https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=600&auto=format&fit=crop&q=60&v={tstamp}"],
-        "Vagas CLT & Empresas": [f"https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60&v={tstamp}"],
-        "Trabalho Home Office": [f"https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=600&auto=format&fit=crop&q=60&v={tstamp}"]
+        "Concursos Públicos": [
+            f"https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=600&auto=format&fit=crop&q=60&v={tstamp}",
+            f"https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&auto=format&fit=crop&q=60&v={tstamp+1}",
+            f"https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=600&auto=format&fit=crop&q=60&v={tstamp+2}"
+        ],
+        "Vagas CLT & Empresas": [
+            f"https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=600&auto=format&fit=crop&q=60&v={tstamp}",
+            f"https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&auto=format&fit=crop&q=60&v={tstamp+1}",
+            f"https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600&auto=format&fit=crop&q=60&v={tstamp+2}"
+        ],
+        "Trabalho Home Office": [
+            f"https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=600&auto=format&fit=crop&q=60&v={tstamp}",
+            f"https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=600&auto=format&fit=crop&q=60&v={tstamp+1}",
+            f"https://images.unsplash.com/photo-1531482615713-2afd69097998?w=600&auto=format&fit=crop&q=60&v={tstamp+2}"
+        ]
     }
 
     categorias_processadas = {}
@@ -528,12 +527,13 @@ def buscar_noticias_brasil():
     
     for cat_nome, info in fontes.items():
         items_cat = []
+        imgs = imagens_cat[cat_nome]
         for url in info["urls"]:
             try:
                 resp = requests.get(url, headers=headers_req, verify=False, timeout=5)
                 if resp.status_code == 200:
                     root = ET.fromstring(resp.content)
-                    for item in root.findall('.//item')[:3]:
+                    for idx, item in enumerate(root.findall('.//item')[:3]):
                         tit = item.find('title').text if item.find('title') is not None else ""
                         lnk = item.find('link').text if item.find('link') is not None else ""
                         dsc = item.find('description').text if item.find('description') is not None else ""
@@ -542,17 +542,18 @@ def buscar_noticias_brasil():
                         items_cat.append({
                             "category": cat_nome, "color": info["color"],
                             "title": tit.strip(), "link": lnk.strip(),
-                            "image": imagens_cat[cat_nome][0],
+                            "image": imgs[len(items_cat) % len(imgs)],
                             "description": dsc.strip()[:110] + "..." if len(dsc.strip()) > 110 else dsc.strip()
                         })
             except: pass
             
         for fb in info["fallbacks"]:
             if len(items_cat) < 3:
+                idx = len(items_cat)
                 items_cat.append({
                     "category": cat_nome, "color": info["color"],
                     "title": fb["title"], "link": fb["link"],
-                    "image": imagens_cat[cat_nome][0],
+                    "image": imgs[idx % len(imgs)],
                     "description": fb["desc"]
                 })
         categorias_processadas[cat_nome] = {"id": info["id"], "color": info["color"], "lista": items_cat[:3]}
@@ -572,14 +573,9 @@ def gerar_sitemap(lista_estados, lista_cidades):
         f.write("\n".join(xml))
 
 def gerar_site():
-    print("Gerando portal completo com busca inteligente por cargo e cidade...")
+    print("Gerando portal completo com todos os principais estados e 3 exemplares únicos por categoria...")
+    # Lista completa com os principais estados que mais empregam no Brasil
     estados_brasil = [
-        {"name": "Bahia (BA)", "file": "bahia.html", "cities": [
-            {"name": "Salvador", "file": "salvador-ba.html"},
-            {"name": "Camaçari", "file": "camacari-ba.html"},
-            {"name": "Feira de Santana", "file": "feira-de-santana-ba.html"},
-            {"name": "Vitória da Conquista", "file": "vitoria-da-conquista-ba.html"}
-        ]},
         {"name": "São Paulo (SP)", "file": "sao-paulo.html", "cities": [
             {"name": "São Paulo", "file": "sao-paulo-sp.html"},
             {"name": "Campinas", "file": "campinas-sp.html"},
@@ -596,9 +592,48 @@ def gerar_site():
             {"name": "Uberlândia", "file": "uberlandia-mg.html"},
             {"name": "Contagem", "file": "contagem-mg.html"}
         ]},
+        {"name": "Bahia (BA)", "file": "bahia.html", "cities": [
+            {"name": "Salvador", "file": "salvador-ba.html"},
+            {"name": "Camaçari", "file": "camacari-ba.html"},
+            {"name": "Feira de Santana", "file": "feira-de-santana-ba.html"},
+            {"name": "Vitória da Conquista", "file": "vitoria-da-conquista-ba.html"}
+        ]},
         {"name": "Paraná (PR)", "file": "parana.html", "cities": [
             {"name": "Curitiba", "file": "curitiba-pr.html"},
             {"name": "Londrina", "file": "londrina-pr.html"}
+        ]},
+        {"name": "Rio Grande do Sul (RS)", "file": "rio-grande-do-sul.html", "cities": [
+            {"name": "Porto Alegre", "file": "porto-alegre-rs.html"},
+            {"name": "Caxias do Sul", "file": "caxias-do-sul-rs.html"}
+        ]},
+        {"name": "Santa Catarina (SC)", "file": "santa-catarina.html", "cities": [
+            {"name": "Florianópolis", "file": "florianopolis-sc.html"},
+            {"name": "Joinville", "file": "joinville-sc.html"}
+        ]},
+        {"name": "Distrito Federal (DF)", "file": "distrito-federal.html", "cities": [
+            {"name": "Brasília", "file": "brasilia-df.html"}
+        ]},
+        {"name": "Pernambuco (PE)", "file": "pernambuco.html", "cities": [
+            {"name": "Recife", "file": "recife-pe.html"},
+            {"name": "Caruaru", "file": "caruaru-pe.html"}
+        ]},
+        {"name": "Ceará (CE)", "file": "ceara.html", "cities": [
+            {"name": "Fortaleza", "file": "fortaleza-ce.html"},
+            {"name": "Sobral", "file": "sobral-ce.html"}
+        ]},
+        {"name": "Goiás (GO)", "file": "goias.html", "cities": [
+            {"name": "Goiânia", "file": "goiania-go.html"},
+            {"name": "Aparecida de Goiânia", "file": "aparecida-de-goiania-go.html"}
+        ]},
+        {"name": "Amazonas (AM)", "file": "amazonas.html", "cities": [
+            {"name": "Manaus", "file": "manaus-am.html"}
+        ]},
+        {"name": "Espírito Santo (ES)", "file": "espirito-santo.html", "cities": [
+            {"name": "Vitória", "file": "vitoria-es.html"},
+            {"name": "Vila Velha", "file": "vila-velha-es.html"}
+        ]},
+        {"name": "Pará (PA)", "file": "para.html", "cities": [
+            {"name": "Belém", "file": "belem-pa.html"}
         ]}
     ]
     
@@ -652,7 +687,7 @@ def gerar_site():
         ))
         
     gerar_sitemap(estados_brasil, todas_cidades_geradas)
-    print("Sucesso absoluto! Busca nacional inteligente por profissão/cargo implementada.")
+    print("Sucesso absoluto! Todos os principais estados e imagens exclusivas configurados.")
 
 if __name__ == "__main__":
     gerar_site()
