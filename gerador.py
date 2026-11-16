@@ -12,7 +12,7 @@ import re
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
-DOMINIO_SITE = "https://oportunidades-vagas.pages.dev"
+DOMINIO_SITE = "https://gerador-site.pages.dev"
 NOME_MARCA = "Oportunidade e Vagas de Emprego"
 MONETAG_SCRIPT = '<script src="https://quge5.com/88/tag.min.js" data-zone="309679" async data-cfasync="false"></script>'
 GOOGLE_META = '<meta name="google-site-verification" content="pbgwZbVwgKMwqqqGYFcHeGGbV7EM7nBdlns1c_DN_Sw" />'
@@ -983,4 +983,5 @@ def gerar_site():
 
 if __name__ == "__main__":
     gerar_site()
+
 
