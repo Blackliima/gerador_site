@@ -18,7 +18,7 @@ NOME_MARCA = "Oportunidade e Vagas de Emprego"
 GOOGLE_META = '<meta name="google-site-verification" content="pbgwZbVwgKMwqqqGYFcHeGGbV7EM7nBdlns1c_DN_Sw" />'
 ADSENSE_SCRIPT = '<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5379027874215422" crossorigin="anonymous"></script>'
 
-# Deixe vazio ou ativado apenas apos validar a conformidade com as politicas do AdSense:
+# Mantenha scripts de outras redes de anuncios desativados durante a revisao do AdSense:
 MONETAG_SCRIPT = '<!-- <script src="https://quge5.com/88/tag.min.js" data-zone="309679" async data-cfasync="false"></script> -->'
 
 ADS_TXT_CONTENT = "google.com, pub-5379027874215422, DIRECT, f08c47fec0942fa0"
@@ -32,33 +32,18 @@ FAVICON_TAG = (
     '</svg>">'
 )
 
-# Banner opcional (mantido comentado por padrao para evitar conflito de scripts durante avaliacao)
 AD_BANNER = """
-<!-- Bloco de anuncio opcional:
-<div style="text-align:center; margin: 30px auto; padding: 20px; background: #ffffff; border-radius: 12px; border: 1px solid #e2e8f0; max-width: 100%; box-sizing: border-box;">
-    <p style="font-size: 10px; color: #64748b; text-transform: uppercase; margin-bottom: 10px; letter-spacing: 1px; font-weight: 700;">Publicidade</p>
-    <script type="text/javascript">
-        atOptions = {
-            'key' : '7d8438dbf1b7a796906a9575be2722b3',
-            'format' : 'iframe',
-            'height' : 250,
-            'width' : 300,
-            'params' : {}
-        };
-    </script>
-    <script type="text/javascript" src="https://bauval.org/22/7d8438dbf1b7a796906a9575be2722b3"></script>
-</div>
--->
+<!-- Bloco de anuncio opcional desativado durante revisao do AdSense -->
 """
 
 TICKER_COTACOES = """
 <div style="background: #0f172a; color: #f8fafc; border-bottom: 1px solid #1e293b; padding: 10px 0; font-size: 12px; font-weight: 600; overflow: hidden; white-space: nowrap;">
     <div style="display: flex; animation: scrollTicker 35s linear infinite; gap: 40px; width: max-content; padding-left: 20px;">
         <span>📋 <strong>Guia do Candidato:</strong> Currículo objetivo e preparo para entrevistas</span>
-        <span>🏛️ <strong>Concursos Públicos:</strong> Editais municipais, estaduais e federais</span>
+        <span>🏛️ <strong>Concursos Públicos:</strong> Leitura de editais, prazos e provas</span>
         <span>💼 <strong>Mercado CLT:</strong> Indústria, comércio, logística e serviços</span>
-        <span style="color: #4ade80;">💻 <strong>Trabalho Remoto:</strong> Dicas para vagas digitais e home office</span>
-        <span style="color: #60a5fa;">✅ <strong>Portal Informativo:</strong> Curadoria de oportunidades e orientação profissional</span>
+        <span style="color: #4ade80;">💻 <strong>Trabalho Remoto:</strong> Boas práticas para rotinas digitais</span>
+        <span style="color: #60a5fa;">✅ <strong>Portal Informativo:</strong> Orientação profissional e curadoria de fontes</span>
     </div>
 </div>
 <style>
@@ -86,10 +71,10 @@ NAV_BAR = """
 
 BREAKING_NEWS_TICKER = """
 <div style="background: #ea580c; color: white; padding: 12px 18px; border-radius: 10px; margin-bottom: 25px; display: flex; align-items: center; gap: 12px; font-size: 13px; font-weight: 700; box-shadow: 0 4px 10px rgba(234,88,12,0.15); box-sizing: border-box; flex-wrap: wrap;">
-    <span style="background: white; color: #ea580c; padding: 4px 10px; border-radius: 6px; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; flex-shrink: 0;">🔥 ATUALIZAÇÃO</span>
+    <span style="background: white; color: #ea580c; padding: 4px 10px; border-radius: 6px; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; flex-shrink: 0;">🔥 ORIENTAÇÃO</span>
     <div style="overflow: hidden; white-space: nowrap; flex: 1; min-width: 200px;">
         <div style="display: inline-block; animation: scrollTicker 25s linear infinite;">
-            📌 Curadoria diária de oportunidades, concursos e dicas práticas para recolocação profissional    |    ⚠️ Nunca pague taxas indevidas para participar de processos seletivos.
+            📌 Guias práticos para candidaturas, leitura de editais e organização de estudos    |    ⚠️ Nunca pague taxas indevidas para participar de seleções ou enviar currículo.
         </div>
     </div>
 </div>
@@ -99,20 +84,39 @@ GUIA_EDITORIAL_SECTION = """
 <div style="background: #ffffff; border: 1px solid #e2e8f0; padding: 30px; border-radius: 12px; margin-top: 40px; box-shadow: 0 4px 6px rgba(0,0,0,0.02); box-sizing: border-box;">
     <h3 style="margin-top: 0; color: #1e3a8a; font-size: 18px;">📌 Boas Práticas para Candidaturas e Concursos</h3>
     <p style="font-size: 13px; color: #475569; line-height: 1.6; margin-bottom: 20px;">
-        Antes de enviar seu currículo ou se inscrever em um processo seletivo, siga estas orientações práticas para evitar golpes, melhorar sua apresentação profissional e acompanhar prazos com segurança:
+        Organizar a busca por emprego ou a preparação para concursos exige atenção a detalhes práticos que fazem diferença na triagem de currículos e no cumprimento de prazos oficiais:
     </p>
     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; font-size: 13px; color: #334155; line-height: 1.6;">
         <div style="background: #f8fafc; padding: 18px; border-radius: 10px; border: 1px solid #e2e8f0;">
             <h4 style="margin: 0 0 8px 0; color: #1e3a8a; font-size: 15px;">1. Currículo direto ao ponto</h4>
-            <p style="margin: 0;">Destaque cargo pretendido, resumo profissional de 3 linhas, experiências mais recentes com resultados e cursos técnicos ou certificações relevantes. Evite dados sensíveis desnecessários no topo do documento.</p>
+            <p style="margin: 0;">Destaque o objetivo profissional, um breve resumo das suas competências, experiências recentes com atividades claras e cursos concluídos. Mantenha a formatação limpa, legível e atualizada em PDF.</p>
         </div>
         <div style="background: #f8fafc; padding: 18px; border-radius: 10px; border: 1px solid #e2e8f0;">
             <h4 style="margin: 0 0 8px 0; color: #1e3a8a; font-size: 15px;">2. Leitura atenta do edital ou vaga</h4>
-            <p style="margin: 0;">Confira requisitos de escolaridade, escala de trabalho (6x1, 5x2, turno ou remoto), localidade exata e datas de inscrição. Em concursos públicos, salve o edital oficial e o cronograma da banca organizadora.</p>
+            <p style="margin: 0;">Confira escolaridade exigida, regime de contratação, escala de trabalho, localização e prazos de inscrição. Em concursos públicos, acompanhe retificações e cronogramas diretamente no site da banca.</p>
         </div>
         <div style="background: #f8fafc; padding: 18px; border-radius: 10px; border: 1px solid #e2e8f0;">
             <h4 style="margin: 0 0 8px 0; color: #1e3a8a; font-size: 15px;">3. Segurança digital na seleção</h4>
-            <p style="margin: 0;">Desconfie de promessas de contratação imediata sem entrevista, pedidos de depósito para "exame", "farda" ou "material" e links encurtados suspeitos. Priorize sempre os canais oficiais da empresa ou órgão.</p>
+            <p style="margin: 0;">Desconfie de cobranças antecipadas para exames, uniformes, materiais ou inscrição fora de canais oficiais. Verifique sempre a autenticidade da empresa ou órgão antes de compartilhar documentos.</p>
+        </div>
+    </div>
+</div>
+"""
+
+GUIA_ENTREVISTA_SECTION = """
+<div style="background: #ffffff; border: 1px solid #e2e8f0; padding: 30px; border-radius: 12px; margin-top: 30px; box-shadow: 0 4px 6px rgba(0,0,0,0.02); box-sizing: border-box;">
+    <h3 style="margin-top: 0; color: #1e3a8a; font-size: 18px;">🎯 Preparação para Entrevistas e Rotina de Estudos</h3>
+    <p style="font-size: 13px; color: #475569; line-height: 1.6; margin-bottom: 18px;">
+        Tanto em processos seletivos de empresas quanto na preparação para concursos públicos, consistência e clareza na comunicação ajudam a evitar erros comuns:
+    </p>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; font-size: 13px; color: #334155; line-height: 1.6;">
+        <div style="background: #f8fafc; padding: 18px; border-radius: 10px; border: 1px solid #e2e8f0;">
+            <h4 style="margin: 0 0 8px 0; color: #1e3a8a; font-size: 15px;">Na entrevista de emprego</h4>
+            <p style="margin: 0;">Prepare exemplos reais de situações em que resolveu problemas, cumpriu metas ou trabalhou em equipe. Seja objetivo ao falar sobre sua última experiência e revise os requisitos da vaga antes da conversa.</p>
+        </div>
+        <div style="background: #f8fafc; padding: 18px; border-radius: 10px; border: 1px solid #e2e8f0;">
+            <h4 style="margin: 0 0 8px 0; color: #1e3a8a; font-size: 15px;">Na rotina de concursos e cursos</h4>
+            <p style="margin: 0;">Divida o tempo de estudo entre leitura do conteúdo base, revisão periódica e resolução de questões. Pequenos blocos diários bem executados costumam ser mais sustentáveis do que maratonas irregulares.</p>
         </div>
     </div>
 </div>
@@ -122,7 +126,7 @@ CALCULADORAS_SECTION = """
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 40px;">
     <div style="background: #ffffff; border: 1px solid #e2e8f0; padding: 25px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.02); box-sizing: border-box;">
         <h3 style="margin-top: 0; color: #1e3a8a; font-size: 16px;">🧮 Simulador Educativo de Salário Líquido</h3>
-        <p style="font-size: 13px; color: #64748b; margin-bottom: 15px;">Estimativa simplificada para fins de planejamento (consulte o holerite/contador oficial):</p>
+        <p style="font-size: 13px; color: #64748b; margin-bottom: 15px;">Estimativa simplificada apenas para fins educativos (não substitui cálculo oficial ou holerite):</p>
         <input type="number" id="salarioBrutoInput" placeholder="Ex: 2500" style="padding: 12px 15px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 14px; width: 100%; box-sizing: border-box; outline: none; margin-bottom: 12px; background: #f8fafc; color: #0f172a; font-weight: 600;">
         <button type="button" onclick="calcularSalario()" style="background: #2563eb; color: white; border: none; padding: 12px; border-radius: 8px; font-weight: 700; cursor: pointer; font-size: 13px; width: 100%; box-sizing: border-box;">Simular Líquido</button>
         <div id="resultadoSalarioBox" style="margin-top: 15px; display: none; background: #eff6ff; padding: 12px; border-radius: 6px; border: 1px solid #bfdbfe; font-size: 12px; color: #1e3a8a; box-sizing: border-box;"></div>
@@ -130,7 +134,7 @@ CALCULADORAS_SECTION = """
 
     <div style="background: #ffffff; border: 1px solid #e2e8f0; padding: 25px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.02); box-sizing: border-box;">
         <h3 style="margin-top: 0; color: #1e3a8a; font-size: 16px;">🛡️ Orientação sobre Seguro-Desemprego</h3>
-        <p style="font-size: 13px; color: #64748b; margin-bottom: 15px;">Selecione o histórico de solicitações:</p>
+        <p style="font-size: 13px; color: #64748b; margin-bottom: 15px;">Selecione o histórico de solicitações para ver orientações gerais:</p>
         <select id="vezesSeguro" style="padding: 12px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 14px; width: 100%; box-sizing: border-box; outline: none; margin-bottom: 12px; background: white; color: #0f172a; font-weight: 600;">
             <option value="1">1ª Solicitação</option>
             <option value="2">2ª Solicitação</option>
@@ -155,14 +159,14 @@ function calcularSalario() {
     let liquido = bruto - inss - irrf;
     let box = document.getElementById('resultadoSalarioBox');
     box.style.display = 'block';
-    box.innerHTML = `<strong>Estimativa Líquida:</strong> R$ ${liquido.toFixed(2)}<br>(Simulação de descontos: INSS ~R$ ${inss.toFixed(2)} | IRRF ~R$ ${irrf.toFixed(2)})`;
+    box.innerHTML = `<strong>Estimativa Líquida:</strong> R$ ${liquido.toFixed(2)}<br>(Simulação simplificada: INSS ~R$ ${inss.toFixed(2)} | IRRF ~R$ ${irrf.toFixed(2)})`;
 }
 
 function calcularSeguro() {
     let tipo = document.getElementById('vezesSeguro').value;
     let texto = tipo === "1"
-        ? "Na 1ª solicitação, a quantidade de parcelas (geralmente de 3 a 5) depende do tempo de serviço registrado nos últimos 36 meses conforme as regras vigentes."
-        : "Nas solicitações seguintes, o número de parcelas varia conforme o tempo trabalhado nos períodos de referência exigidos pela legislação trabalhista.";
+        ? "Na 1ª solicitação, o número de parcelas depende do tempo de trabalho exigido e comprovado nos períodos de referência previstos em lei."
+        : "Nas solicitações seguintes, a quantidade de parcelas varia conforme o tempo de serviço acumulado dentro das regras trabalhistas vigentes.";
     let box = document.getElementById('resultadoSeguroBox');
     box.style.display = 'block';
     box.innerHTML = `<strong>Orientação:</strong><br>${texto}`;
@@ -175,7 +179,7 @@ FOOTER_ROBUSTO = f"""
     <div style="max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 30px; text-align: left; margin-bottom: 30px; border-bottom: 1px solid #e2e8f0; padding-bottom: 30px;">
         <div>
             <h4 style="color: #1e3a8a; font-size: 15px; margin-top: 0;">Oportunidade e Vagas</h4>
-            <p style="font-size: 13px; color: #64748b; line-height: 1.5;">Portal informativo com curadoria de oportunidades de emprego, editais de concursos públicos, trabalho remoto e orientações para candidatos.</p>
+            <p style="font-size: 13px; color: #64748b; line-height: 1.5;">Portal informativo com guias práticos, orientações sobre concursos públicos, carreira e atalhos para plataformas externas.</p>
         </div>
         <div>
             <h4 style="color: #1e3a8a; font-size: 15px; margin-top: 0;">Links Rápidos</h4>
@@ -204,9 +208,9 @@ FAQ_SECTION = """
 <div id="faqSection" style="background: #ffffff; border: 1px solid #e2e8f0; padding: 30px; border-radius: 12px; margin-top: 40px; box-shadow: 0 4px 6px rgba(0,0,0,0.02); box-sizing: border-box;">
     <h3 style="margin-top: 0; color: #1e3a8a; font-size: 18px;">❓ Perguntas Frequentes (FAQ do Candidato)</h3>
     <div style="margin-top: 20px; font-size: 13px; color: #334155; line-height: 1.6;">
-        <p><strong>1. Como faço para me candidatar a uma vaga?</strong><br>Clique no botão "Ver Detalhes / Acesso →" no cartão desejado para abrir a fonte ou plataforma recrutadora correspondente e conferir os requisitos oficiais.</p>
-        <p><strong>2. O site cobra alguma taxa para enviar currículo?</strong><br>Não. O acesso ao portal é gratuito e não cobramos taxas para leitura de guias ou encaminhamento a páginas externas.</p>
-        <p><strong>3. Posso filtrar por categoria ou buscar por palavra-chave?</strong><br>Sim! Use os botões de categoria no topo ou a caixa de pesquisa para filtrar os itens exibidos e abrir atalhos de busca em plataformas externas.</p>
+        <p><strong>1. Como faço para consultar oportunidades ou editais?</strong><br>Clique no botão "Acessar Fonte →" no cartão escolhido para abrir o portal ou fonte externa correspondente e verificar requisitos, prazos e regras oficiais.</p>
+        <p><strong>2. O site cobra alguma taxa?</strong><br>Não. A leitura dos guias, orientações e simuladores educativos do portal é gratuita e não cobramos taxas de inscrição ou intermediação.</p>
+        <p><strong>3. Posso filtrar o conteúdo da página inicial?</strong><br>Sim! Utilize os botões de categoria no topo ou digite um termo na barra de pesquisa para filtrar os cartões exibidos e abrir atalhos em sites externos.</p>
     </div>
 </div>
 """
@@ -223,11 +227,11 @@ INDEX_TEMPLATE = """
     {{ google_meta | safe }}
     <link rel="canonical" href="{{ dominio }}/index.html">
     <meta property="og:title" content="Oportunidade e Vagas de Emprego - Concursos, CLT e Home Office">
-    <meta property="og:description" content="Curadoria de oportunidades de emprego, editais de concursos públicos e orientações para trabalho remoto.">
+    <meta property="og:description" content="Guias práticos, orientações sobre concursos públicos, trabalho remoto e atalhos para plataformas de carreira.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ dominio }}/index.html">
     <title>Oportunidade e Vagas de Emprego - Concursos, CLT e Home Office</title>
-    <meta name="description" content="Acompanhe oportunidades de emprego, editais de concursos públicos, trabalho remoto e guias práticos para candidatos.">
+    <meta name="description" content="Orientações sobre emprego, concursos públicos, trabalho remoto, preparação para entrevistas e simuladores educativos.">
     <style>
         body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f8fafc; color: #0f172a; margin: 0; padding: 0; box-sizing: border-box; }
         .header-top { background: linear-gradient(135deg, #0f172a, #1e3a8a); color: white; padding: 45px 20px; text-align: center; box-sizing: border-box; }
@@ -296,7 +300,7 @@ INDEX_TEMPLATE = """
     {{ nav_bar | safe }}
     <div class="header-top">
         <h1>Oportunidade e Vagas de Emprego</h1>
-        <p>Busque por cargo, área de atuação, concursos ou orientações profissionais</p>
+        <p>Guias práticos, orientações sobre concursos, trabalho remoto e atalhos de pesquisa</p>
 
         <div class="search-container">
             <input type="text" id="searchInput" class="search-input" placeholder="🔍 Digite o cargo, profissão ou área...">
@@ -312,7 +316,7 @@ INDEX_TEMPLATE = """
     </div>
 
     <div class="states-top-bar">
-        <p>📍 Selecione um Estado para ver Dicas Regionais e Atalhos de Busca:</p>
+        <p>📍 Selecione um Estado para ver Orientações Regionais e Municípios:</p>
         <div class="states-box" id="statesGrid">
             {% for e in estados %}
             <a href="{{ e.file }}" class="state-pill">{{ e.name }}</a>
@@ -358,6 +362,7 @@ INDEX_TEMPLATE = """
 
         {{ ad_banner | safe }}
         {{ guia_editorial_section | safe }}
+        {{ guia_entrevista_section | safe }}
         {{ calculadoras_section | safe }}
 
         <div class="guias-box">
@@ -457,11 +462,11 @@ ESTADO_TEMPLATE = """
     {{ monetag_script | safe }}
     {{ google_meta | safe }}
     <link rel="canonical" href="{{ dominio }}/{{ estado.file }}">
-    <meta property="og:title" content="Guia de Oportunidades e Cidades em {{ estado.name }} - Oportunidade e Vagas">
-    <meta property="og:description" content="Orientações, cidades em destaque e atalhos de busca profissional em {{ estado.name }}.">
+    <meta property="og:title" content="Guia de Orientação Profissional em {{ estado.name }} - Oportunidade e Vagas">
+    <meta property="og:description" content="Orientações regionais, municípios em destaque e atalhos de pesquisa em {{ estado.name }}.">
     <meta property="og:type" content="website">
-    <title>Guia de Oportunidades em {{ estado.name }} - Oportunidade e Vagas</title>
-    <meta name="description" content="Orientações, cidades em destaque e atalhos de busca profissional em {{ estado.name }}.">
+    <title>Guia em {{ estado.name }} - Oportunidade e Vagas</title>
+    <meta name="description" content="Orientações regionais, municípios em destaque e atalhos de pesquisa em {{ estado.name }}.">
     <style>
         body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f8fafc; color: #0f172a; margin: 0; padding: 0; box-sizing: border-box; }
         .header-top { background: linear-gradient(135deg, #0f172a, #1e3a8a); color: white; padding: 35px 20px; box-sizing: border-box; }
@@ -475,7 +480,12 @@ ESTADO_TEMPLATE = """
         .state-pill { background: #334155; border: 1px solid #475569; padding: 8px 14px; border-radius: 6px; text-decoration: none; color: #f8fafc; font-weight: 600; font-size: 12px; transition: background 0.2s; box-sizing: border-box; }
         .state-pill:hover { background: #2563eb; border-color: #2563eb; }
 
-        .cities-section { background: #ffffff; border: 1px solid #e2e8f0; padding: 25px; border-radius: 12px; margin: 30px 0; box-shadow: 0 4px 6px rgba(0,0,0,0.02); box-sizing: border-box; }
+        .info-panel { background: #ffffff; border: 1px solid #e2e8f0; padding: 25px; border-radius: 12px; margin: 25px 0; box-shadow: 0 4px 6px rgba(0,0,0,0.02); box-sizing: border-box; }
+        .info-panel h2 { margin: 0 0 10px 0; color: #1e3a8a; font-size: 18px; }
+        .info-panel p { font-size: 14px; color: #475569; margin: 0 0 12px 0; line-height: 1.6; }
+        .checklist { margin: 0; padding-left: 20px; font-size: 13px; color: #334155; line-height: 1.7; }
+
+        .cities-section { background: #ffffff; border: 1px solid #e2e8f0; padding: 25px; border-radius: 12px; margin: 25px 0; box-shadow: 0 4px 6px rgba(0,0,0,0.02); box-sizing: border-box; }
         .cities-section h3 { margin: 0 0 10px 0; color: #1e3a8a; font-size: 16px; }
         .cities-section p { font-size: 13px; color: #64748b; margin: 0 0 15px 0; line-height: 1.5; }
         .cities-grid { display: flex; flex-wrap: wrap; gap: 10px; box-sizing: border-box; }
@@ -511,7 +521,7 @@ ESTADO_TEMPLATE = """
     <div class="header-top">
         <a href="index.html">← Voltar para a Página Inicial</a>
         <h1>Panorama Profissional em {{ estado.name }}</h1>
-        <p>Municípios em destaque, orientações de busca e materiais de apoio para {{ estado.name }}</p>
+        <p>Orientações regionais, municípios em destaque e recursos de apoio para {{ estado.name }}</p>
     </div>
 
     <div class="states-top-bar">
@@ -524,9 +534,21 @@ ESTADO_TEMPLATE = """
     </div>
 
     <div class="main-container">
+        <div class="info-panel">
+            <h2>Como Organizar a Busca em {{ estado.name }}</h2>
+            <p>
+                Ao acompanhar oportunidades e seleções em <strong>{{ estado.name }}</strong>, considere a distância entre bairros ou municípios vizinhos, os horários de transporte público e os requisitos específicos de cada setor econômico estadual.
+            </p>
+            <ul class="checklist">
+                <li><strong>Documentação e registro:</strong> mantenha documentos pessoais, comprovantes de escolaridade e registros profissionais em ordem.</li>
+                <li><strong>Editais e bancas:</strong> em concursos estaduais ou municipais em {{ sigla }}, confira sempre o cronograma oficial e possíveis retificações.</li>
+                <li><strong>Triagem de propostas:</strong> avalie remuneração, benefícios, escala e canais oficiais antes de avançar.</li>
+            </ul>
+        </div>
+
         <div class="cities-section">
             <h3>🏙️ Municípios em Destaque em {{ estado.name }}</h3>
-            <p>Acesse a página local de cada município para ver orientações e atalhos de busca segmentados para a região:</p>
+            <p>Acesse a página de cada município para ver orientações locais e atalhos de busca:</p>
             <div class="cities-grid">
                 {% for cidade in estado.cities %}
                 <a href="{{ cidade.file }}" class="city-badge">📌 {{ cidade.name }} ({{ sigla }}) →</a>
@@ -536,7 +558,7 @@ ESTADO_TEMPLATE = """
 
         {{ ad_banner | safe }}
 
-        <div class="section-title">Destaques e Leituras em {{ estado.name }}</div>
+        <div class="section-title">Guias e Leituras de Apoio</div>
         <div class="cards-wrapper">
             {% for noticia in noticias %}
             <div class="card">
@@ -575,7 +597,7 @@ CIDADE_TEMPLATE = """
     <meta property="og:title" content="Guia Profissional de {{ cidade.name }} ({{ sigla }}) - Oportunidade e Vagas">
     <meta property="og:description" content="Atalhos de busca e dicas práticas de recolocação em {{ cidade.name }} - {{ sigla }}.">
     <meta property="og:type" content="website">
-    <title>Guia Profissional de {{ cidade.name }} ({{ sigla }}) - Oportunidade e Vagas</title>
+    <title>Guia de {{ cidade.name }} ({{ sigla }}) - Oportunidade e Vagas</title>
     <meta name="description" content="Atalhos de busca e dicas práticas de recolocação em {{ cidade.name }} - {{ sigla }}.">
     <style>
         body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f8fafc; color: #0f172a; margin: 0; padding: 0; box-sizing: border-box; }
@@ -587,8 +609,8 @@ CIDADE_TEMPLATE = """
         .main-container { max-width: 1000px; margin: 0 auto; padding: 20px; box-sizing: border-box; }
         .local-box { background: #ffffff; border: 1px solid #e2e8f0; padding: 25px; border-radius: 12px; margin-bottom: 25px; box-sizing: border-box; }
         .local-box h2 { margin: 0 0 10px 0; color: #1e3a8a; font-size: 18px; }
-        .local-box p { margin: 0 0 15px 0; font-size: 14px; color: #475569; line-height: 1.6; }
-        .atalhos-grid { display: flex; flex-wrap: wrap; gap: 10px; }
+        .local-box p { margin: 0 0 14px 0; font-size: 14px; color: #475569; line-height: 1.6; }
+        .atalhos-grid { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 15px; }
         .atalho-btn { background: #2563eb; color: white; padding: 10px 16px; border-radius: 8px; text-decoration: none; font-size: 13px; font-weight: 600; }
         .atalho-btn:hover { background: #1d4ed8; }
 
@@ -625,9 +647,12 @@ CIDADE_TEMPLATE = """
 
     <div class="main-container">
         <div class="local-box">
-            <h2>Pesquisar Oportunidades em {{ cidade.name }} - {{ sigla }}</h2>
+            <h2>Estratégia de Busca Local em {{ cidade.name }} - {{ sigla }}</h2>
             <p>
-                Ao buscar vagas em <strong>{{ cidade.name }}</strong>, filtre por turno, distância até o local de trabalho ou modalidade remota. Confira diretamente nas plataformas de emprego abaixo:
+                Para aproveitar melhor as buscas em <strong>{{ cidade.name }}</strong>, combine palavras-chave do seu cargo com filtros de bairro, turno ou atuação remota quando aplicável. Compare sempre as condições descritas no anúncio antes de se candidatar.
+            </p>
+            <p>
+                Caso avalie vagas em cidades próximas de {{ sigla }}, amplie o raio de deslocamento apenas se o tempo de trajeto e os custos forem compatíveis com a proposta.
             </p>
             <div class="atalhos-grid">
                 <a href="https://www.infojobs.com.br/empregos.aspx?palabra={{ cidade.name | urlencode }}" target="_blank" rel="nofollow noopener" class="atalho-btn">InfoJobs em {{ cidade.name }} →</a>
@@ -1014,6 +1039,7 @@ def gerar_site():
             nav_bar=NAV_BAR,
             breaking_news_ticker=BREAKING_NEWS_TICKER,
             guia_editorial_section=GUIA_EDITORIAL_SECTION,
+            guia_entrevista_section=GUIA_ENTREVISTA_SECTION,
             dominio=DOMINIO_SITE,
             footer_robusto=FOOTER_ROBUSTO,
             faq_section=FAQ_SECTION,
@@ -1027,38 +1053,38 @@ def gerar_site():
             "Sobre o Portal",
             """
             <h2>Quem Somos</h2>
-            <p>O <strong>Oportunidade e Vagas de Emprego</strong> é um espaço informativo voltado a orientações sobre carreira, preparação para processos seletivos, leitura de editais e boas práticas na busca por trabalho.</p>
-            <h2>Como Funciona</h2>
-            <p>Reunimos guias práticos, simuladores educativos e atalhos para plataformas de emprego e fontes públicas, ajudando o candidato a organizar sua rotina e evitar fraudes comuns em seleções.</p>
+            <p>O <strong>Oportunidade e Vagas de Emprego</strong> é um espaço informativo voltado a orientações sobre carreira, leitura de editais de concursos públicos, organização de currículos e boas práticas na busca por oportunidades.</p>
+            <h2>Objetivo e Transparência</h2>
+            <p>Nosso propósito é oferecer guias práticos, simuladores educativos e atalhos para fontes externas confiáveis. As estimativas apresentadas nas calculadoras têm caráter apenas ilustrativo e não substituem consultas oficiais ou orientações profissionais.</p>
             """
         ),
         (
             "termos.html",
             "Termos de Uso",
             """
-            <h2>1. Natureza do Conteúdo</h2>
-            <p>Este site tem caráter exclusivamente informativo e educativo. As informações, simuladores e links externos são disponibilizados para apoio à pesquisa do usuário.</p>
-            <h2>2. Links e Serviços de Terceiros</h2>
-            <p>Ao clicar em links externos para plataformas de emprego, bancos de questões ou órgãos públicos, você acessa sites administrados por terceiros, cada qual com suas próprias regras e políticas.</p>
+            <h2>1. Finalidade Informativa</h2>
+            <p>O conteúdo deste site é disponibilizado para fins informativos e educativos. Recomendamos sempre confirmar requisitos, datas, valores e regras diretamente nas fontes oficiais ou plataformas responsáveis.</p>
+            <h2>2. Sites e Serviços de Terceiros</h2>
+            <p>Os links externos presentes nas páginas direcionam o visitante para plataformas de emprego, portais de estudo ou órgãos públicos administrados por terceiros, sob políticas e termos próprios de cada serviço.</p>
             """
         ),
         (
             "privacidade.html",
             "Política de Privacidade",
             """
-            <h2>1. Coleta e Uso de Informações</h2>
-            <p>Respeitamos a privacidade dos visitantes. Não exigimos cadastro obrigatório para navegar pelos guias e ferramentas básicas do site.</p>
-            <h2>2. Cookies e Publicidade</h2>
-            <p>Parceiros de publicidade, incluindo o Google AdSense, podem utilizar cookies e tecnologias semelhantes para exibir anúncios relevantes e medir o desempenho das veiculações de acordo com suas próprias políticas de privacidade.</p>
+            <h2>1. Privacidade e Navegação</h2>
+            <p>Respeitamos a privacidade dos visitantes. Não exigimos cadastro obrigatório para acessar os guias, páginas regionais e ferramentas educativas do site.</p>
+            <h2>2. Cookies e Parceiros de Publicidade</h2>
+            <p>Parceiros de publicidade, incluindo o Google AdSense, podem utilizar cookies e tecnologias semelhantes para veicular anúncios de acordo com suas preferências de navegação e políticas de privacidade aplicáveis.</p>
             """
         ),
         (
             "contato.html",
-            "Contato e Divulgação",
+            "Contato e Suporte",
             """
             <h2>Fale Conosco</h2>
-            <p>Tem dúvidas, sugestões de pauta ou deseja falar sobre o portal? Entre em contato pelo e-mail: <strong>contato@oportunidadeevagas.com.br</strong>.</p>
-            <p>Procure informar o link da página ou o assunto da mensagem para facilitar o atendimento.</p>
+            <p>Para dúvidas, sugestões de conteúdo ou comunicações sobre o portal, entre em contato pelo e-mail: <strong>contato@oportunidadeevagas.com.br</strong>.</p>
+            <p>Ao enviar sua mensagem, informe o link da página ou o tema tratado para facilitar o retorno.</p>
             """
         )
     ]
@@ -1081,9 +1107,8 @@ def gerar_site():
 
     gerar_robots()
     gerar_sitemap(estados_brasil, todas_cidades_geradas)
-    print("Sucesso! Arquivos HTML, robots.txt, sitemap.xml e ads.txt gerados.")
+    print("Sucesso! Portal, .gitignore, robots.txt, sitemap.xml e ads.txt gerados.")
 
 
 if __name__ == "__main__":
     gerar_site()
-
