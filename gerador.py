@@ -211,6 +211,7 @@ FAQ_SECTION = """
         <p><strong>1. Como faço para consultar oportunidades ou editais?</strong><br>Clique no botão "Acessar Fonte →" no cartão escolhido para abrir o portal ou fonte externa correspondente e verificar requisitos, prazos e regras oficiais.</p>
         <p><strong>2. O site cobra alguma taxa?</strong><br>Não. A leitura dos guias, orientações e simuladores educativos do portal é gratuita e não cobramos taxas de inscrição ou intermediação.</p>
         <p><strong>3. Posso filtrar o conteúdo da página inicial?</strong><br>Sim! Utilize os botões de categoria no topo ou digite um termo na barra de pesquisa para filtrar os cartões exibidos e abrir atalhos em sites externos.</p>
+        <p><strong>4. Os valores dos simuladores são definitivos?</strong><br>Não. Os simuladores servem apenas como referência educativa inicial e não substituem cálculos oficiais ou conferência em documentos formais.</p>
     </div>
 </div>
 """
@@ -543,6 +544,7 @@ ESTADO_TEMPLATE = """
                 <li><strong>Documentação e registro:</strong> mantenha documentos pessoais, comprovantes de escolaridade e registros profissionais em ordem.</li>
                 <li><strong>Editais e bancas:</strong> em concursos estaduais ou municipais em {{ sigla }}, confira sempre o cronograma oficial e possíveis retificações.</li>
                 <li><strong>Triagem de propostas:</strong> avalie remuneração, benefícios, escala e canais oficiais antes de avançar.</li>
+                <li><strong>Segurança contra golpes:</strong> evite pagamentos antecipados por supostas inscrições, exames ou materiais.</li>
             </ul>
         </div>
 
@@ -610,6 +612,7 @@ CIDADE_TEMPLATE = """
         .local-box { background: #ffffff; border: 1px solid #e2e8f0; padding: 25px; border-radius: 12px; margin-bottom: 25px; box-sizing: border-box; }
         .local-box h2 { margin: 0 0 10px 0; color: #1e3a8a; font-size: 18px; }
         .local-box p { margin: 0 0 14px 0; font-size: 14px; color: #475569; line-height: 1.6; }
+        .local-box ul { margin: 0 0 16px 0; padding-left: 20px; font-size: 13px; color: #334155; line-height: 1.7; }
         .atalhos-grid { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 15px; }
         .atalho-btn { background: #2563eb; color: white; padding: 10px 16px; border-radius: 8px; text-decoration: none; font-size: 13px; font-weight: 600; }
         .atalho-btn:hover { background: #1d4ed8; }
@@ -651,9 +654,11 @@ CIDADE_TEMPLATE = """
             <p>
                 Para aproveitar melhor as buscas em <strong>{{ cidade.name }}</strong>, combine palavras-chave do seu cargo com filtros de bairro, turno ou atuação remota quando aplicável. Compare sempre as condições descritas no anúncio antes de se candidatar.
             </p>
-            <p>
-                Caso avalie vagas em cidades próximas de {{ sigla }}, amplie o raio de deslocamento apenas se o tempo de trajeto e os custos forem compatíveis com a proposta.
-            </p>
+            <ul>
+                <li><strong>Deslocamento e rotina:</strong> calcule o tempo de ida e volta e os custos de transporte antes de aceitar ofertas presenciais.</li>
+                <li><strong>Atualização do currículo:</strong> adapte o resumo e as palavras-chave da sua experiência ao tipo de vaga buscada em {{ cidade.name }}.</li>
+                <li><strong>Canais oficiais:</strong> dê preferência a inscrições em sites oficiais de empresas, bancas ou plataformas conhecidas.</li>
+            </ul>
             <div class="atalhos-grid">
                 <a href="https://www.infojobs.com.br/empregos.aspx?palabra={{ cidade.name | urlencode }}" target="_blank" rel="nofollow noopener" class="atalho-btn">InfoJobs em {{ cidade.name }} →</a>
                 <a href="https://br.indeed.com/jobs?l={{ cidade.name | urlencode }}%2C+{{ sigla }}" target="_blank" rel="nofollow noopener" class="atalho-btn">Indeed em {{ cidade.name }} →</a>
@@ -1056,6 +1061,8 @@ def gerar_site():
             <p>O <strong>Oportunidade e Vagas de Emprego</strong> é um espaço informativo voltado a orientações sobre carreira, leitura de editais de concursos públicos, organização de currículos e boas práticas na busca por oportunidades.</p>
             <h2>Objetivo e Transparência</h2>
             <p>Nosso propósito é oferecer guias práticos, simuladores educativos e atalhos para fontes externas confiáveis. As estimativas apresentadas nas calculadoras têm caráter apenas ilustrativo e não substituem consultas oficiais ou orientações profissionais.</p>
+            <h2>Compromisso com o Visitante</h2>
+            <p>Buscamos manter uma navegação clara, acessível e livre de promessas enganosas ou cobranças indevidas ao candidato.</p>
             """
         ),
         (
@@ -1066,6 +1073,8 @@ def gerar_site():
             <p>O conteúdo deste site é disponibilizado para fins informativos e educativos. Recomendamos sempre confirmar requisitos, datas, valores e regras diretamente nas fontes oficiais ou plataformas responsáveis.</p>
             <h2>2. Sites e Serviços de Terceiros</h2>
             <p>Os links externos presentes nas páginas direcionam o visitante para plataformas de emprego, portais de estudo ou órgãos públicos administrados por terceiros, sob políticas e termos próprios de cada serviço.</p>
+            <h2>3. Uso Responsável das Ferramentas</h2>
+            <p>Os simuladores e orientações disponibilizados têm caráter auxiliar e não constituem aconselhamento jurídico, contábil ou trabalhista formal.</p>
             """
         ),
         (
@@ -1076,6 +1085,8 @@ def gerar_site():
             <p>Respeitamos a privacidade dos visitantes. Não exigimos cadastro obrigatório para acessar os guias, páginas regionais e ferramentas educativas do site.</p>
             <h2>2. Cookies e Parceiros de Publicidade</h2>
             <p>Parceiros de publicidade, incluindo o Google AdSense, podem utilizar cookies e tecnologias semelhantes para veicular anúncios de acordo com suas preferências de navegação e políticas de privacidade aplicáveis.</p>
+            <h2>3. Atualizações desta Política</h2>
+            <p>Esta política pode ser atualizada periodicamente para refletir melhorias no portal ou requisitos técnicos e regulatórios.</p>
             """
         ),
         (
