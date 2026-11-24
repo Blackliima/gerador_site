@@ -14,12 +14,10 @@ urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 DOMINIO_SITE = "https://gerador-site.pages.dev"
 NOME_MARCA = "Oportunidade e Vagas de Emprego"
+EMAIL_CONTATO = "contato@gerador-site.pages.dev"
 
 GOOGLE_META = '<meta name="google-site-verification" content="pbgwZbVwgKMwqqqGYFcHeGGbV7EM7nBdlns1c_DN_Sw" />'
 ADSENSE_SCRIPT = '<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5379027874215422" crossorigin="anonymous"></script>'
-
-# Mantenha scripts de outras redes de anuncios desativados durante a revisao do AdSense:
-MONETAG_SCRIPT = '<!-- <script src="https://quge5.com/88/tag.min.js" data-zone="309679" async data-cfasync="false"></script> -->'
 
 ADS_TXT_CONTENT = "google.com, pub-5379027874215422, DIRECT, f08c47fec0942fa0"
 
@@ -31,10 +29,6 @@ FAVICON_TAG = (
     "fill='%2338bdf8' font-family='Arial, sans-serif' font-size='65' font-weight='bold'>O</text>"
     '</svg>">'
 )
-
-AD_BANNER = """
-<!-- Bloco de anuncio opcional desativado durante revisao do AdSense -->
-"""
 
 TICKER_COTACOES = """
 <div style="background: #0f172a; color: #f8fafc; border-bottom: 1px solid #1e293b; padding: 10px 0; font-size: 12px; font-weight: 600; overflow: hidden; white-space: nowrap;">
@@ -224,7 +218,6 @@ INDEX_TEMPLATE = """
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {{ favicon_tag | safe }}
     {{ adsense_script | safe }}
-    {{ monetag_script | safe }}
     {{ google_meta | safe }}
     <link rel="canonical" href="{{ dominio }}/index.html">
     <meta property="og:title" content="Oportunidade e Vagas de Emprego - Concursos, CLT e Home Office">
@@ -327,7 +320,6 @@ INDEX_TEMPLATE = """
 
     <div class="main-container">
         {{ breaking_news_ticker | safe }}
-        {{ ad_banner | safe }}
 
         <div id="resultadoBuscaBox">
             <h3 id="tituloBuscaResultado">Resultados da Pesquisa</h3>
@@ -361,7 +353,6 @@ INDEX_TEMPLATE = """
             {% endfor %}
         </div>
 
-        {{ ad_banner | safe }}
         {{ guia_editorial_section | safe }}
         {{ guia_entrevista_section | safe }}
         {{ calculadoras_section | safe }}
@@ -460,7 +451,6 @@ ESTADO_TEMPLATE = """
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {{ favicon_tag | safe }}
     {{ adsense_script | safe }}
-    {{ monetag_script | safe }}
     {{ google_meta | safe }}
     <link rel="canonical" href="{{ dominio }}/{{ estado.file }}">
     <meta property="og:title" content="Guia de Orientação Profissional em {{ estado.name }} - Oportunidade e Vagas">
@@ -558,8 +548,6 @@ ESTADO_TEMPLATE = """
             </div>
         </div>
 
-        {{ ad_banner | safe }}
-
         <div class="section-title">Guias e Leituras de Apoio</div>
         <div class="cards-wrapper">
             {% for noticia in noticias %}
@@ -576,8 +564,6 @@ ESTADO_TEMPLATE = """
             </div>
             {% endfor %}
         </div>
-
-        {{ ad_banner | safe }}
     </div>
 
     {{ footer_robusto | safe }}
@@ -593,7 +579,6 @@ CIDADE_TEMPLATE = """
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {{ favicon_tag | safe }}
     {{ adsense_script | safe }}
-    {{ monetag_script | safe }}
     {{ google_meta | safe }}
     <link rel="canonical" href="{{ dominio }}/{{ cidade.file }}">
     <meta property="og:title" content="Guia Profissional de {{ cidade.name }} ({{ sigla }}) - Oportunidade e Vagas">
@@ -665,8 +650,6 @@ CIDADE_TEMPLATE = """
             </div>
         </div>
 
-        {{ ad_banner | safe }}
-
         <div class="section-title">Leituras e Recursos Recomendados</div>
         <div class="cards-wrapper">
             {% for noticia in noticias %}
@@ -683,8 +666,6 @@ CIDADE_TEMPLATE = """
             </div>
             {% endfor %}
         </div>
-
-        {{ ad_banner | safe }}
     </div>
 
     {{ footer_robusto | safe }}
@@ -700,7 +681,6 @@ PAGINA_LEGAL_TEMPLATE = """
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {{ favicon_tag | safe }}
     {{ adsense_script | safe }}
-    {{ monetag_script | safe }}
     {{ google_meta | safe }}
     <link rel="canonical" href="{{ dominio }}/{{ arquivo }}">
     <title>{{ titulo }} - Oportunidade e Vagas</title>
@@ -997,9 +977,7 @@ def gerar_site():
                 sigla=sigla_est,
                 noticias=noticias_est[:6],
                 estados_lista=estados_brasil,
-                ad_banner=AD_BANNER,
                 adsense_script=ADSENSE_SCRIPT,
-                monetag_script=MONETAG_SCRIPT,
                 google_meta=GOOGLE_META,
                 ticker_cotacoes=TICKER_COTACOES,
                 nav_bar=NAV_BAR,
@@ -1020,9 +998,7 @@ def gerar_site():
                     cidade=cidade,
                     sigla=sigla_est,
                     noticias=noticias_cidade[:6],
-                    ad_banner=AD_BANNER,
                     adsense_script=ADSENSE_SCRIPT,
-                    monetag_script=MONETAG_SCRIPT,
                     google_meta=GOOGLE_META,
                     ticker_cotacoes=TICKER_COTACOES,
                     nav_bar=NAV_BAR,
@@ -1036,9 +1012,7 @@ def gerar_site():
         f.write(Template(INDEX_TEMPLATE).render(
             estados=estados_brasil,
             categorias=categorias_dict,
-            ad_banner=AD_BANNER,
             adsense_script=ADSENSE_SCRIPT,
-            monetag_script=MONETAG_SCRIPT,
             google_meta=GOOGLE_META,
             ticker_cotacoes=TICKER_COTACOES,
             nav_bar=NAV_BAR,
@@ -1092,9 +1066,9 @@ def gerar_site():
         (
             "contato.html",
             "Contato e Suporte",
-            """
+            f"""
             <h2>Fale Conosco</h2>
-            <p>Para dúvidas, sugestões de conteúdo ou comunicações sobre o portal, entre em contato pelo e-mail: <strong>contato@oportunidadeevagas.com.br</strong>.</p>
+            <p>Para dúvidas, sugestões de conteúdo ou comunicações sobre o portal, entre em contato pelo canal de atendimento: <strong>{EMAIL_CONTATO}</strong>.</p>
             <p>Ao enviar sua mensagem, informe o link da página ou o tema tratado para facilitar o retorno.</p>
             """
         )
@@ -1107,7 +1081,6 @@ def gerar_site():
                 arquivo=arquivo_pag,
                 conteudo=conteudo_pag,
                 adsense_script=ADSENSE_SCRIPT,
-                monetag_script=MONETAG_SCRIPT,
                 google_meta=GOOGLE_META,
                 ticker_cotacoes=TICKER_COTACOES,
                 nav_bar=NAV_BAR,
