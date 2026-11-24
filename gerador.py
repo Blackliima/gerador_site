@@ -74,8 +74,44 @@ BREAKING_NEWS_TICKER = """
 </div>
 """
 
+GUIA_ARTIGOS_COMPLETOS = """
+<div style="background: #ffffff; border: 1px solid #e2e8f0; padding: 30px; border-radius: 12px; margin-top: 35px; box-shadow: 0 4px 6px rgba(0,0,0,0.02); box-sizing: border-box;">
+    <h2 style="margin-top: 0; color: #1e3a8a; font-size: 20px;">📚 Guias Práticos de Carreira, Editais e Organização</h2>
+    <p style="font-size: 14px; color: #475569; line-height: 1.65; margin-bottom: 22px;">
+        Reunimos orientações detalhadas para ajudar quem está buscando recolocação no mercado de trabalho, se preparando para concursos públicos ou estruturando uma rotina de estudos e trabalho remoto com mais clareza.
+    </p>
+
+    <div style="margin-bottom: 22px; padding-bottom: 18px; border-bottom: 1px solid #e2e8f0;">
+        <h3 style="margin: 0 0 8px 0; color: #0f172a; font-size: 16px;">Como interpretar um edital de concurso público sem perder prazos</h3>
+        <p style="margin: 0 0 8px 0; font-size: 13.5px; color: #334155; line-height: 1.65;">
+            Antes de se inscrever em qualquer seleção pública, vale ler com calma as seções de requisitos, cronograma, conteúdo programático e critérios de desempate. Muitas eliminações acontecem por detalhes simples, como confundir datas de isenção e pagamento, deixar de conferir retificações ou não comprovar formação/registro na data exigida.
+        </p>
+        <p style="margin: 0; font-size: 13.5px; color: #334155; line-height: 1.65;">
+            Uma boa prática é criar um checklist com as datas principais (inscrição, pedido de isenção, local de prova, gabarito e recursos) e acompanhar o site oficial da banca organizadora até a homologação final.
+        </p>
+    </div>
+
+    <div style="margin-bottom: 22px; padding-bottom: 18px; border-bottom: 1px solid #e2e8f0;">
+        <h3 style="margin: 0 0 8px 0; color: #0f172a; font-size: 16px;">Como adaptar o currículo para diferentes funções e setores</h3>
+        <p style="margin: 0 0 8px 0; font-size: 13.5px; color: #334155; line-height: 1.65;">
+            Um currículo genérico costuma passar despercebido quando o recrutador busca competências específicas. Ajustar o título/objetivo, o resumo inicial e os destaques de experiência conforme a vaga — seja em atendimento, logística, administração, indústria ou suporte remoto — aumenta a aderência sem inventar informações.
+        </p>
+        <p style="margin: 0; font-size: 13.5px; color: #334155; line-height: 1.65;">
+            Priorize verbos de ação, resultados ou rotinas executadas no dia a dia e mantenha o arquivo em formato limpo (como PDF), fácil de ler tanto em telas quanto em sistemas de triagem.
+        </p>
+    </div>
+
+    <div>
+        <h3 style="margin: 0 0 8px 0; color: #0f172a; font-size: 16px;">Segurança digital e prevenção contra golpes em seleções</h3>
+        <p style="margin: 0; font-size: 13.5px; color: #334155; line-height: 1.65;">
+            Processos seletivos legítimos não exigem transferência via Pix ou pagamento antecipado para agendar entrevista, liberar vaga, enviar crachá ou custear exames fora de regras formais conhecidas. Sempre confira o domínio do site, desconfie de links encurtados ou mensagens com urgência artificial e evite enviar documentos sensíveis antes de confirmar a procedência da empresa ou órgão.
+        </p>
+    </div>
+</div>
+"""
+
 GUIA_EDITORIAL_SECTION = """
-<div style="background: #ffffff; border: 1px solid #e2e8f0; padding: 30px; border-radius: 12px; margin-top: 40px; box-shadow: 0 4px 6px rgba(0,0,0,0.02); box-sizing: border-box;">
+<div style="background: #ffffff; border: 1px solid #e2e8f0; padding: 30px; border-radius: 12px; margin-top: 35px; box-shadow: 0 4px 6px rgba(0,0,0,0.02); box-sizing: border-box;">
     <h3 style="margin-top: 0; color: #1e3a8a; font-size: 18px;">📌 Boas Práticas para Candidaturas e Concursos</h3>
     <p style="font-size: 13px; color: #475569; line-height: 1.6; margin-bottom: 20px;">
         Organizar a busca por emprego ou a preparação para concursos exige atenção a detalhes práticos que fazem diferença na triagem de currículos e no cumprimento de prazos oficiais:
@@ -320,6 +356,7 @@ INDEX_TEMPLATE = """
 
     <div class="main-container">
         {{ breaking_news_ticker | safe }}
+        {{ guia_artigos_completos | safe }}
 
         <div id="resultadoBuscaBox">
             <h3 id="tituloBuscaResultado">Resultados da Pesquisa</h3>
@@ -528,7 +565,10 @@ ESTADO_TEMPLATE = """
         <div class="info-panel">
             <h2>Como Organizar a Busca em {{ estado.name }}</h2>
             <p>
-                Ao acompanhar oportunidades e seleções em <strong>{{ estado.name }}</strong>, considere a distância entre bairros ou municípios vizinhos, os horários de transporte público e os requisitos específicos de cada setor econômico estadual.
+                {{ foco_regional }}
+            </p>
+            <p>
+                Em <strong>{{ estado.name }}</strong>, vale cruzar a disponibilidade de transporte, os horários de funcionamento da sua área de atuação e os requisitos formais de cada vaga ou edital antes de enviar sua candidatura.
             </p>
             <ul class="checklist">
                 <li><strong>Documentação e registro:</strong> mantenha documentos pessoais, comprovantes de escolaridade e registros profissionais em ordem.</li>
@@ -637,7 +677,10 @@ CIDADE_TEMPLATE = """
         <div class="local-box">
             <h2>Estratégia de Busca Local em {{ cidade.name }} - {{ sigla }}</h2>
             <p>
-                Para aproveitar melhor as buscas em <strong>{{ cidade.name }}</strong>, combine palavras-chave do seu cargo com filtros de bairro, turno ou atuação remota quando aplicável. Compare sempre as condições descritas no anúncio antes de se candidatar.
+                {{ dica_cidade }}
+            </p>
+            <p>
+                Em <strong>{{ cidade.name }}</strong>, vale combinar palavras-chave da sua função com filtros de turno, região ou trabalho remoto quando aplicável, conferindo sempre as condições informadas no anúncio antes de enviar seu currículo.
             </p>
             <ul>
                 <li><strong>Deslocamento e rotina:</strong> calcule o tempo de ida e volta e os custos de transporte antes de aceitar ofertas presenciais.</li>
@@ -712,6 +755,24 @@ PAGINA_LEGAL_TEMPLATE = """
 </body>
 </html>
 """
+
+
+def obter_foco_regional(idx):
+    perfis = [
+        "Em polos econômicos com alta concentração de comércio, serviços, logística e sedes corporativas, a concorrência costuma ser maior em funções administrativas e de atendimento, o que torna o currículo objetivo um diferencial importante.",
+        "Em regiões com forte presença industrial, de abastecimento e transporte, observar escalas de turno, normas de segurança e deslocamento intermunicipal ajuda a filtrar oportunidades compatíveis com sua rotina.",
+        "Em mercados regionais marcados por serviços locais, saúde, educação e comércio varejista, acompanhar editais municipais e seleções de empresas da cidade amplia as chances de recolocação."
+    ]
+    return perfis[idx % len(perfis)]
+
+
+def obter_dica_cidade(cidade_nome, idx):
+    dicas = [
+        f"Em {cidade_nome}, compare a distância real entre o local de trabalho e os principais eixos de transporte ou vias de acesso antes de assumir turnos presenciais.",
+        f"Para quem busca oportunidades em {cidade_nome}, manter o currículo atualizado com palavras-chave da função desejada e disponibilidade de horário facilita a triagem local.",
+        f"Ao acompanhar seleções e vagas em {cidade_nome}, confirme sempre os dados da empresa ou edital e evite compartilhar documentos pessoais em páginas não verificadas."
+    ]
+    return dicas[idx % len(dicas)]
 
 
 def buscar_noticias_brasil():
@@ -962,8 +1023,9 @@ def gerar_site():
     template_legal = Template(PAGINA_LEGAL_TEMPLATE)
 
     todas_cidades_geradas = []
+    contador_cidade = 0
 
-    for est in estados_brasil:
+    for idx_est, est in enumerate(estados_brasil):
         sigla_est = est['name'].split('(')[1].replace(')', '')
         noticias_est = []
         for _, cat_data in categorias_dict.items():
@@ -975,6 +1037,7 @@ def gerar_site():
             f.write(template_estado.render(
                 estado=est,
                 sigla=sigla_est,
+                foco_regional=obter_foco_regional(idx_est),
                 noticias=noticias_est[:6],
                 estados_lista=estados_brasil,
                 adsense_script=ADSENSE_SCRIPT,
@@ -997,6 +1060,7 @@ def gerar_site():
                 fc.write(template_cidade.render(
                     cidade=cidade,
                     sigla=sigla_est,
+                    dica_cidade=obter_dica_cidade(cidade["name"], contador_cidade),
                     noticias=noticias_cidade[:6],
                     adsense_script=ADSENSE_SCRIPT,
                     google_meta=GOOGLE_META,
@@ -1006,6 +1070,7 @@ def gerar_site():
                     footer_robusto=FOOTER_ROBUSTO,
                     favicon_tag=FAVICON_TAG
                 ))
+            contador_cidade += 1
             todas_cidades_geradas.append(cidade)
 
     with open("index.html", "w", encoding="utf-8") as f:
@@ -1017,6 +1082,7 @@ def gerar_site():
             ticker_cotacoes=TICKER_COTACOES,
             nav_bar=NAV_BAR,
             breaking_news_ticker=BREAKING_NEWS_TICKER,
+            guia_artigos_completos=GUIA_ARTIGOS_COMPLETOS,
             guia_editorial_section=GUIA_EDITORIAL_SECTION,
             guia_entrevista_section=GUIA_ENTREVISTA_SECTION,
             dominio=DOMINIO_SITE,
